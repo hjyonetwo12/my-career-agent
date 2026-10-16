@@ -495,10 +495,10 @@ def _page_recommended(items: list, hidden_count: int, date_str: str,
     )
 
     page = f"""
-<section class="page active" data-page="recommended">
+<section class="page" data-page="recommended">
   <div class="page-head">
     <div>
-      <h1>当前目标岗位</h1>
+      <h1>27届校招岗位</h1>
       <p class="page-sub">仅展示有官方证据确认的 27 届正式校招岗位 · ≥{_HIGH_MATCH_THRESHOLD} 分置顶推荐</p>
     </div>
     <div class="page-meta">
@@ -1066,11 +1066,12 @@ _ICON_CALENDAR = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" st
 
 _NAV_GROUPS = [
     ("发现", [
-        ("recommended", "27届校招", _ICON_RANK),
+        ("learning-guide", "技术要求与学习决策", _ICON_STAR),
+        ("recommended", "当前目标岗位", _ICON_RANK),
         ("today", "今日新增", _ICON_CLOCK),
         ("companies", "公司排行", _ICON_BARS),
         ("previous-cohort", "往届校招岗位", _ICON_CLOCK),
-        ("unknown-cohort", "待确认与社招参考", _ICON_CLOCK),
+        ("unknown-cohort", "届别待确认", _ICON_CLOCK),
     ]),
     ("我的", [
         ("applications", "投递记录", _ICON_KANBAN),
@@ -2231,6 +2232,103 @@ document.addEventListener('DOMContentLoaded', () => {
 # 入口
 # ──────────────────────────────────────────────────────────────────────────
 
+
+def _page_learning_guide(all_items: list, date_str: str) -> str:
+    """生成经过去偏校正的《技术方向检视与四维学习价值报告》视图。"""
+    insights = job_filters.aggregate_tech_and_learning_decisions(all_items)
+    total_in = insights["total_jobs_in_input"]
+    all_sub = insights["all_substantive_jd"]
+    non_cs = insights["non_cs_filtered_out"]
+    cs_sub = insights["cs_substantive_jd"]
+
+    plat_str = " · ".join(
+        f"{k}: {v} ({round(v / max(1, cs_sub) * 100)}%)"
+        for k, v in insights["platform_distribution"].items()
+    )
+    dir_rows = "".join(
+        f"<tr><td><b>{html.escape(k)}</b></td><td>{v}</td><td>{round(v / max(1, cs_sub) * 100, 1)}%</td></tr>"
+        for k, v in insights["direction_distribution"].items()
+    )
+
+    def _render_eval_rows(eval_items: list[dict]) -> str:
+        out = []
+        for it in eval_items:
+            ex_html = "<br>".join(
+                f'<span style="color:#6B7280;font-size:12px">• [{html.escape(e["company"])} {html.escape(e["title"])}] “{html.escape(e["snippet"])}”</span>'
+                for e in it["examples"]
+            )
+            out.append(
+                f"<tr>"
+                f"<td><b>{html.escape(it['name'])}</b><br><span style='color:#0B6E69;font-size:12px'>{html.escape(it['group'])} · {html.escape(it['dim'])}</span></td>"
+                f"<td style='font-size:12px'>"
+                f"<b>文本提及：</b>{it['mention_total']} 岗 ({it['mention_pct']}%)<br>"
+                f"• 明确要求词：{it['must_pct_of_mention']}%<br>"
+                f"• 优先/加分词：{it['bonus_pct_of_mention']}%<br>"
+                f"• 职责背景提及：{it['context_pct_of_mention']}%<br>"
+                f"<span style='color:#4B5563'>分布：{html.escape(it['top_dirs_str'])}</span>"
+                f"</td>"
+                f"<td style='font-size:12px'>"
+                f"<b>1.就业通用：</b>{html.escape(it['val_general'])}<br>"
+                f"<b>2.方向专属：</b>{html.escape(it['val_domain'])}"
+                f"</td>"
+                f"<td style='font-size:12px'>"
+                f"<b>3.个人探索：</b>{html.escape(it['val_explore'])}<br>"
+                f"<b>4.工程实践：</b>{html.escape(it['val_practice'])}"
+                f"</td>"
+                f"<td style='font-size:12px'>{html.escape(it['prereq_and_cost'])}<br>{ex_html}</td>"
+                f"</tr>"
+            )
+        return "".join(out)
+
+    eval_rows = _render_eval_rows(insights["tech_evaluations"])
+
+    return f"""
+<section class="page active" data-page="learning-guide">
+  <div class="page-head">
+    <div>
+      <h1>🧭 技术学习方向检视与四维价值分析</h1>
+      <p class="page-sub">从全库 {all_sub} 份完整 JD 中剥离 {non_cs} 条非计算机(机械/工艺/营销等)岗位，基于 <b>{cs_sub} 份计算机/软件研发真实 JD</b> 提供无预设偏向的方向对比</p>
+    </div>
+    <div class="page-meta">
+      <span class="meta-pill">📅 扫描日期：{html.escape(date_str)}</span>
+    </div>
+  </div>
+
+  <div class="big-card" style="margin-bottom:20px;padding:18px;background:#FFFBEB;border-left:4px solid #F59E0B">
+    <h3 style="margin-bottom:8px;color:#92400E">⚠️ 数据源真实局限与统计边界披露（阅读前必看）</h3>
+    <p style="font-size:13px;line-height:1.65;color:#78350F">
+      1. <b>历史初筛缓存造成的样本缺失</b>：模板原作者此前在构建 <code>jobs.db</code> 时，曾将 197 条 Java 岗、216 条前端岗、127 条 Android/iOS 岗、178 条大数据岗标为 C 档并从主表物理删除（我们在本次校正中已升级 <code>SCREENING_VERSION</code> 解除该限制，后续新抓取将恢复收录）。因此当前存量库中 Java/前端/移动端占比显著低于真实市场，<b>绝不能据此认为应用层或服务端方向缺乏机会</b>。<br>
+      2. <b>剥离非计算机噪音</b>：原库包含 {non_cs} 条机械、电气、工艺、销售等非软件岗位（曾导致“设备调试/测试”词频虚高）。下方统计已严格限定在 <b>{cs_sub} 条计算机与软件相关岗位</b>。<br>
+      3. <b>文本提及 ≠ 必须精通</b>：正则匹配仅代表岗位文本出现该词（比如写“熟悉 C++/Java/Python 之一”会同时计入三门语言），下方已拆分为“含明确要求动词”、“含优先/加分字样”与“仅职责背景提及”三类初筛指标，仅供宏观比较，不直接等同于唯一学习指令。<br>
+      4. <b>平台分布</b>：{html.escape(plat_str)}。
+    </p>
+  </div>
+
+  <h2 class="section-title">📊 四种技术学习价值多维对比（拒绝单一分数与硬核底层偏置）</h2>
+  <div class="table-wrap" style="margin-bottom:28px">
+    <table class="job-table">
+      <thead>
+        <tr>
+          <th style="width:18%">技术领域与维度</th>
+          <th style="width:18%">计算机岗初筛统计<br>(区分明确要求/加分/背景)</th>
+          <th style="width:22%">1. 就业通用价值 &amp;<br>2. 方向专属价值</th>
+          <th style="width:22%">3. 个人探索价值 &amp;<br>4. 工程实践价值</th>
+          <th style="width:20%">学习阶段建议与真实JD片段</th>
+        </tr>
+      </thead>
+      <tbody>{eval_rows}</tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">📂 计算机与软件相关岗位方向分布（N = {cs_sub}）</h2>
+  <div class="table-wrap" style="margin-bottom:28px">
+    <table class="job-table">
+      <thead><tr><th>技术方向分类（含应用层、服务层、算法层与底层系统）</th><th>当前库内完整JD样本数</th><th>占计算机样本比例</th></tr></thead>
+      <tbody>{dir_rows}</tbody>
+    </table>
+  </div>
+</section>"""
+
 def render_html(date_str: str, report_data: dict, editable: bool = False,
                 server_pagination: bool = False) -> str:
     """组装整页 HTML（不落盘）。
@@ -2256,6 +2354,7 @@ def render_html(date_str: str, report_data: dict, editable: bool = False,
                 "match_score": (it.get("analysis") or {}).get("match_score"),
             }
 
+    page_learning_html = _page_learning_guide(all_items, date_str)
     page_rec_html, _stats = _page_recommended(
         shown_items, hidden_count, date_str, app_index, editable, server_pagination
     )
@@ -2295,6 +2394,7 @@ def render_html(date_str: str, report_data: dict, editable: bool = False,
 <div class="layout">
   {sidebar}
   <main class="main">
+    {page_learning_html}
     {page_rec_html}
     {page_today_html}
     {page_companies_html}

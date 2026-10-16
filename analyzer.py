@@ -24,7 +24,7 @@ _ANALYZE_WORKERS = max(1, int(os.environ.get("ANALYZE_WORKERS", "4")))
 _JD_HYDRATE_WORKERS = max(1, int(os.environ.get("JD_HYDRATE_WORKERS", "2")))
 
 ANALYSIS_VERSION = "match-v2.0"
-SCREENING_VERSION = "target-tier-v2.0"
+SCREENING_VERSION = "exploration-tier-v2.1"
 
 _SCORE_COMPONENT_LIMITS = {
     "core_direction": 25,
@@ -298,8 +298,7 @@ _BROAD_TECHNICAL_TITLE_RE = re.compile(
     re.I,
 )
 _OFF_TARGET_TECH_TITLE_RE = re.compile(
-    r"Java|前端|Web前端|Android|iOS|PHP|"
-    r"数据分析|商业分析|芯片|IC设计|射频|天线",
+    r"IC版图|射频|天线|机械设计|结构工程|电气工程|工艺工程|热设计|包装设计",
     re.I,
 )
 _CPP_STACK_RE = re.compile(
@@ -656,7 +655,9 @@ def _normalize_evidence(value) -> list[dict]:
             "jd_requirement": str(item.get("jd_requirement") or "").strip(),
             "profile_evidence": str(item.get("profile_evidence") or "").strip(),
             "relation": relation,
-            "requirement_type": requirement_type,
+            "requirement_type": requirement_type,  # basic=第一层通用基础, core=第二层方向核心, supporting=第三层岗位专属/加分
+            "skill_tag": str(item.get("skill_tag") or "").strip(),
+            "must_or_bonus": str(item.get("must_or_bonus") or "must").strip().lower(),
         })
     return normalized
 
@@ -766,7 +767,7 @@ def analyze_job(
         f"- engineering_stack 0-{limits['engineering_stack']}：通用可迁移工程能力（调试测试、构建工具、Linux/系统底层、跨平台开发，避免封闭单一工具依赖）。\n"
         f"- basic_criteria 0-{limits['basic_criteria']}：本科学历友好度、应届/实习资格匹配度及 WLB（工作生活平衡）安全性。\n\n"
         "证据与 WLB 审计规则：\n"
-        "1. relation 只能为 direct、adjacent、missing；requirement_type 只能为 core、supporting、basic。\n"
+        "1. 必须将 JD 的技术要求归入三层学习结构（通过 requirement_type 表达）：- basic（第一层：通用基础能力）：编程语言特性、数据结构算法、OS/体系结构/网络、调试/测试/构建/性能分析、模块化设计；- core（第二层：方向性核心技术）：图形渲染、引擎架构、GPU/CUDA/HPC、编译器、存储内核、计算几何、机器人控制等方向核心技术；- supporting（第三层：岗位或业务专属）：特定商业引擎业务模块、专有协议、非技术门槛或加分项。同时在 evidence 每项中标注 skill_tag（规范化技术名）与 must_or_bonus（\"must\"明确要求 / \"bonus\"优先加分项），严禁把推断当成招聘方明确要求。\n"
         "2. 必须审查 JD 中的 WLB 与工时风险线索：若出现“抗压能力强、适应高强度/快节奏、接受高频出差/长期驻场、大小周/倒班”等表述，必须在 gaps 中明确指出 `【WLB风险】+原文片段`，并扣减 basic_criteria 分数；若 JD 未提及作息工时，属于“WLB未知”，绝不能因为没写加班就默认 WLB 好。\n"
         "3. 若岗位虽为实习或初级研发，但实际要求精通多门冷门专有工具或要求多年经验，须在 missing_core_requirements 和 gaps 中标出“入行门槛/准备成本过高”。\n"
         "4. evidence_level：direct=核心要求有直接证据；partial=有部分直接证据（如扎实C++与系统基础匹配研发岗）；"
@@ -779,7 +780,8 @@ def analyze_job(
         '"project_evidence":0,"engineering_stack":0,"basic_criteria":0},'
         '"evidence_level":"partial","evidence":[{"jd_requirement":"核心要求",'
         '"profile_evidence":"候选人证据或未提供","relation":"direct",'
-        '"requirement_type":"core"}],"missing_core_requirements":["缺失的核心要求"],'
+        '"requirement_type":"basic","skill_tag":"规范化技术名","must_or_bonus":"must"}],'
+        '"missing_core_requirements":["缺失的核心要求"],'
         '"advantages":["有证据的优势或高可迁移价值"],"gaps":["能力缺口或【WLB风险/未知】提示"],"summary":"一句话审慎结论"}'
     )
 

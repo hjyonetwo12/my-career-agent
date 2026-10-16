@@ -27,13 +27,7 @@ def _is_intern_title(title: str) -> bool:
 
 
 def _is_current_cohort(job: dict) -> bool:
-    """与主页面一致：仅保留有官方证据确认的 27 届岗位。"""
-    explicit = job_cohorts.explicit_job_cohort(job)
-    if (
-        explicit["cohort_status"] == "confirmed"
-        and explicit["cohort"] != job_cohorts.CURRENT_COHORT
-    ):
-        return False
+    """与主页面一致：按 profile.yaml 当前模式(实习/校招)判定目标岗位。"""
     return job_cohorts.is_confirmed_current(job)
 
 
@@ -43,7 +37,7 @@ def _truncate(text: str, max_len: int = _CITY_TRUNCATE_LEN) -> str:
     return s if len(s) <= max_len else s[: max_len] + "…"
 
 
-_REPORT_BASE_URL = "https://career-agent-4z4.pages.dev"
+_REPORT_BASE_URL = os.environ.get("REPORT_BASE_URL", "").strip().rstrip("/")
 
 
 def _report_url(date_str: str = "") -> str:
@@ -54,7 +48,8 @@ def _report_url(date_str: str = "") -> str:
     只会更新 index.html。故飞书链接指 index.html 才能看到最新岗位 + 投递记录。
     date_str 仅为兼容旧调用，已不参与拼接。
     """
-    return f"{_REPORT_BASE_URL}/index.html"
+    base = os.environ.get("REPORT_BASE_URL", _REPORT_BASE_URL).strip().rstrip("/")
+    return f"{base}/index.html" if base else ""
 
 
 def _format_new_job(item: dict) -> list[list[dict]]:
@@ -125,20 +120,23 @@ def _build_payload(new_jobs: list[dict],
         for it in all_jobs
     }
     filtered_new = []
+    unscored_new = []
     for nj in new_jobs:
-        if _is_intern_title(nj["title"]):
-            continue
         if not _is_current_cohort(nj):
+            continue
+        if not job_filters.is_cs_software_role(nj):
             continue
         a = analysis_by_url.get(nj["jd_url"])
         if not a:
-            # 未分析的新增暂不展示（粗筛阶段会写 stub，下次再 evaluated）
+            unscored_new.append({"job": nj, "analysis": {"match_score": "未评分", "recommendation": job_filters.job_track_label(nj), "advantages": ["0 Token免费抓取入库"], "gaps": ["按需开启DeepSeek后生成详细评估"]}})
             continue
         if a.get("recommendation") == "不推荐":
             continue
         if a.get("match_score", 0) < _HIGH_SCORE_THRESHOLD:
             continue
         filtered_new.append({"job": nj, "analysis": a})
+    if not filtered_new and unscored_new:
+        filtered_new = unscored_new
 
     skipped = len(new_jobs) - len(filtered_new)
     header = f"━━━ 今日新增推荐 ({len(filtered_new)} 个)"
@@ -165,7 +163,6 @@ def _build_payload(new_jobs: list[dict],
         it for it in all_jobs
         if it["analysis"]
         and it["analysis"].get("match_score", 0) >= _HIGH_SCORE_THRESHOLD
-        and not _is_intern_title(it["job"]["title"])
         and _is_current_cohort(it["job"])
     ]
     high.sort(key=lambda x: x["analysis"]["match_score"], reverse=True)
@@ -224,6 +221,8 @@ def send(new_jobs: list[dict],
          all_jobs: list[dict],
          report_data: dict) -> None:
     """推送到飞书。若未设置 FEISHU_WEBHOOK 静默跳过；网络失败只记 warning。"""
+    import analyzer
+    analyzer._load_env_file()
     webhook = os.environ.get("FEISHU_WEBHOOK", "").strip()
     if not webhook:
         logger.info("未设置 FEISHU_WEBHOOK，跳过推送")
