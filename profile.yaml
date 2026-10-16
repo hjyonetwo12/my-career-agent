@@ -1,0 +1,98 @@
+degree: 本科
+# 大二/大三阶段填“实习”（只给实习岗花Token算分，校招/社招免费留作参考）
+# 等到大三下或大四找29届全职时，改成“校招与实习”或“校招”即可
+job_type: 实习
+target_cohort: 2029
+
+directions:
+  - C++软件开发与系统开发
+  - 图形学与实时渲染
+  - 游戏引擎与客户端开发
+  - 编译工具链与性能工程
+  - 数据库内核与存储系统
+  - 系统软件与基础设施
+  - 高性能计算(HPC)
+  - 工业软件(CAD/CAE)与几何算法
+  - 机器人软件与仿真
+
+skills:
+  - C++
+  - 数据结构与算法
+  - 计算机系统基础
+  - CMake
+  - 调试与单元测试(GDB/GTest)
+  - Git
+  - Linux基础
+
+project_evidence:
+  - 使用现代 C++ 与 CMake 构建模块化工程，具备扎实的数据结构与算法实现能力
+  - 掌握计算机系统底层基础（内存管理、编译链接、进程线程）及代码调试与测试流程
+  - 正在开展图形学渲染管线（OpenGL / GLSL 着色器）基础实践项目
+
+learning_targets:
+  - OpenGL
+  - GLSL
+  - 计算机图形学与渲染管线
+  - 现代 C++ (C++17/20)
+  - Linux 系统编程与并发编程
+  - 性能分析与优化
+
+unverified_skills: []
+
+excluded_title_keywords:
+  - 销售
+  - 客服
+  - 运营
+  - 财务
+  - 法务
+  - 人力资源
+  - 主播
+  - 证券
+  - 地产
+
+target_roles:
+  - name: C++软件开发与系统开发
+    keywords: [C++, C/C++, 软件开发, 系统开发, 研发工程师, 服务端, 客户端, 桌面端, 跨平台]
+  - name: 图形学、渲染与实时图形
+    keywords: [图形, 渲染, OpenGL, GLSL, Vulkan, DirectX, Shader, 实时渲染, 三维图形, 图形引擎, 技术美术, TA]
+  - name: 游戏引擎与客户端开发
+    keywords: [游戏引擎, 引擎开发, 游戏客户端, 客户端研发, UE4, UE5, Unreal, Unity, 物理引擎]
+  - name: 开发工具、编译工具链与性能工程
+    keywords: [编译器, LLVM, 工具链, 性能工程, 性能优化, 基础软件, 构建系统, 工程效能, 调试工具]
+  - name: 数据库内核与存储系统
+    keywords: [数据库内核, 数据库研发, 存储系统, 分布式存储, 存储引擎, 文件系统]
+  - name: 系统软件与基础设施
+    keywords: [系统软件, 操作系统, Linux内核, 基础设施, Infra, 基础架构, 中间件, 网络编程]
+  - name: 高性能计算(HPC)
+    keywords: [高性能计算, HPC, 并行计算, 异构计算, CUDA, 算子开发, 科学计算]
+  - name: 工业软件、CAD/CAE与几何算法
+    keywords: [工业软件, CAD, CAE, CAM, 几何算法, 计算几何, 网格生成, 数值仿真, 三维内核]
+  - name: 机器人软件与仿真
+    keywords: [机器人软件, 机器人系统, 仿真工程师, 运动控制, 机器人开发, ROS]
+
+preferred_cities:
+  - 北京
+  - 上海
+  - 深圳
+  - 杭州
+  - 广州
+  - 成都
+  - 苏州
+  - 武汉
+
+# 五项满分合计必须严格等于 100：
+# core_direction(25): 职业方向与长期技术复利
+# required_skills(25): 本科/实习入行可行性与核心技能匹配
+# project_evidence(20): 现有课程/项目证据与可迁移性
+# engineering_stack(15): 工具链、调试测试与底层工程素养
+# basic_criteria(15): 学历/实习资格友好度与 WLB 风险评估
+score_component_limits:
+  core_direction: 25
+  required_skills: 25
+  project_evidence: 20
+  engineering_stack: 15
+  basic_criteria: 15
+
+score_thresholds:
+  recommend: 78
+  consider: 58

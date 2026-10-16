@@ -1,0 +1,102 @@
+name: Daily Recruitment Report
+
+on:
+  # 【模式A：定时自动抓取（默认设为每 5 天一次，且下方已强制设为 0 Token 免费模式）】
+  # - 如果想改成每天抓一次：把 "0 22 */5 * *" 改为 "0 22 * * *"
+  # - 如果想彻底关闭自动抓取、只在你想抓时手动点按钮：在下面 schedule: 和 - cron: 两行最前面加 # 号即可
+  schedule:
+    - cron: "0 22 */5 * *"
+
+  # 【模式B：手动按需触发按钮（带 AI 算分开关）】
+  workflow_dispatch:
+    inputs:
+      skip_ai:
+        description: "是否跳过AI算分？(填 1 = 仅免费抓岗位0花费；填 0 = 开启DeepSeek算分)"
+        required: true
+        default: "1"
+
+permissions:
+  contents: write   # 允许 push DB 回主分支 + push gh-pages
+
+concurrency:
+  # jobs.db 是二进制状态文件，多个抓取任务并发回写时无法自动合并。
+  # 排队而不是取消正在运行的任务，避免丢失一次完整抓取结果。
+  group: daily-recruitment-report
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      # CI runner 是 UTC：cron UTC 22:00 = 中国次日 06:00，但 date.today() 在 UTC 下
+      # 仍是前一天，导致报告标题/crawled_at 比中国日历晚一天。强制中国时区修正。
+      TZ: Asia/Shanghai
+    # 公司扩到数百家后，并发爬取仍可能跑较久；显式设上限留足余量（默认 360）。
+    timeout-minutes: 330
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-chromium-v1
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Run pipeline
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          CI: "true"
+          # 定时自动触发(schedule)时强制为 1 (0 Token免费抓)；手动点击时按你弹窗填写的 1 或 0 执行
+          SKIP_AI: ${{ github.event_name == 'schedule' && '1' || github.event.inputs.skip_ai }}
+        run: python main.py
+
+      - name: Commit DB back to main
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # 腾讯文档自动接入只在真实抓到正式校招岗位后才会修改配置和状态文档。
+          git add data/jobs.db config.yaml outputs/company_integration_status.md
+          if git diff --staged --quiet; then
+            echo "No DB changes to commit"
+          else
+            # TZ 已设为 Asia/Shanghai；不要使用 -u，否则凌晨任务会写成前一天。
+            git commit -m "chore: update crawler state $(date +%Y-%m-%d) [skip ci]"
+            # 先 rebase 拉取远端新提交，避免与手动触发/其他 push 并发时 non-fast-forward 失败
+            if ! git pull --rebase --autostash origin main; then
+              # jobs.db 是 SQLite 二进制文件。工作流间的唯一冲突可保留本次
+              # 完整抓取后的数据库；其他文件冲突必须继续失败并交由人工处理。
+              conflicts="$(git diff --name-only --diff-filter=U)"
+              if [ "$conflicts" = "data/jobs.db" ]; then
+                git checkout --theirs data/jobs.db
+                git add data/jobs.db
+                GIT_EDITOR=true git rebase --continue
+              else
+                echo "Unexpected rebase conflict: $conflicts" >&2
+                exit 1
+              fi
+            fi
+            git push
+          fi
+
+      - name: Deploy report to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
+          publish_branch: gh-pages
+          # 有意保留历史日期报告（每份约 50KB，长期体量可忽略，便于回看往期）
+          keep_files: true
