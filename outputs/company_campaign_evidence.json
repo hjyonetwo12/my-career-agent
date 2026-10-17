@@ -1,0 +1,5792 @@
+[
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://360campus.zhiye.com/campus/jobs?shareId=55bf79da-a592-4b8c-a493-81b5c2103e7e&shareSource=2",
+    "company": "360集团",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hr.4399om.com/weixin/?r=job/agent&type=2&isOpen=0&jobTableType=1&code=ctg5d",
+    "company": "4399游戏",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/58/150953?recommendCode=DSVZmSGD#/jobs",
+    "company": "58同城",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://9377.zhiye.com/campus/jobs?shareId=62a2649a-3826-44b2-a0df-667250430806&shareSource=2",
+    "company": "9377游戏",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://career.arcsoft.com.cn/campus/jobs",
+    "company": "ArcSoft虹软",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 个岗位 嵌入式系统软件工程师 合肥、重庆、西安、广州 ｜ 软件类 ｜ CVTE2027届秋季校园招聘 作为嵌入式系统软件开发工程师，您将有机会深度参与最前沿的交互显示产品、智慧",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://campus.cvte.com/position",
+    "company": "CVTE",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "首页 首页 社招门户 个人中心 1 2 你的主场，即刻开场 应届生招聘 CVTE2027届秋季校园招聘 毕业时间：2026年7月-2027年10月 销售菁英专项招聘 CVTE20",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://campus.cvte.com",
+    "company": "CVTE视源股份",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 职能 / 支持 产品 / 策划 / 项目 城市 北京 开启新的工作（37） 【27届校招】后端开发工程师 北京 校招 正式 1. 设计并实现公司数据平台业务的后端服务，确保",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://dexmal-inc.jobs.feishu.cn/s/UcNqTb50zDE",
+    "company": "Dexmal 原力灵机",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/ur/45210?recommendCode=DShEgnny#/jobs",
+    "company": "FMG集团",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 职位筛选 清除 已选 0 条件 | 72 结果 职位搜索 职能类型 招聘项目 2027届校招 2027届校招 日常实习 日常实习 转正实习 转正实习 校园大使 校园大使 工作地",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus_apply/funplus01/147931?recommendCode=DSFXq8tM#/jobs",
+    "company": "FunPlus",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.monolithicpower.cn/cn/about-mps/careers/cn-hire.html",
+    "company": "MPS芯源系统",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://meta.jobs.feishu.cn/s/epYBFZjBD4k",
+    "company": "MetaApp",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招活动页（渲染）存在多个招聘届别",
+    "cohort_evidence": "2027: 聘 MiniMax社招 登录 搜索 筛选 清除 招聘项目 2028届实习生招聘 2027届校园招聘 MiniMax Top Talent人才计划 日常实习 职位类别 研发 运营 ；2028:  MiniMax校园招聘 MiniMax社招 登录 搜索 筛选 清除 招聘项目 2028届实习生招聘 2027届校园招聘 MiniMax Top Talent人才计划 日常实习 ",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://vrfi1sk8a0.jobs.feishu.cn/s/kGKwaJ_fg7g",
+    "company": "MiniMax",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " Campus 职位 Q&A 登录 搜索 筛选 清除 招聘项目 Mstar计划 2027届校园招聘 日常实习生 城市 北京 上海 苏州 深圳 广州 职能分类 技术 营销 职能 职",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://momenta.jobs.feishu.cn/s/gIkCsB4KZiA",
+    "company": "Momenta",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招活动页（渲染）存在多个招聘届别",
+    "cohort_evidence": "2027: 关于NVIDIA 热招岗位 投递记录查询 更多 登录 Slide 1 of 1 2027校园招聘正式启动 面向2028届毕业生的实习生岗位也在同步热招中，欢迎点击图片查看岗位投递；2028: 递记录查询 更多 登录 Slide 1 of 1 2027校园招聘正式启动 面向2028届毕业生的实习生岗位也在同步热招中，欢迎点击图片查看岗位投递！ 我们是谁 1999 年，N",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/nvidia/47111",
+    "company": "NVIDIA",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "加入OBSBOT寻影 登录 搜索 筛选 清除 招聘项目 2027届秋季校园招聘 RC/RM人才专项 Xstar顶尖人才计划 城市 深圳 成都 杭州 西安 ",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://n8r2cr07gk.jobs.feishu.cn/s/4eHpfEDiOXo",
+    "company": "OBSBOT寻影",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://careers.oppo.com/university/oppo/campus/post?shareId=17986",
+    "company": "OPPO",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/shein/2932?recommendCode=DS7TNCrY#/jobs",
+    "company": "SHEIN",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 0 条件 | 40 结果 | 清除 搜索职位 工作地点 上海市 项目 实习生 2027届应届生招聘 急 【实习】手游平台运营（Free Fire） 实习 实习 | 市场&运营类",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus_apply/garena/148076?recommendCode=DS2ZAVF2#/jobs",
+    "company": "Sea",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU64893571bef57c16d356b99e/pb/account.html",
+    "company": "TCL",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU6491506a2f9d24316e91b81b/mc/position/campus?acotycoCode=ndwsgd&orgId=100801%2C104101&projectId=308501&recruitType=1&isLimitShowPostScope=1",
+    "company": "TCL华星",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "TP-LINK 招聘 2027校园招聘 登录/注册 TP-LINK官网 登录 中国(+86) 常用 A B C D E ",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://hr.tp-link.com.cn",
+    "company": "TP-LINK",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://join.tplinkglobal.com/share/jobs?share_id=2090394245740965889&share_type=qr",
+    "company": "TP-Link联洲",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "内 一个月内 三个月内 半年内 一年内 全部职位（共 21 个） 分享列表全部 2027年校招-Overseas Market Intern(For International ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://ucloud.zhiye.com/campus/jobs",
+    "company": "UCloud优刻得",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/vesync/182301?recommendCode=DSJDjhnd#/jobs",
+    "company": "VeSync",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU69fd8f7f1f17c372512fdd19/mc/position/campus?acotycoCode=cjsbom&projectId=100501&recruitType=1&isLimitShowPostScope=1",
+    "company": "ZURU",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jobs.bilibili.com/campus/positions",
+    "company": "bilibili",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hr.itc.vip/job/school.html",
+    "company": "itc",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://mova.zhiye.com/campus/jobs",
+    "company": "mova",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招入口未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://career.realme.com/",
+    "company": "realme",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hr-campus.vivo.com/campus/jobs?shareId=ef1f6091-1531-4172-b6fd-438412dbceb4&shareSource=2",
+    "company": "vivo",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://70mai.zhiye.com/campus/jobs?shareId=ba97fc77-83cc-4735-9b6b-f73832bcab61&shareSource=2",
+    "company": "七十迈",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "万兴科技2027届全球校园招聘 --> <script type=\"text/javascript\"> /",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://wondersharecampus.zhiye.com/campus/jobs?shareId=661d7600-08e4-41d7-9592-b8b5f4eb61a5&shareSource=2",
+    "company": "万兴科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.whchem.com/column/164/",
+    "company": "万华化学",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "Wind-招聘 En 社会招聘 校园招聘 2027年校园招聘 申请资格： 2026年9月-2027年8月毕业的应届生 实习生招聘 申请资格：",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://www.wind.com.cn/mobile/JoinUS/RecruitDetail/zh.html?entry=school",
+    "company": "万得",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "6届-27届可投 校园招聘 全职 江苏省·南京市 工作职责 该岗位是万辰集团总部2027校园招聘管培生项目（辰星计划），今年是集团总部首次启动大规模管培生招聘，9月-10月已启动",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://vanchen1.zhiye.com/campus/jobs?shareId=14ffc5ce-1b26-47c7-b80b-05719510dade&shareSource=2",
+    "company": "万辰集团（好想来）",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "校园大使石晓钧 三一集团有限公司 职位不合适？ 进入官网，查看全部职位 三一集团2027校园招聘全球启动！ 世界很大，年轻的力量不该只停在原地。 这一届，和三一，一起—— 向世界",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://sany.zhiye.com/campus/jobs?shareId=bb783fb0-7944-4ec2-aa42-e4abb8fdac04&shareSource=2",
+    "company": "三一集团",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/37/58016?recommendCode=DSjnn8dk#/jobs",
+    "company": "三七互娱",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU6173aef0bef57c4414103348/mc/position/campus?acotycoCode=tydrup&projectId=201401&recruitType=1&isLimitShowPostScope=1",
+    "company": "三棵树",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "招聘人数：1人 实习计划 职责描述 任职要求 实习时间：～ 立即投递 物流包装（2027届校招） 上海汇众 上海/嘉定区 汽车类/机械类/管理类 招聘人数：若干 校园招聘 职责描",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://saic-recruit.saicmotor.com/",
+    "company": "上汽集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "复旦微电子集团2026届校园招聘 公司简介 校招职位 校招流程 Q&A 未经51job.com同意，不得转载本网",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://campus.51job.com/fmsh2026/p2.html",
+    "company": "上海复旦微电子",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://smee.zhiye.com/campus/jobs",
+    "company": "上海微电子",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "北京东土科技股份有限公司 - 校园招聘 首页 2027校园招聘 实习生招聘 公司官网 登录 社会招聘 2027校园招聘 面向毕业时间为2026年",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus_apply/kyland/25167",
+    "company": "东土科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://dec2026.iguopin.com/job",
+    "company": "东方电气",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/eastmoney/92400?recommendCode=DS6dCr5V#/jobs",
+    "company": "东方财富",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 运营支持类 IT系统开发类 搜索职位 全部职位（共 46 个） 分享列表全部 2027届校招 结构研发工程师 校园招聘 广东省·东莞市 工作职责 1、新项目方案设计制作、产品结",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://nvtpower.zhiye.com/campus/jobs",
+    "company": "东莞新能德",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU612e24992f9d247d0f41930e/pb/school.html",
+    "company": "东莞新能源科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://neusoft-campus.zhiye.com/campus/jobs",
+    "company": "东软集团",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招入口未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://dfmc.hotjob.cn/SU60cc3c9cbef57c51986a8ca0/pb/school.html",
+    "company": "东风汽车",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://cictmobile.zhiye.com/campus/jobs",
+    "company": "中信科",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://zybio.zhiye.com/campus/jobs",
+    "company": "中元汇吉",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/zte/46903",
+    "company": "中兴通讯",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.51job.com/cisdi/job.html",
+    "company": "中冶赛迪",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://faw-zhaopin.hotjob.cn/SU603374380dcad4635b836531/pb/school.html",
+    "company": "中国一汽",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2024,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "JavaScript to run this app. 首页 校园招聘 在京企业2024校招 社会招聘 海外招聘 来华留学生招聘 实习生招聘 中车官网 首页 登录/注册 在招职位",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://crrc.hotjob.cn/SU64d47c466202cc36e27a52d4/pb/school.html",
+    "company": "中国中车",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://norincogroupzhaopin.zhiye.com/campus/jobs",
+    "company": "中国兵器工业集团",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.pingan.com/freshgraduates",
+    "company": "中国平安",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://cscnrczp.zhiye.com/campus/jobs",
+    "company": "中国星网网络应用研究院",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.caeri.com.cn/zgqy/jrwm/rczp/xyzp/",
+    "company": "中国汽研",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU6603d5a01eb8054100c60436/pb/index.html",
+    "company": "中国汽车工程研究院",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU62b2ae672f9d24458d72f9cc/pb/account.html",
+    "company": "中国电信天翼云",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.cec.com.cn/collection",
+    "company": "中国电子",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招活动页（渲染）存在多个招聘届别",
+    "cohort_evidence": "2023: 能 一键投递 一键投递 Slide 1 of 5 鲸厂百科｜中国电子云 寻鲸记｜2023届未来鲸集训回顾 鲸宝秀｜2023届未来鲸专属校招礼盒 寻鲸记｜与职场导师的裸心对话 联系；2027: 中国电子云 - 校园招聘 校园招聘 首页 2027校园招聘 实习生招聘 更多 登录 Slide 1 of 1 你的潜能，中国未来的可能 一键",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://campus.cestc.cn/campus-recruitment/cestc/102244",
+    "company": "中国电子云",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "北普兴电子科技股份有限公司 中国电子科技集团公司第三十四研究所 售前咨询工程师-2027届校招（南昌） 太极计算机股份有限公司 查 看 太极计算机股份有限公司 南昌-红谷滩区 硕",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://cetc.iguopin.com/job-campus",
+    "company": "中国电科",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/cetc30/36270",
+    "company": "中国网安/30所",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "中国联通2027校园招聘 You need to enable JavaScript to run thi",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://zglt.iguopin.com/job",
+    "company": "中国联通",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.travelsky.cn/travelsky/rlzy/rczp/xyzp/A069009003001Gone1.html",
+    "company": "中国航信",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://iter.stongyw.cn/web/schoolwx/job/index.html?RCode=260040",
+    "company": "中国通信服务广东公司",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://chinapost2026.zhaopin.com/",
+    "company": "中国邮政",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招入口存在多个招聘届别",
+    "cohort_evidence": "2025: 中国银行上海总部社会招聘公告 [ 2024-09-20 ] 中国银行股份有限公司2025年全球校园招聘公告 [ 2024-09-04 ] 中国银行博士后科研工作站2025年度博士；2026: 公司2026年实习生招聘公告 [ 2026-03-11 ] 中国银行股份有限公司2026年全球校园招聘公告 [ 2025-09-05 ] 中国银行博士后科研工作站2026年度博士；2027: 7年度博士后研究人员招收公告 [ 2026-09-10 ] 中国银行股份有限公司2027年全球校园招聘公告 [ 2026-09-03 ] 中国银行消防安全专项社会招聘公告 [ 2",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://www.boc.cn/aboutboc/bi4/",
+    "company": "中国银行",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/supcon/148189",
+    "company": "中控",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://recruit.sinovatio.com/positions",
+    "company": "中新赛克",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/zwcad/28356",
+    "company": "中望软件",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://zhcpa.zhiye.com/campus/jobs",
+    "company": "中汇会计师事务所",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://zhdgps.zhiye.com/campus/jobs",
+    "company": "中海达",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://cetc36.zhiye.com/campus/jobs",
+    "company": "中电36所",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU62feff93bef57c3179e09a34/pb/school.html",
+    "company": "中电52所",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "岗位信息 实习信息 基层就业 学院就业 科研助理 中国电子科技集团公司第十研究所2027届秋季校园招聘简章 更新时间：2026-09-02 详情 中国电子科技集团公司第十研究所 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://www.job.ustc.edu.cn/Recruitment/info.aspx?itemid=11926",
+    "company": "中电十所",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.unitechs.com/xyzp.html",
+    "company": "中盈优创",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://thundersoft.jobs.feishu.cn/campus/position/application",
+    "company": "中科创达",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "于我们 职位列表 常见问题 更多 登录 Slide 1 of 1 ▶ 在招职位 2027届校园招聘 共52个职位 日常实习生招聘 共5个职位 2027届实习生招聘 共5个职位 ▶",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/cambricon/44201",
+    "company": "中科寒武纪",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://sugon.zhiye.com/campus/jobs",
+    "company": "中科曙光",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.bluetrum.com/joinus/show.php?id=70",
+    "company": "中科蓝汛",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://avicsz.zhiye.com/campus/jobs",
+    "company": "中航国际-深南电路",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hr.zto.com/campus-position",
+    "company": "中通",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://cffexit.zhiye.com/campus/jobs",
+    "company": "中金所",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 共9个职位 西安市 共7个职位 福州市 共4个职位 其他 共2个职位 丰疆智能2027校园招聘Q&A 网申类问题： Q：本次校园招聘面向哪一届学生？ A：毕业时间为2027年1",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://campus.fjdynamics.cn/campus-recruitment/fjdynamics/70012",
+    "company": "丰疆智能",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://learnings.jobs.feishu.cn/s/nkV6mtflhW4",
+    "company": "乐信圣文",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://ldrobot.zhiye.com/campus/jobs",
+    "company": "乐动机器人",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://careers.joyintoy.cn/s/dQxil--A2rU",
+    "company": "乐漾",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/apply/zelostech/44675",
+    "company": "九十智能",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "态 登录 职位筛选 清除 已选 0 条件 | 264 结果 职位搜索 人才项目 2027届常规校招 2027届常规校招 2027届九号星 2027届九号星 日常实习 日常实习 职",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/ninebot/45627?recommendCode=DSHhfH26#/jobs",
+    "company": "九号公司",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/ubiquantrecruit/37031?recommendCode=DSThDarV#/jobs",
+    "company": "九坤投资",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.jiuzhoutech.com/cn/xyrsnews.asp",
+    "company": "九州科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://vcnuqm4lv2uh.jobs.feishu.cn/s/rQsQe1FhiJo",
+    "company": "九方智投",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jezetek.zhiye.com/campus/jobs",
+    "company": "九洲集团",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/jomoo/142937?recommendCode=DSYnYM2x#/jobs",
+    "company": "九牧集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://zhaopin.joyoung.com/mobile/recruit/campus.html",
+    "company": "九阳",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://techen.zhiye.com/campus",
+    "company": "乾程科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " - 校园招聘 校园招聘 首页 社招 校招 官网 登录 校招职位 -销售类- 【27届】销售管培生-武汉 销售类 湖北·武汉市 【27届】销售管培生-泉州 销售类 福建·福州",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/enmotech/47098#/",
+    "company": "云和恩墨",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://ikingtec.zhiye.com/campus/jobs",
+    "company": "云圣智能",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "个） 分享列表全部 职位名称 招聘类别 工作性质 工作地点 面试站点 发布时间 27届校招-AI建模工程师(J10883) 校园招聘 全职 上海市,陕西省·西安市,江苏省·南",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://intellif.zhiye.com/campus/jobs",
+    "company": "云天励飞",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招活动页（渲染）存在多个招聘届别",
+    "cohort_evidence": "2026: 线城市布局，向美好幸福生活出发 加入我们 应届生招聘 应届生招聘 © 2020-2026 云智研发公司 京公网安备 11010802024479号 京ICP备15060035号-；2027: 司 - 校园招聘 校园招聘 首页 应届生招聘 通知动态 更多 登录 应届生招聘 2027应届生招聘（毕业时间：2026年1月1日-2027年12月31日） 技术研发类 共5个职位",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://app-tc.mokahr.com/campus-recruitment/csig/20001",
+    "company": "云智研发",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://cloudview-inc.com/join/jobs?inviteCode=pM3mM",
+    "company": "云览科技",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://yunzhangfang.zhiye.com/campus/jobs",
+    "company": "云账房",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://careers.narwal.com/campus/jobs",
+    "company": "云鲸智能",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://asiainfo-sec.jobs.feishu.cn/referral/campus/position/application",
+    "company": "亚信安全",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://bj-tct.zhiye.com/campus/jobs",
+    "company": "交控科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.51job.com/bocom2025/index02.html",
+    "company": "交银金融",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.jd.com/api/wx/position/index#/?emplErp=XK115B",
+    "company": "京东",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.boe.com/campus/jobs",
+    "company": "京东方",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "多 学历要求 职位类型 全部职位（共 22 个） 分享列表全部 硬件开发工程师（2027届校招） 校园招聘 全职 江苏省·南京市·雨花台区 本科 应届毕业生 研发类 2026-0",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://yijiahe.zhiye.com/campus/jobs",
+    "company": "亿嘉和",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "品类 职能类 运营类 制造类 搜索职位 全部职位（共 46 个） 安全产品经理（27届校招）(J12393) 校园招聘 全职 福建省·厦门市 工作职责 1、负责Yealink",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://yealink.zhiye.com/campus/jobs?shareId=1e7ebafb-d84c-4279-b3f8-df60790a96fe&shareSource=2",
+    "company": "亿联网络",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://emdoor1.zhiye.com/campus/jobs?shareId=b823be82-165b-4ae0-a62c-397cb69ad51f&shareSource=2",
+    "company": "亿道集团",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU611374bbbef57c653306500d/pb/account.html",
+    "company": "众合科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 浙江·杭州市 允许1个月内投递3个职位，请选择适合的职位进行投递 立即投递 [2027届秋招-上海]数据开发工程师 上海市 上海市 允许1个月内投递3个职位，请选择适合的职位进",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus_apply/zhongan/71908?recommendCode=DSkZKTjJ#/jobs",
+    "company": "众安保险",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://urovo.zhiye.com/campus/jobs?shareId=520f3916-35a6-477a-b56e-f1dfc976daf6&shareSource=2",
+    "company": "优博讯",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://ubtrobot.zhiye.com/campus/jobs",
+    "company": "优必选",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://utpower.zhiye.com/campus/jobs",
+    "company": "优特科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://youibot1.zhiye.com/campus/jobs",
+    "company": "优艾智合",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://transsion.zhiye.com/campus/jobs?shareId=6faa7ee3-95a2-4799-93f6-3133d139d29c&shareSource=2",
+    "company": "传音",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/minieye/118571?recommendCode=DSFx4BJN&hash=%23%2Fjobs#/jobs",
+    "company": "佑驾创新",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "年 1-3年 | 本科 本科 | 北京市 北京市 立即投递 西安-小学辅导老师【27届校招】 发布于 2026-09-03 全职 全职 | 陕西·西安市 陕西·西安市 立即投",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/zuoyebang/39595?recommendCode=DSpn3aSr#/jobs",
+    "company": "作业帮",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 一个月内 三个月内 半年内 一年内 全部职位（共 88 个） 工艺研发工程师（27届）(J12109) 校园招聘 全职 广东省·东莞市 2026-09-04 发布 工作职责",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://biwin1.zhiye.com/campus/jobs?shareId=64149bf2-1b9d-4222-98a7-41c5890c311e&shareSource=2",
+    "company": "佰维存储",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/pcitech/39848",
+    "company": "佳都科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.yitutech.com/cn/join-us",
+    "company": "依图",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/paipaidai/140909",
+    "company": "信也科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://xinje.zhiye.com/campus/jobs?shareId=26ad7995-14c6-409e-8ee8-8ee4543da41a&shareSource=1",
+    "company": "信捷电气",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.seavo.com/career/campus/jobs",
+    "company": "信步科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "导航算法实习生 上海市 具身智能算法实习生 上海市 Agent实习生 上海市 【2027届校招】销售工程师 上海市 【2027届校招】质量工程师 上海市 其他职位 查看更多职位 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/fftai/147078?locale=zh-CN",
+    "company": "傅利叶智能",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/deeproute/145894#/home",
+    "company": "元戎启行",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 更多 职位类型 学历要求 全部职位（共 1 个） 分享列表全部 售后运营专员（2026届校招）(J10516) 校园招聘 全职 广东省·深圳市·龙华区 2026-03-10 发",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://aiper.zhiye.com/campus/jobs",
+    "company": "元鼎",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/gigadevice/92215",
+    "company": "兆易创新",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://shining3d.zhiye.com/campus/jobs",
+    "company": "先临三维",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://vital.zhiye.com/campus/jobs",
+    "company": "先导科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/grgbanking/148986?recommendCode=DSDGMxgK#/jobs",
+    "company": "光电运通",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU62dfba912f9d2438100f9a1d/pb/school.html",
+    "company": "光迅科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://gongniu.zhiye.com/campus/jobs",
+    "company": "公牛",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://pecivkvtit.jobs.feishu.cn/252342/position/application",
+    "company": "其域创新",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://cosmx.zhiye.com/campus/jobs?shareId=81f58b1a-e7be-43bf-87da-b2077ca1601e&shareSource=2",
+    "company": "冠宇集团",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://bingchuan1.zhiye.com/campus/jobs?shareId=96e146eb-c9af-4434-93d6-e68b09b451e9&shareSource=2",
+    "company": "冰川网络",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/lusterinc/44882?recommendCode=DSzaUcgP#/jobs",
+    "company": "凌云光",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://job.fandow.com/home?pushCode=XRN8AF9",
+    "company": "凡岛",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://skyworthdigital.hotjob.cn/SU66a0bea11c240e2e760e8e21/pb/account.html",
+    "company": "创维",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU668e3a541eb8050602c1b176/mc/position/campus?acotycoCode=eojtgn&recruitType=1&isLimitShowPostScope=0",
+    "company": "创维集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://crscd.zhiye.com/campus/jobs",
+    "company": "北京全路通信信号研究设计院",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/eqhr/39786",
+    "company": "北京易控智驾",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.naura.com/join/index.html",
+    "company": "北方华创",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://beisen.zhiye.com/campus/jobs",
+    "company": "北森",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://baicgroup.zhiye.com/campus/jobs",
+    "company": "北汽集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招入口存在多个招聘届别",
+    "cohort_evidence": "2024: 人大咖讲座 定期协会活动 年度旅游 不定期团建 招聘动态 校招FAQ 匠芯创科技2024届校园招聘正式启动！ 匠芯创科技2025届校园招聘正式启动！ 样品申请 * 姓名 * 职位；2025: 期团建 招聘动态 校招FAQ 匠芯创科技2024届校园招聘正式启动！ 匠芯创科技2025届校园招聘正式启动！ 样品申请 * 姓名 * 职位 * 公司名称 * 邮箱 * 联系电话 ",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://www.artinchip.com/Join-Us",
+    "company": "匠芯创科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/qianli1/147197?recommendCode=DSunz6Nt#/jobs",
+    "company": "千里科技",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://peninsulalaser.zhiye.com/campus/jobs",
+    "company": "半岛医疗",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hzncc.zhiye.com/campus/jobs",
+    "company": "华中数控",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "招聘 校园招聘 社会招聘 博士后 走进华为 成长与生活 登录 搜索 应届生职位 2027届应届生招聘对象： 2027年1月1日-2027年12月31日毕业的国内高校本科生与硕士研",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://career.huawei.com/reccampportal/portal5/campus-recruitment.html",
+    "company": "华为",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/hq/44757",
+    "company": "华勤",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://genomics.zhiye.com/campus/jobs",
+    "company": "华大集团",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://career.hello-tech.com/campus/jobs?shareId=33d74670-8143-435a-8b1e-d747781a1f08&shareSource=2",
+    "company": "华宝新能",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://job.sdmctech.com/campus/jobs",
+    "company": "华曦达",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "更多 发布时间 不限 三天内 一周内 一个月内 三个月内 半年内 一年内 更多 27届校招职位分类 全部职位（共 18 个） 分享列表全部 【华橙网络】2027届智能算法工程",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://job.imou.com/campus/jobs",
+    "company": "华橙网络",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://huace.zhiye.com/campus/jobs",
+    "company": "华测",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://runjob.crc.com.cn/",
+    "company": "华润集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://irayple.zhiye.com/campus/jobs",
+    "company": "华睿科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/huahong/78009#/",
+    "company": "华虹集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/novasky/146544",
+    "company": "华诺星空",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/aspire/100261",
+    "company": "卓望公司",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "内 半年内 一年内 学历要求 硕士研究生 搜索职位 全部职位（共 34 个） 【27届校招】SAW/BAW滤波器设计工程师 校园招聘 全职 重庆市,江苏省·无锡市 2026-",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://maxscend.zhiye.com/campus/jobs?shareId=538ec1bd-204d-4562-828f-4915ebe319a0&shareSource=2",
+    "company": "卓胜微电子",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU63366959bef57c270741e2c6/mc/position/campus?acotycoCode=rkkxzz&recruitType=1&isLimitShowPostScope=0",
+    "company": "卓越教育",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://we.zyt.com/campus/jobs?shareId=5937d9af-0f39-418f-9ea4-c9a5a2c7caca&shareSource=2",
+    "company": "卓驭",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jusha.zhiye.com/campus/jobs",
+    "company": "南京巨鲨",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://southsurvey1.zhiye.com/campus/jobs",
+    "company": "南方卫星导航",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "南京市 珠海市 西安市 杭州市 更多 全部职位（共 112 个） 分享列表全部 2027校招TMR设计工程师(J11651) 校园招聘 全职 广东省·深圳市,四川省·成都市 20",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://nanxin.zhiye.com/campus/jobs",
+    "company": "南芯科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "博世（中国）投资有限公司 - 校园招聘 校园招聘 首页 2027校园招聘 日常实习生招聘 更多事业部 登录 Slide 1 of 1 在这里，开启你的职业",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/bosch/73873",
+    "company": "博世",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://bozhon3.zhiye.com/campus/jobs?shareId=945f5d01-429c-4a55-ba17-128798f145bf&shareSource=2",
+    "company": "博众精工",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/bosssoft/68370",
+    "company": "博思",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.neuracle.cn/rczp",
+    "company": "博睿康",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "办公环境管理：对接物业服务公司完成日常管理工作； 7.完成领导交办的其它工作。 27届校招-预测算法工程师 北京 校招 正式 互联网 / 电子 / 网游 欢迎加入自动驾驶卡车",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://kargobot.jobs.feishu.cn/267069",
+    "company": "卡尔动力",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "2027校招职位 2027校园招聘 2027校招职位 社会招聘 实习生招聘 登录/注册 搜索职位 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://casco.zhiye.com/campus/jobs",
+    "company": "卡斯柯",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://kafangtech.jobs.feishu.cn/s/61hqmxKBKTw",
+    "company": "卡方科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://woanhome.zhiye.com/campus/jobs?shareId=d120f246-ea82-4010-ab9a-b58bd85ebf87&shareSource=2",
+    "company": "卧安机器人",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.yottagames.com.cn/zh/internal-recommendation?token=480b3cd4a66863e82cb4e2bc1fd60a45-999602-1093058550&sub=077",
+    "company": "友塔游戏",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "叠纸游戏校园招聘 首页 职位 登录 搜索 筛选 清除 招聘项目 游戏编剧实习 2027校园招聘（秋季） 城市 上海 职能分类 技术研发类 美术类 策划类 动画CG类 音频类 职",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://career.papegames.com/s/m389ozdCvHA",
+    "company": "叠纸游戏",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://intsig.zhiye.com/campus/jobs?shareId=634b9f5d-1456-42a6-82cd-3fe590037c1d&shareSource=2",
+    "company": "合合信息",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.geely.com/campus-recruitment/geely/78436",
+    "company": "吉利控股",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hr.g-bits.com/web/index.html",
+    "company": "吉比特",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "e it to continue. 首页 职位 走进G社 登录 招聘计划 全部 2027届秋季校园招聘 工作地点 全部 深圳 厦门 职位类别 全部 游戏策划类 程序技术类 美术设",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://hr.g-bits.com/web/index.html#/post-web/post-list/?referralCode=FH386S",
+    "company": "吉比特-雷霆游戏",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://tenda.zhiye.com/campus/jobs",
+    "company": "吉祥腾达",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.toyou.com.cn/Tongyou/ShoolJoin/",
+    "company": "同有科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 导游 主播 城市 输入城市名称搜索 同程旅行 景程科技 前端开发工程师-苏州（27届） 苏州 | 校园招聘 | 发布时间:2026-10-11 21:36:44 【国际】S",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://mhr.ly.com/recruit/schoolPortal/#/postDelivery",
+    "company": "同程旅行",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "划 ACM摘星计划 博士后 校园招聘 社会招聘 关于我们 答疑 登录 招聘系列 2027届校园招聘 AIME计划 ACMer摘星计划 日常实习 云软件校招 职位类别 研发技术类 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://campus.10jqka.com.cn/job/list?type=school",
+    "company": "同花顺",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "市 江西省 更多 更多 职位类型 全部职位（共 96 个） 产品经理-移动能源（2027校招） 校园招聘 江苏省·苏州市 工作职责 1、负责/协助移动能源项目产品技术支持、客户答",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://spicqyxdl.zhiye.com/campus/jobs?shareId=93e325ca-4993-4b6d-a91e-60f0e34b8c1d&shareSource=2",
+    "company": "启源芯动力",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hellobike.zhiye.com/campus/jobs",
+    "company": "哈喽",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jobs.bilibili.com/campus/positions?token=a337cd2c-d038-411f-ba8a-0b1abf661f06",
+    "company": "哔哩哔哩",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app-tc.mokahr.com/campus-recruitment/vipshophr/8015",
+    "company": "唯品会",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "列表 更多 登录 职位筛选 清除 已选 0 条件 | 5 结果 职位搜索 项目 2027校招 2027校招 嘉酿生 嘉酿生 在招职位 分享 2027商务管理培训生 发布于 202",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus_apply/carlsberg/37541?recommendCode=DSBCJFNM#/jobs",
+    "company": "嘉士伯",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://sf-auto1.zhiye.com/campus/jobs?shareId=86f02a13-0c23-4938-bbae-7c09c9ed3324&shareSource=2",
+    "company": "四方继保",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.innno.net/",
+    "company": "因诺科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "湖北省 江苏省 职位类别 全部 营销族 技术族 专业族 暂无数据 海外接待专员（2027校招） 专业族 固德威技术股份有限公司 | 苏州市 | 更新日期：2026-10-09 系",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://wecruit.hotjob.cn/SU630a3a0e2f9d2406b4f6c5f1/pb/school.html?acotycoCode=ibychh&projectId=200701&recruitType=1&isLimitShowPostScope=1",
+    "company": "固德威",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://sdic1.iguopin.com/jobCampus",
+    "company": "国家开发投资集团",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jvvyvrptdzz.jobs.feishu.cn/972701/m/position/list?external_referral_code=1M4TA4A",
+    "company": "国泰汉帛",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://lanhevip.jobs.feishu.cn/s/A4zAkYMD9Xs",
+    "company": "图拉斯（原蓝禾）",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/recommendation-apply/tusenweilai/3234",
+    "company": "图森智途",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU62d915040dcad43c775ec12c/mc/position/campus?acotycoCode=dxwvub&projectId=103302&recruitType=1&isLimitShowPostScope=1",
+    "company": "地平线",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 内推职位 工作在均胜 登录 Slide 1 of 1 加入均胜 彼此成就 均胜2027届校园招聘 校招职位列表 通用具身大脑-超平面机器人 共15个职位 灵巧手-均胜灵犀 共7",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/joyson/94311",
+    "company": "均胜集团",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://efort.zhiye.com/campus/jobs",
+    "company": "埃夫特",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "http://career.i-tek.cn/",
+    "company": "埃科光电",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 校园大使石晓钧 基恩士（中国）有限公司 职位不合适？ 进入官网，查看全部职位 2027秋季校园招聘：销售工程师/销售 校园招聘 全职 全国 2026-05-26 发布 工作职责",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://keyence.zhiye.com/campus/detail?jobAdId=85237bb7-cccc-40a8-beeb-cbcb6e97ea86&shareId=da8f1b15-8a84-4a97-854d-c7c168a556d5&shareSource=2",
+    "company": "基恩士",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "司 全部职位（共 174 个） 分享列表全部 问界职能-应收核算专员（可实习）【2027届校招】(J20886) 校园招聘 重庆市·两江新区 问界BG 财经部 若干 校园招聘类 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://sokon.zhiye.com/campus/jobs",
+    "company": "塞力斯",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/biren/44727",
+    "company": "壁仞科技",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.fmsh.com/school/",
+    "company": "复旦微电子",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://dahua1.zhiye.com/campus/jobs",
+    "company": "大华股份",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "大参林医药集团-校园招聘 校园招聘 首页 2027届校招 更多 登录 职位筛选 清除 已选 0 条件 | 154 结果 职位搜索 工作地点 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/dslyy/136052?recommendCode=DSUzgyFM&hash=%23%2Fjobs#/jobs",
+    "company": "大参林医药集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "（上海） 嵌入式软件工程师（上海） 具身应用工程师（上海） 加入我们 大寰机器人2027校园招聘 大寰机器人2027校园招聘 京公网安备 11010802024479号 京ICP",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/dhrobotics/168695?recommendCode=DSDJZVaV#/jobs",
+    "company": "大寰机器人",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.huayan-robotics.com/about-us/talent-recruitment?type=60",
+    "company": "大族机器人",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/hanslaser/46383",
+    "company": "大族激光",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/recommendation-apply/dapustor/54047",
+    "company": "大普微电子",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "属招聘通道 热招职位 从你的想象 到世界现象 查看在招职位 观看视频 招聘项目 2027 “ 拓疆者 ” 校园招聘 招聘对象：2027 届高校毕业生 招聘时间：2026 年 6 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://we.dji.com/zh-CN/campus",
+    "company": "大疆",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "点 职位类别 所属机构 请搜索职位名称或职位描述 取消 产品助理工程师（电解液，27届校招） 专业职能族 硕士研究生及以上 美国 广州天赐高新材料股份有限公司 6368次浏览",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://wecruit.hotjob.cn/SU62c3ea6b2f9d241e4c8e45ba/mc/position/campus?acotycoCode=qsjehk&projectId=201701&recruitType=1&isLimitShowPostScope=1",
+    "company": "天赐材料",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://t-ray.zhiye.com/campus/jobs",
+    "company": "天锐星通",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://szssmec1.zhiye.com/campus/jobs",
+    "company": "天马微电子",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://qcnjp4yi4cew.jobs.feishu.cn/s/erHbISmjI9Y",
+    "company": "太衍私募基金",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/qianxin/29182",
+    "company": "奇安信",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://chery.zhiye.com/campus/jobs",
+    "company": "奇瑞",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://auxgroup.zhiye.com/campus/jobs?shareId=6275af13-0f7f-4634-b26f-7f02dea33054&shareSource=2",
+    "company": "奥克斯集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/orbbec/2679",
+    "company": "奥比中光",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://vmax.zhiye.com/campus/jobs",
+    "company": "威迈斯",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "人才实习招聘 Seed大模型人才实习招聘 日常实习 ByteIntern 正式 2027届校园招聘-万葭灯火 2027届校园招聘 2027届前沿技术领域人才校招 2027届See",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://job.toutiao.com/s/V2_hObjxdrI",
+    "company": "字节跳动",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/tal/146599?recommendCode=DSCvfGjS#/jobs",
+    "company": "学而思",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "，有项目管理经验优先； 5、个性开朗，有一定的抗压能力； 6、硕士及以上学历。 2027届全球校园招聘允许投递3次，请选择适合的职位进行投递 立即投递 具身智能机器人开发工程师 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/catlhr/148948?recommendCode=DSvTFBzE#/jobs",
+    "company": "宁德时代",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.unitree.com/careers/",
+    "company": "宇树科技",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/astronstone/168327?recommendCode=DS9marHm#/jobs",
+    "company": "宇石空间",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/su/loawxh",
+    "company": "宇通客车",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "克创新校招：成为创造者，激发可能 首页 职位 登录 搜索 筛选 清除 招聘项目 27届秋招项目 27届海外校招 27届校招储备实习生 职位类别 市场 研发 城市 深圳 长沙 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://anker-in.jobs.feishu.cn/s/HCwjATb1DUQ",
+    "company": "安克创新",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU64d2eec26202cc36e27682ff/pb/school.html",
+    "company": "安恒信息",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "。 允许3个月内投递3个职位，请选择适合的职位进行投递 立即投递 急 校园大使（2027届校招） 发布于 2026-09-19 盛弘集团 盛弘集团 | 兼职 兼职 | 校园大使 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/sinexcel/74287?recommendCode=DSwpMpuY#/jobs",
+    "company": "宏盛股份",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://job.ronds.com/campus-recruitment/anhuirohgzhirixin/73950",
+    "company": "容知日新",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "料删除或销毁； 若您被录用，本公司会将您的个人信息资料存档保存。 富士康科技集团2026届校园招聘 搜索 职位类别： 全部 研发类 软件研发 硬件研发 机构研发 自动化研发 化学",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://foxconn.hotjob.cn/wt/Foxconn/web/index/CompFoxconnPagerecruit_School",
+    "company": "富士康",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/evtech/47503?recommendCode=DS5HrUX6#/jobs",
+    "company": "富特科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/futu5/78059",
+    "company": "富途集团",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "页 热招职位 白秉灵分享的职位 Slide 1 of 1 校招&实习生内推职位 2027届校园招聘 共52个职位 日常实习生招聘 共5个职位 2027届实习生招聘 共5个职位 京",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/recommendation-apply/cambricon/46261?sharePageId=4679744&recommendCode=NTABY2t&codeType=1#/recommendation/page/4679744",
+    "company": "寒武纪",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/eebbk/37594",
+    "company": "小天才",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://xiaomi.jobs.f.mioffice.cn/",
+    "company": "小米",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://xiaomi.jobs.f.mioffice.cn/s/_3y3FqDMDQ8",
+    "company": "小米集团",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "小红书校园招聘 首页 REDstar 顶尖校招 Ace 顶尖实习生 2027 校园招聘 实习生 社会招聘 了解小红书 登录 搜索 职位方向 全部 算法 研发 非技术 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://job.xiaohongshu.com/link?referer_code=0QR7KCI3CPJA",
+    "company": "小红书",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " - 校园招聘 校园招聘 社会招聘 小赢官网 登录 未来因你，更好一点 小赢科技2026届校园招聘 为什么选择小赢科技 多维人才培养和晋升通道 开放、尊重的文化氛围 多通道的职业",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/xiaoying/148851",
+    "company": "小赢科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://ponyai.jobs.feishu.cn/s/9NZJlh4cpL8",
+    "company": "小马智行",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "广州 上海 深圳 北京 武汉 肇庆 长沙 更多 搜索 开启新的工作（631） 【27届校招】智造专业培训生（涂装工艺方向）-海外留学生专项 广州 正式 生产 / 制造 / 加",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://xiaopeng.jobs.feishu.cn/s/Pycfxid-fok",
+    "company": "小鹏汽车",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "，以便内部沟通； 允许3个月内投递3个职位，请选择适合的职位进行投递 立即投递 27届校招—电源部硬件工程师 发布于 2026-10-13 研发中心 研发中心 | 全职 全职",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/ahjy/168235?recommendCode=DSPQjhw2#/jobs",
+    "company": "巨一科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/ztgame/92438?recommendCode=DS8cb6eu#/jobs",
+    "company": "巨人网络",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "e Beyond Border 招聘职位 招聘人数 工作地点 发布日期 希望森兰2026届校园招聘会 2025-03-04 希望森兰2026届校园招聘会 “ 星耀森兰 智造未来 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://www.chinavvvf.com/list-28-1.html",
+    "company": "希望森兰",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/pingcap/39951/",
+    "company": "平凯星辰",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://fibocom.zhiye.com/campus/jobs",
+    "company": "广和通",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.sail-cloud.com/join-us",
+    "company": "广域铭岛",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://mornsun.zhiye.com/campus/jobs?shareId=f30af64b-ed71-4054-b728-434b2e12a732&shareSource=2",
+    "company": "广州金升阳",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "察岗（审查方向） 校园招聘 全职 广东省·广州市 2026-09-15 传祺BU2027届产品管理类岗位 校园招聘 全职 广东省·广州市·番禺区 2026-09-07 传祺BU2",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://gacrnd.zhiye.com/campus/jobs",
+    "company": "广汽研究院",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.aion.com.cn/show/join",
+    "company": "广汽集团-埃安",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/semitronix/140043",
+    "company": "广立微",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招活动页（渲染）存在多个招聘届别",
+    "cohort_evidence": "2026: 务意识、自学能力和独立解决 问题的能力，有进取精神与乐观态度。 立即投递 广联达2026校园大使 兼职 兼职 岗位职责：校招宣传推广传递广联达校招最新动态、岗位信息、宣讲会 / ；2027:  在招职位 分享 职位筛选 已选 0 条件 | 32 结果 | 清除 搜索职位 27届校招-AI算法工程师 全职 全职 | TOT产研序列（校招） TOT产研序列（校招） |",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/glodon/91966?recommendCode=DSSVc2yt#/jobs",
+    "company": "广联达",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "库洛游戏校园招聘 首页 职位 登录 搜索 筛选 清除 招聘项目 2027届秋季校园招聘 日常实习生招聘 城市 广州 上海 职能分类 美术类 策划类 技术类 营销类",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://kurogame.jobs.feishu.cn/s/2iN6KLsmOZw",
+    "company": "库洛游戏",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://mammotion.jobs.feishu.cn/campus_recruitment",
+    "company": "库玛科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "度小满2027校园招聘",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://campus.duxiaoman.com/",
+    "company": "度小满",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://careerktc.zhiye.com/campus/jobs?shareId=5fed87ee-bf07-40c9-9f45-bae4db536355&shareSource=2",
+    "company": "康冠科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2023,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "康尼机电2023届校园招聘 企业简介 招聘岗位 宣讲行程 你将获得 报名方式 招聘对象：2023届应届生。",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://campus.51job.com/kangni2000/about.html",
+    "company": "康尼机电",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/pharmaron/45318?recommendCode=DSFv5WjR#/jobs",
+    "company": "康龙化成",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 延电科技 延锋彼欧外饰 ﻿ 恺博座椅机械部件 ﻿ 校招Q&A问题 Q：如何成为2027年的锋华少年？ A：我们理想中的你是： 2027届的海内外毕业生（毕业时间在2027年1月",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/yanfeng/45086",
+    "company": "延锋",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/sonoscape/94392?recommendCode=DS9HkRZd#/jobs",
+    "company": "开立医疗",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 运营 城市 深圳 上海 开启新的工作（72） AI产品经理管培生（电商中台）-2027校招 深圳 正式 产品/运营类 - 产品 【岗位亮点】 影石 Insta360 的电商业务",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://arashivision.jobs.feishu.cn/s/hRGQvzCxIdk",
+    "company": "影石",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/hfc-foods/102201?recommendCode=DSPDu3b3#/jobs",
+    "company": "徐福记",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://yeestor.zhiye.com/campus/jobs",
+    "company": "得一微电子",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "动态 了解得物 社会招聘 登录 搜索 筛选 清除 招聘项目 【校招】正式校招生 2027届秋招-供应链专项 2027届秋招-商品研究中心专项 2027届秋季校园招聘项目 日常实习",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://poizon.jobs.feishu.cn/s/i75Oh6bYCic",
+    "company": "得物",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/threatbook/39679?recommendCode=DSUK2sNv#/jobs",
+    "company": "微步在线",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/su/vjlqkz",
+    "company": "德州仪器",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招入口未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.twsc.com.cn/job/index.html",
+    "company": "德明利",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "聘 公司官网 社会招聘 校园招聘 实习生招聘 登录 搜索 筛选 清除 招聘项目 2027届国际化人才专项招聘 日常实习生招聘项目 2027届智能制造人才专项招聘 2027届算法人",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://yesv-desaysv.jobs.feishu.cn/campus",
+    "company": "德赛西威",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "解读 算法、工程、产品、运营类职位解读，帮你更懂你！ 职位筛选 清空 招聘类型 27届校园招聘 27届留用实习招聘 招聘项目 快Star人才计划 职位类别 游戏类 项目管理类",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://campus.kuaishou.cn/recruit/campus/e/h5/#/campus/jobs?code=campusNTjtWbAZm",
+    "company": "快手",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://aispeech.zhiye.com/campus/jobs",
+    "company": "思必驰",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "、PPT、XMIND等办公软件； 5、逻辑清晰、用户洞察力强、跨部门推动力佳。 27届摩范生秋招允许投递2次，请选择适合的职位进行投递 立即投递 材料助理工程师（金属浆料方向",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus_apply/smoore/150918?recommendCode=DS8x9P6R#/jobs",
+    "company": "思摩尔",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "内推 ··· 登录 勤思笃行，共创宣朗 搜索 筛选 清除 开启新的工作（63） 2027校招-深度学习框架研发工程师-上海/北京/杭州/成都 北京、上海、成都等 4 个城市 正式",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://smartlogictech.jobs.feishu.cn/s/ike2Mj9x",
+    "company": "思朗科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.sigenergy.com/cn/careers",
+    "company": "思格新能源",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "享 职位筛选 已选 0 条件 | 79 结果 | 清除 搜索职位 政府项目专员【27届校招】 发布于 2026-10-15 职能类 职能类 | 硕士 硕士 | 上海市 上海市",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus_apply/smartsenstech1/56088?recommendCode=DS2NEFMs#/jobs",
+    "company": "思特威",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/smartmore/40506?recommendCode=DSxFbuP1#/jobs",
+    "company": "思谋科技",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://bestechnic.zhiye.com/campus/jobs",
+    "company": "恒玄科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.hundsun.com/campus/jobs?shareId=5ef11668-f2a7-43cc-acf5-089cf81ba301&shareSource=2",
+    "company": "恒生",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "恩智浦2027校园招聘 关于恩智浦 应届生岗位 实习生岗位 校招流程 工作与生活 职业发展 我们的员工 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://campus.51job.com/nxp/graduates.html",
+    "company": "恩智浦",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://desaysv.zhiye.com/campus/jobs",
+    "company": "惠州市德赛西威汽车",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.cgutech.com/jrwm",
+    "company": "成谷科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://eoptolink.zhiye.com/campus/jobs?shareId=76773328-5a2b-44f4-acf0-d9c800de01a0&shareSource=2",
+    "company": "成都新易盛通信",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.ghostcloud.cn/",
+    "company": "成都精灵云",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://yangtenginnovation-compus.zhiye.com/campus/jobs?shareId=8c456ab5-f1c8-46cd-8a91-037d42e2bcaa&shareSource=2",
+    "company": "扬腾创新",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "产品官网 招聘官网首页 社会招聘 校招FAQ 登录 搜索 筛选 清除 招聘项目 27届校招 27届秋招（制造类） 27届秋招（研发类） 27届秋招（非研发类） 27届暑期实习",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://bambulab.jobs.feishu.cn/s/bWi9cqMTpyw",
+    "company": "拓竹科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.topband.com.cn/company/tuobang/tuobang5011161#/positionList?wt=1&keyword=",
+    "company": "拓邦股份",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://cmbnt.cmbchina.com/pages/bindInvited.html?qrCode=7499CB23C54E42A79A38081473616DA2&rand=1785331872379&blNtCode=JFDZCW",
+    "company": "招商银行招银网络科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU61025e262f9d247b98e0a2c2/pb/school.html",
+    "company": "招联金融",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/mbcloud/150116?recommendCode=DSQ3A12u#/jobs",
+    "company": "招银云创",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://careers.pddglobalhr.com/campus/grad?t=AOT9z6aa0x",
+    "company": "拼多多",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招活动页（渲染）存在多个招聘届别",
+    "cohort_evidence": "2026:  项目 2027届秋招 2027届秋招 2027届暑期实习 2027届暑期实习 2026届春招 2026届春招 日常实习 日常实习 职能类型 工作地点 北京市 北京市 在招职位 ；2027: 美术大赛 登录 职位筛选 清除 已选 0 条件 | 42 结果 职位搜索 项目 2027届秋招 2027届秋招 2027届暑期实习 2027届暑期实习 2026届春招 2026届",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://app.mokahr.com/campus_apply/cyou-inc/42233?recommendCode=DS73VDVC#/jobs",
+    "company": "搜狐畅游",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/sohu/36036?recommendCode=DSRxwjqx#/jobs",
+    "company": "搜狐集团-AI专项",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/trip/117988",
+    "company": "携程",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://mthreads.zhiye.com/campus/jobs",
+    "company": "摩尔线程",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://egova1.zhiye.com/campus/jobs",
+    "company": "数字政通",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.51job.com/greenvalley/san.html",
+    "company": "数字绿土",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 登录 Slide 1 of 1 理想不必在远方 招聘项目 一键投递 一键投递 2026届校招公告&FAQ 数字马力2026届校园招聘启动公告 FAQ 数字马力AI Star人才",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/digital-engine/144933",
+    "company": "数字马力",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.sumavision.com.cn/join-us",
+    "company": "数码视讯",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://shuhegroup1.zhiye.com/campus/jobs",
+    "company": "数禾科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招活动页（渲染）存在多个招聘届别",
+    "cohort_evidence": "2027: 条件 | 137 结果 | 清除 搜索职位 急 L2++ Onboard工程师【2027届校招】 发布于 2026-08-13 算法开发工程师-规划/调度/搜索推荐方向【2027；2028: 程师【2027届校招】 急 L2++ Onboard工程师【2027届校招】 【2028届实习】软件测试实习生-环卫车事业部-广州 定位（gnss imu方向）系统工程师【202",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://app.mokahr.com/campus_apply/jingchi/2137?recommendCode=DSTrUGcq#/jobs",
+    "company": "文远知行",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://banma.zhiye.com/campus/jobs",
+    "company": "斑马网络",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "5.良好的沟通能力，对工作热情、积极主动，团队合作。 立即投递 收藏 查看详情 26届补录-工艺工程师 校园招聘 全职 广东省·东莞市 2026-09-07 发布 工作职责 ",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://dggmt.zhiye.com/campus/jobs",
+    "company": "新兴产业投资",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "IT类 法务类 人力资源类 业务支撑类 企业发展类 常见问题 简历 笔试 面试 2027届应届生招聘面向哪些人群？ 2027年1月1日 - 2027年12月31日毕业的国内高校本",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://career.sicarrier.com/#/campus",
+    "company": "新凯来",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://career.h3c.com/campus/jobs",
+    "company": "新华三",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://newland.zhiye.com/campus/jobs",
+    "company": "新大陆",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU6618fd381eb8053acd5fc2b9/mc/position/campus?acotycoCode=uozkbk&projectId=505401%2C505501&recruitType=1&isLimitShowPostScope=1",
+    "company": "新能安",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.schneider-electric.cn/zh/about-us/careers/local/early-careers/",
+    "company": "施耐德",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://xyzp.51job.com/innolight/about.html",
+    "company": "旭创科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/megviihr/146855",
+    "company": "旷视科技",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "工福利 联系我们 办公地址 需求与反馈 投诉与建议 投资者关系 校园招聘 昂瑞微2027届校园招聘 一、模拟研发工程师 工作地点：北京/成都/香港 岗位职责： 1. 负责模拟集成",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://www.onmicro.com.cn/xyzp/230.html",
+    "company": "昂瑞微",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hollyland.zhiye.com/campus/jobs?shareId=2dbb4980-d61f-4c1b-a61b-faede5103786&shareSource=2",
+    "company": "昊一源",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "现你在专业领域内快速成长，真正成为HR行业内的新星! 【工作地点】 北京/深圳 2027秋招流程允许投递2次，请选择适合的职位进行投递 立即投递 急 项目顾问岗 发布于 2026",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/mingyuan/168644?recommendCode=DSEKM1tG#/jobs",
+    "company": "明源云",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://mywind.zhiye.com/campus/jobs",
+    "company": "明阳智慧能源",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://eastups.zhiye.com/campus/jobs",
+    "company": "易事特",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://isv-tech.zhiye.com/campus/jobs",
+    "company": "易思维",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://recruit-pro.edianyun.com/#/wap/recruitment-collect",
+    "company": "易点云",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/robotera/163878",
+    "company": "星动纪元",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://sigmastar.zhiye.com/campus/jobs",
+    "company": "星宸科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/xyzrobotics/26847",
+    "company": "星猿哲",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "星环科技 - 校园招聘 校园招聘 关于星环 2027届秋季校园招聘 职位列表 星环官网 登录 Slide 1 of 1 公司简介 星环科技（股",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus_apply/transwarp/3196",
+    "company": "星环科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://milesight.zhiye.com/campus/jobs",
+    "company": "星纵物联",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "福建星网锐捷通讯股份有限公司 校园招聘 27届校招 登录/注册 筛选 清空 职位类型 c/c++/嵌入式类 JAVA开发类 移动应用开",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://starnet.zhiye.com/campus/jobs",
+    "company": "星网锐捷",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://cfmoto.zhiye.com/campus/jobs?shareId=d6e4e863-ab41-4ef3-b95c-e5625950bedc&shareSource=2",
+    "company": "春风动力",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://pudutech1.zhiye.com/campus/jobs?shareId=d3fd4e26-5274-4480-971b-517fc2189434&shareSource=2",
+    "company": "普渡机器人",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.lifotronic.com/job/campus.html",
+    "company": "普门科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://amlogicsh.zhiye.com/campus/jobs",
+    "company": "晶晨半导体",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://agirobot.jobs.feishu.cn/s/hMjzLGIaTnQ",
+    "company": "智元机器人",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "http://hr.jwipc.com:9007/hcm/portal.aspx",
+    "company": "智微智能",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://ai2robotics.jobs.feishu.cn/s/pXrf5XaP3Po",
+    "company": "智方",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "司 北京北方华创微电子装备有限公司 内蒙古伊利实业集团股份有限公司 北燃实业集团2027校园招聘 广东邮政2027年度校园招聘 中国联合网络通信有限公司北京市分公司 潍坊银行股份",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://webapp.zhaopin.com/2025/hd/zycxk0828ZL85636/post/index.html",
+    "company": "智洋创新",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://neuehct.jobs.feishu.cn/s/da663t3OFv4",
+    "company": "智驾新程 neueHCT",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2025,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 追求极致的与众不同 心怀热忱，向光而行 校招Q&A 一、整体安排 Q：智驾科技2025秋季校园招聘的具体时间安排是怎么样的？ A：智驾科技2025秋季校园招聘将于9月3日正式启",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/maxieyetec/41567",
+    "company": "智驾科技MAXIEYE",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.cvachip.com/gongsixinwen/5bvIg9Rk1KPx.html",
+    "company": "曦华科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "曦望Sunrise 校园招聘 公司官网 职位 登录 搜索 筛选 清除 招聘项目 27届校园招聘-秋招 城市 杭州 北京 上海 深圳 成都 开启新的工作（33） AI解决方案工",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://jobs.sunrise-ai.com/s/rdEbUxEZUvo",
+    "company": "曦望Sunrise",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "我的投递 - 积加科技校园招聘2027届",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://a4x-paas.jobs.feishu.cn/500117/position/application",
+    "company": "机加科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/su/cbijef",
+    "company": "杉川机器人",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://lisen.zhiye.com/campus/jobs?shareId=533d1cff-a525-46dc-8c5d-46445deabad4&shareSource=2",
+    "company": "李森智能",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.nationalchip.com/index.php/recruit",
+    "company": "杭州国芯",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://joulwatt.zhiye.com/campus/jobs",
+    "company": "杰华特微电子",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://future.jereh.com/campus/jobs?shareId=9c94dbea-93bf-4a5e-b2ad-eca3e586bd15&shareSource=2",
+    "company": "杰瑞集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "聘 首页 职位 培养路径 极兔风采 关于我们 登录 搜索 筛选 清除 招聘项目 2027届校园招聘 集团总部27届校招 海外国家27届校招 中国总部27届校招 日常实习生 城市 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://jtexpress.jobs.feishu.cn/s/au-hRT9NM5E",
+    "company": "极兔速递",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/geekplus/77928",
+    "company": "极智嘉",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.xgimi.com/campus-recruitment/xgimi/5463",
+    "company": "极米科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://zhaopin.xa.com/campus/jobs",
+    "company": "极飞科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://fscut.zhiye.com/campus/jobs?shareId=32ec46d5-492a-4294-95af-5a8c8ac58a56&shareSource=2",
+    "company": "柏楚电子",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/su/tergdo",
+    "company": "柠檬微趣",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "周内 一个月内 三个月内 半年内 一年内 搜索职位 全部职位（共 33 个） 【2027届校招】数采实施工程师(J13696) 校园招聘 全职 广东省·广州市 2026-10-1",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://irootech.zhiye.com/campus/jobs?shareId=80f4049b-f7af-4f8d-bccb-8622eed42879&shareSource=2",
+    "company": "树根互联",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://zhaopin.greeyun.com/home",
+    "company": "格力",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://oetsky.zhiye.com/campus/jobs?shareId=0661f472-750c-44ff-9387-9d56a6027b3e&shareSource=2",
+    "company": "格蓝若",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/senma/67981",
+    "company": "森马股份",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://sunwodacampus.zhiye.com/campus/jobs?shareId=1336470f-d3ff-43b5-ab65-5c31fa08db33&shareSource=2",
+    "company": "欣旺达",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.chint.com",
+    "company": "正泰集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 首页 热招职位 FAQ 关于正浩 隐私政策 登录 搜索 筛选 清除 招聘项目 2027届校园招聘 日常实习 2027届校招实习 城市 深圳 西安 苏州 西雅图 职能分类 产品 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://jobs.ecoflow.com/s/ZyFxOlW1sLI",
+    "company": "正浩EcoFlow",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jobs.ecoflow.com/",
+    "company": "正浩创新",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.zmotion.com.cn/hire.html",
+    "company": "正运动技术",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.kinco.cn/talent-recruitment",
+    "company": "步科股份",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "1 境外：2026.07.01-2027.12.31 立即投递 通知公告 比亚迪2027届全球校园招聘正式启动！ 2026-08-19 比亚迪2027届博士校园招聘正式开启! 2",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://job.byd.com/portal/mobile/school-home",
+    "company": "比亚迪",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jobs.bitmain.com.cn/students",
+    "company": "比特大陆",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wdh.jobs.feishu.cn/345030/position/application",
+    "company": "水滴",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://recruit.inovance.com/#/jobs?ref=AHPNGR5",
+    "company": "汇川技术",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://longsys.zhiye.com/campus/jobs",
+    "company": "江波龙",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jac.zhiye.com/campus/jobs",
+    "company": "江淮汽车",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://highstar.zhiye.com/campus/jobs?shareId=0619c7c1-77c4-40bd-808c-60d38fffdeac&shareSource=2",
+    "company": "江苏海四达电源",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "http://www.jsnebula.com/list_29/",
+    "company": "江苏芯云电子",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jmc.zhiye.com/campus/jobs",
+    "company": "江铃汽车",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/metax-tech/58131?recommendCode=DSjhTZe8#/jobs",
+    "company": "沐曦股份",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "瞳科技 首页 热招岗位 培养与发展 校招答疑 登录 搜索 筛选 清除 招聘项目 2027届秋季校园招聘 实习 城市 上海 广州 吉隆坡 新加坡 职能分类 技术岗位 美术岗位 产品",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://moonton.jobs.feishu.cn/s/VnhMKl-OMYc",
+    "company": "沐瞳科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "市 上海 职能分类 研发 美术 策划 发行 职能 技术 开启新的工作（114） 2027届秋招-游戏UI设计师（小游戏） 上海 正式 美术 岗位职责： 1、负责游戏界面设计，依据",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://boke.jobs.feishu.cn/s/FdZL0oHPUYg",
+    "company": "波克",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/bostonscientific/102308",
+    "company": "波士顿科学",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://telink.m.zhiye.com/#/jobs?jc=2",
+    "company": "泰凌微电子",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://unilumin.zhiye.com/campus/jobs?shareId=e4d202b7-39b7-455a-bea5-338561168759&shareSource=2",
+    "company": "洲明科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/baorong/25901",
+    "company": "浙江保融科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://iwhalecloud1.zhiye.com/campus/jobs?shareId=499ac060-630c-4d66-8cef-44bccacade79&shareSource=2",
+    "company": "浩鲸科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jobs.hisense.com/campus/jobs?shareId=321d106b-366a-410e-af97-4e614201c0f5&shareSource=2&qr=1&memory=%7B%7D&silence=1",
+    "company": "海信集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU6322ee8c0dcad46a862dcbe5/mc/position/campus?acotycoCode=bgpkci&recruitType=1&isLimitShowPostScope=1",
+    "company": "海天味业",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "海尔招聘-海尔官方招聘网站 海尔集团2027校园招聘 请选择岗位类别 AI/算法类 硬件研发类 软件研发类 智能制造类 海外市场类 市",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://maker.haier.net/client/campusmobile/activity/id/68/fid.html?inviter_code=VElJMWI2OExmV0k9",
+    "company": "海尔",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "nable it to continue. 校园招聘 校园招聘 日常实习生招聘 2027校园招聘 2027超新星实习生 了解海康威视 校企合作 战略合作 实习基地 联合实验室 O",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://campushr.hikvision.com/school?schoolType=nozxf&activeTab=0",
+    "company": "海康威视",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hr.hdscomms.com/campus-recruitment/tanhai/118014",
+    "company": "海德思",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hairobotics.zhiye.com/campus/jobs",
+    "company": "海柔创新",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://haige.zhiye.com/campus/jobs",
+    "company": "海格通信",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "海能达2027届秋季校园招聘 Moka，智能化招聘管理系统",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://zpxz.hytera.com/",
+    "company": "海能达",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "海能达2027届秋季校园招聘 Moka，智能化招聘管理系统",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://app.mokahr.com/campus_apply/hytera/182194?recommendCode=DSnApMzB#/jobs",
+    "company": "海能达通信",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://talent.taotian.com/campus/position",
+    "company": "淘天",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "%2Fjobs%3Fproject%3D100128211 复制链接 搜索职位 27届校园招聘 急 校招 深信服27届—技术研发工程师（AI潜力方向） 深信服科技 全职 研发",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/m/recommendation-apply/sangfor/5369?sharePageId=4335123&amp;recommendCode=NTAeTq2&amp;codeType=1#/jobs?project=100128211",
+    "company": "深信服",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "语言 【招聘流程】 投递简历--AI测评--线上面试--终面--发放offer 27届秋招允许投递3次，请选择适合的职位进行投递 立即投递 java开发工程师 发布于 202",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/huolalahr/98660?recommendCode=DSVVJ2Jg#/jobs",
+    "company": "深圳依时货拉拉",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.kinwong.com/careers/",
+    "company": "深圳景旺电子",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.kaihong.com/xyzp",
+    "company": "深开鸿",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://zhaopin.kaifa.cn/Campus/Positions",
+    "company": "深科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/blueinteractive/38434?recommendCode=DSZtcZQB#/jobs",
+    "company": "深蓝互动",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://tsingmicro.zhiye.com/campus/jobs",
+    "company": "清微智能",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.yokaverse.com/",
+    "company": "游卡",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/manbang/94191",
+    "company": "满帮集团",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/didiglobal/96064?recommendCode=DS621uuv#/jobs",
+    "company": "滴滴",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://talent.lingxigames.com/campus/position",
+    "company": "灵犀互娱",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/actions-semi/92622",
+    "company": "炬芯科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/dianzhong/28122",
+    "company": "点众科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://ddhd.cn/campus/jobs?shareId=3b4bf1d5-e3dc-448d-8434-53baa5d29cfd&shareSource=1",
+    "company": "点点互动",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "公司 校园招聘 首页 社招职位 校招职位 宣讲会行程 校招Q&A 登录 烽火通信2027届校园招聘 最大限度挖掘数字连接价值，造福人类社会 烽火 · 工作 Work in Fib",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/whfhtx/73922",
+    "company": "烽火通信",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "招聘 校园招聘 首页 热招职位 登录 Slide 1 of 1 热招职位 急 【2027校招】芯片设计工程师（MemSys） 上海市 急 【2027校招】芯片设计工程师（SOC ",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/enflame/168420?locale=zh-CN#/",
+    "company": "燧原科技",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://aixuexi1.zhiye.com/campus/jobs",
+    "company": "爱学习",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU6114ca1abef57c65330918e8/pb/school.html",
+    "company": "爱旭股份",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/su/chumxr",
+    "company": "爱瑞无线",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "我们不断壮大的团队 全部岗位 产品与解决方案 全球营销管理 平台运营 校园大使 27届校园大使 岗位职责: 多渠道推广校招岗位，策划并执行校园活动； 运营招聘社群，推荐优秀人",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://www.aidite.com/zh/positionPage",
+    "company": "爱迪特Aidite",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/muyuan/70116?recommendCode=DSCHtb4w#/jobs",
+    "company": "牧原集团",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/tesla/41460?recommendCode=DSs8kUEa#/jobs",
+    "company": "特斯拉",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://tgood.zhiye.com/campus/jobs?shareId=1eb59034-b367-4225-b950-c6366cff7d78&shareSource=2",
+    "company": "特锐德",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app135149.eapps.dingtalkcloud.com/su/YMZMF",
+    "company": "珞石机器人",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.allwinnertech.com/campus-recruitment/allwinnertech/43436",
+    "company": "珠海全志科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招活动页（渲染）存在多个招聘届别",
+    "cohort_evidence": "2026: ··· 登录 搜索 筛选 清除 招聘项目 2027校园招聘 2027“理想+” 2026校园招聘 实习生招聘 城市 北京 上海 常州 杭州 重庆 深圳 青岛 更多 搜索 职能分类；2027:  ··· 社招内推 ··· 校招内推 ··· 登录 搜索 筛选 清除 招聘项目 2027校园招聘 2027“理想+” 2026校园招聘 实习生招聘 城市 北京 上海 常州 杭州 ",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://li.jobs.feishu.cn/s/tJF4dkXEZkI",
+    "company": "理想汽车",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://talent.aactechnologies.com/campus/m/position/list?external_referral_code=8RY44XV",
+    "company": "瑞声科技",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://rwdls.zhiye.com/campus/jobs",
+    "company": "瑞沃德",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://career.yonyou.com/SU67ac41886202cc7916ae3029/pb/school.html",
+    "company": "用友",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/cetcles/40889",
+    "company": "电科莱斯",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/kingbase/47259?recommendCode=DShDN9hm#/jobs",
+    "company": "电科金仓",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "位地点 北京市 上海市 深圳市 广州市 杭州市 成都市 更多 校园招聘 面向全球2027届毕业生，毕业时间在2026年9月1日到2027年8月31日之间 【中国大陆（内地）以毕业",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://dwz.cn/BX4X1k6w",
+    "company": "百度",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "力及抗压能力； 3. 具备相关项目或实习经验者优先。 立即投递 收藏 查看详情 2026届芯片后端工程师（上海）(J10118) 校园招聘 全职 上海市 2026-03-09 发",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://centec.zhiye.com/campus/jobs",
+    "company": "盛科通信",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.shengqugames.com/cn/join",
+    "company": "盛趣游戏",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "27届校园招聘 --> <script type=\"text/javascript\"> /*p",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://raytrontek1.zhiye.com/campus/jobs?shareId=b37b4ca4-914b-49a6-ad25-313181526e0b&shareSource=2",
+    "company": "睿创微纳",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/reo/136006?recommendCode=DSyaa93G#/jobs",
+    "company": "睿联技术",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hr.revopoint3d.com.cn/gwtd.html",
+    "company": "知象光电",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://roborock.zhiye.com/campus/jobs",
+    "company": "石头科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.lisuantech.com/join-us/school.html",
+    "company": "砺算科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://sensorsdata.zhiye.com/campus/jobs",
+    "company": "神策",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://senci.zhiye.com/campus/jobs",
+    "company": "神驰机电",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://xchengtech.zhiye.com/campus/jobs",
+    "company": "祥承科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hopewind.zhiye.com/campus/jobs",
+    "company": "禾望电气",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://kwh0jtf778.jobs.feishu.cn/s/fT1cgIjWdbE",
+    "company": "禾赛科技",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "gnetics、ANSYS/Maxwell等，进行磁路仿真和优化设计。 禾迈股份2027届校园招聘允许投递3次，请选择适合的职位进行投递 立即投递 EMS后端软件工程师（苏州） ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/hoymiles/70377?recommendCode=DSHcSR6p#/jobs",
+    "company": "禾迈股份",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/kehua/92510?recommendCode=DSHV5wbF#/jobs",
+    "company": "科华集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://iflytek.zhiye.com/campus/jobs?shareId=3d18c956-2820-45fe-80a9-f6f76308cc9f&shareSource=2",
+    "company": "科大讯飞",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://luxshare-tech.zhiye.com/campus/jobs?shareId=3f27582d-0e97-4f27-96f4-22048a62f3b4&shareSource=2",
+    "company": "立讯技术",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "职位，点击 查看 浏览其它全部职位 筛选 清除 招聘项目 实习生专项 招聘范围 2027届秋招 招聘范围 职能类型 程序&技术类 美术&表现类 产品策划类 质量管理类 运营类 市",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://jobs.mihoyo.com/m/?recommendationCode=ST4G&isRecommendation=true#/campus/position",
+    "company": "米哈游",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.pangomicro.com/join_school/",
+    "company": "紫光",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.naruida.com/linian_1/5.html",
+    "company": "纳睿雷达",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://zongmu.zhiye.com/campus/jobs",
+    "company": "纵目科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "电子大赛等者优先； （3）熟练掌握单片机原理及其外设，有单片机使用经验者优先。 2027校园招聘允许投递2次，请选择适合的职位进行投递 立即投递 智能底盘算法应用工程师-camp",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/jingweihengrun/168294?recommendCode=DSkAKetZ#/jobs",
+    "company": "经纬恒润",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://uniontech.com/m/Recruitment.html",
+    "company": "统信软件",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/vertiv/118713",
+    "company": "维谛技术",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "绿盟科技2027校园招聘 Moka，智能化招聘管理系统",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://app.mokahr.com/campus_apply/nsfocus/29118",
+    "company": "绿盟",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://careers.lulian.cn/",
+    "company": "绿联",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.163.com/app/job/position?id=69",
+    "company": "网易云音乐",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.game.163.com?referralCode=pASpTr",
+    "company": "网易互娱",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://xiaozhao.leihuo.netease.com/neitui/#/?introduceId=xKWmfq9qD9DEtsOn",
+    "company": "网易雷火",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://zhaopin.meituan.com/m/campus?zp-from=hiring-campus-bole-elephant&staffSsoId=23761311",
+    "company": "美团",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://careers.midea.com/recruit-school-wechat/job?mvp_code=M8621M&type=1",
+    "company": "美的",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://lyncon.zhiye.com/campus/jobs",
+    "company": "羚控科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/qunhemail/2832?recommendCode=DSVyddjj#/jobs",
+    "company": "群核信息",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://szly.zhiye.com/campus/jobs",
+    "company": "联友科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://mediatek.zhiye.com/campus/jobs",
+    "company": "联发科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://united-imaging.zhiye.com/campus/jobs",
+    "company": "联影",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 实习生招聘 了解联想 相关公司校招 登录/Login 招聘岗位 招聘流程 联想2027应届生招聘 面向人群 2027届海内外毕业生 招聘范围：毕业时间为2026年9月1日至20",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://talent.lenovo.com.cn/campus?projectType=1",
+    "company": "联想",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/joinquant/92347?recommendCode=DS86UpyF#/jobs",
+    "company": "聚宽投资",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://join.qq.com/resume.html?k=vPTeIjTrFkEs-zVHQbPCap-koXnwW3cpRelOqQ2wf0I",
+    "company": "腾讯",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://join.tencent-cloud.com",
+    "company": "腾讯云智研发",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://join.tencentmusic.com/campus/post?type=10",
+    "company": "腾讯音乐",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 校园招聘 首页 职位 社会招聘 登录 搜索 筛选 清除 招聘项目 实习生招聘 27届校园招聘 职位类别 研发 研发 产品 / 策划 / 项目 职能 / 支持 运营 市场 设",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://x2-robot.jobs.feishu.cn/s/cr-OoWdwAvM",
+    "company": "自变量机器人",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/sunnyoptical/45602?recommendCode=DSm39D5X#/jobs",
+    "company": "舜宇集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招入口未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hr.huntkey.com/campus/jobs",
+    "company": "航嘉集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://sast.zhiye.com/campus/jobs",
+    "company": "航天811所",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "5.具备国家重点研发计划等项目论证与方案编写能力。 立即投递 收藏 查看详情 【2027届】系统总体设计师(J10193) 校园招聘 全职 北京市 2026-08-25 发布 工",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://spacestar.zhiye.com/campus/jobs",
+    "company": "航天恒星科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.iguopin.com/company?id=10685384244169370",
+    "company": "航天飞鹏",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://awinic.zhiye.com/campus/jobs",
+    "company": "艾为电子",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://jaka.zhiye.com/campus/jobs",
+    "company": "节卡机器人",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://innosilicon.zhiye.com/campus/jobs",
+    "company": "芯动科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.verisilicon.com/cn/Careers",
+    "company": "芯原微电子",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "芯原股份2026届校园专场招聘 关于芯原 企业文化 直通校招 空中宣讲会 常见问题 芯原微电子（上海）股份",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://campus.51job.com/VeriSilicon2026",
+    "company": "芯原股份",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2024,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "芯合电子2024校园招聘 为了更好的用户体验，请将屏幕横向浏览！ 无忧工作网版权所有© 1999 - 芯合",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://campus.51job.com/m/unisemipower2024/",
+    "company": "芯合电子",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.xtimes-da.com/index.php/Mobile?a=page&p=joinus_school",
+    "company": "芯行纪",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://invt.zhiye.com/campus/jobs",
+    "company": "英威腾",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://global-intco.jobs.feishu.cn/s/GPVzkGAwcl0",
+    "company": "英科再生",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://infypower.zhiye.com/campus/jobs",
+    "company": "英飞源",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/rongpai/96314",
+    "company": "荣湃半导体",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://career.honor.com/SU60ee9e002f9d247b98da489e/mc/position/campus?acotycoCode=mmjiqp&projectId=101401%2C101601%2C101801%2C101901&recruitType=1&isLimitShowPostScope=1",
+    "company": "荣耀",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "聘 职位 首页 社会招聘 校园招聘 实习招聘 登录 搜索 筛选 清除 招聘项目 2027秋招 城市 上海 北京 职能分类 技术 艺术 产品 发行 战略 质量 项目管理 职能 开启",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://lilithgames.jobs.feishu.cn/s/LS13zX5I1lc",
+    "company": "莉莉丝",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://talent.cainiao.com/campus",
+    "company": "菜鸟",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.grapecity.cn/about/joinus.htm",
+    "company": "葡萄城",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "项目 人才专项招聘计划 蔚来AGI超星计划 Super Sparks 招聘计划 2027届校园招聘 2027届校园招聘-正式批 营销Sparks人才专项 \"未来星\"营销管训班 2",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://nio.jobs.feishu.cn/s/7eS_xvAK4kI",
+    "company": "蔚来",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/huya/4112",
+    "company": "虎牙",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "工作职责 任职要求 立即申请 再看看 校招攻略 校招攻略 虹视界，智未来 虹软 2027届校园招聘全面启动 创新无限 代码在手 浩瀚宇宙 等你探索 广阔的技术空间：专注CV领域，",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://www.arcsoft.com.cn/job/JobList.html",
+    "company": "虹软科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/shopee/170435#/job/90611de8-f66d-42c0-920e-3972682a596f?from=qrcode",
+    "company": "虾皮信息",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://talent.antgroup.com/campus/home",
+    "company": "蚂蚁集团",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/phlexing/100123",
+    "company": "行芯科技",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.motor-comm.com/join/campus-recruitment",
+    "company": "裕太微电子",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://job.seasungames.cn/campus",
+    "company": "西山居",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://ryytn.zhiye.com/campus/jobs?shareId=4685c8fd-55c5-4604-a10a-e405613d7923&shareSource=2",
+    "company": "认养一头牛",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://ramaxel.zhiye.com/campus/jobs",
+    "company": "记忆科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/shiyuehr/72055?recommendCode=DS2gf3y9#/jobs",
+    "company": "诗悦网络",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://novastar.zhiye.com/campus/jobs?shareId=d040a3b6-f740-4953-a20f-02d1eab54cc3&shareSource=2",
+    "company": "诺瓦星云",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://xiangyu.zhiye.com/campus/jobs?shareId=04ba3846-f95d-4166-84f0-f7ae96c29fe1&shareSource=2",
+    "company": "象屿股份",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://ovt-omnivision.zhiye.com/campus/jobs",
+    "company": "豪威集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU611e3a2c2f9d24229e05a18d/pb/school.html",
+    "company": "豪鹏科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.cheetahfun.com/campus.html",
+    "company": "豹趣科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.ke.com/campus/jobs",
+    "company": "贝壳",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://yhwins2.zhiye.com/campus/jobs?shareId=8848ae0a-ca33-49f3-80a1-8e6153760225&shareSource=2&qr=1&memory=%7B%7D&silence=1",
+    "company": "赢合科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hr.chaocanshu.cn/campus_apply/chaocanshu/45562#/",
+    "company": "超参数科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://career.xfusion.com/OfficialPortal/#/campusList?subChannel=1",
+    "company": "超聚变",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://dobot.zhiye.com/campus/jobs",
+    "company": "越疆机器人",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/rootglobal/44850?recommendCode=DS4eY69C#/jobs",
+    "company": "路特ROOT",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://qcraft.jobs.feishu.cn/s/yxH8NMS4XGc",
+    "company": "轻舟智航",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.dms365.com/newsinfo/2534167.html",
+    "company": "达美盛",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "职位 分享 职位筛选 已选 0 条件 | 25 结果 | 清除 搜索职位 急 【2027校招】X-PEP产品星计划 发布于 2026-08-10 迅雷云事业部 迅雷云事业部 | ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/xunlei/26600?recommendCode=DSdSNKR9#/jobs",
+    "company": "迅雷",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/maipu/45544",
+    "company": "迈普",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://mindray.zhiye.com/campus/jobs",
+    "company": "迈瑞医疗",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/envisiongroup/43123?recommendCode=DSc3uBTQ#/jobs?department%5B0%5D=958964&project%5B0%5D=100124183&page=1&anchorName=jobsList",
+    "company": "远景科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://dptech.zhiye.com/campus/jobs",
+    "company": "迪普科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://dreame.zhiye.com/campus/jobs",
+    "company": "追觅",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://career.limxdynamics.com/",
+    "company": "逐际动力",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "职 实习 所属部门 行政管理中心 校招面试部门 急 游戏AI算法工程师（北京）-2027校招 发布于 2026-08-31 急 游戏策划（北京）-2027校招 发布于 2026-",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/tuyoogame/146219?recommendCode=DSQKjZuQ#/jobs",
+    "company": "途游",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/tuhu/28398?recommendCode=DS3hMB6E#/jobs",
+    "company": "途虎养车",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/robosense/69887?recommendCode=DSEdj5q7#/jobs",
+    "company": "速腾聚创",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://www.punp.com/xyzp/index.aspx",
+    "company": "邦普电脑技术开发",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "(CARIZON) 首页 校园招聘 社会招聘 登录 搜索 筛选 清除 招聘项目 27届校招 实习 城市 北京 上海 开启新的工作（24） 智能驾驶算法工程师-策略开发方向 上",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://carizon.jobs.feishu.cn/s/gLmpfqWvVjg",
+    "company": "酷睿程",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://xy.liepin.com/qlqc2026/",
+    "company": "重庆庆铃",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "http://www.camyu.net/index.php/%E4%BA%A7%E5%93%81%E8%90%A5%E9%94%80%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E7%B1%BB/",
+    "company": "重庆港宇高科技开发",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://xlmec.zhiye.com/campus/jobs",
+    "company": "重庆芯联微电子",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "http://www.swid.com.cn/recruit/3365.html",
+    "company": "重庆西南集成电路设计",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://cqcbank2026.zhaopin.com/jobs/index.html",
+    "company": "重庆银行",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://kingfa.zhiye.com/campus/jobs",
+    "company": "金发科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/wps/41436?recommendCode=DS5u51CA#/jobs",
+    "company": "金山办公",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招入口",
+    "cohort_evidence": "金智科技2026校园招聘 企业简介 招聘岗位 福利待遇 校招流程 未经51job.com同意，不得转载本网",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://campus.51job.com/wiscom2026/about1.html",
+    "company": "金智科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://szkingdom1.zhiye.com/campus/jobs?shareId=e1c27e99-3f78-4776-ad7f-fb290455858f&shareSource=2",
+    "company": "金证科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://szyxjt.zhiye.com/campus/jobs",
+    "company": "银星智能",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "银河通用机器人 - 校园招聘 校园招聘 首页 2027届校园招聘 实习生招聘 员工内推 更多 登录 职位筛选 清除 已选 0 条件 | 53 结",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/yinhetongyong/165930?recommendCode=DSmgbJ2x#/jobs",
+    "company": "银河通用",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "http://talent.intime.com.cn/campus/jobs?shareId=48780f33-941e-46a4-814d-9799f9112248&shareSource=2",
+    "company": "银泰商业",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "/HCIP、CCNA/CCNP）、网络竞赛、实验室网络搭建、课程项目经历优先。 27届秋招项目允许2026年08月25日至2027年01月31日内投递2次，请选择适合的职位进",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus_apply/ruijie/136206?recommendCode=DSAd4zdj#/jobs",
+    "company": "锐捷网络",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://streamax.zhiye.com/campus/jobs?shareId=ba0fc90a-a0ae-4f5e-ba4f-801c95a288b3&shareSource=2",
+    "company": "锐明技术",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://sznari.zhiye.com/campus/jobs",
+    "company": "长园深瑞继保",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://zhaopin.gwm.cn/SU64eeb4ff1eb80519a80a074c/pb/school.html",
+    "company": "长城汽车",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "作方法解决问题。 立即投递 收藏 查看详情 合肥长安-制造信息化集成技术工程师(2027届校园招聘)(J28653) 校园招聘 全职 安徽省·合肥市 2026-09-01 发布 ",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://changan.zhiye.com/campus/jobs",
+    "company": "长安",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "http://hrm-out.hzcctech.com:8083/RedseaPlatform/zhaopin/zpChannelQrCode/a3c82653-df31-47ea-8561-b634675cc88c/officeWebsite.mob",
+    "company": "长川科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://ymtc-campus.zhiye.com",
+    "company": "长江存储",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://cxmt.zhiye.com/campus/jobs",
+    "company": "长鑫存储",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "内 三个月内 半年内 一年内 全部职位（共 38 个） 数科AI应用算法工程师｜2027科技培训生(J19560) 校园招聘 全职 北京市 2026-09-21 发布 工作职责 ",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://sunzhaopin.sinosig.com/campus/jobs?shareId=e5550a73-c29d-4fe7-a89b-9bde517c7e1e&shareSource=2",
+    "company": "阳光保险",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/sungrow/94416",
+    "company": "阳光电源",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://xcn5vbnquq58.jobs.feishu.cn/915151/position/application",
+    "company": "阿维塔",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hrrecommend.antgroup.com/job-list.html?source=campus_external_recommend&code=T_dN2oDMsas%2F7M1pcbeNZgPQyH2sYJEaioT37binMeo%3D",
+    "company": "阿里-蚂蚁集团",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "招聘，认准官方渠道（官网/公众号/认证平台），保障求职安全。 查看详情 阿里云 2027届应届生招聘 ALIBABA CLOUD CLASS OF 2027 RECRUITMEN",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://careers.aliyun.com/campus/home",
+    "company": "阿里云",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://alidocs.dingtalk.com/notable/share/form/v01eYVOL5ozy48eAlpz_dv19yqvsgs3oebp3pcjys_1qX0QQ0?utm_source=qrcode_form&source=qrcode",
+    "company": "阿里云瓴羊",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://aidc-jobs.alibaba.com/",
+    "company": "阿里国际",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.alibaba.com/",
+    "company": "阿里巴巴",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "里巴巴集团招聘官网 登录 项目制实习生招聘 招收对象： 研究型实习生等项目实习 27届应届生招聘 毕业时间： 2026.11-2027.10 我要投递 27届实习生招聘 毕业",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://recruitment.t-head.cn/campus/home?sessionid=",
+    "company": "阿里平头哥",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwNKNpzURtSZ49iAMry0CzOjSEORZHsCnVIx7T6SWUAi6&batchId=100000760001&filterParams=%7B%22customDept%22%3A%5B%22PQHNXW%22%5D%7D",
+    "company": "阿里淘天",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "6 个） 分享列表全部 职位名称 招聘类别 工作性质 工作地点 发布时间 校招-2027 届零售管培生（广州）(J18394) 校园招聘 全职 广东省·广州市 2026-09-2",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://leapmotor1.zhiye.com/campus/jobs",
+    "company": "零跑汽车",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus-recruitment/leisai/146886?recommendCode=DSaBjkyH#/jobs",
+    "company": "雷赛智能",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "欢迎加入霸王茶姬 首页 社会招聘 2026校园招聘 实习招聘 公司官网 登录 输入城市或职位进行搜索 集团总部招聘 分子公司招聘 门",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://jobs.chagee.com/",
+    "company": "霸王茶姬",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）仅发现实习届别，未发现正式校招届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/campus_apply/aftershokzhr/36940?recommendCode=DSu9Z4sz#/jobs",
+    "company": "韶音科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU62d669e0bef57c0f7dbabacf/pb/school.html",
+    "company": "顶点软件",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://campus.sf-express.com/",
+    "company": "顺丰",
+    "checked_at": "2026-10-17T19:50:19"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "校招职位 首页 校招职位 校招说明 登录/注册 捷顺科技-2027届校园招聘 搜索职位 工作地点 不限 全国 深圳市 更多 更多 职位分类 全部职位（共 1",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://jieshun.zhiye.com/campus/jobs",
+    "company": "顺捷",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "招聘门户 首页 2026校园招聘 社会招聘 走进顺网 内部推荐 登录/注册 搜索职位 职位类型 工作区域 全部职位",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://shunwang.zhiye.com/campus/jobs",
+    "company": "顺网科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU600fcd2b5d83dc11e4a581b3/pb/school.html",
+    "company": "领益智造",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": " 更多 更多 职位类型 全部职位（共 4 个） 分享列表全部 AI数据产品经理（26届） 面议 校园招聘 全职 江苏省·南京市 2026-04-20 发布 工作职责 1、产品",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://t3go.zhiye.com/campus/jobs",
+    "company": "领行科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "选 0 条件 | 11 结果 | 清除 搜索职位 急 C++开发工程师（效能）—2027届校招 发布于 2026-08-18 急 C++开发工程师（规控）—2027届校招 发布于",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus-recruitment/fabu/56114?recommendCode=DSgZsTrZ#/jobs",
+    "company": "飞步科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://career.fliggy.com/campus/position",
+    "company": "飞猪",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "4 结果 | 清除 搜索职位 工作地点 厦门市 新加坡 校招类别 实习 新加坡 2027秋招 急 平面实习生 实习类 实习类 | 福建·厦门市 福建·厦门市 急 视频实习生（AE",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://app.mokahr.com/campus_apply/feiyu/1633?recommendCode=DSFHF9rV#/jobs",
+    "company": "飞羽科技",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 2027,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "招动态 网申/内推 简历初筛&评测 面试 录用意向offer 公告通知 淘宝闪购2027届应届生招聘公告 2026年8月 淘宝闪购2027届应届生招聘笔试公告 2026年8月 投",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://talent.ele.me/campus/home?lang=zh",
+    "company": "饿了么",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://weikezhijia.jobs.feishu.cn/s/iMRaH4GB",
+    "company": "马上消费金融",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/black-unique/29232?recommendCode=DSv6KdHC#/jobs",
+    "company": "骑士集团",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "介绍 招聘动态 个人中心 更多招聘 登录 筛选 清除 项目类型 应届生 高德地图2026届应届生招聘 实习生 高德地图-π天才计划 高德-项目制实习生 高德研究型实习生 部门 业",
+    "campaign_scope": "formal_with_internships",
+    "campaign_url": "https://talent.amap.com/campus/position",
+    "company": "高德地图",
+    "checked_at": "2026-10-17T19:50:18"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://gosuncn.zhiye.com/campus/jobs",
+    "company": "高新兴",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://kjgb.zhiye.com/campus/jobs?shareId=3cef82ab-bf24-4225-9f23-ee18ced3ce45&shareSource=2",
+    "company": "高标科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "conflict",
+    "cohort_source": "公司校招活动页（渲染）存在多个招聘届别",
+    "cohort_evidence": "2026: 校招-二讲老师-西安 发布于 2026-05-26 全职 全职 | 二讲老师类-2026校招 二讲老师类-2026校招 | 陕西·西安市 陕西·西安市 【工作内容】（1）答疑沟通；2027: 兼职 实习 实习 其他 其他 职能类型 在招职位 分享 急 物理主讲老师-上海-2027校招 发布于 2026-09-20 全职 全职 | 线下教师类-2027校招 线下教师类-",
+    "campaign_scope": "mixed",
+    "campaign_url": "https://app.mokahr.com/campus_apply/bjhl/102145?recommendCode=DSAhQp9b#/jobs",
+    "company": "高途",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://colgate.zhiye.com/campus/jobs?shareId=b387fafc-5d32-459d-8590-5c04a942b519&shareSource=2",
+    "company": "高露洁",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://qcnhg4ksaiwt.jobs.feishu.cn/257870/m/?external_referral_code=92AJ8US",
+    "company": "鸿擎科技",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://career.pxwsemi.com/campus/jobs?shareId=b7ba1868-3017-4fbc-beb4-6fa0733a2d2d&shareSource=2",
+    "company": "鹏芯微",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/m/recommendation-apply/hypergryph/26594?sharePageId=4654413&amp;recommendCode=NTA6WPs&amp;codeType=1#/recommendation/page/4654413",
+    "company": "鹰角网络",
+    "checked_at": "2026-10-17T19:50:23"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://medcaptain.zhiye.com/campus/jobs",
+    "company": "麦科田",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://wecruit.hotjob.cn/SU6282075e0dcad413c09efe26/pb/school.html",
+    "company": "麦米电气",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://app.mokahr.com/campus_apply/heibaidiao/54126?recommendCode=DSBjx3ZQ#/jobs",
+    "company": "黑白调-傲风",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://bsthr.zhiye.com/campus/jobs?shareId=49723520-dbb6-40b1-a6fb-4e25245409cb&shareSource=2",
+    "company": "黑芝麻智能",
+    "checked_at": "2026-10-17T19:50:24"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://td-tech.zhiye.com/campus/jobs",
+    "company": "鼎桥通信",
+    "checked_at": "2026-10-17T19:50:20"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "公司校招活动页（渲染）未发现明确届别",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://hr.scutech.net/SU6343e0330dcad41245d65d52/pb/school.html",
+    "company": "鼎甲科技",
+    "checked_at": "2026-10-17T19:50:21"
+  },
+  {
+    "cohort": 0,
+    "cohort_status": "unknown",
+    "cohort_source": "岗位字段已全部明确届别，无需继承公司活动证据",
+    "cohort_evidence": "",
+    "campaign_scope": "unknown",
+    "campaign_url": "https://siglent.zhiye.com/campus/jobs",
+    "company": "鼎阳科技",
+    "checked_at": "2026-10-17T19:50:22"
+  },
+  {
+    "cohort": 2026,
+    "cohort_status": "confirmed",
+    "cohort_source": "公司校招活动页（渲染）",
+    "cohort_evidence": "上海龙旗科技股份有限公司 首页 社会招聘 校园招聘 关于我们 登录/注册 2026届校园招聘 全部职位 搜索职位 岗位类别 不限 更多 工作地点 不限 更多 全部职位（共 ",
+    "campaign_scope": "exclusive",
+    "campaign_url": "https://longcheerzp1.zhiye.com/campus/jobs",
+    "company": "龙旗科技",
+    "checked_at": "2026-10-17T19:50:21"
+  }
+]

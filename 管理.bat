@@ -1,10 +1,16 @@
 @echo off
+chcp 65001 >nul
 cd /d "%~dp0"
-echo ============================================
-echo   [Career Agent] Starting Kanban Server...
-echo   Browser will open http://localhost:5000
-echo   (Close this window to stop the server)
-echo ============================================
+
+echo ========================================================
+echo   AI校招情报系统 - 本地投递看板与交互管理服务
+echo   启动后将自动在浏览器打开 http://localhost:5000
+echo   支持录入/更新投递记录、添加笔面试日程、点击重新生成综合建议
+echo   关闭此窗口即可停止本地服务
+echo ========================================================
+echo.
+
 python webapp.py
+
 echo.
 pause

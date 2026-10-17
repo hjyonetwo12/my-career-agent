@@ -1,15 +1,12 @@
-"""通用渲染爬虫 —— 服务「自建 SPA 校招站」(无公开 API 或 API 带反爬)。
+"""通用渲染爬虫（增强版） —— 服务「自建 SPA 校招站」(无公开 API 或 API 带反爬)。
 
-很多公司校招站是自建 SPA，职位列表 API 常带客户端反爬 token(如 bilibili 的
-ajSessionId)，裸 requests 抓不到。用 Playwright 渲染真实页面时页面自身 JS 会带上
-token、DOM 正常填充，故走「渲染 + 自动选主选择器 + 翻页」绕过。
-
-**自动选主选择器**(避免"抓所有关键词元素"的脏数据)：渲染后统计每个 tag.class
-里"像职位名"的直接文本数，职位列表组件会重复出现 N 次(N 远大于筛选/导航噪声)，
-取得分最高、且文本足够干净的那个 class 作为唯一选择器，只解析它。
-
-config 用法：crawler: render + careers_url(职位列表页 URL)。无需子类。
-若某站结构特殊选不出干净选择器(主选择器命中数 < 阈值)，优雅返空、归人工。
+升级亮点：
+1. XHR/JSON 自动嗅探：在 Playwright 渲染过程中自动监听后台 JSON 响应，若发现包含
+   positionName/jobName/postName/title 等标准字段的职位数组，直接提取结构化岗位，
+   彻底绕过复杂 DOM 选择器限制。
+2. 选择器与解析器口径对齐 + 优先具名 Class：消除 `_pick_selector` 选出裸 `div`/`a` 或选出
+   含“发布时间/招聘人数”的卡片后在 `_parse` 阶段被 `_CONTEXT_NOISE` 误杀导致抓到 0 个岗位的问题。
+3. 快速超时降级：将 networkidle 超时缩短并自动降级为 domcontentloaded，避免死链卡死 90 秒。
 """
 import logging
 import re
@@ -43,11 +40,10 @@ _JOB_KW = re.compile(
     r"trainee|engineer|developer|intern|graduate|analyst",
     re.I,
 )
-# 明显非职位的噪声(筛选/导航/页脚/说明文案)
 _NOISE = re.compile(
-    r"筛选|清除|职位类别|工作地点|大职能|仅查看|热门|须知|查看|更多|登录|注册|开发者论坛|开发者平台|开发者区域|"
+    r"筛选|清除|职位类别|工作地点|大职能|仅查看|热门|须知|登录|注册|开发者论坛|开发者平台|开发者区域|"
     r"计划是|面向|推出|全球|高校|在校生|清空|展开|收起|首页|关于|联系|"
-    r"招聘流程|投递方式|个人中心|加入我们|了解更多|立即申请|点击|"
+    r"招聘流程|投递方式|个人中心|加入我们|了解更多|立即申请|"
     r"校招流程|校招岗位|校招FAQ|FAQ|招聘公告|招聘简章|招聘动态|校招行程|快捷通道|"
     r"应届生招聘|实习生招聘|博士生招聘|进入校招|实习机会|"
     r"产品类|技术类|职能类|运营市场类|研发美术类|运营美术类|岗位类别|"
@@ -56,19 +52,20 @@ _NOISE = re.compile(
     r"研发中心|开发团队|业务架构|工程中心|工厂中心|需求部门|"
     r"职位描述|岗位职责|任职要求|工作内容|招聘对象|招收对象|毕业时间|"
     r"年及以上|三年及以上|五年及以上|经验者优先|全流程测试能力|大学|"
-    r"产品中心|解决方案|了解更多|产品研发|开发成本|协同研发|硬件基础|开箱即用|"
-    r"高性能CAE|几何内核|约束求解|数字化仿真|数字化制造|数字化设计|产品开发|"
+    r"产品中心|解决方案|开发成本|协同研发|硬件基础|开箱即用|"
+    r"高性能CAE|几何内核|约束求解|数字化仿真|数字化制造|数字化设计|"
     r"行业应用|应用验证|信创生态|自主可控|功能成熟|高效替代|合作咨询|人事招聘|"
     r"测试机|通用数字测试机|复杂SoC测试机|DDIC测试机|CIS测试机|半导体测试机|"
     r"摄像头模组测试|测试系统软件开发服务",
     re.I,
 )
 _BAD_TITLE_RE = re.compile(r"^\d+[、.，,]|[。；;]$|^20(1\d|2[0-4])-\d{2}-\d{2}|类\s*\|\s*")
+# 注意：正规校招卡片常含“发布时间/招聘人数/工作地点/了解更多/薪资范围”，绝不可放入 _CONTEXT_NOISE 误杀
 _CONTEXT_NOISE = re.compile(
-    r"社会招聘|工作经验|三年及以上|五年及以上|博士后工作站|招聘公告|双选会|宣讲会|基层就业|学院就业|薪资范围|发布时间|"
-    r"产品中心|解决方案|了解更多|产品研发|几何内核|约束求解|数字化仿真|数字化制造|信创生态|合作咨询|"
-    r"测试机|通用数字测试机|复杂SoC测试机|DDIC测试机|CIS测试机|半导体测试机|摄像头模组测试|"
-    r"序号|单位名称|单位所在地|招聘人数|应聘方式|海报|双选会|招聘会",
+    r"社会招聘|三年及以上|五年及以上|3年以上工作经验|5年以上工作经验|博士后工作站|"
+    r"双选会|宣讲会|基层就业|学院就业|"
+    r"通用数字测试机|复杂SoC测试机|DDIC测试机|CIS测试机|半导体测试机|摄像头模组测试|"
+    r"单位名称|单位所在地",
     re.I,
 )
 _NON_JOB_HOSTS = {
@@ -76,29 +73,33 @@ _NON_JOB_HOSTS = {
     "bilibili.com", "www.bilibili.com", "weibo.com", "www.weibo.com",
 }
 
+_JSON_TITLE_KEYS = ("title", "name", "jobName", "positionName", "postName", "recruitPostName", "zwmc")
+_JSON_CITY_KEYS = ("city", "cityName", "workPlace", "workCity", "location", "address", "gzdd")
+_JSON_DESC_KEYS = ("description", "jd", "duty", "requirement", "workContent", "postDuty", "serviceCondition")
+
 
 class GenericRenderCrawler(BaseCrawler):
-    MAX_PAGES = 25
+    MAX_PAGES = 20
     NAVIGATION_ATTEMPTS = 2
     JD_RAW_LIMIT = 200
-    MIN_LEN, MAX_LEN = 4, 30
-    MIN_HITS = 3  # 主选择器至少命中这么多职位才认为有效
+    MIN_LEN, MAX_LEN = 4, 38
+    MIN_HITS = 2  # 降低至2，避免小规模招聘页被误判为空
 
     def _list_url(self) -> str:
         return self.careers_url
 
     def _clean_title(self, text: str) -> str:
-        text = re.sub(r"\s+", " ", text or "").strip()
-        text = re.sub(r"\s*(立即投递|申请职位|投递简历)\s*$", "", text).strip()
-        if "个岗位" in text or text.endswith("类"):
-            return ""
-        if re.fullmatch(r"developers?", text, re.I):
-            return ""
-        if not (self.MIN_LEN <= len(text) <= self.MAX_LEN):
-            return ""
-        if _BAD_TITLE_RE.search(text) or _NOISE.search(text) or not _JOB_KW.search(text):
-            return ""
-        return text
+        raw = (text or "").strip()
+        for part in re.split(r"[\n\r|｜丨/]+", raw):
+            cand = re.sub(r"\s+", " ", part).strip()
+            cand = re.sub(r"\s*(立即投递|申请职位|投递简历|查看详情|了解更多|NEW|HOT)\s*$", "", cand, flags=re.I).strip()
+            if "个岗位" in cand or cand.endswith("类"):
+                continue
+            if re.fullmatch(r"developers?", cand, re.I):
+                continue
+            if self.MIN_LEN <= len(cand) <= self.MAX_LEN and not _BAD_TITLE_RE.search(cand) and not _NOISE.search(cand) and _JOB_KW.search(cand):
+                return cand
+        return ""
 
     @staticmethod
     def _extract_city(text: str) -> str:
@@ -120,7 +121,6 @@ class GenericRenderCrawler(BaseCrawler):
 
     @staticmethod
     def _card_context(el) -> str:
-        """Use the nearest bounded card instead of climbing into the full list."""
         context = el.get_text(" ", strip=True)
         parent = el.parent
         for _ in range(4):
@@ -133,6 +133,44 @@ class GenericRenderCrawler(BaseCrawler):
             parent = parent.parent
         return context
 
+    def _extract_jobs_from_json_payload(self, data, out_jobs: list, seen: set) -> None:
+        """递归扫描 SPA 页面后台返回的 JSON 数据包，提取职位列表。"""
+        if isinstance(data, dict):
+            title_val = ""
+            for k in _JSON_TITLE_KEYS:
+                v = data.get(k)
+                if isinstance(v, str) and v.strip():
+                    cleaned = self._clean_title(v)
+                    if cleaned:
+                        title_val = cleaned
+                        break
+            if title_val and any(k in data for k in (*_JSON_CITY_KEYS, *_JSON_DESC_KEYS, "id", "postId", "jobId", "positionId")):
+                key = f"json:{title_val}"
+                if key not in seen:
+                    seen.add(key)
+                    city_val = ""
+                    for ck in _JSON_CITY_KEYS:
+                        cv = data.get(ck)
+                        if isinstance(cv, str) and cv.strip():
+                            city_val = cv.strip()[:40]
+                            break
+                    desc_parts = [str(data.get(dk) or "").strip() for dk in _JSON_DESC_KEYS if data.get(dk)]
+                    jd_raw = "\n".join(p for p in desc_parts if p)
+                    out_jobs.append(self._make_job(
+                        title=title_val,
+                        city=city_val,
+                        jd_url=self._list_url(),
+                        jd_raw=jd_raw,
+                        link_kind="list",
+                    ))
+            for v in data.values():
+                if isinstance(v, (dict, list)):
+                    self._extract_jobs_from_json_payload(v, out_jobs, seen)
+        elif isinstance(data, list) and len(data) <= 500:
+            for item in data:
+                if isinstance(item, (dict, list)):
+                    self._extract_jobs_from_json_payload(item, out_jobs, seen)
+
     def fetch(self) -> list[dict]:
         try:
             from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
@@ -141,6 +179,7 @@ class GenericRenderCrawler(BaseCrawler):
             return []
 
         jobs, seen = [], set()
+        xhr_jobs, xhr_seen = [], set()
         selector_sig = None
         try:
             with sync_playwright() as p:
@@ -152,38 +191,55 @@ class GenericRenderCrawler(BaseCrawler):
                 ctx = browser.new_context(user_agent=_UA, viewport={"width": 1366, "height": 768},
                                           locale="zh-CN", ignore_https_errors=True)
                 page = ctx.new_page()
-                self._goto_with_retry(page, PWTimeout)
-                page.wait_for_timeout(2500)
+
+                def _on_response(resp):
+                    try:
+                        ctype = (resp.headers.get("content-type") or "").lower()
+                        if "json" in ctype and resp.status == 200:
+                            payload = resp.json()
+                            self._extract_jobs_from_json_payload(payload, xhr_jobs, xhr_seen)
+                    except Exception:
+                        pass
+
+                page.on("response", _on_response)
+                reachable = self._goto_with_retry(page, PWTimeout)
+                if not reachable and not xhr_jobs:
+                    ctx.close(); browser.close()
+                    return []
+                page.wait_for_timeout(2000)
 
                 self._click_campus_entry(page)
-                # 第一页：先定主选择器
                 selector_sig = self._pick_selector(page.content())
-                # 兜底：很多 SPA 先显示项目/类别卡，需点「校招/职位/全部职位」才露列表
                 if not selector_sig:
                     for kw in ("校园招聘", "校招", "应届", "查看职位", "全部职位",
-                               "职位列表", "社会招聘", "职位查询", "立即查看"):
+                               "职位列表", "研发", "技术", "职位查询", "立即查看", "热招职位"):
                         try:
                             loc = page.get_by_text(re.compile(kw)).first
                             if loc.count() == 0:
                                 continue
-                            loc.click(timeout=3000)
-                            page.wait_for_timeout(2000)
+                            loc.click(timeout=2500)
+                            page.wait_for_timeout(1500)
                             selector_sig = self._pick_selector(page.content())
                             if selector_sig:
                                 break
                         except Exception:
                             continue
+
                 if not selector_sig:
+                    if xhr_jobs:
+                        logger.info("[%s] 通过后台 JSON 接口自动嗅探抓到 %d 个岗位", self.company_name, len(xhr_jobs))
+                        ctx.close(); browser.close()
+                        return xhr_jobs
                     line_jobs = self._parse_line_jobs(page.content())
                     if line_jobs:
                         ctx.close(); browser.close()
                         return line_jobs
-                    logger.info("[%s] 未选出干净职位选择器（淡季空/结构特殊），返空", self.company_name)
+                    logger.info("[%s] 页面当前无公开职位列表（非招聘季空窗/仅宣讲海报），自动跳过", self.company_name)
                     ctx.close(); browser.close()
                     return []
 
                 for _ in range(self.MAX_PAGES):
-                    new = self._parse(page.content(), selector_sig, jobs, seen)
+                    self._parse(page.content(), selector_sig, jobs, seen)
                     nxt = page.locator(
                         ".btn-next, .el-pagination .btn-next, .ant-pagination-next, "
                         "[class*='pagination'] [class*='next'], li[title='下一页'], a[aria-label='Next']"
@@ -194,11 +250,13 @@ class GenericRenderCrawler(BaseCrawler):
                         cls = (nxt.get_attribute("class") or "") + str(nxt.get_attribute("aria-disabled"))
                         if "disabled" in cls.lower():
                             break
-                        nxt.click(timeout=4000)
-                        page.wait_for_timeout(1200)
+                        nxt.click(timeout=3000)
+                        page.wait_for_timeout(1000)
                     except Exception:
                         break
 
+                if not jobs and xhr_jobs:
+                    jobs.extend(xhr_jobs)
                 if not jobs:
                     jobs.extend(self._parse_line_jobs(page.content()))
 
@@ -207,38 +265,40 @@ class GenericRenderCrawler(BaseCrawler):
         except Exception as e:  # noqa: BLE001
             logger.error("[%s] 渲染爬取异常: %s", self.company_name, e)
 
+        if not jobs:
+            logger.info("[%s] 页面未提取到有效校招岗位（选择器=%s），自动跳过",
+                        self.company_name, selector_sig or "无")
+            return []
+
         logger.info("[%s] 通用渲染 抓到 %d 个岗位（选择器=%s）",
-                    self.company_name, len(jobs), selector_sig)
+                    self.company_name, len(jobs), selector_sig or "XHR-JSON")
         return jobs
 
     def _goto_with_retry(self, page, timeout_error) -> bool:
-        """Navigate with one retry for transient timeout/empty-response errors."""
-        for attempt in range(1, self.NAVIGATION_ATTEMPTS + 1):
+        """先尝试 networkidle (20s)，若超时降级为 domcontentloaded (15s)，防止死链拖慢全局。"""
+        url = self._list_url()
+        if not url or " " in url or any(ord(c) > 127 for c in urlsplit(url).netloc):
+            logger.warning("[%s] 忽略非合法网址 (%s)", self.company_name, url)
+            return False
+        try:
+            page.goto(url, wait_until="networkidle", timeout=20000)
+            return True
+        except timeout_error:
             try:
-                page.goto(self._list_url(), wait_until="networkidle", timeout=45000)
+                page.goto(url, wait_until="domcontentloaded", timeout=15000)
                 return True
-            except timeout_error as exc:
-                reason = f"超时: {exc}"
-            except Exception as exc:  # Playwright network errors are not timeouts.
-                reason = str(exc)
-            if attempt < self.NAVIGATION_ATTEMPTS:
-                logger.warning(
-                    "[%s] 页面打开失败，准备重试 %d/%d: %s",
-                    self.company_name, attempt, self.NAVIGATION_ATTEMPTS - 1, reason,
-                )
-                page.wait_for_timeout(1500)
-        logger.warning(
-            "[%s] 页面打开连续失败，仍尝试解析当前页面: %s",
-            self.company_name, reason,
-        )
-        return False
+            except Exception as exc:
+                logger.warning("[%s] 网址无法打开或超时 (%s): %s", self.company_name, url, exc)
+                return False
+        except Exception as exc:
+            logger.warning("[%s] 网址连接失败 (%s): %s", self.company_name, url, exc)
+            return False
 
     def _parse_line_jobs(self, html: str) -> list[dict]:
-        """Fallback for simple static pages that list jobs as lines like `职位：软件工程师`."""
         soup = BeautifulSoup(html, "html.parser")
         text = soup.get_text("\n", strip=True)
         jobs, seen = [], set()
-        for match in re.finditer(r"(?:^|\n)\s*职位\s*[：:]\s*([^\n\r]{2,40})", text):
+        for match in re.finditer(r"(?:^|\n)\s*(?:职位|岗位(?:名称)?)\s*[：:]\s*([^\n\r]{2,40})", text):
             title = self._clean_title(match.group(1))
             if not title or title in seen:
                 continue
@@ -254,10 +314,15 @@ class GenericRenderCrawler(BaseCrawler):
 
     def _direct_text(self, el) -> str:
         direct = "".join(t for t in el.find_all(string=True, recursive=False)).strip()
-        return direct if direct else el.get_text(" ", strip=True)
+        if direct:
+            return direct
+        for child in el.find_all(["h2", "h3", "h4", "h5", "span", "p", "div", "a"], recursive=True):
+            ct = "".join(t for t in child.find_all(string=True, recursive=False)).strip()
+            if self.MIN_LEN <= len(ct) <= self.MAX_LEN and _JOB_KW.search(ct):
+                return ct
+        return el.get_text("\n", strip=True)
 
     def _job_link(self, el) -> tuple[str, str]:
-        """Return a real detail link near a title, otherwise the listing page."""
         nodes = [el]
         parent = el.parent
         for _ in range(3):
@@ -280,27 +345,39 @@ class GenericRenderCrawler(BaseCrawler):
         return self._list_url(), "list"
 
     def _click_campus_entry(self, page) -> None:
-        """Some sites default to social jobs even from a campus-looking URL."""
-        for kw in ("校园招聘", "校招岗位", "校招职位", "应届生招聘", "校园职位"):
+        for kw in ("校园招聘", "校招岗位", "校招职位", "应届生招聘", "校园职位", "实习生招聘"):
             try:
                 loc = page.get_by_text(re.compile(kw)).first
                 if loc.count() == 0:
                     continue
-                loc.click(timeout=2500)
-                page.wait_for_timeout(1800)
+                loc.click(timeout=2000)
+                page.wait_for_timeout(1200)
                 return
             except Exception:
                 continue
 
     def _pick_selector(self, html: str) -> str:
-        """统计每个 tag.class 下的干净职位标题数，取最高者(≥MIN_HITS)。"""
         soup = BeautifulSoup(html, "html.parser")
         score = defaultdict(int)
+        seen_by_sig = defaultdict(set)
         for el in soup.find_all(["a", "h2", "h3", "h4", "h5", "span", "div", "p", "li"]):
-            if self._clean_title(self._direct_text(el)):
-                score[self._sig(el)] += 1
+            title = self._clean_title(self._direct_text(el))
+            if not title:
+                continue
+            ctext = self._card_context(el)
+            if _CONTEXT_NOISE.search(ctext):
+                continue
+            sig = self._sig(el)
+            if title not in seen_by_sig[sig]:
+                seen_by_sig[sig].add(title)
+                score[sig] += 1
         if not score:
             return ""
+        # 优先选择带有具体 CSS class 的选择器，避免无 class 的裸 div/a 抢票
+        classed = {k: v for k, v in score.items() if "." in k and v >= self.MIN_HITS}
+        if classed:
+            best, _ = max(classed.items(), key=lambda kv: kv[1])
+            return best
         best, n = max(score.items(), key=lambda kv: kv[1])
         return best if n >= self.MIN_HITS else ""
 
@@ -316,10 +393,10 @@ class GenericRenderCrawler(BaseCrawler):
             key = str(abs(hash(title)) % (10 ** 8))
             if key in seen:
                 continue
-            seen.add(key)
             ctext = self._card_context(el)
             if _CONTEXT_NOISE.search(ctext):
                 continue
+            seen.add(key)
             city = self._extract_job_city(title, ctext)
             jd_url, link_kind = self._job_link(el)
             jobs.append(self._make_job(

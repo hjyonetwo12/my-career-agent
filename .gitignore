@@ -36,3 +36,8 @@ __pycache__/
 .env
 tests/test_*.db
 tests/test_*.json
+
+*.zip
+data/*.db-wal
+data/*.db-shm
+data/*.db-journal

@@ -1,0 +1,36 @@
+- name: 燧原科技
+  careers_url: https://app.mokahr.com/campus_apply/enflame/40892
+  crawler: moka
+  dead_reason: HTTP 404 页面失效
+- name: 富途集团
+  careers_url: https://app.mokahr.com/campus_apply/futu5/78059
+  crawler: moka
+  dead_reason: HTTP 404 页面失效
+- name: realme
+  careers_url: https://career.realme.com/
+  crawler: render
+  dead_reason: 连接超时或域名失效 (SSLError)
+- name: 鼎甲科技
+  careers_url: https://hr.scutech.net/SU6343e0330dcad41245d65d52/pb/school.html
+  crawler: hotjob
+  dead_reason: 连接超时或域名失效 (SSLError)
+- name: 重庆庆铃
+  careers_url: https://xy.liepin.com/qlqc2026/
+  crawler: render
+  dead_reason: HTTP 404 页面失效
+- name: 紫光
+  careers_url: https://www.pangomicro.com/join_school/
+  crawler: render
+  dead_reason: HTTP 404 页面失效
+- name: 智洋创新
+  careers_url: https://webapp.zhaopin.com/2025/hd/zycxk0828ZL85636/post/index.html
+  crawler: render
+  dead_reason: HTTP 404 页面失效
+- name: 旭创科技
+  careers_url: https://xyzp.51job.com/innolight/about.html
+  crawler: render
+  dead_reason: HTTP 404 页面失效
+- name: 龙湖集团华西地区
+  careers_url: https://点击后面图片投递内推
+  crawler: render
+  dead_reason: 连接超时或域名失效 (ConnectionError)

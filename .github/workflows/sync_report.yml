@@ -1,11 +1,13 @@
 name: Sync report (applications)
 
-# 本地录入投递（data/applications.json）push 后，只重新生成报告并部署，
-# 不爬取、不调 DeepSeek（零 token），让手机上几分钟内就能看到最新投递记录。
+# 本地录入投递（data/applications.json）或修改个人画像（profile.yaml）push 后，
+# 只重新生成报告与综合建议并部署，不爬取、不调岗位评分 API（零 token）。
 on:
   push:
     branches: [main]
     paths:
+      - "profile.yaml"
+      - "profile_config.py"
       - "data/applications.json"
       - "data/jobs.db"
       - "reporter.py"
@@ -16,9 +18,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # 部署 gh-pages
+  contents: write
 
-concurrency:           # 连续多次 push 只保留最后一次部署
+concurrency:
   group: sync-report
   cancel-in-progress: true
 
@@ -26,7 +28,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     env:
-      TZ: Asia/Shanghai   # 与 daily_report 一致，报告日期按中国时区
+      TZ: Asia/Shanghai
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
@@ -34,10 +36,20 @@ jobs:
           python-version: "3.11"
       - name: Install deps
         run: pip install -r requirements.txt
-      - name: Regenerate report (no crawl / no DeepSeek)
+      - name: Regenerate report and advice (no crawl / no DeepSeek)
         env:
           CI: "true"
         run: python view_all.py
+      - name: Upload updated report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: career-agent-report
+          retention-days: 30
+          if-no-files-found: ignore
+          path: |
+            reports/index.html
+            data/advice_state.json
       - name: Deploy report to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

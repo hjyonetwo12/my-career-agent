@@ -45,7 +45,7 @@ def _conn():
 
 def _data_signature():
     """Return a cheap cache key that changes whenever report state changes."""
-    paths = (Path(DB_PATH), db_module.APPLICATIONS_PATH)
+    paths = (Path(DB_PATH), db_module.APPLICATIONS_PATH, _ROOT / "profile.yaml", _ROOT / "data" / "advice_state.json")
     signature = [date.today().isoformat()]
     for path in paths:
         try:
@@ -162,6 +162,34 @@ def index():
         return page
 
 
+
+
+@app.route("/api/advice/regenerate", methods=["POST", "GET"])
+def regenerate_advice_api():
+    """手动触发重新生成综合建议（支持是否调用 AI 的显式控制）。"""
+    import job_filters
+    from profile_config import load_profile
+    snapshot, _ = _get_snapshot()
+    use_ai = request.args.get("ai", "0") == "1"
+    try:
+        prof = load_profile(_ROOT / "profile.yaml")
+    except ValueError as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 400
+    advice = job_filters.update_or_get_comprehensive_advice(
+        snapshot["items"],
+        profile=prof,
+        force_refresh=True,
+        allow_ai=use_ai,
+    )
+    with _page_cache_lock:
+        _page_cache["html"] = None
+    return jsonify({
+        "ok": True,
+        "version_info": advice.get("version_info", {}),
+        "version_diff_summary": advice.get("version_diff_summary", {}),
+    })
+
+
 @app.route("/api/health")
 def health():
     return jsonify({"ok": True, "build": _BUILD_ID})
@@ -192,7 +220,7 @@ def jobs_page():
     def matches(job):
         if company and job["c"] != company:
             return False
-        if category and job["cat"] != category:
+        if category and job["cat"] != category and category not in (job.get("cats") or []):
             return False
         if platform and job["p"] != platform:
             return False
@@ -223,12 +251,17 @@ def jobs_page():
     pages = max(1, (total + per_page - 1) // per_page)
     page = max(1, min(request.args.get("page", 1, type=int), pages))
     start = (page - 1) * per_page
+    active_companies = sorted({job["c"] for job in rows if job.get("c")})
+    high_match_count = sum(1 for job in rows if job.get("e") and (job.get("s") or 0) >= 70)
     return jsonify({
         "jobs": rows[start:start + per_page],
         "page": page,
         "pages": pages,
         "per_page": per_page,
         "total": total,
+        "company_count": len(active_companies),
+        "high_match_count": high_match_count,
+        "companies": active_companies,
     })
 
 

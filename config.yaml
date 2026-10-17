@@ -28,8 +28,8 @@ companies:
   careers_url: https://agirobot.jobs.feishu.cn/campusrecruitment/position
   crawler: feishu
 - name: 银河通用
-  careers_url: https://owm6ymi5v9b.jobs.feishu.cn/584984/position
-  crawler: feishu
+  careers_url: https://app.mokahr.com/m/campus-recruitment/yinhetongyong/165930?recommendCode=DSmgbJ2x#/jobs
+  crawler: moka
 - name: 星动纪元
   careers_url: https://app.mokahr.com/campus-recruitment/robotera/163878
   crawler: moka
@@ -48,9 +48,6 @@ companies:
 - name: 大华股份
   careers_url: https://dahua1.zhiye.com/campus/jobs
   crawler: beisen
-- name: 旷视科技
-  careers_url: https://app.mokahr.com/campus_apply/megviihr/38642
-  crawler: moka
 - name: 奥比中光
   careers_url: https://app.mokahr.com/campus_apply/orbbec/2679
   crawler: moka
@@ -157,7 +154,7 @@ companies:
   careers_url: https://app.mokahr.com/campus_apply/lusterinc/44882
   crawler: moka
 - name: 基恩士
-  careers_url: https://keyence.zhiye.com/campus/jobs
+  careers_url: https://keyence.zhiye.com/campus/detail?jobAdId=85237bb7-cccc-40a8-beeb-cbcb6e97ea86&shareId=da8f1b15-8a84-4a97-854d-c7c168a556d5&shareSource=2
   crawler: beisen
 - name: 星猿哲
   careers_url: https://app.mokahr.com/campus_apply/xyzrobotics/26847
@@ -166,10 +163,10 @@ companies:
   careers_url: https://bambulab.jobs.feishu.cn/campus/position/application
   crawler: feishu
 - name: 图森智途
-  careers_url: https://app.mokahr.com/campus-recruitment/tusenweilai/72214
+  careers_url: https://app.mokahr.com/recommendation-apply/tusenweilai/3234
   crawler: moka
 - name: 图森智途
-  careers_url: https://app.mokahr.com/recommendation-apply/tusenweilai/3234
+  careers_url: https://app.mokahr.com/campus-recruitment/tusenweilai/72214
   crawler: moka
 - name: 佑驾创新
   careers_url: https://app.mokahr.com/campus-recruitment/minieye/118571
@@ -179,9 +176,6 @@ companies:
   crawler: moka
 - name: 壁仞科技
   careers_url: https://app.mokahr.com/campus-recruitment/biren/44727
-  crawler: moka
-- name: 燧原科技
-  careers_url: https://app.mokahr.com/campus_apply/enflame/40892
   crawler: moka
 - name: 星宸科技
   careers_url: https://sigmastar.zhiye.com/campus/jobs
@@ -352,7 +346,7 @@ companies:
   careers_url: https://transsion.zhiye.com/campus/jobs
   crawler: beisen
 - name: 安克创新
-  careers_url: https://anker-in.jobs.feishu.cn/referral/campus/position/application
+  careers_url: https://anker-in.jobs.feishu.cn/s/HCwjATb1DUQ
   crawler: feishu
 - name: 金证科技
   careers_url: https://szkingdom1.zhiye.com/campus/jobs
@@ -619,7 +613,7 @@ companies:
   careers_url: https://zhcpa.zhiye.com/campus/jobs
   crawler: beisen
 - name: FunPlus
-  careers_url: https://app.mokahr.com/campus_apply/funplus01/23962
+  careers_url: https://app.mokahr.com/campus_apply/funplus01/147931?recommendCode=DSFXq8tM#/jobs
   crawler: moka
 - name: 亿嘉和
   careers_url: https://yijiahe.zhiye.com/campus/jobs
@@ -629,9 +623,6 @@ companies:
   crawler: moka
 - name: 兆易创新
   careers_url: https://app.mokahr.com/campus-recruitment/gigadevice/92215
-  crawler: moka
-- name: 富途集团
-  careers_url: https://app.mokahr.com/campus_apply/futu5/78059
   crawler: moka
 - name: 360集团
   careers_url: https://360campus.zhiye.com/campus/jobs
@@ -715,8 +706,8 @@ companies:
   careers_url: https://infypower.zhiye.com/campus/jobs
   crawler: beisen
 - name: 叠纸游戏
-  careers_url: https://career.papegames.com/
-  crawler: feishu
+  careers_url: https://career.papegames.com/s/m389ozdCvHA
+  crawler: render
 - name: 度小满
   careers_url: https://campus.duxiaoman.com/
   crawler: feishu
@@ -726,17 +717,11 @@ companies:
 - name: 霸王茶姬
   careers_url: https://jobs.chagee.com/
   crawler: feishu
-- name: realme
-  careers_url: https://career.realme.com/
-  crawler: render
 - name: 用友
   careers_url: https://career.yonyou.com/SU67ac41886202cc7916ae3029/pb/school.html
   crawler: hotjob
 - name: 荣耀
   careers_url: https://career.honor.com/SU60eea919bef57c1023f6fe78/pb/school.html
-  crawler: hotjob
-- name: 鼎甲科技
-  careers_url: https://hr.scutech.net/SU6343e0330dcad41245d65d52/pb/school.html
   crawler: hotjob
 - name: 中国电子云
   careers_url: https://campus.cestc.cn/campus-recruitment/cestc/102244
@@ -745,7 +730,7 @@ companies:
   careers_url: https://zhaopin.ninebot.com/campus-recruitment/ninebot/45627
   crawler: moka
 - name: 宁德时代
-  careers_url: https://talent.catl.com/campus-recruitment/catlhr/115953
+  careers_url: https://app.mokahr.com/campus-recruitment/catlhr/148948?recommendCode=DSvTFBzE#/jobs
   crawler: moka
 - name: 吉利控股
   careers_url: https://campus.geely.com/campus-recruitment/geely/78436
@@ -835,7 +820,7 @@ companies:
   careers_url: https://recruit.sinovatio.com/positions
   crawler: render
 - name: 小红书
-  careers_url: https://job.xiaohongshu.com/
+  careers_url: https://job.xiaohongshu.com/link?referer_code=0QR7KCI3CPJA
   crawler: render
 - name: 京东方
   careers_url: https://campus.boe.com/campus/jobs
@@ -862,7 +847,7 @@ companies:
   careers_url: https://hr.tp-link.com.cn/
   crawler: render
 - name: TP-Link联洲
-  careers_url: https://join.tplinkglobal.com/campus/
+  careers_url: https://join.tplinkglobal.com/share/jobs?share_id=2090394245740965889&share_type=qr
   crawler: render
 - name: 中国平安
   careers_url: https://campus.pingan.com/freshgraduates
@@ -912,9 +897,6 @@ companies:
 - name: 西山居
   careers_url: https://job.seasungames.cn/campus
   crawler: render
-- name: 重庆庆铃
-  careers_url: https://xy.liepin.com/qlqc2026/
-  crawler: render
 - name: 长川科技
   careers_url: http://hrm-out.hzcctech.com:8083/RedseaPlatform/zhaopin/zpChannelQrCode/a3c82653-df31-47ea-8561-b634675cc88c/officeWebsite.mob
   crawler: render
@@ -949,6 +931,9 @@ companies:
   careers_url: https://www.ghostcloud.cn/
   crawler: render
 - name: 旷视科技
+  careers_url: https://app.mokahr.com/campus_apply/megviihr/38642
+  crawler: moka
+- name: 旷视科技
   careers_url: https://app.mokahr.com/m/campus-recruitment/megviihr/146855
   crawler: moka
 - name: 曦华科技
@@ -982,9 +967,6 @@ companies:
 - name: 乾程科技
   careers_url: https://techen.zhiye.com/campus
   crawler: beisen
-- name: 紫光
-  careers_url: https://www.pangomicro.com/join_school/
-  crawler: render
 - name: 芯原微电子
   careers_url: https://www.verisilicon.com/cn/Careers
   crawler: render
@@ -1184,9 +1166,6 @@ companies:
 - name: 晶晨半导体
   careers_url: https://amlogicsh.zhiye.com/campus/jobs
   crawler: beisen
-- name: 智洋创新
-  careers_url: https://webapp.zhaopin.com/2025/hd/zycxk0828ZL85636/post/index.html
-  crawler: render
 - name: 拼多多
   careers_url: https://careers.pddglobalhr.com/campus/grad
   crawler: pdd
@@ -1259,9 +1238,6 @@ companies:
 - name: 数码视讯
   careers_url: https://www.sumavision.com.cn/join-us
   crawler: render
-- name: 旭创科技
-  careers_url: https://xyzp.51job.com/innolight/about.html
-  crawler: render
 - name: 普门科技
   careers_url: https://www.lifotronic.com/job/campus.html
   crawler: render
@@ -1287,8 +1263,8 @@ companies:
   careers_url: https://www.grapecity.cn/about/joinus.htm
   crawler: render
 - name: 酷睿程
-  careers_url: https://carizon.jobs.feishu.cn/421026
-  crawler: render
+  careers_url: https://carizon.jobs.feishu.cn/s/gLmpfqWvVjg
+  crawler: feishu
 - name: 中国电科
   careers_url: https://cetc.iguopin.com/job-campus
   crawler: iguopin
@@ -1404,382 +1380,498 @@ companies:
 - name: 高标科技
   careers_url: https://kjgb.zhiye.com/campus/jobs?shareId=3cef82ab-bf24-4225-9f23-ee18ced3ce45&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "聚宽投资"
-  careers_url: "https://app.mokahr.com/m/campus_apply/joinquant/92347?recommendCode=DS86UpyF#/jobs"
+- name: 聚宽投资
+  careers_url: https://app.mokahr.com/m/campus_apply/joinquant/92347?recommendCode=DS86UpyF#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "九坤投资"
-  careers_url: "https://app.mokahr.com/m/campus-recruitment/ubiquantrecruit/37031?recommendCode=DSThDarV#/jobs"
+- name: 九坤投资
+  careers_url: https://app.mokahr.com/m/campus-recruitment/ubiquantrecruit/37031?recommendCode=DSThDarV#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "4399游戏"
-  careers_url: "https://hr.4399om.com/weixin/?r=job/agent&type=2&isOpen=0&jobTableType=1&code=ctg5d"
+- name: 4399游戏
+  careers_url: https://hr.4399om.com/weixin/?r=job/agent&type=2&isOpen=0&jobTableType=1&code=ctg5d
   crawler: render
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "创维集团"
-  careers_url: "https://wecruit.hotjob.cn/SU668e3a541eb8050602c1b176/mc/position/campus?acotycoCode=eojtgn&recruitType=1&isLimitShowPostScope=0"
+- name: 创维集团
+  careers_url: https://wecruit.hotjob.cn/SU668e3a541eb8050602c1b176/mc/position/campus?acotycoCode=eojtgn&recruitType=1&isLimitShowPostScope=0
   crawler: hotjob
-- name: "哔哩哔哩"
-  careers_url: "https://jobs.bilibili.com/campus/positions?token=a337cd2c-d038-411f-ba8a-0b1abf661f06"
+- name: 哔哩哔哩
+  careers_url: https://jobs.bilibili.com/campus/positions?token=a337cd2c-d038-411f-ba8a-0b1abf661f06
   crawler: render
-- name: "阿里淘天"
-  careers_url: "https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwDcfBaJ2CesAlc%2FvqOMYbBymmzBp0pRZjHku53ln26c1&batchId=100000760001"
+- name: 阿里淘天
+  careers_url: https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwDcfBaJ2CesAlc%2FvqOMYbBymmzBp0pRZjHku53ln26c1&batchId=100000760001
   crawler: render
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "阿里云瓴羊"
-  careers_url: "https://alidocs.dingtalk.com/notable/share/form/v01eYVOL5ozy48eAlpz_dv19yqvsgs3oebp3pcjys_1qX0QQ0?utm_source=qrcode_form&source=qrcode"
+- name: 阿里云瓴羊
+  careers_url: https://alidocs.dingtalk.com/notable/share/form/v01eYVOL5ozy48eAlpz_dv19yqvsgs3oebp3pcjys_1qX0QQ0?utm_source=qrcode_form&source=qrcode
   crawler: render
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "寒武纪"
-  careers_url: "https://app.mokahr.com/recommendation-apply/cambricon/46261?sharePageId=4679744&recommendCode=NTABY2t&codeType=1#/recommendation/page/4679744"
+- name: 寒武纪
+  careers_url: https://app.mokahr.com/recommendation-apply/cambricon/46261?sharePageId=4679744&recommendCode=NTABY2t&codeType=1#/recommendation/page/4679744
   crawler: moka
-- name: "搜狐集团-AI专项"
-  careers_url: "https://app.mokahr.com/m/campus_apply/sohu/36036?recommendCode=DSRxwjqx#/jobs"
+- name: 搜狐集团-AI专项
+  careers_url: https://app.mokahr.com/m/campus_apply/sohu/36036?recommendCode=DSRxwjqx#/jobs
   crawler: moka
-- name: "阿里-蚂蚁集团"
-  careers_url: "https://hrrecommend.antgroup.com/job-list.html?source=campus_external_recommend&code=T_dN2oDMsas%2F7M1pcbeNZgPQyH2sYJEaioT37binMeo%3D"
+- name: 阿里-蚂蚁集团
+  careers_url: https://hrrecommend.antgroup.com/job-list.html?source=campus_external_recommend&code=T_dN2oDMsas%2F7M1pcbeNZgPQyH2sYJEaioT37binMeo%3D
   crawler: render
-- name: "鸿擎科技"
-  careers_url: "https://qcnhg4ksaiwt.jobs.feishu.cn/257870/m/?external_referral_code=92AJ8US"
+- name: 鸿擎科技
+  careers_url: https://qcnhg4ksaiwt.jobs.feishu.cn/257870/m/?external_referral_code=92AJ8US
   crawler: feishu
-- name: "鹰角网络"
-  careers_url: "https://app.mokahr.com/m/recommendation-apply/hypergryph/26594?sharePageId=4654413&amp;recommendCode=NTA6WPs&amp;codeType=1#/recommendation/page/4654413"
+- name: 鹰角网络
+  careers_url: https://app.mokahr.com/m/recommendation-apply/hypergryph/26594?sharePageId=4654413&amp;recommendCode=NTA6WPs&amp;codeType=1#/recommendation/page/4654413
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "CVTE视源股份"
-  careers_url: "https://campus.cvte.com"
+- name: CVTE视源股份
+  careers_url: https://campus.cvte.com
   crawler: render
-- name: "ZURU"
-  careers_url: "https://wecruit.hotjob.cn/SU69fd8f7f1f17c372512fdd19/mc/position/campus?acotycoCode=cjsbom&projectId=100501&recruitType=1&isLimitShowPostScope=1"
+- name: ZURU
+  careers_url: https://wecruit.hotjob.cn/SU69fd8f7f1f17c372512fdd19/mc/position/campus?acotycoCode=cjsbom&projectId=100501&recruitType=1&isLimitShowPostScope=1
   crawler: hotjob
-- name: "宇石空间"
-  careers_url: "https://app.mokahr.com/m/campus-recruitment/astronstone/168327?recommendCode=DS9marHm#/jobs"
+- name: 宇石空间
+  careers_url: https://app.mokahr.com/m/campus-recruitment/astronstone/168327?recommendCode=DS9marHm#/jobs
   crawler: moka
-- name: "深蓝互动"
-  careers_url: "https://app.mokahr.com/m/campus_apply/blueinteractive/38434?recommendCode=DSZtcZQB#/jobs"
+- name: 深蓝互动
+  careers_url: https://app.mokahr.com/m/campus_apply/blueinteractive/38434?recommendCode=DSZtcZQB#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "凡岛"
-  careers_url: "https://job.fandow.com/home?pushCode=XRN8AF9"
+- name: 凡岛
+  careers_url: https://job.fandow.com/home?pushCode=XRN8AF9
   crawler: render
-- name: "巨一科技"
-  careers_url: "https://app.mokahr.com/m/campus-recruitment/ahjy/168235?recommendCode=DSPQjhw2#/jobs"
+- name: 巨一科技
+  careers_url: https://app.mokahr.com/m/campus-recruitment/ahjy/168235?recommendCode=DSPQjhw2#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "点点互动"
-  careers_url: "https://ddhd.cn/campus/jobs?shareId=3b4bf1d5-e3dc-448d-8434-53baa5d29cfd&shareSource=1"
+- name: 点点互动
+  careers_url: https://ddhd.cn/campus/jobs?shareId=3b4bf1d5-e3dc-448d-8434-53baa5d29cfd&shareSource=1
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "OBSBOT寻影"
-  careers_url: "https://n8r2cr07gk.jobs.feishu.cn/s/4eHpfEDiOXo"
+- name: OBSBOT寻影
+  careers_url: https://n8r2cr07gk.jobs.feishu.cn/s/4eHpfEDiOXo
   crawler: feishu
-- name: "卡方科技"
-  careers_url: "https://kafangtech.jobs.feishu.cn/s/61hqmxKBKTw"
+- name: 卡方科技
+  careers_url: https://kafangtech.jobs.feishu.cn/s/61hqmxKBKTw
   crawler: feishu
-- name: "自变量机器人"
-  careers_url: "https://x2-robot.jobs.feishu.cn/s/cr-OoWdwAvM"
+- name: 自变量机器人
+  careers_url: https://x2-robot.jobs.feishu.cn/s/cr-OoWdwAvM
   crawler: feishu
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "三七互娱"
-  careers_url: "https://app.mokahr.com/m/campus_apply/37/58016?recommendCode=DSjnn8dk#/jobs"
+- name: 三七互娱
+  careers_url: https://app.mokahr.com/m/campus_apply/37/58016?recommendCode=DSjnn8dk#/jobs
   crawler: moka
-- name: "卧安机器人"
-  careers_url: "https://woanhome.zhiye.com/campus/jobs?shareId=d120f246-ea82-4010-ab9a-b58bd85ebf87&shareSource=2"
+- name: 卧安机器人
+  careers_url: https://woanhome.zhiye.com/campus/jobs?shareId=d120f246-ea82-4010-ab9a-b58bd85ebf87&shareSource=2
   crawler: beisen
-- name: "大参林医药集团"
-  careers_url: "https://app.mokahr.com/m/campus_apply/dslyy/136052?recommendCode=DSUzgyFM&hash=%23%2Fjobs#/jobs"
+- name: 大参林医药集团
+  careers_url: https://app.mokahr.com/m/campus_apply/dslyy/136052?recommendCode=DSUzgyFM&hash=%23%2Fjobs#/jobs
   crawler: moka
-- name: "新能安"
-  careers_url: "https://wecruit.hotjob.cn/SU6618fd381eb8053acd5fc2b9/mc/position/campus?acotycoCode=uozkbk&projectId=505401%2C505501&recruitType=1&isLimitShowPostScope=1"
+- name: 新能安
+  careers_url: https://wecruit.hotjob.cn/SU6618fd381eb8053acd5fc2b9/mc/position/campus?acotycoCode=uozkbk&projectId=505401%2C505501&recruitType=1&isLimitShowPostScope=1
   crawler: hotjob
-- name: "理想汽车"
-  careers_url: "https://li.jobs.feishu.cn/s/tJF4dkXEZkI"
+- name: 理想汽车
+  careers_url: https://li.jobs.feishu.cn/s/tJF4dkXEZkI
   crawler: feishu
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "腾讯音乐"
-  careers_url: "https://join.tencentmusic.com/campus/post?type=10"
+- name: 腾讯音乐
+  careers_url: https://join.tencentmusic.com/campus/post?type=10
   crawler: render
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "小米集团"
-  careers_url: "https://xiaomi.jobs.f.mioffice.cn/s/_3y3FqDMDQ8"
+- name: 小米集团
+  careers_url: https://xiaomi.jobs.f.mioffice.cn/s/_3y3FqDMDQ8
   crawler: feishu
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "招银云创"
-  careers_url: "https://app.mokahr.com/m/campus_apply/mbcloud/150116?recommendCode=DSQ3A12u#/jobs"
+- name: 招银云创
+  careers_url: https://app.mokahr.com/m/campus_apply/mbcloud/150116?recommendCode=DSQ3A12u#/jobs
   crawler: moka
-- name: "波克"
-  careers_url: "https://boke.jobs.feishu.cn/s/FdZL0oHPUYg"
+- name: 波克
+  careers_url: https://boke.jobs.feishu.cn/s/FdZL0oHPUYg
   crawler: feishu
-- name: "鹏芯微"
-  careers_url: "https://career.pxwsemi.com/campus/jobs?shareId=b7ba1868-3017-4fbc-beb4-6fa0733a2d2d&shareSource=2"
+- name: 鹏芯微
+  careers_url: https://career.pxwsemi.com/campus/jobs?shareId=b7ba1868-3017-4fbc-beb4-6fa0733a2d2d&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "库洛游戏"
-  careers_url: "https://kurogame.jobs.feishu.cn/s/UqN6u_LslXA"
+- name: 库洛游戏
+  careers_url: https://kurogame.jobs.feishu.cn/s/UqN6u_LslXA
   crawler: feishu
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "Sea"
-  careers_url: "https://app.mokahr.com/m/campus_apply/garena/148076?recommendCode=DSQq22fM#/jobs"
+- name: Sea
+  careers_url: https://app.mokahr.com/m/campus_apply/garena/148076?recommendCode=DSQq22fM#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "MetaApp"
-  careers_url: "https://meta.jobs.feishu.cn/s/epYBFZjBD4k"
+- name: MetaApp
+  careers_url: https://meta.jobs.feishu.cn/s/epYBFZjBD4k
   crawler: feishu
-- name: "千里科技"
-  careers_url: "https://app.mokahr.com/m/campus_apply/qianli1/147197?recommendCode=DSunz6Nt#/jobs"
+- name: 千里科技
+  careers_url: https://app.mokahr.com/m/campus_apply/qianli1/147197?recommendCode=DSunz6Nt#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "博众精工"
-  careers_url: "https://bozhon3.zhiye.com/campus/jobs?shareId=945f5d01-429c-4a55-ba17-128798f145bf&shareSource=2"
+- name: 博众精工
+  careers_url: https://bozhon3.zhiye.com/campus/jobs?shareId=945f5d01-429c-4a55-ba17-128798f145bf&shareSource=2
   crawler: beisen
-- name: "富特科技"
-  careers_url: "https://app.mokahr.com/campus_apply/evtech/47503?recommendCode=DS5HrUX6#/jobs"
+- name: 富特科技
+  careers_url: https://app.mokahr.com/campus_apply/evtech/47503?recommendCode=DS5HrUX6#/jobs
   crawler: moka
-- name: "禾迈股份"
-  careers_url: "https://app.mokahr.com/campus-recruitment/hoymiles/70377?recommendCode=DSHcSR6p#/jobs"
+- name: 禾迈股份
+  careers_url: https://app.mokahr.com/campus-recruitment/hoymiles/70377?recommendCode=DSHcSR6p#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "杰瑞集团"
-  careers_url: "https://future.jereh.com/campus/jobs?shareId=9c94dbea-93bf-4a5e-b2ad-eca3e586bd15&shareSource=2"
+- name: 杰瑞集团
+  careers_url: https://future.jereh.com/campus/jobs?shareId=9c94dbea-93bf-4a5e-b2ad-eca3e586bd15&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "TCL华星"
-  careers_url: "https://wecruit.hotjob.cn/SU6491506a2f9d24316e91b81b/mc/position/campus?acotycoCode=ndwsgd&orgId=100801%2C104101&projectId=308501&recruitType=1&isLimitShowPostScope=1"
+- name: TCL华星
+  careers_url: https://wecruit.hotjob.cn/SU6491506a2f9d24316e91b81b/mc/position/campus?acotycoCode=ndwsgd&orgId=100801%2C104101&projectId=308501&recruitType=1&isLimitShowPostScope=1
   crawler: hotjob
-- name: "春风动力"
-  careers_url: "https://cfmoto.zhiye.com/campus/jobs?shareId=d6e4e863-ab41-4ef3-b95c-e5625950bedc&shareSource=2"
+- name: 春风动力
+  careers_url: https://cfmoto.zhiye.com/campus/jobs?shareId=d6e4e863-ab41-4ef3-b95c-e5625950bedc&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "海能达通信"
-  careers_url: "https://app.mokahr.com/campus_apply/hytera/182194?recommendCode=DSnApMzB#/jobs"
+- name: 海能达通信
+  careers_url: https://app.mokahr.com/campus_apply/hytera/182194?recommendCode=DSnApMzB#/jobs
   crawler: moka
-- name: "科华集团"
-  careers_url: "https://app.mokahr.com/campus_apply/kehua/92510?recommendCode=DSHV5wbF#/jobs"
+- name: 科华集团
+  careers_url: https://app.mokahr.com/campus_apply/kehua/92510?recommendCode=DSHV5wbF#/jobs
   crawler: moka
-- name: "诗悦网络"
-  careers_url: "https://app.mokahr.com/m/campus-recruitment/shiyuehr/72055?recommendCode=DS2gf3y9#/jobs"
+- name: 诗悦网络
+  careers_url: https://app.mokahr.com/m/campus-recruitment/shiyuehr/72055?recommendCode=DS2gf3y9#/jobs
   crawler: moka
-- name: "赢合科技"
-  careers_url: "https://yhwins2.zhiye.com/campus/jobs?shareId=8848ae0a-ca33-49f3-80a1-8e6153760225&shareSource=2&qr=1&memory=%7B%7D&silence=1"
+- name: 赢合科技
+  careers_url: https://yhwins2.zhiye.com/campus/jobs?shareId=8848ae0a-ca33-49f3-80a1-8e6153760225&shareSource=2&qr=1&memory=%7B%7D&silence=1
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "信捷电气"
-  careers_url: "https://xinje.zhiye.com/campus/jobs?shareId=26ad7995-14c6-409e-8ee8-8ee4543da41a&shareSource=1"
+- name: 信捷电气
+  careers_url: https://xinje.zhiye.com/campus/jobs?shareId=26ad7995-14c6-409e-8ee8-8ee4543da41a&shareSource=1
   crawler: beisen
-- name: "嘉士伯"
-  careers_url: "https://app.mokahr.com/campus_apply/carlsberg/37541?recommendCode=DSBCJFNM#/jobs"
+- name: 嘉士伯
+  careers_url: https://app.mokahr.com/campus_apply/carlsberg/37541?recommendCode=DSBCJFNM#/jobs
   crawler: moka
-- name: "扬腾创新"
-  careers_url: "https://yangtenginnovation-compus.zhiye.com/campus/jobs?shareId=8c456ab5-f1c8-46cd-8a91-037d42e2bcaa&shareSource=2"
+- name: 扬腾创新
+  careers_url: https://yangtenginnovation-compus.zhiye.com/campus/jobs?shareId=8c456ab5-f1c8-46cd-8a91-037d42e2bcaa&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "九牧集团"
-  careers_url: "https://app.mokahr.com/m/campus-recruitment/jomoo/142937?recommendCode=DSYnYM2x#/jobs"
+- name: 九牧集团
+  careers_url: https://app.mokahr.com/m/campus-recruitment/jomoo/142937?recommendCode=DSYnYM2x#/jobs
   crawler: moka
-- name: "李森智能"
-  careers_url: "https://lisen.zhiye.com/campus/jobs?shareId=533d1cff-a525-46dc-8c5d-46445deabad4&shareSource=2"
+- name: 李森智能
+  careers_url: https://lisen.zhiye.com/campus/jobs?shareId=533d1cff-a525-46dc-8c5d-46445deabad4&shareSource=2
   crawler: beisen
-- name: "江苏海四达电源"
-  careers_url: "https://highstar.zhiye.com/campus/jobs?shareId=0619c7c1-77c4-40bd-808c-60d38fffdeac&shareSource=2"
+- name: 江苏海四达电源
+  careers_url: https://highstar.zhiye.com/campus/jobs?shareId=0619c7c1-77c4-40bd-808c-60d38fffdeac&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "奥克斯集团"
-  careers_url: "https://auxgroup.zhiye.com/campus/jobs?shareId=6275af13-0f7f-4634-b26f-7f02dea33054&shareSource=2"
+- name: 奥克斯集团
+  careers_url: https://auxgroup.zhiye.com/campus/jobs?shareId=6275af13-0f7f-4634-b26f-7f02dea33054&shareSource=2
   crawler: beisen
-- name: "轻舟智航"
-  careers_url: "https://qcraft.jobs.feishu.cn/s/yxH8NMS4XGc"
+- name: 轻舟智航
+  careers_url: https://qcraft.jobs.feishu.cn/s/yxH8NMS4XGc
   crawler: feishu
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "四方继保"
-  careers_url: "https://sf-auto1.zhiye.com/campus/jobs?shareId=86f02a13-0c23-4938-bbae-7c09c9ed3324&shareSource=2"
+- name: 四方继保
+  careers_url: https://sf-auto1.zhiye.com/campus/jobs?shareId=86f02a13-0c23-4938-bbae-7c09c9ed3324&shareSource=2
   crawler: beisen
-- name: "国泰汉帛"
-  careers_url: "https://jvvyvrptdzz.jobs.feishu.cn/972701/m/position/list?external_referral_code=1M4TA4A"
+- name: 国泰汉帛
+  careers_url: https://jvvyvrptdzz.jobs.feishu.cn/972701/m/position/list?external_referral_code=1M4TA4A
   crawler: feishu
-- name: "易点云"
-  careers_url: "https://recruit-pro.edianyun.com/#/wap/recruitment-collect"
+- name: 易点云
+  careers_url: https://recruit-pro.edianyun.com/#/wap/recruitment-collect
   crawler: render
-- name: "雷赛智能"
-  careers_url: "https://app.mokahr.com/m/campus-recruitment/leisai/146886?recommendCode=DSaBjkyH#/jobs"
+- name: 雷赛智能
+  careers_url: https://app.mokahr.com/m/campus-recruitment/leisai/146886?recommendCode=DSaBjkyH#/jobs
   crawler: moka
-- name: "飞步科技"
-  careers_url: "https://app.mokahr.com/campus-recruitment/fabu/56114?recommendCode=DSgZsTrZ#/jobs"
+- name: 飞步科技
+  careers_url: https://app.mokahr.com/campus-recruitment/fabu/56114?recommendCode=DSgZsTrZ#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "万辰集团（好想来）"
-  careers_url: "https://vanchen1.zhiye.com/campus/jobs?shareId=14ffc5ce-1b26-47c7-b80b-05719510dade&shareSource=2"
+- name: 万辰集团（好想来）
+  careers_url: https://vanchen1.zhiye.com/campus/jobs?shareId=14ffc5ce-1b26-47c7-b80b-05719510dade&shareSource=2
   crawler: beisen
-- name: "卓胜微电子"
-  careers_url: "https://maxscend.zhiye.com/campus/jobs?shareId=538ec1bd-204d-4562-828f-4915ebe319a0&shareSource=2"
+- name: 卓胜微电子
+  careers_url: https://maxscend.zhiye.com/campus/jobs?shareId=538ec1bd-204d-4562-828f-4915ebe319a0&shareSource=2
   crawler: beisen
-- name: "正浩EcoFlow"
-  careers_url: "https://jobs.ecoflow.com/s/ZyFxOlW1sLI"
+- name: 正浩EcoFlow
+  careers_url: https://jobs.ecoflow.com/s/ZyFxOlW1sLI
   crawler: render
-- name: "瑞声科技"
-  careers_url: "https://talent.aactechnologies.com/campus/m/position/list?external_referral_code=8RY44XV"
+- name: 瑞声科技
+  careers_url: https://talent.aactechnologies.com/campus/m/position/list?external_referral_code=8RY44XV
   crawler: render
-- name: "银泰商业"
-  careers_url: "http://talent.intime.com.cn/campus/jobs?shareId=48780f33-941e-46a4-814d-9799f9112248&shareSource=2"
+- name: 银泰商业
+  careers_url: http://talent.intime.com.cn/campus/jobs?shareId=48780f33-941e-46a4-814d-9799f9112248&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "图拉斯（原蓝禾）"
-  careers_url: "https://lanhevip.jobs.feishu.cn/s/A4zAkYMD9Xs"
+- name: 图拉斯（原蓝禾）
+  careers_url: https://lanhevip.jobs.feishu.cn/s/A4zAkYMD9Xs
   crawler: feishu
-- name: "牧原集团"
-  careers_url: "https://app.mokahr.com/campus_apply/muyuan/70116?recommendCode=DSCHtb4w#/jobs"
+- name: 牧原集团
+  careers_url: https://app.mokahr.com/campus_apply/muyuan/70116?recommendCode=DSCHtb4w#/jobs
   crawler: moka
-- name: "象屿股份"
-  careers_url: "https://xiangyu.zhiye.com/campus/jobs?shareId=04ba3846-f95d-4166-84f0-f7ae96c29fe1&shareSource=2"
+- name: 象屿股份
+  careers_url: https://xiangyu.zhiye.com/campus/jobs?shareId=04ba3846-f95d-4166-84f0-f7ae96c29fe1&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "天赐材料"
-  careers_url: "https://wecruit.hotjob.cn/SU62c3ea6b2f9d241e4c8e45ba/mc/position/campus?acotycoCode=qsjehk&projectId=201701&recruitType=1&isLimitShowPostScope=1"
+- name: 天赐材料
+  careers_url: https://wecruit.hotjob.cn/SU62c3ea6b2f9d241e4c8e45ba/mc/position/campus?acotycoCode=qsjehk&projectId=201701&recruitType=1&isLimitShowPostScope=1
   crawler: hotjob
-- name: "思摩尔"
-  careers_url: "https://app.mokahr.com/campus_apply/smoore/150918?recommendCode=DS8x9P6R#/jobs"
+- name: 思摩尔
+  careers_url: https://app.mokahr.com/campus_apply/smoore/150918?recommendCode=DS8x9P6R#/jobs
   crawler: moka
-- name: "极兔速递"
-  careers_url: "https://jtexpress.jobs.feishu.cn/s/au-hRT9NM5E"
+- name: 极兔速递
+  careers_url: https://jtexpress.jobs.feishu.cn/s/au-hRT9NM5E
   crawler: feishu
-- name: "爱迪特Aidite"
-  careers_url: "https://www.aidite.com/zh/positionPage"
+- name: 爱迪特Aidite
+  careers_url: https://www.aidite.com/zh/positionPage
   crawler: render
-- name: "途虎养车"
-  careers_url: "https://app.mokahr.com/campus_apply/tuhu/28398?recommendCode=DS3hMB6E#/jobs"
+- name: 途虎养车
+  careers_url: https://app.mokahr.com/campus_apply/tuhu/28398?recommendCode=DS3hMB6E#/jobs
   crawler: moka
-- name: "黑白调-傲风"
-  careers_url: "https://app.mokahr.com/campus_apply/heibaidiao/54126?recommendCode=DSBjx3ZQ#/jobs"
+- name: 黑白调-傲风
+  careers_url: https://app.mokahr.com/campus_apply/heibaidiao/54126?recommendCode=DSBjx3ZQ#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "冠宇集团"
-  careers_url: "https://cosmx.zhiye.com/campus/jobs?shareId=81f58b1a-e7be-43bf-87da-b2077ca1601e&shareSource=2"
+- name: 冠宇集团
+  careers_url: https://cosmx.zhiye.com/campus/jobs?shareId=81f58b1a-e7be-43bf-87da-b2077ca1601e&shareSource=2
   crawler: beisen
-- name: "巨人网络"
-  careers_url: "https://app.mokahr.com/campus-recruitment/ztgame/92438?recommendCode=DS8cb6eu#/jobs"
+- name: 巨人网络
+  careers_url: https://app.mokahr.com/campus-recruitment/ztgame/92438?recommendCode=DS8cb6eu#/jobs
   crawler: moka
-- name: "智驾新程 neueHCT"
-  careers_url: "https://neuehct.jobs.feishu.cn/s/da663t3OFv4"
+- name: 智驾新程 neueHCT
+  careers_url: https://neuehct.jobs.feishu.cn/s/da663t3OFv4
   crawler: feishu
-- name: "特锐德"
-  careers_url: "https://tgood.zhiye.com/campus/jobs?shareId=1eb59034-b367-4225-b950-c6366cff7d78&shareSource=2"
+- name: 特锐德
+  careers_url: https://tgood.zhiye.com/campus/jobs?shareId=1eb59034-b367-4225-b950-c6366cff7d78&shareSource=2
   crawler: beisen
-- name: "英科再生"
-  careers_url: "https://global-intco.jobs.feishu.cn/s/GPVzkGAwcl0"
+- name: 英科再生
+  careers_url: https://global-intco.jobs.feishu.cn/s/GPVzkGAwcl0
   crawler: feishu
-- name: "骑士集团"
-  careers_url: "https://app.mokahr.com/campus_apply/black-unique/29232?recommendCode=DSv6KdHC#/jobs"
+- name: 骑士集团
+  careers_url: https://app.mokahr.com/campus_apply/black-unique/29232?recommendCode=DSv6KdHC#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "华宝新能"
-  careers_url: "https://career.hello-tech.com/campus/jobs?shareId=33d74670-8143-435a-8b1e-d747781a1f08&shareSource=2"
+- name: 华宝新能
+  careers_url: https://career.hello-tech.com/campus/jobs?shareId=33d74670-8143-435a-8b1e-d747781a1f08&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "曦望Sunrise"
-  careers_url: "https://jobs.sunrise-ai.com/s/rdEbUxEZUvo"
+- name: 曦望Sunrise
+  careers_url: https://jobs.sunrise-ai.com/s/rdEbUxEZUvo
   crawler: render
-- name: "立讯技术"
-  careers_url: "https://luxshare-tech.zhiye.com/campus/jobs?shareId=3f27582d-0e97-4f27-96f4-22048a62f3b4&shareSource=2"
+- name: 立讯技术
+  careers_url: https://luxshare-tech.zhiye.com/campus/jobs?shareId=3f27582d-0e97-4f27-96f4-22048a62f3b4&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "乐信圣文"
-  careers_url: "https://learnings.jobs.feishu.cn/s/nkV6mtflhW4"
+- name: 乐信圣文
+  careers_url: https://learnings.jobs.feishu.cn/s/nkV6mtflhW4
   crawler: feishu
-- name: "众安保险"
-  careers_url: "https://app.mokahr.com/campus_apply/zhongan/71908?recommendCode=DSkZKTjJ#/jobs"
+- name: 众安保险
+  careers_url: https://app.mokahr.com/campus_apply/zhongan/71908?recommendCode=DSkZKTjJ#/jobs
   crawler: moka
-- name: "高露洁"
-  careers_url: "https://colgate.zhiye.com/campus/jobs?shareId=614d9efe-8b49-4201-ba0e-5021a6f7051f&shareSource=2"
+- name: 高露洁
+  careers_url: https://colgate.zhiye.com/campus/jobs?shareId=614d9efe-8b49-4201-ba0e-5021a6f7051f&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "三棵树"
-  careers_url: "https://wecruit.hotjob.cn/SU6173aef0bef57c4414103348/mc/position/campus?acotycoCode=tydrup&projectId=201401&recruitType=1&isLimitShowPostScope=1"
+- name: 三棵树
+  careers_url: https://wecruit.hotjob.cn/SU6173aef0bef57c4414103348/mc/position/campus?acotycoCode=tydrup&projectId=201401&recruitType=1&isLimitShowPostScope=1
   crawler: hotjob
-- name: "树根互联"
-  careers_url: "https://irootech.zhiye.com/campus/jobs?shareId=80f4049b-f7af-4f8d-bccb-8622eed42879&shareSource=2"
+- name: 树根互联
+  careers_url: https://irootech.zhiye.com/campus/jobs?shareId=80f4049b-f7af-4f8d-bccb-8622eed42879&shareSource=2
   crawler: beisen
-- name: "阳光保险"
-  careers_url: "https://sunzhaopin.sinosig.com/campus/jobs?shareId=83e98c36-cb6b-4187-9a5b-9a5ad98b645f&shareSource=2"
+- name: 阳光保险
+  careers_url: https://sunzhaopin.sinosig.com/campus/jobs?shareId=83e98c36-cb6b-4187-9a5b-9a5ad98b645f&shareSource=2
   crawler: beisen
-- name: "黑芝麻智能"
-  careers_url: "https://bsthr.zhiye.com/campus/jobs?shareId=49723520-dbb6-40b1-a6fb-4e25245409cb&shareSource=2"
+- name: 黑芝麻智能
+  careers_url: https://bsthr.zhiye.com/campus/jobs?shareId=49723520-dbb6-40b1-a6fb-4e25245409cb&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "固德威"
-  careers_url: "https://wecruit.hotjob.cn/SU630a3a0e2f9d2406b4f6c5f1/pb/school.html?acotycoCode=ibychh&projectId=200701&recruitType=1&isLimitShowPostScope=1"
+- name: 固德威
+  careers_url: https://wecruit.hotjob.cn/SU630a3a0e2f9d2406b4f6c5f1/pb/school.html?acotycoCode=ibychh&projectId=200701&recruitType=1&isLimitShowPostScope=1
   crawler: hotjob
-- name: "海天味业"
-  careers_url: "https://wecruit.hotjob.cn/SU6322ee8c0dcad46a862dcbe5/mc/position/campus?acotycoCode=bgpkci&recruitType=1&isLimitShowPostScope=1"
+- name: 海天味业
+  careers_url: https://wecruit.hotjob.cn/SU6322ee8c0dcad46a862dcbe5/mc/position/campus?acotycoCode=bgpkci&recruitType=1&isLimitShowPostScope=1
   crawler: hotjob
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "宇通客车"
-  careers_url: "https://app.mokahr.com/su/loawxh"
+- name: 宇通客车
+  careers_url: https://app.mokahr.com/su/loawxh
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "太衍私募基金"
-  careers_url: "https://qcnjp4yi4cew.jobs.feishu.cn/s/erHbISmjI9Y"
+- name: 太衍私募基金
+  careers_url: https://qcnjp4yi4cew.jobs.feishu.cn/s/erHbISmjI9Y
   crawler: feishu
-- name: "思谋科技"
-  careers_url: "https://app.mokahr.com/m/campus-recruitment/smartmore/40506?recommendCode=DSBjtnc3#/jobs"
+- name: 思谋科技
+  careers_url: https://app.mokahr.com/m/campus-recruitment/smartmore/40506?recommendCode=DSBjtnc3#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "七十迈"
-  careers_url: "https://70mai.zhiye.com/campus/jobs?shareId=ba97fc77-83cc-4735-9b6b-f73832bcab61&shareSource=2"
+- name: 七十迈
+  careers_url: https://70mai.zhiye.com/campus/jobs?shareId=ba97fc77-83cc-4735-9b6b-f73832bcab61&shareSource=2
   crawler: beisen
-- name: "乐漾"
-  careers_url: "https://careers.joyintoy.cn/s/dQxil--A2rU"
+- name: 乐漾
+  careers_url: https://careers.joyintoy.cn/s/dQxil--A2rU
   crawler: render
-- name: "云览科技"
-  careers_url: "https://cloudview-inc.com/join/jobs?inviteCode=pM3mM"
+- name: 云览科技
+  careers_url: https://cloudview-inc.com/join/jobs?inviteCode=pM3mM
   crawler: render
-- name: "冰川网络"
-  careers_url: "https://bingchuan1.zhiye.com/campus/jobs?shareId=96e146eb-c9af-4434-93d6-e68b09b451e9&shareSource=2"
+- name: 冰川网络
+  careers_url: https://bingchuan1.zhiye.com/campus/jobs?shareId=96e146eb-c9af-4434-93d6-e68b09b451e9&shareSource=2
   crawler: beisen
-- name: "特斯拉"
-  careers_url: "https://app.mokahr.com/campus_apply/tesla/41460?recommendCode=DSs8kUEa#/jobs"
+- name: 特斯拉
+  careers_url: https://app.mokahr.com/campus_apply/tesla/41460?recommendCode=DSs8kUEa#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "九方智投"
-  careers_url: "https://vcnuqm4lv2uh.jobs.feishu.cn/s/rQsQe1FhiJo"
+- name: 九方智投
+  careers_url: https://vcnuqm4lv2uh.jobs.feishu.cn/s/rQsQe1FhiJo
   crawler: feishu
-- name: "云和恩墨"
-  careers_url: "https://app.mokahr.com/campus-recruitment/enmotech/47098#/"
+- name: 云和恩墨
+  careers_url: https://app.mokahr.com/campus-recruitment/enmotech/47098#/
   crawler: moka
-- name: "大寰机器人"
-  careers_url: "https://app.mokahr.com/campus-recruitment/dhrobotics/168695?recommendCode=DSDJZVaV#/jobs"
+- name: 大寰机器人
+  careers_url: https://app.mokahr.com/campus-recruitment/dhrobotics/168695?recommendCode=DSDJZVaV#/jobs
   crawler: moka
-- name: "沐曦股份"
-  careers_url: "https://app.mokahr.com/campus-recruitment/metax-tech/58131?recommendCode=DSjhTZe8#/jobs"
+- name: 沐曦股份
+  careers_url: https://app.mokahr.com/campus-recruitment/metax-tech/58131?recommendCode=DSjhTZe8#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "FMG集团"
-  careers_url: "https://app.mokahr.com/campus-recruitment/ur/45210?recommendCode=DShEgnny#/jobs"
+- name: FMG集团
+  careers_url: https://app.mokahr.com/campus-recruitment/ur/45210?recommendCode=DShEgnny#/jobs
   crawler: moka
-- name: "徐福记"
-  careers_url: "https://app.mokahr.com/campus_apply/hfc-foods/102201?recommendCode=DSPDu3b3#/jobs"
+- name: 徐福记
+  careers_url: https://app.mokahr.com/campus_apply/hfc-foods/102201?recommendCode=DSPDu3b3#/jobs
   crawler: moka
-- name: "路特ROOT"
-  careers_url: "https://app.mokahr.com/m/campus_apply/rootglobal/44850?recommendCode=DS4eY69C#/jobs"
+- name: 路特ROOT
+  careers_url: https://app.mokahr.com/m/campus_apply/rootglobal/44850?recommendCode=DS4eY69C#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "认养一头牛"
-  careers_url: "https://ryytn.zhiye.com/campus/jobs?shareId=4685c8fd-55c5-4604-a10a-e405613d7923&shareSource=2"
+- name: 认养一头牛
+  careers_url: https://ryytn.zhiye.com/campus/jobs?shareId=4685c8fd-55c5-4604-a10a-e405613d7923&shareSource=2
   crawler: beisen
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "9377游戏"
-  careers_url: "https://9377.zhiye.com/campus/jobs?shareId=62a2649a-3826-44b2-a0df-667250430806&shareSource=2"
+- name: 9377游戏
+  careers_url: https://9377.zhiye.com/campus/jobs?shareId=62a2649a-3826-44b2-a0df-667250430806&shareSource=2
   crawler: beisen
-- name: "康龙化成"
-  careers_url: "https://app.mokahr.com/m/campus_apply/pharmaron/45318?recommendCode=DSFv5WjR#/jobs"
+- name: 康龙化成
+  careers_url: https://app.mokahr.com/m/campus_apply/pharmaron/45318?recommendCode=DSFv5WjR#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "VeSync"
-  careers_url: "https://app.mokahr.com/campus_apply/vesync/182301?recommendCode=DSJDjhnd#/jobs"
+- name: VeSync
+  careers_url: https://app.mokahr.com/campus_apply/vesync/182301?recommendCode=DSJDjhnd#/jobs
   crawler: moka
-# 腾讯文档 27届秋招自动验证通过（真实抓到正式校招岗位后写入）
-- name: "格蓝若"
-  careers_url: "https://oetsky.zhiye.com/campus/jobs?shareId=0661f472-750c-44ff-9387-9d56a6027b3e&shareSource=2"
+- name: 格蓝若
+  careers_url: https://oetsky.zhiye.com/campus/jobs?shareId=0661f472-750c-44ff-9387-9d56a6027b3e&shareSource=2
   crawler: beisen
+- name: 中国通信服务广东公司
+  careers_url: https://iter.stongyw.cn/web/schoolwx/job/index.html?RCode=260040
+  crawler: render
+- name: 友塔游戏
+  careers_url: https://www.yottagames.com.cn/zh/internal-recommendation?token=480b3cd4a66863e82cb4e2bc1fd60a45-999602-1093058550&sub=077
+  crawler: render
+- name: 吉比特-雷霆游戏
+  careers_url: https://hr.g-bits.com/web/index.html#/post-web/post-list/?referralCode=FH386S
+  crawler: render
+- name: 腾讯云智研发
+  careers_url: https://join.tencent-cloud.com
+  crawler: render
+- name: Garena
+  careers_url: https://app.mokahr.com/campus_apply/garena/148076?recommendCode=DS2ZAVF2#/jobs
+  crawler: moka
+- name: HOLLYLAND猛玛
+  careers_url: https://hollyland.zhiye.com/campus/jobs?shareId=2dbb4980-d61f-4c1b-a61b-faede5103786&shareSource=2
+  crawler: beisen
+- name: MDPI
+  careers_url: https://mdpi.cn/career/recruit/ca-recruit/position?email=3341436634@qq.com
+  crawler: render
+- name: RoboSense速腾聚创
+  careers_url: https://app.mokahr.com/m/campus_apply/robosense/69887?recommendCode=DSEdj5q7#/jobs
+  crawler: moka
+- name: SHEIN希音
+  careers_url: https://app.mokahr.com/campus_apply/shein/2932?recommendCode=DS7TNCrY#/jobs
+  crawler: moka
+- name: Shopee研发中心
+  careers_url: https://app.mokahr.com/campus_apply/shopee/2962?recommendCode=DSQq22fM#/jobs
+  crawler: moka
+- name: TCL实业
+  careers_url: https://wecruit.hotjob.cn/SU6491506a2f9d24316e91b81b/mc/position/campus?acotycoCode=msefhs&orgId=100758%2C100759%2C101202%2C101205%2C101206%2C101214%2C103101%2C103105%2C103141%2C103142%2C103143%2C105301%2C105305%2C307429%2C307434%2C308301%2C309408%2C316341%2C318201%2C324087%2C324156%2C334301%2C334401%2C334501%2C337001%2C362124%2C364906&projectId=308501&recruitType=1&isLimitShowPostScope=1
+  crawler: hotjob
+- name: TP-LINK普联
+  careers_url: https://hr.tp-link.com.cn
+  crawler: render
+- name: Yealink亿联网络
+  careers_url: https://yealink.zhiye.com/campus/jobs?shareId=1e7ebafb-d84c-4279-b3f8-df60790a96fe&shareSource=2
+  crawler: beisen
+- name: 万得 Wind
+  careers_url: https://www.wind.com.cn/mobile/JoinUS/RecruitDetail/zh.html?entry=school
+  crawler: render
+- name: 三环集团
+  careers_url: https://hr.cctc.cc/school?sourceCode=869573&isRecommendCode=true
+  crawler: render
+- name: 传音控股
+  careers_url: https://transsion.zhiye.com/campus/jobs?shareId=6faa7ee3-95a2-4799-93f6-3133d139d29c&shareSource=2
+  crawler: beisen
+- name: 佑驾创新MINIEYE
+  careers_url: https://app.mokahr.com/m/campus-recruitment/minieye/118571?recommendCode=DSFx4BJN&hash=%23%2Fjobs#/jobs
+  crawler: moka
+- name: 作业帮产研
+  careers_url: https://app.mokahr.com/m/campus_apply/zuoyebang/39595?recommendCode=DSpn3aSr#/jobs
+  crawler: moka
+- name: 嘉为蓝鲸（要先实习转正）
+  careers_url: https://canway.m.zhiye.com/JobAd/List?jc=2&shareid=9054f207-bce6-4a12-aba9-315de554ddba&token=62669728473b41e5a55494ddb851158
+  crawler: beisen
+- name: 好未来产研
+  careers_url: https://app.mokahr.com/campus-recruitment/tal/146599?recommendCode=DSCvfGjS#/jobs
+  crawler: moka
+- name: 好未来集团
+  careers_url: https://app.mokahr.com/campus-recruitment/tal/169887?recommendCode=DSb8Ta8y#/jobs
+  crawler: moka
+- name: 小马智行Pony.ai
+  careers_url: https://ponyai.jobs.feishu.cn/s/9NZJlh4cpL8
+  crawler: feishu
+- name: 帆软
+  careers_url: https://t6ixa9nyl6.jiandaoyun.com/f/65e1a1308ce7672fded0f0cf?ext=CDSXJ
+  crawler: render
+- name: 广电运通
+  careers_url: https://app.mokahr.com/m/campus_apply/grgbanking/148986?recommendCode=DSDGMxgK#/jobs
+  crawler: moka
+- name: 恒生电子
+  careers_url: https://campus.hundsun.com/campus/jobs?shareId=5ef11668-f2a7-43cc-acf5-089cf81ba301&shareSource=2
+  crawler: beisen
+- name: 拓竹科技Bambu Lab
+  careers_url: https://bambulab.jobs.feishu.cn/s/bWi9cqMTpyw
+  crawler: feishu
+- name: 招银网络科技
+  careers_url: https://cmbnt.cmbchina.com/pages/bindInvited.html?qrCode=7499CB23C54E42A79A38081473616DA2&rand=1785331872379&blNtCode=JFDZCW
+  crawler: render
+- name: 搜狐集团
+  careers_url: https://app.mokahr.com/m/campus_apply/sohu/36036?recommendCode=DSRxwjqx#/jobs
+  crawler: moka
+- name: 新易盛
+  careers_url: https://eoptolink.zhiye.com/campus/jobs?shareId=76773328-5a2b-44f4-acf0-d9c800de01a0&shareSource=2
+  crawler: beisen
+- name: 昂科技术
+  careers_url: https://s.51job.com/2vSIuH
+  crawler: render
+- name: 智平方
+  careers_url: https://ai2robotics.jobs.feishu.cn/s/pXrf5XaP3Po
+  crawler: feishu
+- name: 格力电器
+  careers_url: https://zhaopin.greeyun.com/home
+  crawler: render
+- name: 浪潮集团
+  careers_url: https://wx64310b3064348282.hcmcloud.cn/recruit#/common_model_nav_anonymous/multi?c_model=_HB4_UmVsZWFzZUpvYk1ncg%253D%253D&meta_state=_HB4_aW50ZXJuYWxfY2FuZGlkYXRl&advance_filter_dict=%7B%22job_class%22:%22%E6%A0%A1%E5%9B%AD%E6%8B%9B%E8%81%98%22,%22select_depart%22:false%7D&key=_HB4_cmVjb21tZW5kX2pvYl9saXN0&model=_HB4_UmVjcnVpdFJlY29tbWVuZA%253D%253D&nav_state=_HB4_aW50ZXJuYWxfY2FuZGlkYXRl&custom_params=_HB4_eyJpbnRlcm5hbF9jb2RlIjoieEdpb0pBaCJ9&company_id=_HB4_OA%253D%253D
+  crawler: render
+- name: 海尔智家
+  careers_url: https://maker.haier.net/client/campusmobile/activity/id/68/fid.html?inviter_code=VElJMWI2OExmV0k9
+  crawler: render
+- name: 海尔智家-AI专项
+  careers_url: https://maker.haier.net/client/campusmobile/researchlist/id/68/fid/30.html?inviter_code=VElJMWI2OExmV0k9
+  crawler: render
+- name: 盛弘电气
+  careers_url: https://app.mokahr.com/campus-recruitment/sinexcel/74287?recommendCode=DSwpMpuY#/jobs
+  crawler: moka
+- name: 网易互联网
+  careers_url: https://campus.163.com/bolehtml/home?projectId=103&type=99&boleId=e1dd4e319e73d68a&boleType=2&signature=133fad406699e30097ce17c376500d6c&isShare=1
+  crawler: render
+- name: 美的集团
+  careers_url: https://careers.midea.com/recruit-school-wechat/job?mvp_code=M8621M&type=1
+  crawler: render
+- name: 群核科技
+  careers_url: https://app.mokahr.com/campus_apply/qunhemail/2832?recommendCode=DSVyddjj#/jobs
+  crawler: moka
+- name: 联合利华
+  careers_url: https://xym.51job.com/VueData/neitui/user/#/?ehireid=8833740&prd=xyznt&ruid=162491&referrer=o0cn56rchou82EDTyJc1LYCY0txw
+  crawler: render
+- name: 英科医疗
+  careers_url: https://global-intco.jobs.feishu.cn/s/NZW15xXwo6A
+  crawler: feishu
+- name: 莉莉丝游戏
+  careers_url: https://lilithgames.jobs.feishu.cn/s/LS13zX5I1lc
+  crawler: feishu
+- name: 蔚来汽车
+  careers_url: https://nio.jobs.feishu.cn/s/7eS_xvAK4kI
+  crawler: feishu
+- name: 货拉拉
+  careers_url: https://app.mokahr.com/m/campus-recruitment/huolalahr/98660?recommendCode=DSVVJ2Jg#/jobs
+  crawler: moka
+- name: 远景能源
+  careers_url: https://app.mokahr.com/campus_apply/envisiongroup/43123?recommendCode=DSc3uBTQ#/jobs?department%5B0%5D=958964&project%5B0%5D=100124183&page=1&anchorName=jobsList
+  crawler: moka
+- name: 途游游戏
+  careers_url: https://app.mokahr.com/m/campus_apply/tuyoogame/146219?recommendCode=DSQKjZuQ#/jobs
+  crawler: moka
+- name: 金升阳
+  careers_url: https://mornsun.zhiye.com/campus/jobs?shareId=f30af64b-ed71-4054-b728-434b2e12a732&shareSource=2
+  crawler: beisen
+- name: 金山办公-云杉计划
+  careers_url: https://app.mokahr.com/campus_apply/wps/41436?recommendCode=DS5u51CA#/jobs
+  crawler: moka
+- name: 阿里-平头哥
+  careers_url: https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwNKNpzURtSZ49iAMry0CzOjSEORZHsCnVIx7T6SWUAi6&batchId=100000760001&filterParams=%7B%22customDept%22%3A%5B%22PQHNXW%22%5D%7D
+  crawler: render
+- name: 阿里-淘宝闪购
+  careers_url: https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwCvUxINoO65Hj4CVpR0aEAjwb4opcJF_WOObjMgIXMvD&batchId=100000760001
+  crawler: render
+- name: 阿里-菜鸟
+  careers_url: https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwEwG7yB4IkIKUM0CjrNwc98%3D&batchId=100000540002
+  crawler: render
+- name: 阿里灵犀互娱
+  careers_url: https://campus-talent.alibaba.com/campus/position?campusShareCode=pVTFwhdbMZWGIxcVKETbpXPhlMU46yv_zbk6tqVPyRs%3D&batchId=100000540002
+  crawler: render
+- name: 飞鱼科技
+  careers_url: https://app.mokahr.com/campus_apply/feiyu/1633?recommendCode=DSFHF9rV#/jobs
+  crawler: moka
 deepseek:
   screening_model: deepseek-chat
   analysis_model: deepseek-chat

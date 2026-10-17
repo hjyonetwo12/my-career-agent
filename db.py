@@ -1344,3 +1344,40 @@ def get_application_by_job(conn, job_id) -> dict | None:
         if a.get("job_id") == job_id:
             return a
     return None
+
+
+def auto_compact_db(conn: sqlite3.Connection, db_path=None, max_size_mb: float = 70.0) -> dict:
+    """自动数据库体积守卫：当体积超过安全水位线(默认70MB)或碎片过多时自动清理并VACUUM，防止突破GitHub 100MB限制。"""
+    import job_filters
+    path = Path(db_path) if db_path else DEFAULT_DB_PATH
+    if not path.exists():
+        return {"compacted": False, "size_mb": 0.0}
+    size_mb = path.stat().st_size / (1024 * 1024)
+    freelist = conn.execute("PRAGMA freelist_count").fetchone()[0]
+    if size_mb < max_size_mb and freelist < 1000:
+        return {"compacted": False, "size_mb": round(size_mb, 2)}
+
+    conn.execute(
+        "DELETE FROM job_screening_cache WHERE screening_version = '' OR screened_at < date('now', '-45 days')"
+    )
+    conn.execute(
+        "DELETE FROM jobs WHERE last_seen_at < date('now', '-45 days') AND id NOT IN (SELECT job_id FROM job_analysis)"
+    )
+    rows = conn.execute(
+        "SELECT id, title, jd_raw FROM jobs WHERE length(jd_raw) > 300 AND id NOT IN (SELECT job_id FROM job_analysis)"
+    ).fetchall()
+    trim_updates = [
+        (r["jd_raw"][:300], r["id"])
+        for r in rows
+        if not job_filters.is_cs_software_role(dict(r))
+    ]
+    if trim_updates:
+        conn.executemany("UPDATE jobs SET jd_raw = ? WHERE id = ?", trim_updates)
+    conn.commit()
+    conn.execute("VACUUM")
+    new_size_mb = path.stat().st_size / (1024 * 1024)
+    return {
+        "compacted": True,
+        "before_mb": round(size_mb, 2),
+        "after_mb": round(new_size_mb, 2),
+    }

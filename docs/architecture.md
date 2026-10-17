@@ -61,3 +61,10 @@ sequenceDiagram
 | `data/jobs.db` | 岗位、分析和增量状态 | 运行时存储或制品，不建议长期提交大文件 |
 | `data/applications.json` | 投递进度 | 私有存储，不应公开 |
 | `outputs/` | 静态报告 | `gh-pages` 或部署制品 |
+
+## 功能升级模块（v2）
+
+1. **多标签职业分类 (`job_filters.classify_job_categories`)**：仅负责前端组织、筛选与统计展示，绝不反向限制爬虫采集或入库范围；保留原始职位名称与分类依据，支持一主多辅与 `unclassified`（待分类）兜底。
+2. **动态招聘周期判定 (`job_filters.determine_recruitment_season`)**：固定品牌名称为 `AI校招情报`，由日期（显式绑定 `Asia/Shanghai` 时区）、真实库内活跃岗位构成与 `profile.yaml` 配置共同决定周期标签。
+3. **左侧顶部全局目录 (`reporter._directory_payload` & `#globalDirectory`)**：采用三段式 Flex 侧栏布局与按需延迟渲染，确保长目录独立滚动，不挤压底部固定入口。
+4. **个人画像驱动的综合建议 (`job_filters.generate_comprehensive_advice` & `data-page="comprehensive-advice"`)**：输出多方向 7 维对比、学习内容、学习方法与分层规划，显式标注数据时间范围、样本量及【事实】【推断】【建议】【未知】边界。

@@ -1,0 +1,3620 @@
+{
+  "source_url": "https://docs.qq.com/smartsheet/DY3pHYkNvb0ZRSHdi?tab=t0gmEC&viewId=vUQPXH",
+  "checked_at": "2026-10-17T18:45:44+08:00",
+  "rows": [
+    {
+      "source_name": "360集团",
+      "canonical_name": "360集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://360campus.zhiye.com/campus/jobs?shareId=55bf79da-a592-4b8c-a493-81b5c2103e7e&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "360集团"
+    },
+    {
+      "source_name": "4399游戏",
+      "canonical_name": "4399游戏",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://hr.4399om.com/weixin/?r=job/agent&type=2&isOpen=0&jobTableType=1&code=ctg5d"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "4399游戏"
+    },
+    {
+      "source_name": "58同城",
+      "canonical_name": "58同城",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/58/150953?recommendCode=DSVZmSGD#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "58同城"
+    },
+    {
+      "source_name": "9377游戏",
+      "canonical_name": "9377游戏",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://9377.zhiye.com/campus/jobs?shareId=62a2649a-3826-44b2-a0df-667250430806&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "9377游戏"
+    },
+    {
+      "source_name": "CVTE视源股份",
+      "canonical_name": "CVTE视源股份",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus.cvte.com"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "CVTE视源股份"
+    },
+    {
+      "source_name": "DJI大疆",
+      "canonical_name": "大疆",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/dji/143359?recommendCode=DSYdQvMt#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "Dexmal 原力灵机",
+      "canonical_name": "Dexmal 原力灵机",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://dexmal-inc.jobs.feishu.cn/s/UcNqTb50zDE"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "Dexmal 原力灵机"
+    },
+    {
+      "source_name": "FMG集团",
+      "canonical_name": "FMG集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/ur/45210?recommendCode=DShEgnny#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "FMG集团"
+    },
+    {
+      "source_name": "Funplus",
+      "canonical_name": "Funplus",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/funplus01/147931?recommendCode=DSFXq8tM#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "FunPlus"
+    },
+    {
+      "source_name": "Garena",
+      "canonical_name": "Garena",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/garena/148076?recommendCode=DS2ZAVF2#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "Sea"
+    },
+    {
+      "source_name": "HOLLYLAND猛玛",
+      "canonical_name": "HOLLYLAND猛玛",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://hollyland.zhiye.com/campus/jobs?shareId=2dbb4980-d61f-4c1b-a61b-faede5103786&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "昊一源"
+    },
+    {
+      "source_name": "MDPI",
+      "canonical_name": "MDPI",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://mdpi.cn/career/recruit/ca-recruit/position?email=3341436634@qq.com"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": false
+    },
+    {
+      "source_name": "MetaApp",
+      "canonical_name": "MetaApp",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://meta.jobs.feishu.cn/s/epYBFZjBD4k"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "MetaApp"
+    },
+    {
+      "source_name": "MiniMax",
+      "canonical_name": "MiniMax",
+      "tags": [
+        "27届秋招",
+        "顶尖人才计划",
+        "27届暑期实习"
+      ],
+      "links": [
+        "https://vrfi1sk8a0.jobs.feishu.cn/s/kGKwaJ_fg7g"
+      ],
+      "source_status": "mixed_or_excluded",
+      "excluded_tags": [
+        "27届暑期实习"
+      ],
+      "in_config": true,
+      "matched_company": "MiniMax"
+    },
+    {
+      "source_name": "Momenta",
+      "canonical_name": "Momenta",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://momenta.jobs.feishu.cn/s/gIkCsB4KZiA"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "Momenta"
+    },
+    {
+      "source_name": "OBSBOT寻影",
+      "canonical_name": "OBSBOT寻影",
+      "tags": [
+        "27届秋招",
+        "顶尖人才计划"
+      ],
+      "links": [
+        "https://n8r2cr07gk.jobs.feishu.cn/s/4eHpfEDiOXo"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "OBSBOT寻影"
+    },
+    {
+      "source_name": "OPPO",
+      "canonical_name": "OPPO",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://careers.oppo.com/university/oppo/campus/post?shareId=17986"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "RoboSense速腾聚创",
+      "canonical_name": "RoboSense速腾聚创",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/robosense/69887?recommendCode=DSEdj5q7#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "速腾聚创"
+    },
+    {
+      "source_name": "SHEIN希音",
+      "canonical_name": "SHEIN希音",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/shein/2932?recommendCode=DS7TNCrY#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "SHEIN"
+    },
+    {
+      "source_name": "Sea",
+      "canonical_name": "Sea",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/shopee/170435#/job/90611de8-f66d-42c0-920e-3972682a596f?from=qrcode"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "虾皮信息"
+    },
+    {
+      "source_name": "Shopee研发中心",
+      "canonical_name": "Shopee研发中心",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/shopee/2962?recommendCode=DSQq22fM#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "虾皮信息"
+    },
+    {
+      "source_name": "TCL华星",
+      "canonical_name": "TCL华星",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU6491506a2f9d24316e91b81b/mc/position/campus?acotycoCode=ndwsgd&orgId=100801%2C104101&projectId=308501&recruitType=1&isLimitShowPostScope=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "TCL华星"
+    },
+    {
+      "source_name": "TCL实业",
+      "canonical_name": "TCL实业",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU6491506a2f9d24316e91b81b/mc/position/campus?acotycoCode=msefhs&orgId=100758%2C100759%2C101202%2C101205%2C101206%2C101214%2C103101%2C103105%2C103141%2C103142%2C103143%2C105301%2C105305%2C307429%2C307434%2C308301%2C309408%2C316341%2C318201%2C324087%2C324156%2C334301%2C334401%2C334501%2C337001%2C362124%2C364906&projectId=308501&recruitType=1&isLimitShowPostScope=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "TCL华星"
+    },
+    {
+      "source_name": "TP-LINK普联",
+      "canonical_name": "TP-LINK普联",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://hr.tp-link.com.cn"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "TP-LINK"
+    },
+    {
+      "source_name": "TP-LINK联洲",
+      "canonical_name": "TP-LINK联洲",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://join.tplinkglobal.com/share/jobs?share_id=2090394245740965889&share_type=qr"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "TP-Link联洲"
+    },
+    {
+      "source_name": "VeSync",
+      "canonical_name": "VeSync",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/vesync/182301?recommendCode=DSJDjhnd#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "VeSync"
+    },
+    {
+      "source_name": "Yealink亿联网络",
+      "canonical_name": "Yealink亿联网络",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://yealink.zhiye.com/campus/jobs?shareId=1e7ebafb-d84c-4279-b3f8-df60790a96fe&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "亿联网络"
+    },
+    {
+      "source_name": "ZURU",
+      "canonical_name": "ZURU",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU69fd8f7f1f17c372512fdd19/mc/position/campus?acotycoCode=cjsbom&projectId=100501&recruitType=1&isLimitShowPostScope=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "ZURU"
+    },
+    {
+      "source_name": "vivo",
+      "canonical_name": "vivo",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://hr-campus.vivo.com/campus/jobs?shareId=ef1f6091-1531-4172-b6fd-438412dbceb4&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "vivo"
+    },
+    {
+      "source_name": "七十迈",
+      "canonical_name": "七十迈",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://70mai.zhiye.com/campus/jobs?shareId=ba97fc77-83cc-4735-9b6b-f73832bcab61&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "七十迈"
+    },
+    {
+      "source_name": "万兴科技",
+      "canonical_name": "万兴科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wondersharecampus.zhiye.com/campus/jobs?shareId=661d7600-08e4-41d7-9592-b8b5f4eb61a5&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "万兴科技"
+    },
+    {
+      "source_name": "万得 Wind",
+      "canonical_name": "万得 Wind",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://www.wind.com.cn/mobile/JoinUS/RecruitDetail/zh.html?entry=school"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "万得"
+    },
+    {
+      "source_name": "万辰集团（好想来）",
+      "canonical_name": "万辰集团（好想来）",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://vanchen1.zhiye.com/campus/jobs?shareId=14ffc5ce-1b26-47c7-b80b-05719510dade&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "万辰集团（好想来）"
+    },
+    {
+      "source_name": "三一集团",
+      "canonical_name": "三一集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://sany.zhiye.com/campus/jobs?shareId=bb783fb0-7944-4ec2-aa42-e4abb8fdac04&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "三一集团"
+    },
+    {
+      "source_name": "三七互娱",
+      "canonical_name": "三七互娱",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/37/58016?recommendCode=DSjnn8dk#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "三七互娱"
+    },
+    {
+      "source_name": "三棵树",
+      "canonical_name": "三棵树",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU6173aef0bef57c4414103348/mc/position/campus?acotycoCode=tydrup&projectId=201401&recruitType=1&isLimitShowPostScope=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "三棵树"
+    },
+    {
+      "source_name": "三环集团",
+      "canonical_name": "三环集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://hr.cctc.cc/school?sourceCode=869573&isRecommendCode=true"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": false
+    },
+    {
+      "source_name": "东方财富",
+      "canonical_name": "东方财富",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/eastmoney/92400?recommendCode=DS6dCr5V#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "东方财富"
+    },
+    {
+      "source_name": "中国通信服务广东公司",
+      "canonical_name": "中国通信服务广东公司",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://iter.stongyw.cn/web/schoolwx/job/index.html?RCode=260040"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "中国通信服务广东公司"
+    },
+    {
+      "source_name": "乐信圣文",
+      "canonical_name": "乐信圣文",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://learnings.jobs.feishu.cn/s/nkV6mtflhW4"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "乐信圣文"
+    },
+    {
+      "source_name": "九号公司",
+      "canonical_name": "九号公司",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/ninebot/45627?recommendCode=DSHhfH26#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "九号公司"
+    },
+    {
+      "source_name": "九坤投资",
+      "canonical_name": "九坤投资",
+      "tags": [
+        "27届秋招",
+        "顶尖人才计划"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/ubiquantrecruit/37031?recommendCode=DSThDarV#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "九坤投资"
+    },
+    {
+      "source_name": "九方智投",
+      "canonical_name": "九方智投",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://vcnuqm4lv2uh.jobs.feishu.cn/s/rQsQe1FhiJo"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "九方智投"
+    },
+    {
+      "source_name": "九牧集团",
+      "canonical_name": "九牧集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/jomoo/142937?recommendCode=DSYnYM2x#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "九牧集团"
+    },
+    {
+      "source_name": "云和恩墨",
+      "canonical_name": "云和恩墨",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/enmotech/47098#/"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "云和恩墨"
+    },
+    {
+      "source_name": "云览科技",
+      "canonical_name": "云览科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://cloudview-inc.com/join/jobs?inviteCode=pM3mM"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "云览科技"
+    },
+    {
+      "source_name": "京东",
+      "canonical_name": "京东",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus.jd.com/api/wx/position/index#/?emplErp=XK115B"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "京东-TET管理培训生",
+      "canonical_name": "京东",
+      "tags": [
+        "27届秋招",
+        "顶尖人才计划"
+      ],
+      "links": [
+        "https://campus.jd.com/api/wx/position/index#/?emplErp=XK115B"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "亿道集团",
+      "canonical_name": "亿道集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://emdoor1.zhiye.com/campus/jobs?shareId=b823be82-165b-4ae0-a62c-397cb69ad51f&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "亿道集团"
+    },
+    {
+      "source_name": "众安保险",
+      "canonical_name": "众安保险",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/zhongan/71908?recommendCode=DSkZKTjJ#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "众安保险"
+    },
+    {
+      "source_name": "优博讯",
+      "canonical_name": "优博讯",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://urovo.zhiye.com/campus/jobs?shareId=520f3916-35a6-477a-b56e-f1dfc976daf6&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "优博讯"
+    },
+    {
+      "source_name": "传音控股",
+      "canonical_name": "传音控股",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://transsion.zhiye.com/campus/jobs?shareId=6faa7ee3-95a2-4799-93f6-3133d139d29c&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "传音"
+    },
+    {
+      "source_name": "佑驾创新MINIEYE",
+      "canonical_name": "佑驾创新MINIEYE",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/minieye/118571?recommendCode=DSFx4BJN&hash=%23%2Fjobs#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "佑驾创新"
+    },
+    {
+      "source_name": "作业帮产研",
+      "canonical_name": "作业帮产研",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/zuoyebang/39595?recommendCode=DSpn3aSr#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "作业帮"
+    },
+    {
+      "source_name": "佰维存储",
+      "canonical_name": "佰维存储",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://biwin1.zhiye.com/campus/jobs?shareId=64149bf2-1b9d-4222-98a7-41c5890c311e&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "佰维存储"
+    },
+    {
+      "source_name": "信捷电气",
+      "canonical_name": "信捷电气",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://xinje.zhiye.com/campus/jobs?shareId=26ad7995-14c6-409e-8ee8-8ee4543da41a&shareSource=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "信捷电气"
+    },
+    {
+      "source_name": "元戎启行",
+      "canonical_name": "元戎启行",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/deeproute/145894#/home"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "元戎启行"
+    },
+    {
+      "source_name": "冠宇集团",
+      "canonical_name": "冠宇集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://cosmx.zhiye.com/campus/jobs?shareId=81f58b1a-e7be-43bf-87da-b2077ca1601e&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "冠宇集团"
+    },
+    {
+      "source_name": "冰川网络",
+      "canonical_name": "冰川网络",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://bingchuan1.zhiye.com/campus/jobs?shareId=96e146eb-c9af-4434-93d6-e68b09b451e9&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "冰川网络"
+    },
+    {
+      "source_name": "凌云光",
+      "canonical_name": "凌云光",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/lusterinc/44882?recommendCode=DSzaUcgP#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "凌云光"
+    },
+    {
+      "source_name": "凡岛",
+      "canonical_name": "凡岛",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://job.fandow.com/home?pushCode=XRN8AF9"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "凡岛"
+    },
+    {
+      "source_name": "创维集团",
+      "canonical_name": "创维集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU668e3a541eb8050602c1b176/mc/position/campus?acotycoCode=eojtgn&recruitType=1&isLimitShowPostScope=0"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "创维集团"
+    },
+    {
+      "source_name": "千里科技",
+      "canonical_name": "千里科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/qianli1/147197?recommendCode=DSunz6Nt#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "千里科技"
+    },
+    {
+      "source_name": "华宝新能",
+      "canonical_name": "华宝新能",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://career.hello-tech.com/campus/jobs?shareId=33d74670-8143-435a-8b1e-d747781a1f08&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "华宝新能"
+    },
+    {
+      "source_name": "卓胜微电子",
+      "canonical_name": "卓胜微电子",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://maxscend.zhiye.com/campus/jobs?shareId=538ec1bd-204d-4562-828f-4915ebe319a0&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "卓胜微电子"
+    },
+    {
+      "source_name": "卓越教育",
+      "canonical_name": "卓越教育",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU63366959bef57c270741e2c6/mc/position/campus?acotycoCode=rkkxzz&recruitType=1&isLimitShowPostScope=0"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "卓越教育"
+    },
+    {
+      "source_name": "卓驭-原大疆车载",
+      "canonical_name": "卓驭",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://we.zyt.com/campus/jobs?shareId=5937d9af-0f39-418f-9ea4-c9a5a2c7caca&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "卓驭"
+    },
+    {
+      "source_name": "博众精工",
+      "canonical_name": "博众精工",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://bozhon3.zhiye.com/campus/jobs?shareId=945f5d01-429c-4a55-ba17-128798f145bf&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "博众精工"
+    },
+    {
+      "source_name": "卡方科技",
+      "canonical_name": "卡方科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://kafangtech.jobs.feishu.cn/s/61hqmxKBKTw"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "卡方科技"
+    },
+    {
+      "source_name": "卧安机器人",
+      "canonical_name": "卧安机器人",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://woanhome.zhiye.com/campus/jobs?shareId=d120f246-ea82-4010-ab9a-b58bd85ebf87&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "卧安机器人"
+    },
+    {
+      "source_name": "友塔游戏",
+      "canonical_name": "友塔游戏",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://www.yottagames.com.cn/zh/internal-recommendation?token=480b3cd4a66863e82cb4e2bc1fd60a45-999602-1093058550&sub=077"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "友塔游戏"
+    },
+    {
+      "source_name": "叠纸游戏",
+      "canonical_name": "叠纸游戏",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://career.papegames.com/s/m389ozdCvHA"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "合合信息",
+      "canonical_name": "合合信息",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://intsig.zhiye.com/campus/jobs?shareId=634b9f5d-1456-42a6-82cd-3fe590037c1d&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "合合信息"
+    },
+    {
+      "source_name": "吉比特-雷霆游戏",
+      "canonical_name": "吉比特-雷霆游戏",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://hr.g-bits.com/web/index.html#/post-web/post-list/?referralCode=FH386S"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "吉比特-雷霆游戏"
+    },
+    {
+      "source_name": "同花顺",
+      "canonical_name": "同花顺",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus.10jqka.com.cn/job/list?type=school"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "同花顺"
+    },
+    {
+      "source_name": "启源芯动力",
+      "canonical_name": "启源芯动力",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://spicqyxdl.zhiye.com/campus/jobs?shareId=93e325ca-4993-4b6d-a91e-60f0e34b8c1d&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "启源芯动力"
+    },
+    {
+      "source_name": "哔哩哔哩",
+      "canonical_name": "哔哩哔哩",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://jobs.bilibili.com/campus/positions?token=a337cd2c-d038-411f-ba8a-0b1abf661f06"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "哔哩哔哩"
+    },
+    {
+      "source_name": "嘉为蓝鲸（要先实习转正）",
+      "canonical_name": "嘉为蓝鲸（要先实习转正）",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://canway.m.zhiye.com/JobAd/List?jc=2&shareid=9054f207-bce6-4a12-aba9-315de554ddba&token=62669728473b41e5a55494ddb851158"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": false
+    },
+    {
+      "source_name": "嘉士伯",
+      "canonical_name": "嘉士伯",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/carlsberg/37541?recommendCode=DSBCJFNM#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "嘉士伯"
+    },
+    {
+      "source_name": "四方继保",
+      "canonical_name": "四方继保",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://sf-auto1.zhiye.com/campus/jobs?shareId=86f02a13-0c23-4938-bbae-7c09c9ed3324&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "四方继保"
+    },
+    {
+      "source_name": "固德威",
+      "canonical_name": "固德威",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU630a3a0e2f9d2406b4f6c5f1/pb/school.html?acotycoCode=ibychh&projectId=200701&recruitType=1&isLimitShowPostScope=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "固德威"
+    },
+    {
+      "source_name": "国泰汉帛",
+      "canonical_name": "国泰汉帛",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://jvvyvrptdzz.jobs.feishu.cn/972701/m/position/list?external_referral_code=1M4TA4A"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "国泰汉帛"
+    },
+    {
+      "source_name": "图拉斯（原蓝禾）",
+      "canonical_name": "图拉斯（原蓝禾）",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://lanhevip.jobs.feishu.cn/s/A4zAkYMD9Xs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "图拉斯（原蓝禾）"
+    },
+    {
+      "source_name": "地平线",
+      "canonical_name": "地平线",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU62d915040dcad43c775ec12c/mc/position/campus?acotycoCode=dxwvub&projectId=103302&recruitType=1&isLimitShowPostScope=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "地平线"
+    },
+    {
+      "source_name": "埃科光电",
+      "canonical_name": "埃科光电",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "http://career.i-tek.cn/"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "基恩士",
+      "canonical_name": "基恩士",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://keyence.zhiye.com/campus/detail?jobAdId=85237bb7-cccc-40a8-beeb-cbcb6e97ea86&shareId=da8f1b15-8a84-4a97-854d-c7c168a556d5&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "基恩士"
+    },
+    {
+      "source_name": "大参林医药集团",
+      "canonical_name": "大参林医药集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/dslyy/136052?recommendCode=DSUzgyFM&hash=%23%2Fjobs#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "大参林医药集团"
+    },
+    {
+      "source_name": "大寰机器人",
+      "canonical_name": "大寰机器人",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/dhrobotics/168695?recommendCode=DSDJZVaV#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "大寰机器人"
+    },
+    {
+      "source_name": "天赐材料",
+      "canonical_name": "天赐材料",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU62c3ea6b2f9d241e4c8e45ba/mc/position/campus?acotycoCode=qsjehk&projectId=201701&recruitType=1&isLimitShowPostScope=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "天赐材料"
+    },
+    {
+      "source_name": "太衍私募基金",
+      "canonical_name": "太衍私募基金",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://qcnjp4yi4cew.jobs.feishu.cn/s/erHbISmjI9Y"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "太衍私募基金"
+    },
+    {
+      "source_name": "奥克斯集团",
+      "canonical_name": "奥克斯集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://auxgroup.zhiye.com/campus/jobs?shareId=6275af13-0f7f-4634-b26f-7f02dea33054&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "奥克斯集团"
+    },
+    {
+      "source_name": "好未来产研",
+      "canonical_name": "好未来产研",
+      "tags": [
+        "27届秋招",
+        "实习转正"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/tal/146599?recommendCode=DSCvfGjS#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "学而思"
+    },
+    {
+      "source_name": "好未来集团",
+      "canonical_name": "好未来集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/tal/169887?recommendCode=DSb8Ta8y#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "学而思"
+    },
+    {
+      "source_name": "字节跳动",
+      "canonical_name": "字节跳动",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://job.toutiao.com/s/V2_hObjxdrI"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "学而思",
+      "canonical_name": "学而思",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/tal/148080?recommendCode=DS8pWxXy#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "学而思"
+    },
+    {
+      "source_name": "宁德时代",
+      "canonical_name": "宁德时代",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/catlhr/148948?recommendCode=DSvTFBzE#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "宁德时代"
+    },
+    {
+      "source_name": "宇石空间",
+      "canonical_name": "宇石空间",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/astronstone/168327?recommendCode=DS9marHm#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "宇石空间"
+    },
+    {
+      "source_name": "宇通客车",
+      "canonical_name": "宇通客车",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/su/loawxh"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "宇通客车"
+    },
+    {
+      "source_name": "安克创新",
+      "canonical_name": "安克创新",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://anker-in.jobs.feishu.cn/s/HCwjATb1DUQ"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "安克创新"
+    },
+    {
+      "source_name": "富特科技",
+      "canonical_name": "富特科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/evtech/47503?recommendCode=DS5HrUX6#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "富特科技"
+    },
+    {
+      "source_name": "寒武纪",
+      "canonical_name": "寒武纪",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/recommendation-apply/cambricon/46261?sharePageId=4679744&recommendCode=NTABY2t&codeType=1#/recommendation/page/4679744"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "寒武纪"
+    },
+    {
+      "source_name": "小米集团",
+      "canonical_name": "小米集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://xiaomi.jobs.f.mioffice.cn/s/_3y3FqDMDQ8"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "小米集团"
+    },
+    {
+      "source_name": "小红书",
+      "canonical_name": "小红书",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://job.xiaohongshu.com/link?referer_code=0QR7KCI3CPJA"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "小红书"
+    },
+    {
+      "source_name": "小马智行Pony.ai",
+      "canonical_name": "小马智行Pony.ai",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://ponyai.jobs.feishu.cn/s/9NZJlh4cpL8"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "小马智行"
+    },
+    {
+      "source_name": "小鹏汽车",
+      "canonical_name": "小鹏汽车",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://xiaopeng.jobs.feishu.cn/s/Pycfxid-fok"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "小鹏汽车"
+    },
+    {
+      "source_name": "巨一科技",
+      "canonical_name": "巨一科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/ahjy/168235?recommendCode=DSPQjhw2#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "巨一科技"
+    },
+    {
+      "source_name": "巨人网络",
+      "canonical_name": "巨人网络",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/ztgame/92438?recommendCode=DS8cb6eu#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "巨人网络"
+    },
+    {
+      "source_name": "帆软",
+      "canonical_name": "帆软",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://t6ixa9nyl6.jiandaoyun.com/f/65e1a1308ce7672fded0f0cf?ext=CDSXJ"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": false
+    },
+    {
+      "source_name": "广电运通",
+      "canonical_name": "广电运通",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/grgbanking/148986?recommendCode=DSDGMxgK#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "光电运通"
+    },
+    {
+      "source_name": "广联达",
+      "canonical_name": "广联达",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/glodon/91966?recommendCode=DSSVc2yt#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "广联达"
+    },
+    {
+      "source_name": "库洛游戏",
+      "canonical_name": "库洛游戏",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://kurogame.jobs.feishu.cn/s/2iN6KLsmOZw"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "库洛游戏"
+    },
+    {
+      "source_name": "康冠科技",
+      "canonical_name": "康冠科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://careerktc.zhiye.com/campus/jobs?shareId=5fed87ee-bf07-40c9-9f45-bae4db536355&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "康冠科技"
+    },
+    {
+      "source_name": "康龙化成",
+      "canonical_name": "康龙化成",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/pharmaron/45318?recommendCode=DSFv5WjR#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "康龙化成"
+    },
+    {
+      "source_name": "开立医疗",
+      "canonical_name": "开立医疗",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/sonoscape/94392?recommendCode=DS9HkRZd#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "开立医疗"
+    },
+    {
+      "source_name": "影石Insta360",
+      "canonical_name": "影石",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://arashivision.jobs.feishu.cn/s/hRGQvzCxIdk"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "影石"
+    },
+    {
+      "source_name": "徐福记",
+      "canonical_name": "徐福记",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/hfc-foods/102201?recommendCode=DSPDu3b3#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "徐福记"
+    },
+    {
+      "source_name": "得物",
+      "canonical_name": "得物",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://poizon.jobs.feishu.cn/s/i75Oh6bYCic"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "得物"
+    },
+    {
+      "source_name": "微步在线",
+      "canonical_name": "微步在线",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/threatbook/39679?recommendCode=DSUK2sNv#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "微步在线"
+    },
+    {
+      "source_name": "快手",
+      "canonical_name": "快手",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus.kuaishou.cn/recruit/campus/e/h5/#/campus/jobs?code=campusNTjtWbAZm"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "思摩尔",
+      "canonical_name": "思摩尔",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/smoore/150918?recommendCode=DS8x9P6R#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "思摩尔"
+    },
+    {
+      "source_name": "思特威",
+      "canonical_name": "思特威",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/smartsenstech1/56088?recommendCode=DS2NEFMs#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "思特威"
+    },
+    {
+      "source_name": "思谋科技",
+      "canonical_name": "思谋科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/smartmore/40506?recommendCode=DSxFbuP1#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "思谋科技"
+    },
+    {
+      "source_name": "恒生电子",
+      "canonical_name": "恒生电子",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus.hundsun.com/campus/jobs?shareId=5ef11668-f2a7-43cc-acf5-089cf81ba301&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "恒生"
+    },
+    {
+      "source_name": "扬腾创新",
+      "canonical_name": "扬腾创新",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://yangtenginnovation-compus.zhiye.com/campus/jobs?shareId=8c456ab5-f1c8-46cd-8a91-037d42e2bcaa&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "扬腾创新"
+    },
+    {
+      "source_name": "拓竹科技Bambu Lab",
+      "canonical_name": "拓竹科技Bambu Lab",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://bambulab.jobs.feishu.cn/s/bWi9cqMTpyw"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "拓竹科技"
+    },
+    {
+      "source_name": "招银云创",
+      "canonical_name": "招银云创",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/mbcloud/150116?recommendCode=DSQ3A12u#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "招银云创"
+    },
+    {
+      "source_name": "招银网络科技",
+      "canonical_name": "招银网络科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://cmbnt.cmbchina.com/pages/bindInvited.html?qrCode=7499CB23C54E42A79A38081473616DA2&rand=1785331872379&blNtCode=JFDZCW"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "招商银行招银网络科技"
+    },
+    {
+      "source_name": "拼多多",
+      "canonical_name": "拼多多",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://careers.pddglobalhr.com/campus/grad?t=AOT9z6aa0x"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "搜狐畅游",
+      "canonical_name": "搜狐畅游",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/cyou-inc/42233?recommendCode=DS73VDVC#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "搜狐畅游"
+    },
+    {
+      "source_name": "搜狐集团",
+      "canonical_name": "搜狐集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/sohu/36036?recommendCode=DSRxwjqx#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "搜狐集团-AI专项"
+    },
+    {
+      "source_name": "文远知行WeRid",
+      "canonical_name": "文远知行",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/jingchi/2137?recommendCode=DSTrUGcq#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "文远知行"
+    },
+    {
+      "source_name": "新易盛",
+      "canonical_name": "新易盛",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://eoptolink.zhiye.com/campus/jobs?shareId=76773328-5a2b-44f4-acf0-d9c800de01a0&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "成都新易盛通信"
+    },
+    {
+      "source_name": "新能安",
+      "canonical_name": "新能安",
+      "tags": [
+        "27届秋招",
+        "顶尖人才计划"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU6618fd381eb8053acd5fc2b9/mc/position/campus?acotycoCode=uozkbk&projectId=505401%2C505501&recruitType=1&isLimitShowPostScope=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "新能安"
+    },
+    {
+      "source_name": "昂科技术",
+      "canonical_name": "昂科技术",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://s.51job.com/2vSIuH"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": false
+    },
+    {
+      "source_name": "明源云",
+      "canonical_name": "明源云",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/mingyuan/168644?recommendCode=DSEKM1tG#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "明源云"
+    },
+    {
+      "source_name": "易点云",
+      "canonical_name": "易点云",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://recruit-pro.edianyun.com/#/wap/recruitment-collect"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "易点云"
+    },
+    {
+      "source_name": "春风动力",
+      "canonical_name": "春风动力",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://cfmoto.zhiye.com/campus/jobs?shareId=d6e4e863-ab41-4ef3-b95c-e5625950bedc&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "春风动力"
+    },
+    {
+      "source_name": "普渡机器人",
+      "canonical_name": "普渡机器人",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://pudutech1.zhiye.com/campus/jobs?shareId=d3fd4e26-5274-4480-971b-517fc2189434&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "智元机器人",
+      "canonical_name": "智元机器人",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://agirobot.jobs.feishu.cn/s/hMjzLGIaTnQ"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "智元机器人"
+    },
+    {
+      "source_name": "智平方",
+      "canonical_name": "智平方",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://ai2robotics.jobs.feishu.cn/s/pXrf5XaP3Po"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "智方"
+    },
+    {
+      "source_name": "智驾新程 neueHCT",
+      "canonical_name": "智驾新程 neueHCT",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://neuehct.jobs.feishu.cn/s/da663t3OFv4"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "智驾新程 neueHCT"
+    },
+    {
+      "source_name": "曦望Sunrise",
+      "canonical_name": "曦望Sunrise",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://jobs.sunrise-ai.com/s/rdEbUxEZUvo"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "曦望Sunrise"
+    },
+    {
+      "source_name": "杉川机器人",
+      "canonical_name": "杉川机器人",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/su/cbijef"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "李森智能",
+      "canonical_name": "李森智能",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://lisen.zhiye.com/campus/jobs?shareId=533d1cff-a525-46dc-8c5d-46445deabad4&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "李森智能"
+    },
+    {
+      "source_name": "杰瑞集团",
+      "canonical_name": "杰瑞集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://future.jereh.com/campus/jobs?shareId=9c94dbea-93bf-4a5e-b2ad-eca3e586bd15&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "杰瑞集团"
+    },
+    {
+      "source_name": "极兔速递",
+      "canonical_name": "极兔速递",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://jtexpress.jobs.feishu.cn/s/au-hRT9NM5E"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "极兔速递"
+    },
+    {
+      "source_name": "柏楚电子",
+      "canonical_name": "柏楚电子",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://fscut.zhiye.com/campus/jobs?shareId=32ec46d5-492a-4294-95af-5a8c8ac58a56&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "柏楚电子"
+    },
+    {
+      "source_name": "柠檬微趣",
+      "canonical_name": "柠檬微趣",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/su/tergdo"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "树根互联",
+      "canonical_name": "树根互联",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://irootech.zhiye.com/campus/jobs?shareId=80f4049b-f7af-4f8d-bccb-8622eed42879&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "树根互联"
+    },
+    {
+      "source_name": "格力电器",
+      "canonical_name": "格力电器",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://zhaopin.greeyun.com/home"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "格力"
+    },
+    {
+      "source_name": "格蓝若",
+      "canonical_name": "格蓝若",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://oetsky.zhiye.com/campus/jobs?shareId=0661f472-750c-44ff-9387-9d56a6027b3e&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "格蓝若"
+    },
+    {
+      "source_name": "欣旺达",
+      "canonical_name": "欣旺达",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://sunwodacampus.zhiye.com/campus/jobs?shareId=1336470f-d3ff-43b5-ab65-5c31fa08db33&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "欣旺达"
+    },
+    {
+      "source_name": "正浩EcoFlow",
+      "canonical_name": "正浩EcoFlow",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://jobs.ecoflow.com/s/ZyFxOlW1sLI"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "正浩EcoFlow"
+    },
+    {
+      "source_name": "汇川技术",
+      "canonical_name": "汇川技术",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://recruit.inovance.com/#/jobs?ref=AHPNGR5"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "江苏海四达电源",
+      "canonical_name": "江苏海四达电源",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://highstar.zhiye.com/campus/jobs?shareId=0619c7c1-77c4-40bd-808c-60d38fffdeac&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "江苏海四达电源"
+    },
+    {
+      "source_name": "沐曦股份",
+      "canonical_name": "沐曦股份",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/metax-tech/58131?recommendCode=DSjhTZe8#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "沐曦股份"
+    },
+    {
+      "source_name": "沐瞳科技",
+      "canonical_name": "沐瞳科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://moonton.jobs.feishu.cn/s/VnhMKl-OMYc"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "沐瞳科技"
+    },
+    {
+      "source_name": "波克",
+      "canonical_name": "波克",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://boke.jobs.feishu.cn/s/FdZL0oHPUYg"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "波克"
+    },
+    {
+      "source_name": "洲明科技",
+      "canonical_name": "洲明科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://unilumin.zhiye.com/campus/jobs?shareId=e4d202b7-39b7-455a-bea5-338561168759&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "洲明科技"
+    },
+    {
+      "source_name": "浩鲸科技",
+      "canonical_name": "浩鲸科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://iwhalecloud1.zhiye.com/campus/jobs?shareId=499ac060-630c-4d66-8cef-44bccacade79&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "浩鲸科技"
+    },
+    {
+      "source_name": "浪潮集团",
+      "canonical_name": "浪潮集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wx64310b3064348282.hcmcloud.cn/recruit#/common_model_nav_anonymous/multi?c_model=_HB4_UmVsZWFzZUpvYk1ncg%253D%253D&meta_state=_HB4_aW50ZXJuYWxfY2FuZGlkYXRl&advance_filter_dict=%7B%22job_class%22:%22%E6%A0%A1%E5%9B%AD%E6%8B%9B%E8%81%98%22,%22select_depart%22:false%7D&key=_HB4_cmVjb21tZW5kX2pvYl9saXN0&model=_HB4_UmVjcnVpdFJlY29tbWVuZA%253D%253D&nav_state=_HB4_aW50ZXJuYWxfY2FuZGlkYXRl&custom_params=_HB4_eyJpbnRlcm5hbF9jb2RlIjoieEdpb0pBaCJ9&company_id=_HB4_OA%253D%253D"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": false
+    },
+    {
+      "source_name": "海信集团",
+      "canonical_name": "海信集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://jobs.hisense.com/campus/jobs?shareId=321d106b-366a-410e-af97-4e614201c0f5&shareSource=2&qr=1&memory=%7B%7D&silence=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "海信集团"
+    },
+    {
+      "source_name": "海天味业",
+      "canonical_name": "海天味业",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://wecruit.hotjob.cn/SU6322ee8c0dcad46a862dcbe5/mc/position/campus?acotycoCode=bgpkci&recruitType=1&isLimitShowPostScope=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "海天味业"
+    },
+    {
+      "source_name": "海尔智家",
+      "canonical_name": "海尔智家",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://maker.haier.net/client/campusmobile/activity/id/68/fid.html?inviter_code=VElJMWI2OExmV0k9"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "海尔"
+    },
+    {
+      "source_name": "海尔智家-AI专项",
+      "canonical_name": "海尔智家-AI专项",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://maker.haier.net/client/campusmobile/researchlist/id/68/fid/30.html?inviter_code=VElJMWI2OExmV0k9"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "海尔"
+    },
+    {
+      "source_name": "海康威视",
+      "canonical_name": "海康威视",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campushr.hikvision.com/school?schoolType=nozxf&activeTab=0"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "海能达通信",
+      "canonical_name": "海能达通信",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/hytera/182194?recommendCode=DSnApMzB#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "海能达通信"
+    },
+    {
+      "source_name": "深信服",
+      "canonical_name": "深信服",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/recommendation-apply/sangfor/5369?sharePageId=4335123&amp;recommendCode=NTAeTq2&amp;codeType=1#/jobs?project=100128211"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "深蓝互动",
+      "canonical_name": "深蓝互动",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/blueinteractive/38434?recommendCode=DSZtcZQB#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "深蓝互动"
+    },
+    {
+      "source_name": "游卡",
+      "canonical_name": "游卡",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus.yokaverse.com/"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "滴滴",
+      "canonical_name": "滴滴",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/didiglobal/96064?recommendCode=DS621uuv#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "滴滴"
+    },
+    {
+      "source_name": "点点互动",
+      "canonical_name": "点点互动",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://ddhd.cn/campus/jobs?shareId=3b4bf1d5-e3dc-448d-8434-53baa5d29cfd&shareSource=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "点点互动"
+    },
+    {
+      "source_name": "燧原科技",
+      "canonical_name": "燧原科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/enflame/168420?locale=zh-CN#/"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "燧原科技"
+    },
+    {
+      "source_name": "爱迪特Aidite",
+      "canonical_name": "爱迪特Aidite",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://www.aidite.com/zh/positionPage"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "爱迪特Aidite"
+    },
+    {
+      "source_name": "牧原集团",
+      "canonical_name": "牧原集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/muyuan/70116?recommendCode=DSCHtb4w#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "牧原集团"
+    },
+    {
+      "source_name": "特斯拉",
+      "canonical_name": "特斯拉",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/tesla/41460?recommendCode=DSs8kUEa#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "特斯拉"
+    },
+    {
+      "source_name": "特锐德",
+      "canonical_name": "特锐德",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://tgood.zhiye.com/campus/jobs?shareId=1eb59034-b367-4225-b950-c6366cff7d78&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "特锐德"
+    },
+    {
+      "source_name": "理想汽车",
+      "canonical_name": "理想汽车",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://li.jobs.feishu.cn/s/tJF4dkXEZkI"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "理想汽车"
+    },
+    {
+      "source_name": "瑞声科技",
+      "canonical_name": "瑞声科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://talent.aactechnologies.com/campus/m/position/list?external_referral_code=8RY44XV"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "瑞声科技"
+    },
+    {
+      "source_name": "电科金仓",
+      "canonical_name": "电科金仓",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/kingbase/47259?recommendCode=DShDN9hm#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "电科金仓"
+    },
+    {
+      "source_name": "百度-校招&管培生",
+      "canonical_name": "百度",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://dwz.cn/BX4X1k6w"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "盛弘电气",
+      "canonical_name": "盛弘电气",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/sinexcel/74287?recommendCode=DSwpMpuY#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "宏盛股份"
+    },
+    {
+      "source_name": "睿创微纳",
+      "canonical_name": "睿创微纳",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://raytrontek1.zhiye.com/campus/jobs?shareId=b37b4ca4-914b-49a6-ad25-313181526e0b&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "睿联技术",
+      "canonical_name": "睿联技术",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/reo/136006?recommendCode=DSyaa93G#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "睿联技术"
+    },
+    {
+      "source_name": "禾赛科技",
+      "canonical_name": "禾赛科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://kwh0jtf778.jobs.feishu.cn/s/fT1cgIjWdbE"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "禾赛科技"
+    },
+    {
+      "source_name": "禾迈股份",
+      "canonical_name": "禾迈股份",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/hoymiles/70377?recommendCode=DSHcSR6p#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "禾迈股份"
+    },
+    {
+      "source_name": "科华集团",
+      "canonical_name": "科华集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/kehua/92510?recommendCode=DSHV5wbF#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "科华集团"
+    },
+    {
+      "source_name": "科大讯飞",
+      "canonical_name": "科大讯飞",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://iflytek.zhiye.com/campus/jobs?shareId=3d18c956-2820-45fe-80a9-f6f76308cc9f&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "科大讯飞"
+    },
+    {
+      "source_name": "科大讯飞-飞凡计划",
+      "canonical_name": "科大讯飞",
+      "tags": [
+        "27届秋招",
+        "顶尖人才计划"
+      ],
+      "links": [
+        "https://iflytek.zhiye.com/5/jobs?shareId=42d8a3f4-fb5b-4fbb-b3cd-bb1049ae71c0&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "科大讯飞"
+    },
+    {
+      "source_name": "立讯技术",
+      "canonical_name": "立讯技术",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://luxshare-tech.zhiye.com/campus/jobs?shareId=3f27582d-0e97-4f27-96f4-22048a62f3b4&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "立讯技术"
+    },
+    {
+      "source_name": "米哈游",
+      "canonical_name": "米哈游",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://jobs.mihoyo.com/m/?recommendationCode=ST4G&isRecommendation=true#/campus/position"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "经纬恒润",
+      "canonical_name": "经纬恒润",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/jingweihengrun/168294?recommendCode=DSkAKetZ#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "网易互娱",
+      "canonical_name": "网易互娱",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus.game.163.com?referralCode=pASpTr"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "网易互联网",
+      "canonical_name": "网易互联网",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus.163.com/bolehtml/home?projectId=103&type=99&boleId=e1dd4e319e73d68a&boleType=2&signature=133fad406699e30097ce17c376500d6c&isShare=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": false
+    },
+    {
+      "source_name": "网易雷火",
+      "canonical_name": "网易雷火",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://xiaozhao.leihuo.netease.com/neitui/#/?introduceId=xKWmfq9qD9DEtsOn"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "美团",
+      "canonical_name": "美团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://zhaopin.meituan.com/m/campus?zp-from=hiring-campus-bole-elephant&staffSsoId=23761311"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "美的集团",
+      "canonical_name": "美的集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://careers.midea.com/recruit-school-wechat/job?mvp_code=M8621M&type=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "美的"
+    },
+    {
+      "source_name": "群核科技",
+      "canonical_name": "群核科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/qunhemail/2832?recommendCode=DSVyddjj#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "群核信息"
+    },
+    {
+      "source_name": "联合利华",
+      "canonical_name": "联合利华",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://xym.51job.com/VueData/neitui/user/#/?ehireid=8833740&prd=xyznt&ruid=162491&referrer=o0cn56rchou82EDTyJc1LYCY0txw"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": false
+    },
+    {
+      "source_name": "联想",
+      "canonical_name": "联想",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://talent.lenovo.com.cn/campus?projectType=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "聚宽投资",
+      "canonical_name": "聚宽投资",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/joinquant/92347?recommendCode=DS86UpyF#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "聚宽投资"
+    },
+    {
+      "source_name": "腾讯",
+      "canonical_name": "腾讯",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://join.qq.com/resume.html?k=vPTeIjTrFkEs-zVHQbPCap-koXnwW3cpRelOqQ2wf0I"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "腾讯云智研发",
+      "canonical_name": "腾讯云智研发",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://join.tencent-cloud.com"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "腾讯云智研发"
+    },
+    {
+      "source_name": "腾讯音乐",
+      "canonical_name": "腾讯音乐",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://join.tencentmusic.com/campus/post?type=10"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "腾讯音乐"
+    },
+    {
+      "source_name": "自变量机器人",
+      "canonical_name": "自变量机器人",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://x2-robot.jobs.feishu.cn/s/cr-OoWdwAvM"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "自变量机器人"
+    },
+    {
+      "source_name": "舜宇集团",
+      "canonical_name": "舜宇集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/sunnyoptical/45602?recommendCode=DSm39D5X#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "舜宇集团"
+    },
+    {
+      "source_name": "英科再生",
+      "canonical_name": "英科再生",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://global-intco.jobs.feishu.cn/s/GPVzkGAwcl0"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "英科再生"
+    },
+    {
+      "source_name": "英科医疗",
+      "canonical_name": "英科医疗",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://global-intco.jobs.feishu.cn/s/NZW15xXwo6A"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "英科再生"
+    },
+    {
+      "source_name": "荣耀",
+      "canonical_name": "荣耀",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://career.honor.com/SU60ee9e002f9d247b98da489e/mc/position/campus?acotycoCode=mmjiqp&projectId=101401%2C101601%2C101801%2C101901&recruitType=1&isLimitShowPostScope=1"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "莉莉丝游戏",
+      "canonical_name": "莉莉丝游戏",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://lilithgames.jobs.feishu.cn/s/LS13zX5I1lc"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "莉莉丝"
+    },
+    {
+      "source_name": "蔚来汽车",
+      "canonical_name": "蔚来汽车",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://nio.jobs.feishu.cn/s/7eS_xvAK4kI"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "蔚来"
+    },
+    {
+      "source_name": "认养一头牛",
+      "canonical_name": "认养一头牛",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://ryytn.zhiye.com/campus/jobs?shareId=4685c8fd-55c5-4604-a10a-e405613d7923&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "认养一头牛"
+    },
+    {
+      "source_name": "诗悦网络",
+      "canonical_name": "诗悦网络",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/shiyuehr/72055?recommendCode=DS2gf3y9#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "诗悦网络"
+    },
+    {
+      "source_name": "诺瓦星云",
+      "canonical_name": "诺瓦星云",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://novastar.zhiye.com/campus/jobs?shareId=d040a3b6-f740-4953-a20f-02d1eab54cc3&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "诺瓦星云"
+    },
+    {
+      "source_name": "象屿股份",
+      "canonical_name": "象屿股份",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://xiangyu.zhiye.com/campus/jobs?shareId=04ba3846-f95d-4166-84f0-f7ae96c29fe1&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "象屿股份"
+    },
+    {
+      "source_name": "货拉拉",
+      "canonical_name": "货拉拉",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/huolalahr/98660?recommendCode=DSVVJ2Jg#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "深圳依时货拉拉"
+    },
+    {
+      "source_name": "路特ROOT",
+      "canonical_name": "路特ROOT",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/rootglobal/44850?recommendCode=DS4eY69C#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "路特ROOT"
+    },
+    {
+      "source_name": "轻舟智航",
+      "canonical_name": "轻舟智航",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://qcraft.jobs.feishu.cn/s/yxH8NMS4XGc"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "轻舟智航"
+    },
+    {
+      "source_name": "迅雷",
+      "canonical_name": "迅雷",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/xunlei/26600?recommendCode=DSdSNKR9#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "迅雷"
+    },
+    {
+      "source_name": "远景能源",
+      "canonical_name": "远景能源",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/envisiongroup/43123?recommendCode=DSc3uBTQ#/jobs?department%5B0%5D=958964&project%5B0%5D=100124183&page=1&anchorName=jobsList"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "远景科技"
+    },
+    {
+      "source_name": "途游游戏",
+      "canonical_name": "途游游戏",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/tuyoogame/146219?recommendCode=DSQKjZuQ#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "途游"
+    },
+    {
+      "source_name": "途虎养车",
+      "canonical_name": "途虎养车",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/tuhu/28398?recommendCode=DS3hMB6E#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "途虎养车"
+    },
+    {
+      "source_name": "酷睿程",
+      "canonical_name": "酷睿程",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://carizon.jobs.feishu.cn/s/gLmpfqWvVjg"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "金升阳",
+      "canonical_name": "金升阳",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://mornsun.zhiye.com/campus/jobs?shareId=f30af64b-ed71-4054-b728-434b2e12a732&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "广州金升阳"
+    },
+    {
+      "source_name": "金山办公-云杉计划",
+      "canonical_name": "金山办公-云杉计划",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/wps/41436?recommendCode=DS5u51CA#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "金山办公"
+    },
+    {
+      "source_name": "金证科技",
+      "canonical_name": "金证科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://szkingdom1.zhiye.com/campus/jobs?shareId=e1c27e99-3f78-4776-ad7f-fb290455858f&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "金证科技"
+    },
+    {
+      "source_name": "银河通用",
+      "canonical_name": "银河通用",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/yinhetongyong/165930?recommendCode=DSmgbJ2x#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true
+    },
+    {
+      "source_name": "银泰商业",
+      "canonical_name": "银泰商业",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "http://talent.intime.com.cn/campus/jobs?shareId=48780f33-941e-46a4-814d-9799f9112248&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "银泰商业"
+    },
+    {
+      "source_name": "锐捷网络",
+      "canonical_name": "锐捷网络",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/ruijie/136206?recommendCode=DSAd4zdj#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "锐捷网络"
+    },
+    {
+      "source_name": "锐明技术",
+      "canonical_name": "锐明技术",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://streamax.zhiye.com/campus/jobs?shareId=ba0fc90a-a0ae-4f5e-ba4f-801c95a288b3&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "锐明技术"
+    },
+    {
+      "source_name": "阳光保险",
+      "canonical_name": "阳光保险",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://sunzhaopin.sinosig.com/campus/jobs?shareId=e5550a73-c29d-4fe7-a89b-9bde517c7e1e&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "阳光保险"
+    },
+    {
+      "source_name": "阿里-平头哥",
+      "canonical_name": "阿里-平头哥",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwNKNpzURtSZ49iAMry0CzOjSEORZHsCnVIx7T6SWUAi6&batchId=100000760001&filterParams=%7B%22customDept%22%3A%5B%22PQHNXW%22%5D%7D"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "阿里淘天"
+    },
+    {
+      "source_name": "阿里-淘宝闪购",
+      "canonical_name": "阿里-淘宝闪购",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwCvUxINoO65Hj4CVpR0aEAjwb4opcJF_WOObjMgIXMvD&batchId=100000760001"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "阿里淘天"
+    },
+    {
+      "source_name": "阿里-菜鸟",
+      "canonical_name": "阿里-菜鸟",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwEwG7yB4IkIKUM0CjrNwc98%3D&batchId=100000540002"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "阿里淘天"
+    },
+    {
+      "source_name": "阿里-蚂蚁集团",
+      "canonical_name": "阿里-蚂蚁集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://hrrecommend.antgroup.com/job-list.html?source=campus_external_recommend&code=T_dN2oDMsas%2F7M1pcbeNZgPQyH2sYJEaioT37binMeo%3D"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "阿里-蚂蚁集团"
+    },
+    {
+      "source_name": "阿里云",
+      "canonical_name": "阿里云",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwDVLnpEHKJTAjcnECncYuxndfqYQBzl0DngyL4uLeJs6&batchId=100000760001"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "阿里淘天"
+    },
+    {
+      "source_name": "阿里云瓴羊",
+      "canonical_name": "阿里云瓴羊",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://alidocs.dingtalk.com/notable/share/form/v01eYVOL5ozy48eAlpz_dv19yqvsgs3oebp3pcjys_1qX0QQ0?utm_source=qrcode_form&source=qrcode"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "阿里云瓴羊"
+    },
+    {
+      "source_name": "阿里国际",
+      "canonical_name": "阿里国际",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwFPNyFXy7z8Cvn%2Fa11wIKv9lEosT8v48VQGuA47YqF_j&batchId=100000760001"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "阿里淘天"
+    },
+    {
+      "source_name": "阿里淘天",
+      "canonical_name": "阿里淘天",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus-talent.alibaba.com/campus/position?campusShareCode=hmSBcg4U%2FkdbfPRQ42bRwDcfBaJ2CesAlc%2FvqOMYbBymmzBp0pRZjHku53ln26c1&batchId=100000760001"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "阿里淘天"
+    },
+    {
+      "source_name": "阿里灵犀互娱",
+      "canonical_name": "阿里灵犀互娱",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://campus-talent.alibaba.com/campus/position?campusShareCode=pVTFwhdbMZWGIxcVKETbpXPhlMU46yv_zbk6tqVPyRs%3D&batchId=100000540002"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "阿里淘天"
+    },
+    {
+      "source_name": "雷赛智能",
+      "canonical_name": "雷赛智能",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus-recruitment/leisai/146886?recommendCode=DSaBjkyH#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "雷赛智能"
+    },
+    {
+      "source_name": "韶音科技",
+      "canonical_name": "韶音科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/campus_apply/aftershokzhr/36940?recommendCode=DSu9Z4sz#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "韶音科技"
+    },
+    {
+      "source_name": "飞步科技",
+      "canonical_name": "飞步科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus-recruitment/fabu/56114?recommendCode=DSgZsTrZ#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "飞步科技"
+    },
+    {
+      "source_name": "飞鱼科技",
+      "canonical_name": "飞鱼科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/feiyu/1633?recommendCode=DSFHF9rV#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "飞羽科技"
+    },
+    {
+      "source_name": "骑士集团",
+      "canonical_name": "骑士集团",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/black-unique/29232?recommendCode=DSv6KdHC#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "骑士集团"
+    },
+    {
+      "source_name": "高标科技",
+      "canonical_name": "高标科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://kjgb.zhiye.com/campus/jobs?shareId=3cef82ab-bf24-4225-9f23-ee18ced3ce45&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "高标科技"
+    },
+    {
+      "source_name": "高途",
+      "canonical_name": "高途",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/bjhl/102145?recommendCode=DSAhQp9b#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "高途"
+    },
+    {
+      "source_name": "高露洁",
+      "canonical_name": "高露洁",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://colgate.zhiye.com/campus/jobs?shareId=b387fafc-5d32-459d-8590-5c04a942b519&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "高露洁"
+    },
+    {
+      "source_name": "鸿擎科技",
+      "canonical_name": "鸿擎科技",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://qcnhg4ksaiwt.jobs.feishu.cn/257870/m/?external_referral_code=92AJ8US"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "鸿擎科技"
+    },
+    {
+      "source_name": "鹏芯微",
+      "canonical_name": "鹏芯微",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://career.pxwsemi.com/campus/jobs?shareId=b7ba1868-3017-4fbc-beb4-6fa0733a2d2d&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "鹏芯微"
+    },
+    {
+      "source_name": "鹰角网络",
+      "canonical_name": "鹰角网络",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/m/recommendation-apply/hypergryph/26594?sharePageId=4654413&amp;recommendCode=NTA6WPs&amp;codeType=1#/recommendation/page/4654413"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "鹰角网络"
+    },
+    {
+      "source_name": "黑白调-傲风",
+      "canonical_name": "黑白调-傲风",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://app.mokahr.com/campus_apply/heibaidiao/54126?recommendCode=DSBjx3ZQ#/jobs"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "黑白调-傲风"
+    },
+    {
+      "source_name": "黑芝麻智能",
+      "canonical_name": "黑芝麻智能",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://bsthr.zhiye.com/campus/jobs?shareId=49723520-dbb6-40b1-a6fb-4e25245409cb&shareSource=2"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": true,
+      "matched_company": "黑芝麻智能"
+    },
+    {
+      "source_name": "龙湖集团华西地区",
+      "canonical_name": "龙湖集团华西地区",
+      "tags": [
+        "27届秋招"
+      ],
+      "links": [
+        "https://点击后面图片投递内推"
+      ],
+      "source_status": "strict_formal",
+      "excluded_tags": [],
+      "in_config": false
+    }
+  ],
+  "covered": 245,
+  "needs_integration": 9,
+  "auto_onboarding": [
+    {
+      "name": "MDPI",
+      "url": "https://mdpi.cn/career/recruit/ca-recruit/position?email=3341436634@qq.com",
+      "crawler": "render",
+      "status": "needs_review",
+      "job_count": 0,
+      "formal_count": 0,
+      "reason": "render 返回 0 个岗位"
+    },
+    {
+      "name": "三环集团",
+      "url": "https://hr.cctc.cc/school?sourceCode=869573&isRecommendCode=true",
+      "crawler": "render",
+      "status": "needs_review",
+      "job_count": 0,
+      "formal_count": 0,
+      "reason": "render 返回 0 个岗位"
+    },
+    {
+      "name": "嘉为蓝鲸（要先实习转正）",
+      "url": "https://canway.m.zhiye.com/JobAd/List?jc=2&shareid=9054f207-bce6-4a12-aba9-315de554ddba&token=62669728473b41e5a55494ddb851158",
+      "crawler": "beisen",
+      "status": "needs_review",
+      "job_count": 0,
+      "formal_count": 0,
+      "reason": "beisen 返回 0 个岗位"
+    },
+    {
+      "name": "帆软",
+      "url": "https://t6ixa9nyl6.jiandaoyun.com/f/65e1a1308ce7672fded0f0cf?ext=CDSXJ",
+      "crawler": "render",
+      "status": "needs_review",
+      "job_count": 0,
+      "formal_count": 0,
+      "reason": "render 返回 0 个岗位"
+    },
+    {
+      "name": "昂科技术",
+      "url": "https://s.51job.com/2vSIuH",
+      "crawler": "render",
+      "status": "needs_review",
+      "job_count": 0,
+      "formal_count": 0,
+      "reason": "render 返回 0 个岗位"
+    },
+    {
+      "name": "浪潮集团",
+      "url": "https://wx64310b3064348282.hcmcloud.cn/recruit#/common_model_nav_anonymous/multi?c_model=_HB4_UmVsZWFzZUpvYk1ncg%253D%253D&meta_state=_HB4_aW50ZXJuYWxfY2FuZGlkYXRl&advance_filter_dict=%7B%22job_class%22:%22%E6%A0%A1%E5%9B%AD%E6%8B%9B%E8%81%98%22,%22select_depart%22:false%7D&key=_HB4_cmVjb21tZW5kX2pvYl9saXN0&model=_HB4_UmVjcnVpdFJlY29tbWVuZA%253D%253D&nav_state=_HB4_aW50ZXJuYWxfY2FuZGlkYXRl&custom_params=_HB4_eyJpbnRlcm5hbF9jb2RlIjoieEdpb0pBaCJ9&company_id=_HB4_OA%253D%253D",
+      "crawler": "render",
+      "status": "needs_review",
+      "job_count": 0,
+      "formal_count": 0,
+      "reason": "render 返回 0 个岗位"
+    },
+    {
+      "name": "网易互联网",
+      "url": "https://campus.163.com/bolehtml/home?projectId=103&type=99&boleId=e1dd4e319e73d68a&boleType=2&signature=133fad406699e30097ce17c376500d6c&isShare=1",
+      "crawler": "render",
+      "status": "needs_review",
+      "job_count": 0,
+      "formal_count": 0,
+      "reason": "render 返回 0 个岗位"
+    },
+    {
+      "name": "联合利华",
+      "url": "https://xym.51job.com/VueData/neitui/user/#/?ehireid=8833740&prd=xyznt&ruid=162491&referrer=o0cn56rchou82EDTyJc1LYCY0txw",
+      "crawler": "render",
+      "status": "needs_review",
+      "job_count": 0,
+      "formal_count": 0,
+      "reason": "render 返回 0 个岗位"
+    },
+    {
+      "name": "龙湖集团华西地区",
+      "url": "https://点击后面图片投递内推",
+      "crawler": "render",
+      "status": "needs_review",
+      "job_count": 0,
+      "formal_count": 0,
+      "reason": "render 返回 0 个岗位"
+    }
+  ]
+}
