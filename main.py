@@ -210,6 +210,17 @@ def main():
             )
         except Exception as exc:
             logger.warning("腾讯文档 27届秋招前置检查失败：%s", exc)
+    else:
+        try:
+            source_monitor = qq_docs_27_autumn_monitor.run(config["companies"])
+            qq_docs_27_autumn_monitor.attach_official_campaign_urls(
+                source_monitor["rows"], config["companies"]
+            )
+            qq_docs_27_autumn_monitor.attach_trusted_cohort_evidence(
+                source_monitor["rows"], config["companies"]
+            )
+        except Exception as exc:
+            logger.warning("SKIP_CRAWL 模式下加载腾讯文档27届兜底证据跳过：%s", exc)
 
     profile_path = Path(
         os.environ.get("PROFILE_PATH", Path(__file__).parent / "profile.yaml")
@@ -280,6 +291,24 @@ def main():
 
     if skip_crawl:
         logger.info("已启用 SKIP_CRAWL=1，跳过爬虫抓取阶段，直接基于本地数据库评估与生成报告")
+        unscreened_active = [
+            job for job in db_module.get_active_jobs(conn)
+            if job_cohorts.is_confirmed_current(job)
+            and not str(job.get("screening_tier") or "").strip()
+        ]
+        if unscreened_active:
+            decisions = []
+            for job in unscreened_active:
+                tier = (
+                    db_module.get_screening_tier(conn, job, analyzer.SCREENING_VERSION)
+                    or analyzer.local_screening_tier(job, profile)
+                )
+                decisions.append((job, tier))
+            db_module.save_screening_tiers(conn, decisions, analyzer.SCREENING_VERSION)
+            db_module.update_existing_job_screening_tiers(conn, decisions)
+            purged_c = db_module.purge_screening_tier_c_jobs(conn)
+            if purged_c:
+                logger.info("SKIP_CRAWL 模式下已补全分级并清理 %d 条 C 档非目标岗位", purged_c)
     else:
         logger.info("开始抓取 %d 家企业...", len(config["companies"]))
         all_jobs, successful_companies = run_crawlers(config["companies"])

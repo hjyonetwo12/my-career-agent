@@ -20,20 +20,7 @@ from bs4 import BeautifulSoup
 from crawlers.render import render_page
 
 
-def _load_cohort_settings() -> tuple[int, str]:
-    """从 profile.yaml 动态读取 target_cohort(目标届别) 和 job_type(求职模式)"""
-    try:
-        import yaml
-        p_path = Path(__file__).resolve().parent / "profile.yaml"
-        data = yaml.safe_load(p_path.read_text(encoding="utf-8")) or {}
-        cohort = int(data.get("target_cohort") or 2027)
-        job_type = str(data.get("job_type") or "校招与实习").strip()
-        return cohort, job_type
-    except Exception:
-        return 2027, "校招与实习"
-
-
-CURRENT_COHORT, CURRENT_JOB_TYPE = _load_cohort_settings()
+CURRENT_COHORT = 2027
 UNKNOWN_COHORT = 0
 
 _COHORT_PATTERNS = (
@@ -346,36 +333,14 @@ def trusted_source_campaign(config: dict) -> dict | None:
 
 
 def is_confirmed_current(job: dict) -> bool:
-    import job_filters
-    target_cohort, job_type_mode = _load_cohort_settings()
-
-    # 1. 社招岗位永远作为免费参考保留在侧栏，不消耗 AI Token 算分
-    if job_filters.is_social_job(job):
-        return False
-
-    is_intern = job_filters.is_intern_job(job)
     try:
         year = int(job.get("cohort") or 0)
     except (TypeError, ValueError):
         year = 0
-    status = str(job.get("cohort_status") or "")
-
-    # 2. 当 profile.yaml 的 job_type 包含“实习”时（如大二/大三填 实习 或 校招与实习）
-    if "实习" in job_type_mode and is_intern:
-        current_cal_year = datetime.now().year
-        # 只要不是明确写着过去年份（如2025届）的过期实习，全部放行进入 AI 评分
-        if status == "confirmed" and 0 < year < current_cal_year:
-            return False
-        return True
-
-    # 若当前设为纯“实习”模式，则正式校招岗不消耗 Token 算分，归入参考栏
-    if job_type_mode == "实习":
-        return False
-
-    # 3. 当 profile.yaml 的 job_type 包含“校招”时（如大四填 校招，target_cohort: 2029）
-    if is_intern:
-        return False
-    return year == target_cohort and status == "confirmed"
+    return (
+        year == CURRENT_COHORT
+        and str(job.get("cohort_status") or "") == "confirmed"
+    )
 
 
 def annotate_company_jobs(

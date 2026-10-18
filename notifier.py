@@ -54,9 +54,11 @@ _REPORT_BASE_URL = "https://career-agent-4z4.pages.dev"
 
 
 def _report_url(date_str: str = "") -> str:
-    """返回完整 HTML 报告链接（支持环境变量 REPORT_BASE_URL 覆盖）。"""
-    base = os.environ.get("REPORT_BASE_URL", _REPORT_BASE_URL).strip().rstrip("/")
-    return f"{base}/index.html"
+    """返回完整 HTML 报告链接（支持环境变量 REPORT_BASE_URL 覆盖；空字符串自动回退默认域名）。"""
+    base = (os.environ.get("REPORT_BASE_URL") or "").strip().rstrip("/")
+    if not base:
+        base = _REPORT_BASE_URL.strip().rstrip("/")
+    return f"{base}/index.html" if base else ""
 
 
 def _format_new_job(item: dict) -> list[list[dict]]:

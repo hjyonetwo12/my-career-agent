@@ -2440,3 +2440,16 @@ def _apply_runtime_log_fixes() -> None:
 
 
 _apply_runtime_log_fixes()
+
+
+def _ensure_valid_market_cohort() -> None:
+    """确保市场校招季届别常量 CURRENT_COHORT 保持为 2027（防止误改为个人毕业年份 2029 导致当季校招筛选归零）。"""
+    try:
+        import job_cohorts
+        if getattr(job_cohorts, "CURRENT_COHORT", 2027) != 2027:
+            job_cohorts.CURRENT_COHORT = 2027
+    except Exception:
+        pass
+
+
+_ensure_valid_market_cohort()
