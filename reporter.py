@@ -251,6 +251,7 @@ def _jobs_payload(items: list, app_index=None) -> list[dict]:
         ap = _STAGE_LABELS.get(app.get("current_stage"), app.get("current_stage") or "已投递") if app else ""
         cat_info = job_filters.classify_job_categories(job, prof)
         jid = job.get("id") if job.get("id") is not None else f"row-{idx + 1}"
+        trace_ev = job_filters.build_traceable_evaluation(job, prof, cat_info=cat_info)
         out.append({
             "c": job.get("company", ""),
             "t": job.get("title", ""),
@@ -271,6 +272,8 @@ def _jobs_payload(items: list, app_index=None) -> list[dict]:
             "e": evaluated,
             "id": jid,
             "ap": ap,
+            "tc": trace_ev["transition_cost"]["level"],
+            "mode": trace_ev["recommendation_mode"],
         })
     return out
 
@@ -502,11 +505,11 @@ def _big_job_card(item: dict, app_index=None, editable: bool = False) -> str:
   </div>
   <div class="big-card-grid">
     <div class="adv-block">
-      <div class="block-title"><span style="color:{_SUCCESS}">●</span> 我的优势</div>
+      <div class="block-title"><span style="color:{_SUCCESS}">●</span> 已具备/可能具备要求与优势</div>
       <ul class="adv-list">{adv_html}</ul>
     </div>
     <div class="gap-block">
-      <div class="block-title"><span style="color:{_WARN}">●</span> 缺失技能</div>
+      <div class="block-title"><span style="color:{_WARN}">●</span> 缺失能力、C++迁移边界与转型成本</div>
       <ul class="gap-list">{gaps_html}</ul>
     </div>
   </div>

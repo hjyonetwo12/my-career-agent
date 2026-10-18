@@ -83,4 +83,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as exc:
+        import traceback
+        print("\n[运行异常] 生成报告时遇到错误：", exc)
+        traceback.print_exc()
+        raise SystemExit(1)

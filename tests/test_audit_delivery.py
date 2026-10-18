@@ -463,3 +463,160 @@ def test_data_flow_scenarios_7_8_9_failures_and_isolation(tmp_path, monkeypatch)
         mock_post.return_value.text = "Bad Gateway for https://open.feishu.cn/open-apis/bot/v2/hook/secret_token_xyz"
         ok = notifier.send([], [], {"date": "2026-10-18"}, retries=1)
         assert ok is False
+
+
+def test_exploration_mode_cross_language_score_parity_and_independent_transition_cost():
+    """验证核心反偏置要求：在探索模式下，其他条件相近时，仅因为用户正在学习 C++，
+    不会自动导致 C++ 岗位获得更高的总体匹配分；学习成本独立影响转型评估，不替代职业适合度判断。"""
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+    assert prof["recommendation_mode"] == "exploration"
+    assert prof["target_direction_locked"] is False
+    assert prof["user_state"]["bias_guardrails"]["infer_cpp_direction_interest"] is False
+    assert prof["user_state"]["bias_guardrails"]["equate_low_learning_cost_with_suitability"] is False
+
+    base_jd_suffix = (
+        "岗位职责：负责核心业务平台与分布式服务模块的设计、开发、单元测试与性能优化。"
+        "任职要求：2027届本科及以上学历，计算机或软件工程相关专业；"
+        "具备扎实的数据结构与算法、操作系统、计算机网络与 Linux 基础；"
+        "熟悉 Git 版本控制与自动化测试流程，周末双休，提供完善的导师制培养。"
+    )
+
+    cpp_job = {
+        "company": "基准科技",
+        "title": "2027届-C++后端开发工程师",
+        "city": "成都",
+        "job_type": "校招",
+        "jd_url": "https://example.com/bench/cpp",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": f"熟练掌握 C/C++ 编程语言与 STL 容器。{base_jd_suffix}",
+    }
+    java_job = {
+        "company": "基准科技",
+        "title": "2027届-Java后端开发工程师",
+        "city": "成都",
+        "job_type": "校招",
+        "jd_url": "https://example.com/bench/java",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": f"熟悉 Java 编程语言与 Spring Boot 微服务生态。{base_jd_suffix}",
+    }
+    go_job = {
+        "company": "基准科技",
+        "title": "2027届-Go后端开发工程师",
+        "city": "成都",
+        "job_type": "校招",
+        "jd_url": "https://example.com/bench/go",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": f"熟悉 Golang (Go语言) 编程与高并发微服务开发。{base_jd_suffix}",
+    }
+    python_job = {
+        "company": "基准科技",
+        "title": "2027届-Python后端开发工程师",
+        "city": "成都",
+        "job_type": "校招",
+        "jd_url": "https://example.com/bench/python",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": f"熟悉 Python 编程语言与服务端开发。{base_jd_suffix}",
+    }
+    ts_job = {
+        "company": "基准科技",
+        "title": "2027届-TypeScript全栈开发工程师",
+        "city": "成都",
+        "job_type": "校招",
+        "jd_url": "https://example.com/bench/ts",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": f"熟悉 TypeScript / JavaScript 与 React 现代 Web 工程化开发。{base_jd_suffix}",
+    }
+
+    res_cpp = job_filters.score_job_against_profile(cpp_job, prof)
+    res_java = job_filters.score_job_against_profile(java_job, prof)
+    res_go = job_filters.score_job_against_profile(go_job, prof)
+    res_py = job_filters.score_job_against_profile(python_job, prof)
+    res_ts = job_filters.score_job_against_profile(ts_job, prof)
+
+    # 1. 验证总体匹配分平权：在其他条件相近的情况下，C++ 岗位绝不自动高于 Java / Go / Python / TS 岗位
+    assert res_cpp["match_score"] == res_java["match_score"] == res_go["match_score"] == res_py["match_score"] == res_ts["match_score"]
+    assert res_cpp["recommendation"] == res_java["recommendation"] == "推荐"
+
+    # 2. 验证学习与转型成本独立评估：C++ 与 Python 转型成本为 low，Go 为 medium_low，Java 与 TS 为 medium
+    assert res_cpp["traceable_evidence"]["transition_cost"]["code"] == "low"
+    assert res_py["traceable_evidence"]["transition_cost"]["code"] == "low"
+    assert res_go["traceable_evidence"]["transition_cost"]["code"] == "medium_low"
+    assert res_java["traceable_evidence"]["transition_cost"]["code"] == "medium"
+    assert res_ts["traceable_evidence"]["transition_cost"]["code"] == "medium"
+
+    # 3. 验证探索模式下召回与分级平权：5 个跨语言岗位均进入 A 档，不被预筛排除
+    for job_item in (cpp_job, java_job, go_job, python_job, ts_job):
+        assert analyzer.local_screening_tier(job_item, prof) == "A"
+        assert analyzer._merge_screening_tier(job_item, "C", prof) in ("A", "B")
+
+
+def test_recommendation_mode_switching_and_traceable_evidence_fields():
+    """验证四（探索模式 vs 定向求职模式切换）与五（5项可追踪证据与7维评估因素完整性）。"""
+    prof_explore = profile_config.load_profile(ROOT / "profile.yaml")
+    prof_targeted_java = {
+        **prof_explore,
+        "recommendation_mode": "targeted",
+        "target_direction_locked": True,
+        "locked_target_directions": ["Java后端"],
+        "locked_target_languages": ["Java"],
+    }
+
+    common_jd = (
+        "岗位职责：负责企业级核心服务研发与维护。任职要求：2027届本科及以上学历，"
+        "掌握数据结构与算法、操作系统、计算机网络、Linux 与 Git，周末双休。" * 2
+    )
+    cpp_job = {
+        "company": "测试科技",
+        "title": "2027届-C++软件开发工程师",
+        "city": "上海",
+        "job_type": "校招",
+        "jd_url": "https://example.com/mode/cpp",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": f"要求熟悉 C++ 与 STL。{common_jd}",
+    }
+    java_job = {
+        "company": "测试科技",
+        "title": "2027届-Java后端开发工程师",
+        "city": "上海",
+        "job_type": "校招",
+        "jd_url": "https://example.com/mode/java",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": f"要求熟悉 Java 与 Spring Boot。{common_jd}",
+    }
+
+    # 定向求职模式锁定 Java 时，Java 岗位得分显著高于 C++ 岗位
+    scored_java_targeted = job_filters.score_job_against_profile(java_job, prof_targeted_java)
+    scored_cpp_targeted = job_filters.score_job_against_profile(cpp_job, prof_targeted_java)
+    assert scored_java_targeted["recommendation_mode"] == "targeted"
+    assert scored_java_targeted["match_score"] > scored_cpp_targeted["match_score"]
+
+    # 验证 7 维解耦因素与 5 项可追踪证据完整性
+    factors = scored_java_targeted["evaluation_factors"]
+    expected_factor_keys = {
+        "1_domain_and_role_fit",
+        "2_hard_qualifications",
+        "3_skill_gap",
+        "4_transition_cost",
+        "5_wlb_and_growth",
+        "6_personal_conditions",
+        "7_existing_skill_advantage",
+    }
+    assert expected_factor_keys.issubset(set(factors.keys()))
+
+    trace = scored_java_targeted["traceable_evidence"]
+    assert trace["why_worth_considering"]
+    assert len(trace["met_requirements"]) >= 2
+    assert len(trace["missing_capabilities"]) >= 1
+    assert trace["cpp_transferability"]["transferable_to"]
+    assert trace["cpp_transferability"]["cannot_replace"]
+    assert "JVM" in trace["cpp_transferability"]["cannot_replace"][0] or "Spring" in trace["cpp_transferability"]["cannot_replace"][0]
+    assert trace["transition_cost"]["level"]
+    assert trace["transition_cost"]["basis"]
+    assert trace["transition_cost"]["uncertainty"]

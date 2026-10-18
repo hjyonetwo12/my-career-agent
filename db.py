@@ -1289,10 +1289,12 @@ def _join_analysis(conn: sqlite3.Connection, jobs: list[dict]) -> dict:
     for job in jobs:
         analysis = analysis_by_job.get(job["id"])
         if analysis:
+            import job_filters
             analysis["advantages"] = json.loads(analysis["advantages"] or "[]")
             analysis["gaps"] = json.loads(analysis["gaps"] or "[]")
             analysis["score_breakdown"] = json.loads(analysis.get("score_breakdown") or "{}")
             analysis["evidence"] = json.loads(analysis.get("evidence") or "[]")
+            job_filters.ensure_traceable_analysis(job, analysis)
         else:
             analysis = None
         items.append({"job": job, "analysis": analysis})

@@ -781,40 +781,285 @@ def is_target_candidate_job(job: dict, profile: dict | None = None) -> bool:
 
 
 # ==============================================================================
-# 五、本地无偏五维评分器 + 预编译正则加速
+# 五、去语言偏置的七维解耦评分器 + 可追踪证据生成引擎（支持探索模式与定向模式）
 # ==============================================================================
 
 _AI_ENG_TITLE_RE = re.compile(r"AI软件|AI应用|AI全栈|Agent|智能体|RAG|AI数据工具|评测", re.I)
 _CPP_MATCH_RE = re.compile(r"C\+\+|C/C\+\+|(?<![A-Za-z])C语言", re.I)
-_CS_CORE_MATCH_RE = re.compile(r"数据结构|算法基础|操作系统|计算机网络|Linux", re.I)
-_ENG_TOOL_MATCH_RE = re.compile(r"Python|Git|CMake|单元测试|自动化|调试", re.I)
-_GAP_JAVA_RE = re.compile(r"(?<![A-Za-z])Java(?!Script)|Spring\s*Boot|SpringCloud|MyBatis", re.I)
-_GAP_GO_RE = re.compile(r"Golang|\bGo语言\b", re.I)
-_GAP_DB_RE = re.compile(r"MySQL|PostgreSQL|Redis|SQL|数据库", re.I)
+_LANG_ALL_CS_RE = re.compile(
+    r"C\+\+|C/C\+\+|(?<![A-Za-z])C语言|(?<![A-Za-z])Java(?!Script)|"
+    r"Golang|\bGo语言\b|\bGo开发\b|\bPython\b|JavaScript|TypeScript|"
+    r"\bNode\.?js\b|\bRust\b|\bC#\b|\bKotlin\b|\bSwift\b",
+    re.I,
+)
+_CS_CORE_MATCH_RE = re.compile(r"数据结构|算法基础|常用算法|操作系统|计算机网络|Linux|并发|多线程|TCP/IP|HTTP", re.I)
+_ENG_TOOL_MATCH_RE = re.compile(r"Python|Git|CMake|Maven|Gradle|npm|单元测试|自动化|调试|CI/CD|接口测试", re.I)
+_GAP_JAVA_RE = re.compile(r"(?<![A-Za-z])Java(?!Script)|Spring\s*Boot|SpringCloud|MyBatis|\bJVM\b", re.I)
+_GAP_GO_RE = re.compile(r"Golang|\bGo语言\b|\bGo开发\b|\bGin\b", re.I)
+_GAP_JS_TS_RE = re.compile(r"JavaScript|TypeScript|\bReact\b|\bVue\b|\bNode\.?js\b|前端工程化|Web前端", re.I)
+_GAP_DB_RE = re.compile(r"MySQL|PostgreSQL|Redis|\bSQL\b|数据库", re.I)
 _GAP_CLOUD_RE = re.compile(r"Docker|Kubernetes|K8s|CI/CD|云原生", re.I)
-_GAP_QT_RE = re.compile(r"Qt|Winform|WPF|跨平台", re.I)
-_GAP_AGENT_RE = re.compile(r"LangChain|LangGraph|RAG|Agent|Prompt", re.I)
+_GAP_QT_RE = re.compile(r"\bQt[56]?\b|Winform|WPF|跨平台客户端|上位机", re.I)
+_GAP_AGENT_RE = re.compile(r"LangChain|LangGraph|\bRAG\b|Agent|智能体|Prompt", re.I)
 _AGG_CACHE = {}
 
 
-def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
-    """根据用户的真实优先级（本科可达性 + WLB证据 + 跨行业技术迁移度 + 现有C++/系统基础转换成本）生成透明评分。"""
-    prof = profile if profile is not None else load_active_profile()
+def resolve_recommendation_mode(profile: dict | None = None) -> str:
+    """解析当前推荐模式：'exploration'（探索模式，默认）或 'targeted'（定向求职模式）。"""
+    try:
+        import profile_config
+        return profile_config.resolve_recommendation_mode(profile)
+    except Exception:
+        p = profile if isinstance(profile, dict) else {}
+        explicit = str(p.get("recommendation_mode") or "").strip().lower()
+        if explicit in ("exploration", "targeted"):
+            return "targeted" if p.get("target_direction_locked") else explicit
+        if p.get("target_direction_locked") or p.get("locked_target_directions"):
+            return "targeted"
+        if not p.get("directions") and p.get("direction"):
+            return "targeted"
+        return "exploration"
+
+
+def build_traceable_evaluation(
+    job: dict,
+    profile: dict | None = None,
+    *,
+    cat_info: dict | None = None,
+    wlb_info: dict | None = None,
+) -> dict:
+    """构建可追踪的 7 维解耦评估因素与 5 项可追踪证据 (traceable_evidence)。
+
+    严格遵循反偏置原则：
+    - C++ 仅作为现有技能优势（面向对象、静态类型、内存与系统基础）和学习转型成本评估的一部分；
+    - 明确区分 C++ 背景可迁移到的要求 (transferable_to) 与不能替代的要求 (cannot_replace)；
+    - 独立输出预计学习与转型成本 (transition_cost) 及其判断依据 (basis) 和不确定性 (uncertainty)。
+    """
+    prof = profile if isinstance(profile, dict) else load_active_profile()
+    mode = resolve_recommendation_mode(prof)
     title = str(job.get("title") or "")
     jd_raw = str(job.get("jd_raw") or "")
+    city = str(job.get("city") or "").strip()
+    combined = f"{title}\n{jd_raw}"
+    c_info = cat_info or classify_job_categories(job, prof)
+    cat = c_info["primary_category"]
+    cat_label = c_info["primary_label"]
+    wlb = wlb_info or wlb_signal_audit(job)
+    track = job_track_label(job)
+
+    has_cpp = bool(_CPP_MATCH_RE.search(combined))
+    has_java = bool(_GAP_JAVA_RE.search(combined))
+    has_go = bool(_GAP_GO_RE.search(combined))
+    has_js_ts = bool(_GAP_JS_TS_RE.search(combined))
+    has_python = bool(re.search(r"\bPython\b", combined, re.I))
+    has_cs_core = bool(_CS_CORE_MATCH_RE.search(combined))
+    has_eng_tool = bool(_ENG_TOOL_MATCH_RE.search(combined))
+    has_db = bool(_GAP_DB_RE.search(combined))
+    has_cloud = bool(_GAP_CLOUD_RE.search(combined))
+    has_qt = bool(_GAP_QT_RE.search(combined))
+    has_agent = bool(_GAP_AGENT_RE.search(combined))
+
+    detected_langs = []
+    if has_cpp:
+        detected_langs.append("C/C++")
+    if has_java:
+        detected_langs.append("Java")
+    if has_go:
+        detected_langs.append("Go")
+    if has_python:
+        detected_langs.append("Python")
+    if has_js_ts:
+        detected_langs.append("JavaScript/TypeScript")
+    if not detected_langs and _LANG_ALL_CS_RE.search(combined):
+        detected_langs.append(_LANG_ALL_CS_RE.search(combined).group(0))
+
+    # 1. 已具备或可能具备的要求 (met_requirements)
+    met_reqs = []
+    if is_explicitly_bachelor_eligible(job):
+        met_reqs.append("【硬性资格·已具备】本科学历符合 JD 显式学历要求")
+    elif not is_master_phd_only_job(job):
+        met_reqs.append("【硬性资格·可能具备】JD 未设置硕博一刀切门槛，本科生可尝试投递")
+    if has_cs_core:
+        met_reqs.append("【通用底座·已具备/持续巩固】数据结构与算法、操作系统、计算机网络或 Linux 基础")
+    if has_eng_tool:
+        met_reqs.append("【工程工具·已具备基础】Git 版本控制、CMake 构建、Python 脚本或基础测试排障经验")
+    if has_cpp:
+        met_reqs.append("【语言基础·已具备学习经历】正在学习 C++（面向对象、STL、基础内存管理）")
+    if has_python:
+        met_reqs.append("【脚本与工作流·已具备初步实践】在 AI 辅助下使用和改造过 Python 数据处理与自动化工作流")
+    if not met_reqs:
+        met_reqs.append("【基础背景·可能具备】软件工程本科在读，具备通用编程与理工科逻辑基础")
+
+    # 2. 仍然缺失的能力 (missing_capabilities)
+    missing_caps = []
+    if has_java:
+        missing_caps.append("Java 语言工程化与 Spring Boot / Spring Cloud / MyBatis 服务端生态")
+    if has_go:
+        missing_caps.append("Go (Golang) 语言语法、Goroutine 并发编程与微服务框架实践")
+    if has_js_ts:
+        missing_caps.append("JavaScript / TypeScript 语言及 React / Vue 前端组件化与浏览器工程体系")
+    if has_db:
+        missing_caps.append("生产级关系型数据库（MySQL/PostgreSQL 索引与事务调优）及 Redis 缓存应用")
+    if has_cloud:
+        missing_caps.append("Docker 容器化部署、Kubernetes 基础编排与企业级 CI/CD 流水线")
+    if has_qt:
+        missing_caps.append("Qt6 信号槽机制、多线程 UI 架构或跨平台桌面客户端框架")
+    if has_agent:
+        missing_caps.append("企业级 RAG 检索增强、Function Calling 容错与 Agent 自动化评测闭环")
+    if cat in ("graphics_3d", "game_engine") and not missing_caps:
+        missing_caps.append("商业级游戏引擎架构（UE5/Unity）或工业级三维几何内核/PBR 渲染管线深度经验")
+    if not missing_caps:
+        missing_caps.append("企业级中大型软件工程协作规范、线上监控排障与高并发/高可靠生产环境实践")
+
+    # 3. C++ 背景具体能迁移到哪些要求，不能替代哪些要求 (cpp_transferability)
+    transferable_to = [
+        "面向对象设计（封装/继承/多态）、模块化抽象与静态类型编译期检查思维",
+        "数据结构、内存布局理解、指针/引用概念及基础性能/边界条件排查意识",
+    ]
+    if has_cs_core:
+        transferable_to.append("操作系统进程/线程同步、虚拟内存与 TCP/IP 网络通信底层原理")
+    if has_go:
+        transferable_to.append("C 系语法习惯与结构体/内存效率意识可加速 Go 语言上手")
+    if has_java or has_js_ts:
+        transferable_to.append("C++ 面向对象与泛型(STL)思想可迁移理解 Java 类体系或 TypeScript 类型系统")
+
+    cannot_replace = []
+    if has_java:
+        cannot_replace.append("不能替代 JVM 内存与垃圾回收机制、Spring Boot/Cloud 依赖注入与企业级中间件生态经验")
+    if has_go:
+        cannot_replace.append("不能替代 Go CSP 并发模型（Goroutine/Channel）工程习惯与云原生微服务治理经验")
+    if has_js_ts:
+        cannot_replace.append("不能替代浏览器 DOM/BOM 渲染机制、异步事件循环及 React/Vue 前端状态管理经验")
+    if has_db:
+        cannot_replace.append("不能替代 SQL 复杂查询编写、索引失效排查、事务隔离与 Redis 缓存一致性设计")
+    if has_qt:
+        cannot_replace.append("不能替代 Qt 元对象系统、信号槽事件循环与跨平台 GUI 界面工程经验")
+    if has_agent:
+        cannot_replace.append("不能替代大模型 Prompt 工程、向量检索调优与 Agent 评测集构建经验")
+    if not cannot_replace:
+        cannot_replace.append("不能直接替代具体业务领域的专有框架、大型分布式系统线上运维及团队工程协作经验")
+
+    cpp_summary = (
+        f"【C++迁移边界】可迁移：{transferable_to[0]}；"
+        f"不可替代：{cannot_replace[0]}"
+    )
+
+    # 4. 预计学习和转型成本判断的依据与不确定性 (transition_cost)
+    gap_cnt = len(missing_caps)
+    if (has_cpp or has_python) and not (has_java or has_go or has_js_ts) and gap_cnt <= 1:
+        cost_level = "低（约 1–3 周）"
+        cost_code = "low"
+        est_weeks = "1-3周"
+        cost_basis = (
+            f"JD 主要技术栈（{'/'.join(detected_langs) or 'C++/Python'}）与当前已接触语言一致，"
+            "无需跨语言切换，主要学习成本集中在具体工程框架与测试规范。"
+        )
+    elif has_go and not has_java and gap_cnt <= 2:
+        cost_level = "中低（约 3–5 周）"
+        cost_code = "medium_low"
+        est_weeks = "3-5周"
+        cost_basis = (
+            "虽需新学 Go 语言与服务端数据库/中间件，但 Go 同属编译型 C 系语法，利用现有 C++ 与 Linux 基础通常 1–2 周可掌握语法、2–3 周可完成微服务小项目。"
+        )
+    elif (has_cpp and has_qt) or (gap_cnt == 2 and not has_java and not has_js_ts):
+        cost_level = "中低（约 3–5 周）"
+        cost_code = "medium_low"
+        est_weeks = "3-5周"
+        cost_basis = (
+            f"核心语言或系统基础可复用，但需专门投入 3–5 周补齐 {missing_caps[0][:24]} 等工程组件。"
+        )
+    elif (has_java or has_js_ts) and gap_cnt <= 3:
+        cost_level = "中（约 4–8 周）"
+        cost_code = "medium"
+        est_weeks = "4-8周"
+        cost_basis = (
+            f"岗位使用 {'/'.join(detected_langs) or '非C++技术栈'}，虽然计算机底层基础（算法/OS/网络/OOP）通用，"
+            f"但需系统学习新语言生态与主流框架（{missing_caps[0][:26]}），预计需 1–2 个月构建合格项目作品。"
+        )
+    else:
+        cost_level = "高（约 2–4 个月以上）"
+        cost_code = "high"
+        est_weeks = "8-16周+"
+        cost_basis = (
+            f"JD 同时涉及多项跨领域技术要求（共识别到 {gap_cnt} 项待补能力：{', '.join(m[:14] for m in missing_caps[:3])}），"
+            "短期突击转型成本较高，建议评估是否符合阶段性投入产出比。"
+        )
+
+    cost_uncertainty = (
+        "【不确定性】公开 JD 未说明团队对应届/实习生是要求“熟练掌握框架源码”还是“具备计算机基础即可入职培养”，"
+        "亦未披露内部工具链完善度，实际学习压力需在面试中确认。"
+    )
+
+    # 5. 为什么这个岗位值得考虑 (why_worth_considering)
+    pref_cities = [str(c).strip() for c in (prof.get("preferred_cities") or []) if str(c).strip()]
+    city_matched = bool(city and any(pc in city for pc in pref_cities))
+    worth_parts = [f"属【{cat_label}】方向（{track}）"]
+    if is_explicitly_bachelor_eligible(job):
+        worth_parts.append("明确接受本科学历")
+    if wlb["status"] in ("positive", "inferred_moderate"):
+        worth_parts.append("具备积极的 WLB / 稳健组织信号")
+    elif wlb["status"] == "unknown":
+        worth_parts.append("技术栈具备跨行业复利价值（工时待核实）")
+    if city_matched:
+        worth_parts.append(f"位于意向城市（{city}）")
+    if detected_langs:
+        worth_parts.append(f"可帮助了解 {'/'.join(detected_langs)} 技术栈的真实工业界要求")
+    why_worth = "；".join(worth_parts) + "。"
+
+    return {
+        "recommendation_mode": mode,
+        "detected_languages": detected_langs,
+        "why_worth_considering": why_worth,
+        "met_requirements": met_reqs,
+        "missing_capabilities": missing_caps,
+        "cpp_transferability": {
+            "transferable_to": transferable_to,
+            "cannot_replace": cannot_replace,
+            "summary": cpp_summary,
+        },
+        "transition_cost": {
+            "level": cost_level,
+            "code": cost_code,
+            "estimated_weeks": est_weeks,
+            "basis": cost_basis,
+            "uncertainty": cost_uncertainty,
+        },
+        "city_matched": city_matched,
+    }
+
+
+def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
+    """7维解耦、去 C++ 语言偏置的岗位匹配评分器（支持探索模式与定向求职模式）。
+
+    在探索模式 (exploration) 下：
+    - 仅因为用户正在学习 C++，绝不自动给 C++ 岗位加方向分或语言偏置分；
+    - 预计学习和转型成本 (transition_cost) 独立评估并展示，不替代岗位适合度总分 (match_score)；
+    - 在其他条件（硬性资格、领域工程价值、通用计算机基础要求、WLB与个人条件）相近时，
+      C++、Java、Go、Python、TypeScript 岗位获得相同的总体匹配分。
+    """
+    prof = profile if profile is not None else load_active_profile()
+    mode = resolve_recommendation_mode(prof)
+    title = str(job.get("title") or "")
+    jd_raw = str(job.get("jd_raw") or "")
+    city = str(job.get("city") or "").strip()
     combined = f"{title}\n{jd_raw}"
     cat_info = classify_job_categories(job, prof)
     cat = cat_info["primary_category"]
     track = job_track_label(job)
+    wlb = wlb_signal_audit(job)
+    trace = build_traceable_evaluation(job, prof, cat_info=cat_info, wlb_info=wlb)
 
     if not is_cs_software_role(job) or is_direction_out_job(job):
         return {
             "match_score": 25,
             "recommendation": "不推荐",
+            "recommendation_mode": mode,
             "advantages": [],
             "gaps": ["非计算机/软件研发方向"],
             "summary": "非软件研发目标方向，已过滤",
             "analysis_status": "ineligible",
+            "evaluation_factors": {},
+            "traceable_evidence": trace,
         }
 
     degree = str(prof.get("degree") or "本科")
@@ -822,67 +1067,113 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
         return {
             "match_score": 30,
             "recommendation": "不推荐",
+            "recommendation_mode": mode,
             "advantages": [],
             "gaps": ["【事实】JD明确要求硕士或博士及以上学历，普通本科直接应聘受阻"],
             "summary": "学历门槛为硕博，不符合本科直通就业要求",
             "analysis_status": "ineligible",
+            "evaluation_factors": {},
+            "traceable_evidence": trace,
         }
 
     score = 52
     advantages = []
     gaps = []
 
+    # ── 因素 2：学历、毕业时间、实习时间等硬性资格 (hard_qualifications) ──
+    qual_score = 0
     if is_intern_job(job):
-        score += 10
+        qual_score += 10
         reason = internship_reason(job) or "支持实习/在读投递"
-        advantages.append(f"【事实】当前可投（{reason}），契合大二筛选实习的目标")
+        advantages.append(f"【硬性资格·当前可投】{reason}，契合本科阶段实习探索目标")
     else:
-        advantages.append("【校招参考】应届全职岗位，用于校准大三实习与大四秋招能力要求")
+        advantages.append("【硬性资格·校招参考】应届全职岗位，用于横向了解不同方向的真实招聘要求")
 
     if is_explicitly_bachelor_eligible(job):
-        score += 8
-        advantages.append("【事实】JD明确标注本科及以上可投，无隐性硕博学历一刀切")
+        qual_score += 8
+        advantages.append("【硬性资格·学历匹配】JD明确标注本科及以上可投，无硕博学历一刀切")
     else:
-        gaps.append("【未知】JD正文未显式写明学历下限，投递前需在官网确认是否接受本科")
+        gaps.append("【未知·学历下限】JD正文未显式写明学历下限，投递前需在官网确认是否接受本科")
+    score += qual_score
 
-    if cat == "software_cpp":
-        score += 9
-        advantages.append("【迁移价值】桌面/跨平台客户端或工业办公软件，本科接纳度高(65.8%)且直接复用C++/面向对象基础")
-    elif cat == "backend_dist":
-        score += 9
-        advantages.append("【迁移价值】后端与分布式系统研发，市场岗位基数最大、跨行业通用性极强")
+    # ── 因素 1：岗位职责和技术领域的匹配度 (domain_and_role_fit) —— 探索模式跨语言平权 ──
+    domain_score = 0
+    domain_explain = ""
+    if cat == "backend_dist":
+        domain_score = 8
+        domain_explain = "后端与分布式系统研发，市场岗位基数最大、涵盖 Java/Go/Python/C++ 等主流栈，跨行业通用性极强"
+    elif cat == "software_cpp":
+        domain_score = 8
+        domain_explain = "客户端、桌面、跨平台与前端应用研发，贴近用户交互与工程产品落地，本科接纳度高"
     elif cat == "testing_quality":
-        score += 8
-        advantages.append("【迁移价值】测试开发/质量工程/开发工具，本科入行门槛友好(45.6%)，重工程自动化与系统排障")
+        domain_score = 8
+        domain_explain = "测试开发(SDET)/质量工程/研发效能工具，本科入行友好，重自动化工程与系统质量保障"
     elif cat in ("sys_infra", "security"):
-        score += 7
-        advantages.append("【迁移价值】系统软件/云原生基础设施与安全，技术生命周期长，抗短期业务框架更迭风险")
+        domain_score = 8
+        domain_explain = "系统软件、云原生基础设施与安全工程，技术生命周期长，抗短期业务框架更迭风险"
     elif cat == "data_platform":
-        score += 7
-        advantages.append("【迁移价值】数据、数据库与存储系统，SQL与数据管道能力在各行业高度通用")
+        domain_score = 8
+        domain_explain = "数据工程、数据库与存储系统，SQL 与数据管道能力在各行业高度通用"
     elif cat == "ai_ml":
         if _AI_ENG_TITLE_RE.search(title):
-            score += 7
-            advantages.append("【迁移价值】偏工程落地的AI应用/Agent研发（非纯论文科研岗），本科生可通过工程能力切入")
+            domain_score = 8
+            domain_explain = "偏工程落地的 AI 应用/Agent 研发（非纯论文科研岗），本科生可通过软件工程能力切入"
         else:
-            score -= 6
-            gaps.append("【推断】核心算法岗通常存在隐性硕博与顶会论文竞争，普通本科入行性价比偏低")
-    elif cat in ("graphics_3d", "game_engine"):
-        score += 3
-        advantages.append("【兴趣参照】含图形渲染/三维/游戏引擎元素，可与现有OpenGL兴趣呼应，但需评估岗位宽度与项目期工时")
+            domain_score = -8
+            domain_explain = "核心算法科研岗通常存在隐性硕博与顶会论文竞争，普通本科直通就业性价比偏低"
+            gaps.append(f"【领域门槛推断】{domain_explain}")
     elif cat == "embedded_device":
-        score += 4
-        advantages.append("【迁移价值】嵌入式Linux/设备软件可复用C/C++与操作系统基础，但需留意是否依赖特定硬件板卡")
+        domain_score = 5
+        domain_explain = "嵌入式与设备软件研发，工程稳定性好，但需留意是否依赖特定硬件板卡知识"
+    elif cat in ("graphics_3d", "game_engine"):
+        domain_score = 4
+        domain_explain = "图形学、三维与游戏引擎方向（当前作为个人兴趣参照支线，需综合评估细分岗位面与行业工时）"
+    else:
+        domain_score = 4
+        domain_explain = "通用或其他计算机技术岗位，具备一定工程探索参考价值"
 
-    if _CPP_MATCH_RE.search(combined):
-        score += 5
-        advantages.append("【事实】要求 C/C++ 编程，与你当前主修语言一致，转换成本低")
+    # 若处于【定向求职模式 (targeted)】，根据用户锁定的目标方向与目标语言额外加权/筛选
+    targeted_delta = 0
+    if mode == "targeted":
+        locked_dirs = [
+            str(x).strip().lower()
+            for x in (prof.get("locked_target_directions") or prof.get("directions") or [prof.get("direction", "")])
+            if str(x).strip()
+        ]
+        locked_langs = [
+            str(x).strip().lower()
+            for x in (prof.get("locked_target_languages") or [])
+            if str(x).strip()
+        ]
+        blob_lower = f"{title} {cat_info['primary_label']} {jd_raw[:400]}".lower()
+        dir_hit = any(ld in blob_lower for ld in locked_dirs if len(ld) >= 2)
+        lang_hit = any(ll in blob_lower for ll in locked_langs if len(ll) >= 1)
+        if dir_hit or lang_hit:
+            targeted_delta = 6
+            domain_explain += "（🎯 定向求职模式：命中已锁定的目标方向/技术栈）"
+        elif locked_dirs or locked_langs:
+            targeted_delta = -5
+            domain_explain += "（🎯 定向求职模式：非当前锁定的主攻方向，适度降权）"
+
+    score += domain_score + targeted_delta
+    if domain_score > 0:
+        advantages.append(f"【职责与领域价值】{domain_explain}")
+
+    # ── 因素 7：用户已经具备的技能所带来的实际优势 (existing_skill_advantage) ──
+    skill_adv_score = 0
+    matched_adv_list = []
+    if _LANG_ALL_CS_RE.search(combined):
+        skill_adv_score += 5
+        langs_str = "/".join(trace["detected_languages"][:3]) or "主流编程语言"
+        matched_adv_list.append(
+            f"JD 要求 {langs_str} 编程，现有结构化编程、面向对象与代码调试基础可提供通用支撑"
+        )
     if _CS_CORE_MATCH_RE.search(combined):
-        score += 5
-        advantages.append("【事实】考察数据结构、操作系统、网络或Linux等高保值计算机基础")
+        skill_adv_score += 5
+        matched_adv_list.append("考察数据结构与算法、操作系统、计算机网络或 Linux 等跨语言高保值底座")
     if _ENG_TOOL_MATCH_RE.search(combined):
-        score += 4
-        advantages.append("【事实】涉及 Python/Git/CMake/调试测试等实用工程工具链")
+        skill_adv_score += 4
+        matched_adv_list.append("涉及 Git、构建工具、Python 脚本或单元测试/自动化调试等工程实践")
 
     builtin_skill_tokens = {
         "c++", "c/c++", "python", "linux", "git", "cmake",
@@ -895,10 +1186,15 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
         if len(core_kw) >= 2 and core_kw.lower() not in builtin_skill_tokens:
             if core_kw.lower() in combined.lower():
                 custom_bonus += 3
-                advantages.append(f"【自定义匹配】命中个人技能栈：{core_kw}")
-    score += min(9, custom_bonus)
+                matched_adv_list.append(f"命中个人扩展技能栈：{core_kw}")
+    skill_adv_score += min(6, custom_bonus)
+    score += skill_adv_score
 
-    wlb = wlb_signal_audit(job)
+    if matched_adv_list:
+        advantages.append("【已具备/可迁移基础】" + "；".join(matched_adv_list[:2]))
+    advantages.append(trace["cpp_transferability"]["summary"])
+
+    # ── 因素 5：工作与生活平衡及稳定成长方面的证据 (wlb_and_growth) ──
     score += wlb["score_delta"]
     if wlb["status"] == "risk":
         gaps.append(wlb["label"])
@@ -907,29 +1203,33 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
     else:
         gaps.append(wlb["label"])
 
-    skill_gap_count = 0
-    if _GAP_JAVA_RE.search(combined):
-        skill_gap_count += 1
-        gaps.append("【技能缺口】需补充 Java 服务端生态（Spring Boot / MyBatis）")
-    if _GAP_GO_RE.search(combined):
-        skill_gap_count += 1
-        gaps.append("【技能缺口】需补充 Go 语言与并发微服务实践")
-    if _GAP_DB_RE.search(combined):
-        skill_gap_count += 1
-        gaps.append("【技能缺口】需系统建立关系型数据库 (SQL/MySQL) 与 Redis 缓存工程实践")
-    if _GAP_CLOUD_RE.search(combined):
-        skill_gap_count += 1
-        gaps.append("【技能缺口】需补充 Docker 容器化与 CI/CD 基础部署能力")
-    if _GAP_QT_RE.search(combined):
-        skill_gap_count += 1
-        gaps.append("【技能缺口】若投递桌面客户端，需花 2–3 周掌握 Qt 或现代跨平台 GUI 框架")
-    if _GAP_AGENT_RE.search(combined):
-        skill_gap_count += 1
-        gaps.append("【技能缺口】需将现有 Python 脚本经验规范化为 RAG/Agent 工具调用与评测闭环")
+    # ── 因素 3 & 因素 4：当前技能差距 (skill_gap) 与预计学习/转型成本 (transition_cost) ──
+    missing_caps = trace["missing_capabilities"]
+    t_cost = trace["transition_cost"]
+    raw_gap_hits = sum(
+        bool(pat.search(combined))
+        for pat in (_GAP_JAVA_RE, _GAP_GO_RE, _GAP_JS_TS_RE, _GAP_DB_RE, _GAP_CLOUD_RE, _GAP_QT_RE, _GAP_AGENT_RE)
+    )
+    gap_penalty = 0
+    if mode == "targeted":
+        if raw_gap_hits >= 2:
+            gap_penalty = min(6, (raw_gap_hits - 1) * 2)
+    else:
+        if raw_gap_hits >= 4:
+            gap_penalty = 6
+    score -= gap_penalty
 
-    # Deduct 2 points per missing core skill beyond 1 (up to -6) so missing stacks are reflected in score
-    if skill_gap_count >= 2:
-        score -= min(6, (skill_gap_count - 1) * 2)
+    for mc in missing_caps[:2]:
+        gaps.append(f"【能力差距】需补充：{mc}")
+    gaps.append(f"【预计转型成本：{t_cost['level']}】{t_cost['basis']}")
+    if trace["cpp_transferability"]["cannot_replace"]:
+        gaps.append(f"【C++不可替代项】{trace['cpp_transferability']['cannot_replace'][0]}")
+
+    # ── 因素 6：薪酬、地点、行业和其他个人条件 (personal_conditions) ──
+    personal_cond_explain = (
+        f"工作地点：{city or '未标注'}（{'命中意向城市' if trace['city_matched'] else '非首选城市或待确认'}）；"
+        f"岗位轨道：{track}；薪酬与培养机制需结合面试核实。"
+    )
 
     score = max(35, min(92, score))
     thresholds = prof.get("score_thresholds") or {}
@@ -941,7 +1241,6 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
         "core_direction": 20, "required_skills": 25, "project_evidence": 20,
         "engineering_stack": 15, "basic_criteria": 20,
     }
-    # Distribute total score across the 5 configured dimensions proportionally
     c_lim = int(limits.get("core_direction", 20))
     r_lim = int(limits.get("required_skills", 25))
     p_lim = int(limits.get("project_evidence", 20))
@@ -959,11 +1258,68 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
     if diff_bd != 0:
         bd["required_skills"] = max(0, min(r_lim, bd["required_skills"] + diff_bd))
 
-    summary = f"[{track} · {cat_info['primary_label']}] {wlb['label']}"
+    evaluation_factors = {
+        "1_domain_and_role_fit": {
+            "label": "1. 岗位职责和技术领域的匹配度",
+            "score_delta": domain_score + targeted_delta,
+            "category": cat_info["primary_label"],
+            "explanation": domain_explain,
+        },
+        "2_hard_qualifications": {
+            "label": "2. 学历、毕业时间、实习时间等硬性资格",
+            "score_delta": qual_score,
+            "track": track,
+            "bachelor_eligible": is_explicitly_bachelor_eligible(job),
+            "explanation": "；".join(trace["met_requirements"][:2]),
+        },
+        "3_skill_gap": {
+            "label": "3. 当前技能与岗位要求的差距",
+            "gap_count": raw_gap_hits,
+            "score_penalty": -gap_penalty,
+            "missing_capabilities": missing_caps,
+            "explanation": "、".join(missing_caps[:3]),
+        },
+        "4_transition_cost": {
+            "label": "4. 预计学习和转型成本（独立评估，不直接等同于适合度）",
+            "level": t_cost["level"],
+            "code": t_cost["code"],
+            "estimated_weeks": t_cost["estimated_weeks"],
+            "basis": t_cost["basis"],
+            "uncertainty": t_cost["uncertainty"],
+        },
+        "5_wlb_and_growth": {
+            "label": "5. 工作与生活平衡及稳定成长方面的证据",
+            "status": wlb["status"],
+            "score_delta": wlb["score_delta"],
+            "explanation": wlb["label"],
+        },
+        "6_personal_conditions": {
+            "label": "6. 薪酬、地点、行业和其他个人条件",
+            "city": city or "未披露",
+            "city_matched": trace["city_matched"],
+            "track": track,
+            "explanation": personal_cond_explain,
+        },
+        "7_existing_skill_advantage": {
+            "label": "7. 用户已经具备的技能所带来的实际优势",
+            "score_delta": skill_adv_score,
+            "matched_advantages": matched_adv_list,
+            "cpp_transferability": trace["cpp_transferability"],
+        },
+    }
+
+    mode_tag = "探索模式" if mode == "exploration" else "定向模式"
+    summary = (
+        f"[{mode_tag} · {track} · {cat_info['primary_label']}] "
+        f"转型成本：{t_cost['level']} | {wlb['label']}"
+    )
 
     return {
         "match_score": score,
         "score_breakdown": bd,
+        "recommendation_mode": mode,
+        "evaluation_factors": evaluation_factors,
+        "traceable_evidence": trace,
         "evidence": [],
         "evidence_level": "partial" if score >= 70 else "adjacent",
         "recommendation": rec,
@@ -971,9 +1327,63 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
         "gaps": gaps[:4],
         "summary": summary,
         "analysis_status": "local_scored",
-        "analysis_version": "local-5d-v2.0",
-        "model": "local-rule-v2",
+        "analysis_version": "local-7d-v3.0",
+        "model": "local-rule-v3",
     }
+
+
+def ensure_traceable_analysis(job: dict, analysis: dict | None, profile: dict | None = None) -> dict | None:
+    """确保从数据库或 AI 返回的任意 analysis 字典均具备完整的 evaluation_factors 与 traceable_evidence。"""
+    if not isinstance(analysis, dict):
+        return analysis
+    if analysis.get("traceable_evidence") and analysis.get("evaluation_factors"):
+        return analysis
+    prof = profile if isinstance(profile, dict) else load_active_profile()
+    trace = build_traceable_evaluation(job, prof)
+    analysis.setdefault("recommendation_mode", trace["recommendation_mode"])
+    analysis.setdefault("traceable_evidence", trace)
+    if not analysis.get("evaluation_factors"):
+        wlb = wlb_signal_audit(job)
+        cat_info = classify_job_categories(job, prof)
+        analysis["evaluation_factors"] = {
+            "1_domain_and_role_fit": {
+                "label": "1. 岗位职责和技术领域的匹配度",
+                "category": cat_info["primary_label"],
+                "explanation": trace["why_worth_considering"],
+            },
+            "2_hard_qualifications": {
+                "label": "2. 学历、毕业时间、实习时间等硬性资格",
+                "track": job_track_label(job),
+                "bachelor_eligible": is_explicitly_bachelor_eligible(job),
+                "explanation": "；".join(trace["met_requirements"][:2]),
+            },
+            "3_skill_gap": {
+                "label": "3. 当前技能与岗位要求的差距",
+                "missing_capabilities": trace["missing_capabilities"],
+                "explanation": "、".join(trace["missing_capabilities"][:3]),
+            },
+            "4_transition_cost": {
+                "label": "4. 预计学习和转型成本（独立评估，不直接等同于适合度）",
+                **trace["transition_cost"],
+            },
+            "5_wlb_and_growth": {
+                "label": "5. 工作与生活平衡及稳定成长方面的证据",
+                "status": wlb["status"],
+                "score_delta": wlb["score_delta"],
+                "explanation": wlb["label"],
+            },
+            "6_personal_conditions": {
+                "label": "6. 薪酬、地点、行业和其他个人条件",
+                "city": str(job.get("city") or "未披露"),
+                "city_matched": trace["city_matched"],
+                "track": job_track_label(job),
+            },
+            "7_existing_skill_advantage": {
+                "label": "7. 用户已经具备的技能所带来的实际优势",
+                "cpp_transferability": trace["cpp_transferability"],
+            },
+        }
+    return analysis
 
 
 # ==============================================================================
@@ -1071,14 +1481,14 @@ TECH_REQUIREMENT_CATALOG = (
     (
         "prog_java_go",
         "第二层：高供给候选方向技术栈（按需选修）",
-        "8.主流企业级服务端语言栈",
-        "Golang 云原生后端 / Java 企业级服务端生态 (Go/Spring Boot/微服务)",
-        re.compile(r"(?<![A-Za-z])Java(?!Script)|\bGolang\b|\bGo语言\b|Spring\s*Boot|SpringCloud|微服务", re.I),
-        "高（国央企数字化、银行金融科技、电信云、外企IT及互联网后端的最大供给技术栈）",
-        "极高（服务端与分布式系统岗的核心语言）",
-        "中高（Go语言语法简洁、与C/C++思维亲近，仅需1–2周即可从C++平滑切入云原生与后端服务）",
-        "高（快速构建高并发HTTP/RPC服务与微服务系统）",
-        "【建议】无需盲目陷入 Java 庞杂八股文，可利用 C++ 基础顺带掌握 Go 语言或 Python FastAPI 打开后端大门",
+        "8.主流企业级服务端与全栈语言栈",
+        "Java 企业级后端 (Spring Boot) / Go 云原生微服务 / TypeScript 全栈与前端 (React/Vue/Node)",
+        re.compile(r"(?<![A-Za-z])Java(?!Script)|\bGolang\b|\bGo语言\b|Spring\s*Boot|SpringCloud|微服务|TypeScript|JavaScript|\bReact\b|\bVue\b", re.I),
+        "极高（中国大陆校招市场岗位数量最多的主流工程技术栈，广泛覆盖国央企、银行、外企IT与互联网）",
+        "极高（后端研发、企业级信息系统、云原生服务与现代 Web 全栈/前端研发的核心技术栈）",
+        "高（探索模式下不应因当前学习 C++ 而预先排除；C++ 的面向对象与静态类型思维可迁移，但框架生态需独立补齐）",
+        "高（构建高并发 HTTP/RPC 服务、企业级业务平台与现代交互应用的核心生产力）",
+        "【转型评估】Go 约需 3–5 周、Java Spring 或 TypeScript/React 约需 4–8 周建立完整工程项目；C++ 不能直接替代 JVM/Spring 或浏览器 DOM 生态，应结合目标岗位真实需求按需选择一门深入",
     ),
     (
         "ai_agent_rag_eng",
@@ -1651,6 +2061,10 @@ def _canonical_profile_for_version(profile: dict | None) -> dict:
     constraints = p.get("constraints") if isinstance(p.get("constraints"), dict) else {}
     goals = p.get("long_term_goals") if isinstance(p.get("long_term_goals"), dict) else {}
     return {
+        "recommendation_mode": resolve_recommendation_mode(p),
+        "target_direction_locked": bool(p.get("target_direction_locked", False) or p.get("locked_target_directions")),
+        "locked_target_directions": [str(x).strip() for x in (p.get("locked_target_directions") or []) if str(x).strip()],
+        "locked_target_languages": [str(x).strip() for x in (p.get("locked_target_languages") or []) if str(x).strip()],
         "degree": str(p.get("degree") or "本科").strip(),
         "job_type": str(p.get("job_type") or "实习").strip(),
         "target_cohort": int(p.get("target_cohort") or edu.get("graduation_year") or 2029),
@@ -1741,6 +2155,10 @@ def diff_profile_versions(old_profile: dict | None, new_profile: dict | None) ->
     old_vid = profile_version_id(old_c)
 
     field_category_map = {
+        "recommendation_mode": ("interest", "推荐模式(探索/定向)"),
+        "target_direction_locked": ("interest", "职业主线锁定状态"),
+        "locked_target_directions": ("interest", "已锁定目标方向"),
+        "locked_target_languages": ("interest", "已锁定目标语言栈"),
         "skills": ("capability", "已掌握技术栈"),
         "skill_proficiency": ("capability", "技能掌握熟练度"),
         "project_evidence": ("capability", "实际项目经历与证据"),
