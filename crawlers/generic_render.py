@@ -285,6 +285,7 @@ class GenericRenderCrawler(BaseCrawler):
             return True
         except timeout_error:
             try:
+                page.wait_for_timeout(1500)
                 page.goto(url, wait_until="domcontentloaded", timeout=15000)
                 return True
             except Exception as exc:

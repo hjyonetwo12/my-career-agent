@@ -1,31 +1,31 @@
 @echo off
-chcp 65001 >nul
+chcp 65001 >nul 2>&1
 cd /d "%~dp0"
+echo ============================================================
+echo   AI校招情报系统 - 完整抓取与分析流水线
+echo ============================================================
 
-echo ========================================================
-echo   AI校招情报系统 - 完整抓取、评分与飞书推送模式
-echo   执行链路：抓取岗位 - 清洗去重 - AI评分 - 综合建议更新 - 生成报告
-echo   运行日志将实时显示并同步保存至 outputs\run.log
-echo ========================================================
-echo.
+set "PY_CMD="
+where python >nul 2>&1
+if not errorlevel 1 set "PY_CMD=python"
+if defined PY_CMD goto :RUN_MAIN
+where py >nul 2>&1
+if not errorlevel 1 set "PY_CMD=py -3"
+if defined PY_CMD goto :RUN_MAIN
+if exist "%LocalAppData%\Programs\Python\Python312\python.exe" set "PY_CMD="%LocalAppData%\Programs\Python\Python312\python.exe""
+if defined PY_CMD goto :RUN_MAIN
+if exist "%LocalAppData%\Programs\Python\Python311\python.exe" set "PY_CMD="%LocalAppData%\Programs\Python\Python311\python.exe""
+if defined PY_CMD goto :RUN_MAIN
+if exist "%LocalAppData%\Programs\Python\Python310\python.exe" set "PY_CMD="%LocalAppData%\Programs\Python\Python310\python.exe""
+if defined PY_CMD goto :RUN_MAIN
 
-if "%DEEPSEEK_API_KEY%"=="" (
-    echo [提示] 系统环境变量未检测到 DEEPSEEK_API_KEY，程序将自动读取根目录 .env 文件。
-    echo        若 .env 中也未配置，仍可正常抓取入库与生成本地实证建议，仅跳过 DeepSeek Pro 评分。
-    echo.
-)
-
-python main.py
-if errorlevel 1 (
-    echo.
-    echo [错误] 运行异常中断，请查看上方报错提示或打开 outputs\run.log 排查（参考 docs\USER_GUIDE.md）。
-    pause
-    exit /b 1
-)
-
-echo.
-echo ========================================================
-echo   运行成功！最新报告已保存至 reports\index.html
-echo   运行摘要已保存至 outputs\latest_run_summary.json
-echo ========================================================
+echo [错误] 未检测到 Python 环境，请先安装 Python 并勾选 Add Python to PATH。
 pause
+exit /b 1
+
+:RUN_MAIN
+echo 正在启动完整流水线: %PY_CMD% main.py ...
+%PY_CMD% main.py
+echo.
+pause
+exit /b 0

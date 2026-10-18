@@ -42,7 +42,7 @@ class MeituanCrawler(BaseCrawler):
                 "cityList": [],
                 "department": [],
                 "jfJgList": [],
-                "jobType": [{"code": "1", "subCode": []}, {"code": "2", "subCode": []}],
+                "jobType": [{"code": "1", "subCode": []}],
                 "typeCode": [],
                 "specialCode": [],
             }
@@ -62,7 +62,7 @@ class MeituanCrawler(BaseCrawler):
             if not plist:
                 break
             for x in plist:
-                if str(x.get("jobType") or "") not in ("1", "2"):
+                if str(x.get("jobType") or "") != "1":
                     continue
                 jid = str(x.get("jobUnionId") or "")
                 if not jid or jid in seen:

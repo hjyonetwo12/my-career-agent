@@ -483,7 +483,7 @@
     },
     "v-98580aa1": {
       "version_id": "v-98580aa1",
-      "saved_at": "2026-10-18 17:45:28 CST",
+      "saved_at": "2026-10-18 18:03:04 CST",
       "summary": "个人配置未发生变化（当前版本 v-98580aa1）。",
       "snapshot": {
         "recommendation_mode": "exploration",
@@ -1104,7 +1104,7 @@
         "hardware_mechanical": 77,
         "vision_auto": 5
       },
-      "captured_at": "2026-10-18 17:45:28 CST"
+      "captured_at": "2026-10-18 18:03:04 CST"
     }
   },
   "advice_versions": [
@@ -9030,28 +9030,6 @@
   "advice_run_records": [
     {
       "run_id": "run-31",
-      "triggered_at": "2026-10-18 16:27:57 CST",
-      "profile_version_id": "v-f98cdcdf",
-      "market_fingerprint": "m-e774ffd2",
-      "advice_version_id": "adv-d352fc26",
-      "update_strategy": "refresh_market_data",
-      "status": "generated_success",
-      "used_ai": false,
-      "error_message": ""
-    },
-    {
-      "run_id": "run-31",
-      "triggered_at": "2026-10-18 16:27:58 CST",
-      "profile_version_id": "v-f98cdcdf",
-      "market_fingerprint": "m-6ee79c27",
-      "advice_version_id": "adv-3f84e705",
-      "update_strategy": "refresh_market_data",
-      "status": "generated_success",
-      "used_ai": false,
-      "error_message": ""
-    },
-    {
-      "run_id": "run-31",
       "triggered_at": "2026-10-18 16:27:58 CST",
       "profile_version_id": "v-f98cdcdf",
       "market_fingerprint": "m-6ee79c27",
@@ -9339,6 +9317,26 @@
     {
       "run_id": "run-31",
       "triggered_at": "2026-10-18 17:45:28 CST",
+      "profile_version_id": "v-98580aa1",
+      "market_fingerprint": "m-07c027fd",
+      "update_strategy": "no_change",
+      "status": "reused_cache",
+      "used_ai": false,
+      "error_message": ""
+    },
+    {
+      "run_id": "run-31",
+      "triggered_at": "2026-10-18 18:02:37 CST",
+      "profile_version_id": "v-98580aa1",
+      "market_fingerprint": "m-07c027fd",
+      "update_strategy": "no_change",
+      "status": "reused_cache",
+      "used_ai": false,
+      "error_message": ""
+    },
+    {
+      "run_id": "run-31",
+      "triggered_at": "2026-10-18 18:03:04 CST",
       "profile_version_id": "v-98580aa1",
       "market_fingerprint": "m-07c027fd",
       "update_strategy": "no_change",

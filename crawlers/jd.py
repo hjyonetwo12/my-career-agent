@@ -19,7 +19,7 @@ class JDCrawler(BaseCrawler):
     JD_RAW_LIMIT = 12000
     # present/talent are formal campus tracks. Internship is intentionally
     # excluded because many internship titles do not contain the word 实习.
-    TYPES = ("present", "talent", "intern")
+    TYPES = ("present", "talent")
 
     def _headers(self) -> dict:
         return {

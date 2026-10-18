@@ -23,10 +23,36 @@ _EXPECTED_SCORE_COMPONENTS = {
     "basic_criteria",
 }
 
+_VALID_RECOMMENDATION_MODES = {"exploration", "targeted"}
+
 _SECRET_LEAK_RE = re.compile(
     r"sk-[A-Za-z0-9_-]{16,}|https://open\.feishu\.cn/open-apis/bot/v2/hook/[A-Za-z0-9-]+",
     re.I,
 )
+
+
+def resolve_recommendation_mode(profile: dict | None) -> str:
+    """解析当前推荐模式：'exploration'（探索模式，默认）或 'targeted'（定向求职模式）。
+
+    规则：
+    1. 若显式配置了 recommendation_mode ('exploration' / 'targeted')，优先采用；
+    2. 若 target_direction_locked 为 True 或配置了非空 locked_target_directions，则为 'targeted'；
+    3. 兼容旧版单元测试夹具：若未配置 directions 列表且未配置 recommendation_mode，但配置了单一
+       direction 字符串（如旧测试中的 '机器人视觉 / 机械臂控制'），视为 'targeted'；
+    4. 其余情况（用户尚未确认主线）一律默认使用 'exploration' 探索模式。
+    """
+    if not isinstance(profile, dict) or not profile:
+        return "exploration"
+    explicit = str(profile.get("recommendation_mode") or "").strip().lower()
+    if explicit in _VALID_RECOMMENDATION_MODES:
+        if bool(profile.get("target_direction_locked")) or bool(profile.get("locked_target_directions")):
+            return "targeted"
+        return explicit
+    if bool(profile.get("target_direction_locked")) or bool(profile.get("locked_target_directions")):
+        return "targeted"
+    if not profile.get("directions") and profile.get("direction"):
+        return "targeted"
+    return "exploration"
 
 
 def load_profile(path: str | Path = "profile.yaml") -> dict:
@@ -85,6 +111,12 @@ def validate_and_normalize_profile(profile: dict) -> dict:
     if not 0 <= consider <= recommend <= 100:
         raise ValueError("评分阈值必须满足 0 <= consider <= recommend <= 100")
 
+    raw_mode = str(profile.get("recommendation_mode") or "").strip().lower()
+    if raw_mode and raw_mode not in _VALID_RECOMMENDATION_MODES:
+        raise ValueError(
+            f"profile.yaml 的 recommendation_mode 必须是 'exploration' 或 'targeted'，当前为: {raw_mode}"
+        )
+
     directions = [
         str(item).strip() for item in (profile.get("directions") or [])
         if str(item).strip()
@@ -123,6 +155,41 @@ def validate_and_normalize_profile(profile: dict) -> dict:
     normalized["unverified_skills"] = unverified_skills
     normalized["direction"] = " / ".join(directions)
 
+    # 推荐模式与主线锁定状态规范化（未确认主线时默认 exploration）
+    locked_dirs = [
+        str(x).strip() for x in (normalized.get("locked_target_directions") or [])
+        if str(x).strip()
+    ]
+    locked_langs = [
+        str(x).strip() for x in (normalized.get("locked_target_languages") or [])
+        if str(x).strip()
+    ]
+    normalized["locked_target_directions"] = locked_dirs
+    normalized["locked_target_languages"] = locked_langs
+    normalized["target_direction_locked"] = bool(
+        normalized.get("target_direction_locked", False) or locked_dirs
+    )
+    normalized["recommendation_mode"] = resolve_recommendation_mode(normalized)
+
+    # 用户状态与反偏置守卫默认值
+    user_state = dict(normalized.get("user_state") or {})
+    user_state.setdefault("current_learning_languages", ["C++", "Python"])
+    user_state.setdefault("career_direction_determined", normalized["target_direction_locked"])
+    user_state.setdefault(
+        "exploration_goal",
+        "先了解中国大陆不同计算机岗位的真实招聘要求，再决定重点投入的方向",
+    )
+    user_state.setdefault(
+        "core_priorities",
+        ["工作与生活平衡 (WLB)", "稳定成长", "长期技术积累"],
+    )
+    guardrails = dict(user_state.get("bias_guardrails") or {})
+    guardrails.setdefault("infer_cpp_direction_interest", False)
+    guardrails.setdefault("equate_low_learning_cost_with_suitability", False)
+    guardrails.setdefault("use_cpp_as_default_direction_filter", False)
+    user_state["bias_guardrails"] = guardrails
+    normalized["user_state"] = user_state
+
     # 补全教育与求职阶段默认值
     edu = dict(normalized.get("education") or {})
     edu.setdefault("degree", str(normalized.get("degree") or "本科"))
@@ -151,7 +218,9 @@ def validate_and_normalize_profile(profile: dict) -> dict:
 
     if not normalized.get("matching"):
         normalized["matching"] = {
-            "primary_directions": directions,
+            "recommendation_mode": normalized["recommendation_mode"],
+            "target_direction_locked": normalized["target_direction_locked"],
+            "primary_directions": locked_dirs if normalized["recommendation_mode"] == "targeted" and locked_dirs else directions,
             "secondary_directions": optional_branches,
             "project_evidence": project_evidence,
             "supporting_skills": skills,
@@ -160,6 +229,8 @@ def validate_and_normalize_profile(profile: dict) -> dict:
         }
     else:
         m = dict(normalized["matching"])
+        m.setdefault("recommendation_mode", normalized["recommendation_mode"])
+        m.setdefault("target_direction_locked", normalized["target_direction_locked"])
         m.setdefault("primary_directions", directions)
         m.setdefault("secondary_directions", optional_branches)
         m.setdefault("project_evidence", project_evidence)

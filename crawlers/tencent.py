@@ -102,8 +102,8 @@ class TencentCrawler(BaseCrawler):
                     continue
                 city = " ".join((x.get("workCities") or "").split())[:40]
                 project = (x.get("recruitLabelName") or x.get("projectName") or "校招").strip()
-                #if "实习" in project:
-                    #continue
+                if "实习" in project:
+                    continue
                 rows.append((pid, title, city, project, str(x.get("bgs") or "").strip()))
             if page * self.PAGE_SIZE >= (data.get("count") or 0):
                 break
