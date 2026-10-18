@@ -4,7 +4,7 @@ on:
   schedule:
     # 提前 2 小时触发，补偿 GitHub 调度延迟（实测推送常拖到北京 10 点多）。
     # UTC 22:00 = 北京次日 06:00；延迟约 2h 后推送落在 08:00 附近。
-    - cron: "0 22 * * *"
+    - cron: "0 22 * * 0,2,4"
   workflow_dispatch:
     inputs:
       skip_crawl:
