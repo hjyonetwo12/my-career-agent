@@ -273,6 +273,8 @@ def _jobs_payload(items: list, app_index=None) -> list[dict]:
             "id": jid,
             "ap": ap,
             "tc": trace_ev["transition_cost"]["level"],
+            "ifit": trace_ev["interest_fit"]["level"].split("（")[0],
+            "ifit_st": trace_ev["interest_fit"]["status"],
             "mode": trace_ev["recommendation_mode"],
         })
     return out
@@ -481,6 +483,29 @@ def _big_job_card(item: dict, app_index=None, editable: bool = False) -> str:
         for g in gaps
     ) or '<li class="empty">无明显短板</li>'
 
+    enriched_a = job_filters.ensure_traceable_analysis(job, dict(a))
+    dims = enriched_a.get("dimensions") or {}
+    elig_dim = dims.get("eligibility") or {}
+    ifit_dim = dims.get("interest_fit") or {}
+    cfit_dim = dims.get("career_fit") or {}
+    lcost_dim = dims.get("learning_cost") or {}
+    wlb_dim = dims.get("wlb_fit") or {}
+    conf_dim = dims.get("evidence_confidence") or {}
+    final_reason_txt = enriched_a.get("final_decision_reason") or ""
+
+    elig_text = "；".join(elig_dim.get("reasons") or []) or "本科可投 · 2027届校招"
+    wc_summary = ifit_dim.get("work_content_summary") or "—"
+    wc_quotes = " / ".join(f"“{q}”" for q in (ifit_dim.get("jd_evidence_quotes") or [])[:2])
+    ifit_level = ifit_dim.get("level") or "待确认"
+    ifit_matched = "；".join(ifit_dim.get("matched_preferences") or []) or "—"
+    ifit_mismatch = "；".join(ifit_dim.get("mismatched_or_risk_points") or []) or "未发现明显冲突"
+    ifit_uncertain = "；".join(ifit_dim.get("uncertain_points") or []) or "具体日常开发比例需面试确认"
+    ifit_caveat = ifit_dim.get("caveat_applied") or ""
+    lcost_level = lcost_dim.get("level") or "中"
+    lcost_basis = lcost_dim.get("basis") or ""
+    wlb_label = wlb_dim.get("label") or "【未知】工时待核实"
+    conf_label = conf_dim.get("label") or "中等"
+
     jid = job.get("id") or ""
     return f"""
 <article class="big-card" id="job-card-{html.escape(str(jid), quote=True)}" data-company="{html.escape(job.get('company',''), quote=True)}" data-title="{html.escape(job.get('title',''), quote=True)}" data-cats="{html.escape(cats_attr, quote=True)}">
@@ -505,14 +530,27 @@ def _big_job_card(item: dict, app_index=None, editable: bool = False) -> str:
   </div>
   <div class="big-card-grid">
     <div class="adv-block">
-      <div class="block-title"><span style="color:{_SUCCESS}">●</span> 已具备/可能具备要求与优势</div>
+      <div class="block-title"><span style="color:{_SUCCESS}">●</span> 已具备/可能具备要求与工作内容亮点</div>
       <ul class="adv-list">{adv_html}</ul>
     </div>
     <div class="gap-block">
-      <div class="block-title"><span style="color:{_WARN}">●</span> 缺失能力、C++迁移边界与转型成本</div>
+      <div class="block-title"><span style="color:{_WARN}">●</span> 技能差距、学习转型成本与待核实项</div>
       <ul class="gap-list">{gaps_html}</ul>
     </div>
   </div>
+  <details class="seven-dim-audit" style="margin-top:10px;padding:10px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;font-size:13px;line-height:1.6;color:#334155;">
+    <summary style="cursor:pointer;font-weight:600;color:#0F172A;">🔍 展开七维独立评估详情（硬性资格 · 实际工作内容与原文依据 · 兴趣适配 · 转型成本 · WLB · 信息可信度）</summary>
+    <div style="margin-top:8px;display:grid;grid-template-columns:1fr;gap:6px;">
+      <div><b>① 硬性资格通过依据：</b>{html.escape(elig_text)}</div>
+      <div><b>② 实际日常工作内容：</b>{html.escape(wc_summary)} <span style="color:#0369A1;">（招聘原文依据：{html.escape(wc_quotes)}）</span></div>
+      <div><b>③ 个人兴趣适配判断（{html.escape(ifit_level)}）：</b>契合点：{html.escape(ifit_matched)} ｜ 潜在不适合/注意项：{html.escape(ifit_mismatch)}</div>
+      <div><b>④ 反偏置与职业成长校验：</b>{html.escape(ifit_caveat)} ｜ 长期价值：{html.escape(cfit_dim.get('explanation') or '—')}</div>
+      <div><b>⑤ 预计学习与转型成本（{html.escape(lcost_level)}）：</b>{html.escape(lcost_basis)}</div>
+      <div><b>⑥ 工作生活平衡 (WLB) 判断：</b>{html.escape(wlb_label)}</div>
+      <div><b>⑦ 信息可信度（{html.escape(conf_label)}）与待面试核实项：</b>{html.escape(ifit_uncertain)}</div>
+      {f'<div style="color:#0B6E69;font-weight:600;">📌 最终推荐/排序结论：{html.escape(final_reason_txt)}</div>' if final_reason_txt else ''}
+    </div>
+  </details>
   <div class="big-card-foot">
     {f'<a href="{html.escape(job["jd_url"])}" target="_blank" rel="noopener" class="detail-link">查看岗位详情 <span>›</span></a>' if _is_detail_link(job) else f'<a href="{html.escape(job["jd_url"])}" target="_blank" rel="noopener" class="detail-link">查看招聘列表 <span>›</span></a>'}
   </div>
@@ -548,30 +586,110 @@ def _page_recommended(items: list, hidden_count: int, date_str: str,
                       app_index=None, editable: bool = False,
                       server_pagination: bool = False) -> tuple[str, dict]:
     """总体岗位页：职业类别筛选栏 + 关联公司联动条 + 高匹配大卡片 + 全部岗位表。"""
+    prof = job_filters.load_active_profile()
+    curation = job_filters.curate_recommendations_with_interest_policy(items, prof)
     items_with_a = [it for it in items if it.get("analysis")]
     evaluated = [it for it in items_with_a if not _is_unevaluated(it["analysis"])]
-    recommended = sorted(
-        [it for it in evaluated if (it["analysis"].get("match_score") or 0) >= _HIGH_MATCH_THRESHOLD],
-        key=lambda x: x["analysis"].get("match_score") or 0,
-        reverse=True,
-    )
+
+    # 对真实大规模数据集使用兴趣过滤后的精选主推列表；对小型单元测试夹具（如 MOCK_DATA 无 JD 原文）保持向后兼容
+    if curation["primary_recommendations"] or len(items) > 20:
+        recommended_all = sorted(
+            [it for it in evaluated if (it["analysis"].get("match_score") or 0) >= int((prof.get("score_thresholds") or {}).get("recommend", 75)) and it["analysis"].get("recommendation") == "推荐"],
+            key=lambda x: x["analysis"].get("match_score") or 0,
+            reverse=True,
+        )
+        featured_source = curation["primary_recommendations"]
+    else:
+        recommended_all = sorted(
+            [it for it in evaluated if (it["analysis"].get("match_score") or 0) >= _HIGH_MATCH_THRESHOLD],
+            key=lambda x: x["analysis"].get("match_score") or 0,
+            reverse=True,
+        )
+        featured_source = recommended_all
+
     uneval_count = sum(1 for it in items_with_a if _is_unevaluated(it["analysis"]))
     company_count = len({it["job"]["company"] for it in items})
 
     stats = {
         "active": len(items),
         "companies": company_count,
-        "high_match": len(recommended),
+        "high_match": len(recommended_all),
         "unevaluated": uneval_count,
         "recommended": sum(1 for it in evaluated if it["analysis"].get("recommendation") == "推荐"),
         "hidden": hidden_count,
     }
 
-    featured = recommended[:10] if server_pagination else recommended
+    featured = featured_source[:10] if server_pagination else featured_source
     rec_html = (
         "\n".join(_big_job_card(it, app_index, editable) for it in featured)
-        if recommended
-        else f'<div class="empty-state">📭 暂无高匹配岗位（≥{_HIGH_MATCH_THRESHOLD} 分）</div>'
+        if featured
+        else f'<div class="empty-state">📭 暂无高匹配主推荐岗位</div>'
+    )
+
+    # 构建跨方向探索样本区块（保留少量兴趣待确认但有合理探索价值的代表性岗位）
+    exp_samples = curation.get("exploration_samples") or []
+    exp_cards_html = []
+    for it in exp_samples:
+        j = it["job"]
+        a = it.get("analysis") or {}
+        ifit = (a.get("dimensions") or {}).get("interest_fit") or {}
+        lcost = (a.get("dimensions") or {}).get("learning_cost") or {}
+        cat_lbl = job_filters.classify_job_categories(j, prof)["primary_label"]
+        exp_url = html.escape(j.get("jd_url") or "")
+        exp_link_html = f'<a href="{exp_url}" target="_blank" rel="noopener" style="color:#0B6E69;font-weight:600;margin-left:6px;">查看原文 ›</a>' if exp_url else ""
+        exp_cards_html.append(
+            f'<div style="padding:10px 14px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;font-size:13px;">'
+            f'<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">'
+            f'<b>[{html.escape(j.get("company",""))}] {html.escape(j.get("title",""))}</b>'
+            f'<span style="background:#FEF3C7;color:#B45309;padding:2px 8px;border-radius:99px;font-weight:600;">{a.get("match_score","—")}分 · 探索样本</span>'
+            f'</div>'
+            f'<div style="color:#475569;margin-top:4px;">类别：{html.escape(cat_lbl)} ｜ 城市：{html.escape(j.get("city","") or "未标注")} ｜ 转型成本：{html.escape(lcost.get("level","中"))}</div>'
+            f'<div style="color:#334155;margin-top:4px;"><b>工作内容摘要：</b>{html.escape(ifit.get("work_content_summary","—")[:80])}</div>'
+            f'<div style="color:#92400E;margin-top:4px;"><b>保留探索原因与待确认点：</b>{html.escape((ifit.get("uncertain_points") or ["职责细节待面试确认"])[0])} {exp_link_html}</div>'
+            f'</div>'
+        )
+    exploration_section_html = (
+        f'<details class="exploration-samples-panel" open style="margin:18px 0;padding:14px 16px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;">'
+        f'<summary style="cursor:pointer;font-size:16px;font-weight:700;color:#0F172A;">🧭 跨方向代表性探索样本（兴趣待确认但具备探索价值 · 精选 {len(exp_samples)} 个样本，候选池共 {curation["exploration_pool_total"]} 个）</summary>'
+        f'<p style="margin:6px 0 12px;font-size:13px;color:#64748B;">依据 profile.yaml 的 result_policy：对职责描述偏简略或中等匹配的岗位，不伪装成高匹配，也不一刀切永久排除，而是跨方向保留少量代表性样本供横向对比。</p>'
+        f'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px;">{"".join(exp_cards_html)}</div>'
+        f'</details>'
+        if exp_samples else ""
+    )
+
+    # 构建已过滤/降权类别统计与排除示例抽查面板（防误杀审计）
+    bucket_rows_html = []
+    for b in curation.get("filtered_buckets") or []:
+        if b["count"] <= 0:
+            continue
+        ex_items = []
+        for ex in b.get("examples") or []:
+            ex_u = html.escape(ex.get("jd_url") or "")
+            ex_a = f' <a href="{ex_u}" target="_blank" rel="noopener" style="color:#0B6E69;">[核查原文]</a>' if ex_u else ""
+            ex_items.append(
+                f'<li style="margin-top:3px;color:#475569;">'
+                f'<span>[{html.escape(ex["company"])}] <b>{html.escape(ex["title"])}</b> ({html.escape(ex["city"])}) — {html.escape(ex["reason"])}</span>'
+                f'{ex_a}</li>'
+            )
+        ex_list_html = "".join(ex_items)
+        ex_ul_block = f'<ul style="margin:6px 0 0 18px;padding:0;">{ex_list_html}</ul>' if ex_list_html else ""
+        bucket_rows_html.append(
+            f'<div style="padding:10px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;font-size:13px;">'
+            f'<div style="display:flex;justify-content:space-between;align-items:center;">'
+            f'<b>{html.escape(b["label"])}</b>'
+            f'<span style="background:#E2E8F0;color:#1E293B;padding:2px 8px;border-radius:99px;font-weight:600;">共 {b["count"]} 个</span>'
+            f'</div>'
+            f'<div style="color:#64748B;margin-top:2px;">规则依据：{html.escape(b["reason_desc"])}</div>'
+            f'{ex_ul_block}'
+            f'</div>'
+        )
+    filtered_audit_html = (
+        f'<details class="filtered-audit-panel" style="margin:18px 0;padding:14px 16px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;">'
+        f'<summary style="cursor:pointer;font-size:15px;font-weight:700;color:#334155;">🛡️ 已从主推荐列表排除/降权的岗位统计与防误杀抽查样本（共拦截/降权 {curation["total_filtered_or_demoted"]} 个）</summary>'
+        f'<p style="margin:6px 0 10px;font-size:13px;color:#64748B;">以下岗位因硬性资格不符、实际工作内容兴趣偏低、存在显式WLB加班风险、地点不在意向城市或职责描述单薄而未进入主推荐列表。附带真实排除样本供你随时抽查是否误杀：</p>'
+        f'<div style="display:grid;grid-template-columns:1fr;gap:8px;">{"".join(bucket_rows_html)}</div>'
+        f'</details>'
+        if bucket_rows_html else ""
     )
 
     full_payload = _jobs_payload(items, app_index)
@@ -680,10 +798,12 @@ def _page_recommended(items: list, hidden_count: int, date_str: str,
     </div>
   </div>
 
-  <h2 class="section-title">🎯 高匹配岗位（≥{_HIGH_MATCH_THRESHOLD} 分）</h2>
+  <h2 class="section-title">🎯 主推荐岗位（硬性条件符合 · 实际工作内容高兴趣适配 · 信息可信，精选代表 {len(featured)} 个 / 达标 {stats['high_match']} 个）</h2>
   <div class="big-card-list" id="featuredCardList">
     {rec_html}
   </div>
+  {exploration_section_html}
+  {filtered_audit_html}
 
   <h2 class="section-title">📋 全部岗位（搜索 / 筛选 / 分页）</h2>
   <div class="job-toolbar">

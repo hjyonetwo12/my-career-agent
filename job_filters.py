@@ -110,8 +110,15 @@ def is_explicitly_bachelor_eligible(job: dict) -> bool:
     return bool(_BACHELOR_ALLOWED_RE.search(jd_raw)) and not is_master_phd_only_job(job)
 
 
-def wlb_signal_audit(job: dict) -> dict:
-    """审计岗位文本中的 WLB 与工作条件客观信号，严格区分【事实】【推断】【未知】。"""
+def wlb_signal_audit(job: dict, profile: dict | None = None) -> dict:
+    """审计岗位文本中的 WLB 与工作条件客观信号，严格区分【事实】【推断】【未知】。
+
+    修复原则：
+    - 严禁仅凭公司名称硬编码赋予高额加分（旧版 +9 分导致大量无证据岗位虚高至 91 分）；
+    - 以 JD 原文显式披露的作息/休假/加班/驻场/抗压条款为【事实】主依据；
+    - 企业组织属性仅作为低权重辅助参考（最多 +2 分），且必须显式标注【行业推断·待核实】；
+    - 当 constraints.reject_high_overtime_signals 为 True 且 JD 出现明确高压/加班/大小周/长期驻场信号时，标记 violates_constraint=True。
+    """
     jd_raw = str(job.get("jd_raw") or "")
     company = str(job.get("company") or "")
     warn_match = _WLB_WARNING_RE.search(jd_raw)
@@ -119,35 +126,76 @@ def wlb_signal_audit(job: dict) -> dict:
     is_stable_org = bool(_HIGH_WLB_ORG_RE.search(company))
     is_fast_pace = bool(_FAST_PACE_INTERNET_GAME_RE.search(company))
 
+    prof = profile if isinstance(profile, dict) else {}
+    constraints = (prof.get("constraints") if isinstance(prof, dict) else None) or {}
+    reject_overtime = bool(constraints.get("reject_high_overtime_signals", True))
+
     if warn_match:
         snippet = warn_match.group(0)
         return {
             "status": "risk",
+            "level": "低（存在明确工时/高压/驻场风险信号）",
+            "violates_constraint": reject_overtime,
+            "fact_evidence": f"JD原文含“{snippet}”",
+            "inferred_note": "高压、快节奏、长期出差或全职驻场要求通常伴随较高加班或作息波动风险",
+            "unknown_note": "具体项目组的平均下班时间与调休兑现率未在JD中量化披露",
             "label": f"【事实·WLB风险】JD显式含高压/出差/驻场要求（“{snippet}”）",
-            "score_delta": -10,
+            "score_delta": -12,
+        }
+    if pos_match and is_stable_org:
+        snippet = pos_match.group(0)
+        return {
+            "status": "positive",
+            "level": "较高（JD有休假/弹性保障事实 + 稳健组织参考）",
+            "violates_constraint": False,
+            "fact_evidence": f"JD原文明确提及“{snippet}”",
+            "inferred_note": "属外企/国央企/轨交电力/成熟工业与办公软件企，行业整体节奏相对稳健",
+            "unknown_note": "具体部门是否存在发版期加班仍需面试核实",
+            "label": f"【事实+行业推断】JD明确提及“{snippet}”；组织属性常态较稳健，入职前仍需核实具体团队作息",
+            "score_delta": 6,
+        }
+    if pos_match:
+        snippet = pos_match.group(0)
+        pace_note = "属快节奏互联网/游戏企业，需核实实际加班强度" if is_fast_pace else "具体日常下班时间仍需面试确认"
+        return {
+            "status": "positive",
+            "level": "中上（JD有明确福利/双休/弹性条款，实际工时待核实）",
+            "violates_constraint": False,
+            "fact_evidence": f"JD原文明确提及“{snippet}”",
+            "inferred_note": pace_note,
+            "unknown_note": "JD未披露部门真实日均工时",
+            "label": f"【事实】JD明确提及福利/休假保障（“{snippet}”），{pace_note}",
+            "score_delta": 2 if is_fast_pace else 5,
         }
     if is_stable_org:
-        fact_part = f"JD提及“{pos_match.group(0)}”；" if pos_match else "JD未披露具体上下班时间【未知】；"
         return {
             "status": "inferred_moderate",
-            "label": f"【事实+推断】{fact_part}属外企/国央企/轨交电力/成熟软件企，行业常态WLB较稳健，入职前需核实具体部门作息",
-            "score_delta": 9,
+            "level": "中等偏稳（JD未写工时【未知】，仅具组织类型弱推断）",
+            "violates_constraint": False,
+            "fact_evidence": "无（JD正文未披露具体上下班时间或双休条款）",
+            "inferred_note": "属外企/国央企/轨交电力/成熟软件企，行业常态WLB相对稳健（仅作弱参考，不直接等同于无加班）",
+            "unknown_note": "【未知】具体研发部门的实际工时、值班与考核节奏完全未披露，需面试核实",
+            "label": "【未知+行业弱推断】JD未披露具体工时；组织类型常态较稳健，但具体部门作息必须面试核实",
+            "score_delta": 2,
         }
     if is_fast_pace:
         return {
             "status": "pace_caution",
-            "label": "【未知+行业推断】JD未披露工时；属头部互联网/游戏企业，短期实习含金量高，但全职通常伴随较快节奏或项目期加班，需谨慎评估长期WLB",
+            "level": "中低（JD工时未知 + 快节奏行业预警）",
+            "violates_constraint": False,
+            "fact_evidence": "无（JD未披露具体工时）",
+            "inferred_note": "属头部互联网或游戏企业，短期实习技术锻炼价值高，但全职或项目期通常伴随较快节奏与加班压力",
+            "unknown_note": "【未知】所在具体业务线的真实上下班时间未披露",
+            "label": "【未知+行业推断】JD未披露工时；属快节奏互联网/游戏企业，需谨慎评估长期WLB与项目期加班",
             "score_delta": -3,
-        }
-    if pos_match:
-        snippet = pos_match.group(0)
-        return {
-            "status": "positive",
-            "label": f"【事实】JD明确提及福利/休假保障（“{snippet}”），具体工时仍需面试确认",
-            "score_delta": 4,
         }
     return {
         "status": "unknown",
+        "level": "待确认（JD未提供WLB证据）",
+        "violates_constraint": False,
+        "fact_evidence": "无（JD未提及双休、弹性工作或加班要求）",
+        "inferred_note": "缺乏足够证据推断工时节奏",
+        "unknown_note": "【未知】JD未披露作息与加班情况，需在面试或学长姐访谈中核实实际工时",
         "label": "【未知】JD未披露作息与加班情况，需在面试或内部渠道核实实际工时",
         "score_delta": 0,
     }
@@ -705,31 +753,41 @@ def job_track_label(job: dict) -> str:
 
 
 _NON_CS_ROLE_RE = re.compile(
-    r"机械(?!臂)|电气|电子工程师|硬件|结构|工艺|设备|热设计|光学|射频|天线|PCB|版图|IC验证|芯片|模拟IC|数字IC|"
+    r"机械(?!臂)|电气|电子工程师|电子电气|硬件|结构|工艺|设备|热设计|光学|射频|天线|PCB|版图|IC验证|数字IC|模拟IC|IC工程师|IC设计|IC后端|IC前端|芯片(?!软件)|"
+    r"SIPI|封装仿真|电池仿真|热仿真|叶片气动|流体仿真|结构仿真|气动建模|"
     r"材料|化学|化工|生物|医药|临床|护理|照护|医生|农艺|养殖|食品|营养|"
     r"销售|营销|市场|运营|客服|政企|客户|商务|采购|供应链|物流|仓储|关务|门店|店长|导购|"
     r"财务|会计|审计|税务|法务|合规|人力|HR|招聘|行政|文秘|公关|品牌|文案|编辑|主播|记者|"
+    r"视觉设计|交互设计|UI设计|UX设计|原画|插画|美术|3D模型|角色模型|动画师|视频后期|"
+    r"安全管理|损耗控制|项目专员|"
     r"土建|土木|建筑|造价|暖通|给排水|环评|EHS|安全员|质量管理|体系工程师|SQE|PQE|DQE|IQC|"
     r"教师|教研|主讲|班主任|辅导员|管培生|管理培训生|交付经理|实施顾问|数据标注",
     re.I,
 )
+_HARD_NON_CS_OVERRIDE_RE = re.compile(
+    r"数字IC|模拟IC|IC验证|IC设计|IC后端|IC前端|PCB工程师|SIPI|封装仿真|电池仿真|叶片气动|电子电气类|"
+    r"视觉设计|交互视觉设计|安全管理|损耗控制|项目专员|硬件测试开发|硬件集成测试",
+    re.I,
+)
 _EXPLICIT_CS_ROLE_RE = re.compile(
-    r"机械臂|机器人|嵌入式软件|软件测试|测试开发|测开|游戏测试|系统软件|软件开发|软件研发|软件工程|算法|大模型|后端|前端|客户端|桌面开发|上位机|数据库|编译器|渲染|游戏引擎|全栈|数据开发|数据研发|大数据|网络安全|信息安全|音视频|数控系统",
+    r"机械臂|机器人(?:软件|算法|控制|系统|视觉)|嵌入式软件|软件测试|测试开发|测开|游戏测试|系统软件|软件开发|软件研发|软件工程|算法|大模型|后端|前端|客户端|桌面开发|上位机|数据库|编译器|渲染|游戏引擎|全栈|数据开发|数据研发|大数据|网络安全|信息安全|音视频|数控系统",
     re.I,
 )
 _GENERAL_CS_ROLE_RE = re.compile(
     r"软件|程序|开发|研发|后端|前端|全栈|客户端|桌面|服务端|移动端|iOS|Android|鸿蒙|Web|Java|Python|C\+\+|Golang|Go语言|Rust|"
-    r"算法|人工智能|\bAI\b|大模型|\bLLM\b|智能体|Agent|机器学习|深度学习|视觉|自然语言|语音|推荐|搜索|多模态|"
+    r"算法|人工智能|\bAI\b|大模型|\bLLM\b|智能体|Agent|机器学习|深度学习|计算机视觉|机器视觉|视觉算法|视觉感知|自然语言|语音|推荐|搜索|多模态|"
     r"数据|数据库|操作系统|内核|基础架构|\bInfra\b|云计算|云资源池|云原生|分布式|存储|编译器|LLVM|HPC|高性能计算|"
     r"图形|渲染|OpenGL|Vulkan|Shader|游戏引擎|UE4|UE5|Unreal|Unity|音视频|工业软件|\bCAD\b|\bCAE\b|几何|"
-    r"机器人|\bROS\b|SLAM|运动控制|自动驾驶|智驾|规控|感知|仿真|嵌入式|固件|驱动|测试|测开|SDET|运维|DevOps|SRE|安全",
+    r"机器人|\bROS\b|SLAM|运动控制|自动驾驶|智驾|规控|感知|仿真平台|仿真软件|仿真算法|嵌入式|固件|驱动|测试|测开|SDET|运维|DevOps|SRE|安全工程|网络安全|信息安全|应用安全|系统安全",
     re.I,
 )
 
 
 def is_cs_software_role(job: dict) -> bool:
-    """Identify computer science / software / algorithm / data / QA roles."""
+    """Identify computer science / software / algorithm / data / QA roles while rejecting IC/PCB/visual-design/safety-admin false positives."""
     title = str(job.get("title") or "").strip()
+    if _HARD_NON_CS_OVERRIDE_RE.search(title):
+        return False
     if _NON_CS_ROLE_RE.search(title) and not _EXPLICIT_CS_ROLE_RE.search(title):
         return False
     if _EXPLICIT_CS_ROLE_RE.search(title):
@@ -741,17 +799,23 @@ _PROFILE_CACHE = {"mtime": None, "data": {}}
 
 
 def load_active_profile() -> dict:
-    """读取当前 profile.yaml 配置（带 mtime 缓存，兼顾毫秒级速度与修改即刻生效）。"""
+    """读取当前 profile.yaml 配置并执行规范化校验（带 mtime 缓存，兼顾毫秒级速度与修改即刻生效）。"""
     try:
         p = Path(__file__).with_name("profile.yaml")
         if p.exists():
             mt = p.stat().st_mtime
             if _PROFILE_CACHE["mtime"] != mt:
-                _PROFILE_CACHE["data"] = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+                raw_data = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+                try:
+                    import profile_config
+                    raw_data = profile_config.validate_and_normalize_profile(raw_data)
+                except Exception as exc:
+                    logger.warning("profile.yaml 规范化警告: %s", exc)
+                _PROFILE_CACHE["data"] = raw_data
                 _PROFILE_CACHE["mtime"] = mt
             return _PROFILE_CACHE["data"]
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("读取 profile.yaml 失败: %s", exc)
     return {}
 
 
@@ -772,6 +836,9 @@ def is_target_candidate_job(job: dict, profile: dict | None = None) -> bool:
         return False
     if is_intern_job(job):
         return True
+    explicit_yr = cohort_year(job)
+    if explicit_yr is not None and explicit_yr < 2027:
+        return False
     try:
         year = int(job.get("cohort") or 0)
     except (TypeError, ValueError):
@@ -781,10 +848,12 @@ def is_target_candidate_job(job: dict, profile: dict | None = None) -> bool:
 
 
 # ==============================================================================
-# 五、去语言偏置的七维解耦评分器 + 可追踪证据生成引擎（支持探索模式与定向模式）
+# 五、基于新版 profile.yaml 的实际工作内容兴趣引擎 + 七维独立解耦评分器
 # ==============================================================================
 
-_AI_ENG_TITLE_RE = re.compile(r"AI软件|AI应用|AI全栈|Agent|智能体|RAG|AI数据工具|评测", re.I)
+ANALYSIS_LOCAL_VERSION = "local-7d-v4.2"
+
+_AI_ENG_TITLE_RE = re.compile(r"AI软件|AI应用|AI全栈|Agent|智能体|RAG|AI数据工具|评测|AI工程", re.I)
 _CPP_MATCH_RE = re.compile(r"C\+\+|C/C\+\+|(?<![A-Za-z])C语言", re.I)
 _LANG_ALL_CS_RE = re.compile(
     r"C\+\+|C/C\+\+|(?<![A-Za-z])C语言|(?<![A-Za-z])Java(?!Script)|"
@@ -793,15 +862,68 @@ _LANG_ALL_CS_RE = re.compile(
     re.I,
 )
 _CS_CORE_MATCH_RE = re.compile(r"数据结构|算法基础|常用算法|操作系统|计算机网络|Linux|并发|多线程|TCP/IP|HTTP", re.I)
-_ENG_TOOL_MATCH_RE = re.compile(r"Python|Git|CMake|Maven|Gradle|npm|单元测试|自动化|调试|CI/CD|接口测试", re.I)
+_ENG_TOOL_MATCH_RE = re.compile(r"Git|CMake|Maven|Gradle|npm|单元测试|自动化测试|接口测试|调试|CI/CD|代码评审|Code\s*Review", re.I)
 _GAP_JAVA_RE = re.compile(r"(?<![A-Za-z])Java(?!Script)|Spring\s*Boot|SpringCloud|MyBatis|\bJVM\b", re.I)
 _GAP_GO_RE = re.compile(r"Golang|\bGo语言\b|\bGo开发\b|\bGin\b", re.I)
+_GAP_PYTHON_ENG_RE = re.compile(r"\bPython\b|FastAPI|Django|Flask|Pytest|PyTorch", re.I)
 _GAP_JS_TS_RE = re.compile(r"JavaScript|TypeScript|\bReact\b|\bVue\b|\bNode\.?js\b|前端工程化|Web前端", re.I)
 _GAP_DB_RE = re.compile(r"MySQL|PostgreSQL|Redis|\bSQL\b|数据库", re.I)
 _GAP_CLOUD_RE = re.compile(r"Docker|Kubernetes|K8s|CI/CD|云原生", re.I)
 _GAP_QT_RE = re.compile(r"\bQt[56]?\b|Winform|WPF|跨平台客户端|上位机", re.I)
-_GAP_AGENT_RE = re.compile(r"LangChain|LangGraph|\bRAG\b|Agent|智能体|Prompt", re.I)
+_GAP_AGENT_RE = re.compile(r"LangChain|LangGraph|\bRAG\b|Agent|智能体|Prompt|MCP|Function\s*Call", re.I)
 _AGG_CACHE = {}
+
+# ── 实际工作内容信号正则（严格作用于 JD 职责描述，而非仅看岗位标题） ──
+_DUTY_HEADER_RE = re.compile(
+    r"(?:岗位职责|工作职责|工作内容|职位描述|职责描述|你将参与|日常工作|主要职责|What\s+you\s+will\s+do)\s*[:：]?",
+    re.I,
+)
+_REQ_HEADER_RE = re.compile(
+    r"(?:任职要求|任职资格|岗位要求|职位要求|基本要求|资格要求|我们在寻找|具备以下|Qualifications|Requirements)\s*[:：]?",
+    re.I,
+)
+
+# 正向工作内容维度（契合 personal_profile.thinking_and_work_style & possible_work_content_preferences）
+_WC_PROBLEM_ANALYSIS_RE = re.compile(
+    r"问题定界|问题定位|故障排查|根因分析|性能分析|性能调优|性能优化|瓶颈|调优|排障|调试|"
+    r"内存泄漏|稳定性优化|复杂问题|疑难问题|诊断|分析并解决|问题分析|需求分析|缺陷.*分析|异常恢复",
+    re.I,
+)
+_WC_SYSTEM_BUILDING_RE = re.compile(
+    r"架构设计|核心模块|系统设计|系统研发|服务架构|模块的设计|模块开发|工具链|开发工具|平台建设|"
+    r"组件开发|引擎|中间件|服务端|客户端|框架设计|基础设施|自动化工具|SDK|内核模块|存储引擎|数据底座|构建.*系统|设计并实现|设计并构建",
+    re.I,
+)
+_WC_VERIFICATION_LOOP_RE = re.compile(
+    r"自动化测试|单元测试|接口测试|性能测试|压测|评测|验证|闭环|可观测|监控诊断|基准测试|"
+    r"Benchmark|仿真验证|持续集成|CI/CD|代码评审|Code\s*Review|质量保障|量化.*评估|实验.*评测|回归",
+    re.I,
+)
+_WC_TECH_DEPTH_RE = re.compile(
+    r"高并发|分布式|高可用|底层机制|跨平台|数据管道|渲染管线|安全攻防|系统重构|工程化|"
+    r"多智能体|多\s*Agent|状态一致性|事务|索引|多线程|异步|编译器|虚拟化|可扩展性",
+    re.I,
+)
+
+# 负向/低兴趣工作内容维度（契合 interest_filtering.screening_rules）
+_WC_REPETITIVE_LOW_DEPTH_RE = re.compile(
+    r"数据录入|信息录入|资料整理|台账整理|文档整理|整理.*文档.*演示材料|PPT制作|手工测试为主|纯功能点测|"
+    r"数据标注|标注审核|报表抄录|简单配置|低代码.*搭建|Dify.*FastGPT|使用常用\s*OFFICE",
+    re.I,
+)
+_WC_PROCESS_SUPPORT_ONLY_RE = re.compile(
+    r"流程跟单|进度催办|商务跟单|客户接待|电话回访|售前宣讲|投标文件|合同归档|"
+    r"驻场运维|一线客服|售后技术支持|机房巡检|7\*24.*值守|桌面运维|外包管理|供应商管理",
+    re.I,
+)
+_WC_HIGH_PRESSURE_RESEARCH_ONLY_RE = re.compile(
+    r"顶会论文|CVPR|ICCV|NeurIPS|ICML|ACL|AAAI|第一作者发表|【北斗】|算法研究员|前沿理论推导|博士优先",
+    re.I,
+)
+
+_KNOWN_CITIES_RE = re.compile(
+    r"(成都|上海|深圳|杭州|广州|武汉|苏州|北京|南京|西安|重庆|天津|长沙|郑州|济南|青岛|厦门|福州|珠海|东莞|佛山|合肥|无锡|常州|宁波|大连|沈阳|长春|哈尔滨|兰州|海口|贵阳|昆明|南宁|石家庄|太原|南昌)",
+)
 
 
 def resolve_recommendation_mode(profile: dict | None = None) -> str:
@@ -821,37 +943,376 @@ def resolve_recommendation_mode(profile: dict | None = None) -> str:
         return "exploration"
 
 
+def extract_jd_work_content(job: dict) -> dict:
+    """从招聘原文中提取『实际工作职责/日常任务』段落与原句证据，严格与『任职要求』分离。"""
+    jd_raw = str(job.get("jd_raw") or "").strip()
+    title = str(job.get("title") or "").strip()
+    if not jd_raw:
+        return {
+            "duty_text": "",
+            "req_text": "",
+            "duty_clauses": [],
+            "has_substantive_duties": False,
+        }
+
+    duty_text = jd_raw
+    req_text = ""
+    duty_m = _DUTY_HEADER_RE.search(jd_raw)
+    req_m = _REQ_HEADER_RE.search(jd_raw)
+
+    if duty_m and req_m and duty_m.start() < req_m.start():
+        duty_text = jd_raw[duty_m.end():req_m.start()].strip()
+        req_text = jd_raw[req_m.end():].strip()
+    elif req_m and (not duty_m or req_m.start() > 30):
+        duty_text = jd_raw[:req_m.start()].strip()
+        req_text = jd_raw[req_m.end():].strip()
+    elif duty_m:
+        duty_text = jd_raw[duty_m.end():].strip()
+
+    # 提取具体职责分句（含负责/参与/设计/实现/开发/构建/分析/排查/优化/搭建/测试等动作）
+    raw_lines = re.split(r"[\r\n；;。]+", duty_text)
+    duty_clauses = []
+    action_re = re.compile(
+        r"负责|参与|设计|实现|开发|研发|构建|搭建|分析|排查|定位|优化|测试|验证|维护|编写|攻克|探索|制定|协同|主导",
+        re.I,
+    )
+    for line in raw_lines:
+        cleaned = re.sub(r"^\s*(?:[0-9一二三四五六七八九十]+[.、)）]|[-•*·])\s*", "", line).strip()
+        if len(cleaned) < 8:
+            continue
+        if cleaned == title or cleaned.startswith("职位简介"):
+            continue
+        if action_re.search(cleaned):
+            duty_clauses.append(cleaned[:110])
+
+    substantive_len = sum(len(c) for c in duty_clauses)
+    has_substantive = (len(duty_clauses) >= 1 and substantive_len >= 12) or (len(duty_text) >= 50 and bool(action_re.search(duty_text)))
+
+    return {
+        "duty_text": duty_text,
+        "req_text": req_text or jd_raw,
+        "duty_clauses": duty_clauses[:5],
+        "has_substantive_duties": has_substantive,
+    }
+
+
+def evaluate_work_content_interest(
+    job: dict,
+    profile: dict | None = None,
+    *,
+    cat_info: dict | None = None,
+) -> dict:
+    """基于新版 profile.yaml 的 personal_profile 与 interest_filtering，评估岗位实际日常工作内容的兴趣适配度。
+
+    核心准则（四.1 ~ 四.3）：
+    1. 优先阅读岗位职责、日常任务、解决的问题和最终产出，不凭职位名称、编程语言或热门标签自动加分；
+    2. 严格执行反误判规则：
+       - 喜欢玩游戏 ≠ 喜欢游戏开发；
+       - 做过图形项目 ≠ 对图形学职业有明确兴趣；
+       - 学习 C++ ≠ 偏好底层开发；
+       - 对 AI Agent 感兴趣 ≠ 已决定从事 AI 应用开发；
+       - 喜欢分析问题 ≠ 必然喜欢算法研究、科研或高强度工作；
+    3. 职责描述不足、只有职位名或技术栈罗列时，标记为 'insufficient_evidence'（兴趣待确认），绝不伪装成高匹配。
+    """
+    prof = profile if isinstance(profile, dict) else load_active_profile()
+    pp = (prof.get("personal_profile") if isinstance(prof, dict) else None) or {}
+    if_cfg = (prof.get("interest_filtering") if isinstance(prof, dict) else None) or {}
+    c_info = cat_info or classify_job_categories(job, prof)
+    cat = c_info["primary_category"]
+    title = str(job.get("title") or "").strip()
+    jd_raw = str(job.get("jd_raw") or "").strip()
+
+    wc = extract_jd_work_content(job)
+    duty_blob = f"{title}\n{wc['duty_text']}" if wc["duty_text"] else f"{title}\n{jd_raw}"
+    duty_only = wc["duty_text"] or jd_raw
+
+    # 1. 检查用户亲自表达的明确喜欢/不喜欢工作内容（profile_update_policy 最高优先级）
+    liked_list = [str(x).strip() for x in (pp.get("liked_work_content") or []) if str(x).strip()]
+    disliked_list = [str(x).strip() for x in (pp.get("disliked_work_content") or []) if str(x).strip()]
+    user_liked_hits = [kw for kw in liked_list if kw.lower() in duty_blob.lower()]
+    user_disliked_hits = [kw for kw in disliked_list if kw.lower() in duty_blob.lower()]
+
+    # 2. 检测正向工程工作内容特征
+    m_prob = _WC_PROBLEM_ANALYSIS_RE.findall(duty_only)
+    m_sys = _WC_SYSTEM_BUILDING_RE.findall(duty_only)
+    m_ver = _WC_VERIFICATION_LOOP_RE.findall(duty_only)
+    m_dep = _WC_TECH_DEPTH_RE.findall(duty_only)
+
+    matched_preferences = []
+    if user_liked_hits:
+        matched_preferences.append(f"【用户明确偏好命中】工作内容包含你亲自标记喜欢的任务：{'、'.join(user_liked_hits[:2])}")
+    if m_prob:
+        uniq = "、".join(dict.fromkeys(m_prob))[:28]
+        matched_preferences.append(f"【问题分析与解决】职责含具体问题拆解与排障优化（原文：“{uniq}”）")
+    if m_sys:
+        uniq = "、".join(dict.fromkeys(m_sys))[:28]
+        matched_preferences.append(f"【系统与工具构建】职责含软件系统/模块/工具研发（原文：“{uniq}”）")
+    if m_ver:
+        uniq = "、".join(dict.fromkeys(m_ver))[:28]
+        matched_preferences.append(f"【可验证反馈闭环】可通过测试、评测指标或监控诊断检验成果（原文：“{uniq}”）")
+    if m_dep:
+        uniq = "、".join(dict.fromkeys(m_dep))[:28]
+        matched_preferences.append(f"【技术深度与积累】涉及有一定工程深度的技术机制（原文：“{uniq}”）")
+
+    # 3. 检测负向/不适合工作内容特征
+    m_rep = _WC_REPETITIVE_LOW_DEPTH_RE.findall(duty_only)
+    m_proc = _WC_PROCESS_SUPPORT_ONLY_RE.findall( f"{title}\n{duty_only}" )
+    m_res = _WC_HIGH_PRESSURE_RESEARCH_ONLY_RE.findall(f"{title}\n{jd_raw}")
+
+    mismatched_points = []
+    if user_disliked_hits:
+        mismatched_points.append(f"【用户明确排斥命中】包含你标记不喜欢的工作内容：{'、'.join(user_disliked_hits[:2])}")
+    if m_rep:
+        uniq = "、".join(dict.fromkeys(m_rep))[:30]
+        mismatched_points.append(f"【低技术成长/重复风险】职责含低代码配置、简单录入、手工点测或文档材料整理（“{uniq}”），长期易乏味")
+    if m_proc:
+        uniq = "、".join(dict.fromkeys(m_proc))[:30]
+        mismatched_points.append(f"【偏流程/驻场/支持事务】含运维值守、售后支持或流程跟进（“{uniq}”），偏离核心软件构建偏好")
+    if m_res and not _AI_ENG_TITLE_RE.search(title):
+        uniq = "、".join(dict.fromkeys(m_res))[:30]
+        mismatched_points.append(f"【纯科研/高门槛算法导向】偏向前沿算法研究或顶会论文指标（“{uniq}”），喜欢分析工程问题不等于喜欢高强度科研刷榜")
+
+    # 4. 反偏置与爱好边界提示 (interest_caveats)
+    caveat_notes = []
+    if cat == "game_engine" or "游戏" in title or "游戏" in company_or_title(job):
+        caveat_notes.append(
+            "【反偏置声明】喜欢玩游戏≠喜欢游戏开发：未因游戏爱好加分，仅按实际模块开发与调试任务评估；需注意业务玩法熟悉后是否重复及版本期加班。"
+        )
+    if cat == "graphics_3d" or re.search(r"OpenGL|GLSL|图形|渲染", f"{title} {jd_raw[:300]}", re.I):
+        caveat_notes.append(
+            "【反偏置声明】做过OpenGL小型项目≠已确定图形学主线：未因图形经历自动抬分，重点看日常几何/渲染工程研发实质。"
+        )
+    if cat == "ai_ml" or re.search(r"Agent|智能体|大模型|\bLLM\b|\bRAG\b", title, re.I):
+        caveat_notes.append(
+            "【反偏置声明】对AI/Agent好奇≠已锁定AI应用开发：未因热门标签加分，严格区分‘核心机制研发与评测闭环’与‘低代码拼装Prompt/文档整理’。"
+        )
+    if _CPP_MATCH_RE.search(title):
+        caveat_notes.append(
+            "【反偏置声明】正在学习C++≠偏好C++或底层开发：探索模式下按实际日常任务与系统工程价值平权评估。"
+        )
+    caveat_str = " ".join(caveat_notes[:2]) if caveat_notes else "按招聘原文实际日常职责评估，未对职位名称、编程语言或个人爱好做预设偏置加分。"
+
+    # 5. 估算日常工作构成与待确认点 (uncertain_points)
+    task_parts = []
+    if m_sys or re.search(r"开发|研发|编码|实现", duty_only):
+        task_parts.append("功能/系统研发实现")
+    if m_prob or re.search(r"调试|排障|定位|修复", duty_only):
+        task_parts.append("问题分析与调试定位")
+    if m_ver or re.search(r"测试|评测|验证", duty_only):
+        task_parts.append("测试验证与质量闭环")
+    if m_rep or m_proc or re.search(r"维护|文档|配置|支持|沟通|协同", duty_only):
+        task_parts.append("日常维护/配置/跨团队协同")
+    task_composition = " + ".join(task_parts) if task_parts else "JD未细化日常任务构成"
+
+    uncertain_points = []
+    if not wc["has_substantive_duties"]:
+        uncertain_points.append("JD正文仅提供笼统描述或技术名词，未写明每天具体开发什么模块、解决什么问题")
+    else:
+        uncertain_points.append("公开JD未披露新功能设计研发、遗留代码维护与跨部门沟通的具体时间占比，需面试核实")
+    if m_rep and (m_sys or m_prob):
+        uncertain_points.append("职责同时提及系统开发与流程配置/文档整理，需在面试中确认核心研发占比是否超过70%")
+
+    # 6. 综合判定兴趣适配等级与分值 (0–25)
+    pos_dim_count = sum(bool(x) for x in (m_prob, m_sys, m_ver, m_dep))
+    quotes = wc["duty_clauses"][:2] if wc["duty_clauses"] else (
+        [wc["duty_text"][:100]] if len(wc["duty_text"]) >= 15 else ["【未知】JD未提供具体日常工作职责原文"]
+    )
+    work_summary = "；".join(wc["duty_clauses"][:2]) if wc["duty_clauses"] else "JD未详细描述日常具体任务（仅列出基础方向或任职要求）"
+
+    if user_disliked_hits:
+        status = "low"
+        level = "低（命中用户明确排斥的工作内容）"
+        score = 4
+    elif not wc["has_substantive_duties"]:
+        status = "insufficient_evidence"
+        level = "兴趣待确认（JD职责证据不足）"
+        score = 12
+    elif (m_proc and pos_dim_count <= 1) or (m_rep and pos_dim_count <= 1 and not m_prob):
+        status = "low"
+        level = "低（偏机械重复/简单配置/运维支持事务）"
+        score = 6
+    elif m_res and not _AI_ENG_TITLE_RE.search(title) and pos_dim_count <= 2:
+        status = "low"
+        level = "低（偏高强度纯算法科研/顶会导向，非本科工程实践主线）"
+        score = 8
+    elif user_liked_hits and pos_dim_count >= 2:
+        status = "high"
+        level = "高（命中明确偏好 + 契合问题分析与系统构建闭环）"
+        score = 24
+    elif pos_dim_count >= 3 and not m_proc and not m_rep:
+        status = "high"
+        level = "高（日常职责兼具问题拆解、系统构建与验证反馈闭环）"
+        score = 22 + min(2, len(m_prob) + len(m_ver) - 2)
+    elif pos_dim_count >= 2 and not m_proc:
+        if m_rep:
+            status = "medium_uncertain"
+            level = "中（含开发任务但夹杂低代码配置/文档维护，兴趣待确认）"
+            score = 14
+        else:
+            status = "medium_high"
+            level = "中高（包含明确的软件系统研发与工程验证任务）"
+            score = 18 + (1 if (m_prob and m_sys) else 0)
+    else:
+        status = "medium_uncertain"
+        level = "中（基础工程研发任务，具体问题深度与新鲜感待确认）"
+        score = 14
+
+    if not matched_preferences and wc["has_substantive_duties"]:
+        matched_preferences.append("【基础研发实践】包含常规软件功能开发与团队协作任务")
+
+    return {
+        "enabled": bool(if_cfg.get("enabled", True)),
+        "status": status,
+        "level": level,
+        "score": max(0, min(25, score)),
+        "has_substantive_duties": wc["has_substantive_duties"],
+        "work_content_summary": work_summary,
+        "task_composition": task_composition,
+        "jd_evidence_quotes": quotes,
+        "matched_preferences": matched_preferences,
+        "mismatched_or_risk_points": mismatched_points,
+        "uncertain_points": uncertain_points,
+        "caveat_applied": caveat_str,
+    }
+
+
+def company_or_title(job: dict) -> str:
+    return f"{job.get('company', '')} {job.get('title', '')}"
+
+
+def evaluate_hard_eligibility(job: dict, profile: dict | None = None) -> dict:
+    """独立评估硬性资格 (eligibility)：学历、毕业时间/招募轨道、排除词、工作地点。"""
+    prof = profile if isinstance(profile, dict) else load_active_profile()
+    title = str(job.get("title") or "").strip()
+    jd_raw = str(job.get("jd_raw") or "").strip()
+    raw_city = str(job.get("city") or "").strip()
+    degree = str(prof.get("degree") or "本科")
+    constraints = (prof.get("constraints") if isinstance(prof, dict) else None) or {}
+    reject_master = bool(constraints.get("reject_master_phd_only", "本科" in degree))
+
+    is_cs = is_cs_software_role(job) and not is_direction_out_job(job)
+    excluded_kws = [str(w).strip() for w in (prof.get("excluded_title_keywords") or []) if str(w).strip()]
+    hit_excluded = [w for w in excluded_kws if w.lower() in title.lower()]
+    master_only = reject_master and is_master_phd_only_job(job)
+    bachelor_explicit = is_explicitly_bachelor_eligible(job)
+    track = job_track_label(job)
+
+    explicit_yr = cohort_year(job)
+    past_cohort_conflict = bool(explicit_yr is not None and explicit_yr < 2027 and not is_intern_job(job))
+
+    # 解析城市（若 job['city'] 为空，尝试从标题或 JD 前 300 字提取明确工作地）
+    resolved_city = raw_city
+    if not resolved_city:
+        m_c = _KNOWN_CITIES_RE.search(f"{title} {jd_raw[:350]}")
+        if m_c:
+            resolved_city = m_c.group(1)
+
+    pref_cities = [str(c).strip() for c in (prof.get("preferred_cities") or []) if str(c).strip()]
+    if not pref_cities:
+        city_status = "matched"
+        city_matched = True
+    elif not resolved_city or "全国" in resolved_city:
+        city_status = "unspecified"
+        city_matched = True
+    elif any(pc in resolved_city for pc in pref_cities):
+        city_status = "matched"
+        city_matched = True
+    else:
+        city_status = "non_preferred"
+        city_matched = False
+
+    reasons = []
+    ineligible_reason = ""
+    if not is_cs:
+        passed = False
+        ineligible_reason = "非计算机/软件工程目标研发方向（属硬件IC/结构仿真/设计/非技术岗）"
+        reasons.append(f"【硬性拦截】{ineligible_reason}")
+    elif hit_excluded:
+        passed = False
+        ineligible_reason = f"职位名称命中排除词（{'、'.join(hit_excluded)}）"
+        reasons.append(f"【硬性拦截】{ineligible_reason}")
+    elif master_only:
+        passed = False
+        ineligible_reason = "JD明确要求硕士或博士及以上学历，不符合本科直接应聘条件"
+        reasons.append(f"【硬性拦截】{ineligible_reason}")
+    elif past_cohort_conflict:
+        passed = False
+        ineligible_reason = f"岗位标题/正文显式标注为往届（{explicit_yr}届），非当前目标届别"
+        reasons.append(f"【硬性拦截】{ineligible_reason}")
+    else:
+        passed = True
+        if bachelor_explicit:
+            reasons.append("【学历符合·事实】JD明确标注本科及以上学历可投")
+        else:
+            reasons.append("【学历可投·待核实】JD未设硕博限制，本科可投递（建议网申页二次确认）")
+        if is_intern_job(job):
+            reasons.append(f"【身份符合·事实】{internship_reason(job) or '支持在读本科生实习投递'}")
+        else:
+            reasons.append("【招募轨道】2027届正式校招岗位（可作为本科就业要求对标与投递参考）")
+        if city_status == "matched":
+            reasons.append(f"【地点符合·事实】工作地点（{resolved_city}）位于意向城市列表内")
+        elif city_status == "unspecified":
+            reasons.append("【地点待确认】岗位未显式限定单一城市或支持多地投递")
+        else:
+            reasons.append(f"【地点偏离】工作地点为“{resolved_city}”，不在你配置的意向城市（{'/'.join(pref_cities[:5])}等）中")
+
+    return {
+        "passed": passed,
+        "status": "eligible" if (passed and city_matched) else ("non_preferred_city" if passed else "ineligible"),
+        "degree_status": "master_phd_only" if master_only else ("explicit_bachelor" if bachelor_explicit else "unrestricted_bachelor"),
+        "bachelor_eligible": bachelor_explicit,
+        "track": track,
+        "city": resolved_city or "未披露",
+        "city_status": city_status,
+        "city_matched": city_matched,
+        "reasons": reasons,
+        "ineligible_reason": ineligible_reason,
+    }
+
+
 def build_traceable_evaluation(
     job: dict,
     profile: dict | None = None,
     *,
     cat_info: dict | None = None,
     wlb_info: dict | None = None,
+    elig_info: dict | None = None,
+    interest_info: dict | None = None,
 ) -> dict:
     """构建可追踪的 7 维解耦评估因素与 5 项可追踪证据 (traceable_evidence)。
 
-    严格遵循反偏置原则：
-    - C++ 仅作为现有技能优势（面向对象、静态类型、内存与系统基础）和学习转型成本评估的一部分；
-    - 明确区分 C++ 背景可迁移到的要求 (transferable_to) 与不能替代的要求 (cannot_replace)；
-    - 独立输出预计学习与转型成本 (transition_cost) 及其判断依据 (basis) 和不确定性 (uncertainty)。
+    严格遵循新版 profile.yaml 原则：
+    - 读取 skill_proficiency 真实能力边界（如 Python“本人还没开始学习”、C++“基础学习阶段”）；
+    - 严格区分 eligibility、interest_fit、career_fit、skill_fit、learning_cost、wlb_fit、evidence_confidence；
+    - 明确区分 C++ 背景可迁移到的要求 (transferable_to) 与不能替代的要求 (cannot_replace)。
     """
     prof = profile if isinstance(profile, dict) else load_active_profile()
     mode = resolve_recommendation_mode(prof)
     title = str(job.get("title") or "")
     jd_raw = str(job.get("jd_raw") or "")
-    city = str(job.get("city") or "").strip()
     combined = f"{title}\n{jd_raw}"
     c_info = cat_info or classify_job_categories(job, prof)
     cat = c_info["primary_category"]
     cat_label = c_info["primary_label"]
-    wlb = wlb_info or wlb_signal_audit(job)
-    track = job_track_label(job)
+    wlb = wlb_info or wlb_signal_audit(job, prof)
+    elig = elig_info or evaluate_hard_eligibility(job, prof)
+    interest = interest_info or evaluate_work_content_interest(job, prof, cat_info=c_info)
+    track = elig["track"]
+
+    try:
+        import profile_config
+        sp_map = profile_config.extract_skill_proficiency_map(prof)
+    except Exception:
+        sp_map = {}
+
+    py_prof = sp_map.get("python") or {}
+    py_not_learned = bool(py_prof.get("not_learned_yet", False))
 
     has_cpp = bool(_CPP_MATCH_RE.search(combined))
     has_java = bool(_GAP_JAVA_RE.search(combined))
     has_go = bool(_GAP_GO_RE.search(combined))
     has_js_ts = bool(_GAP_JS_TS_RE.search(combined))
-    has_python = bool(re.search(r"\bPython\b", combined, re.I))
+    has_python = bool(_GAP_PYTHON_ENG_RE.search(combined))
     has_cs_core = bool(_CS_CORE_MATCH_RE.search(combined))
     has_eng_tool = bool(_ENG_TOOL_MATCH_RE.search(combined))
     has_db = bool(_GAP_DB_RE.search(combined))
@@ -873,22 +1334,25 @@ def build_traceable_evaluation(
     if not detected_langs and _LANG_ALL_CS_RE.search(combined):
         detected_langs.append(_LANG_ALL_CS_RE.search(combined).group(0))
 
-    # 1. 已具备或可能具备的要求 (met_requirements)
+    # 1. 已具备或可能具备的要求 (met_requirements) —— 严格按 skill_proficiency 能力边界表述
     met_reqs = []
-    if is_explicitly_bachelor_eligible(job):
+    if elig["bachelor_eligible"]:
         met_reqs.append("【硬性资格·已具备】本科学历符合 JD 显式学历要求")
-    elif not is_master_phd_only_job(job):
-        met_reqs.append("【硬性资格·可能具备】JD 未设置硕博一刀切门槛，本科生可尝试投递")
+    elif elig["passed"]:
+        met_reqs.append("【硬性资格·可能具备】JD 未设硕博一刀切门槛，本科生可投递")
     if has_cs_core:
-        met_reqs.append("【通用底座·已具备/持续巩固】数据结构与算法、操作系统、计算机网络或 Linux 基础")
+        met_reqs.append("【通用底座·持续学习中】正在学习数据结构与算法、操作系统与 Linux 基础，契合岗位底层考察点")
     if has_eng_tool:
-        met_reqs.append("【工程工具·已具备基础】Git 版本控制、CMake 构建、Python 脚本或基础测试排障经验")
+        met_reqs.append("【工程工具·基础接触】接触过 Git、CMake 构建及 AI 辅助工作流排查调试")
     if has_cpp:
-        met_reqs.append("【语言基础·已具备学习经历】正在学习 C++（面向对象、STL、基础内存管理）")
+        met_reqs.append("【语言基础·基础学习阶段】正在学习 C++（面向对象、STL 与小型项目调试；注：尚未达到中大型工业工程熟练度）")
     if has_python:
-        met_reqs.append("【脚本与工作流·已具备初步实践】在 AI 辅助下使用和改造过 Python 数据处理与自动化工作流")
+        if py_not_learned:
+            met_reqs.append("【工作流接触·需注意边界】虽通过 AI 辅助接触过 Python 脚本工作流，但本人尚未系统开始学习 Python 语法与工程开发")
+        else:
+            met_reqs.append("【脚本实践·初步接触】具备 Python 基础脚本与数据处理工作流实践接触")
     if not met_reqs:
-        met_reqs.append("【基础背景·可能具备】软件工程本科在读，具备通用编程与理工科逻辑基础")
+        met_reqs.append("【基础背景·可能具备】软件工程本科在读，具备通用编程逻辑与问题拆解意识")
 
     # 2. 仍然缺失的能力 (missing_capabilities)
     missing_caps = []
@@ -896,6 +1360,8 @@ def build_traceable_evaluation(
         missing_caps.append("Java 语言工程化与 Spring Boot / Spring Cloud / MyBatis 服务端生态")
     if has_go:
         missing_caps.append("Go (Golang) 语言语法、Goroutine 并发编程与微服务框架实践")
+    if has_python and py_not_learned and not (has_cpp and not re.search(r"Python.*必须|精通\s*Python|扎实的\s*Python", combined, re.I)):
+        missing_caps.append("Python 语言系统学习及 Python 工程开发 / Web 后端架构 / 自动化测试体系（profile 标注本人尚未开始系统学习）")
     if has_js_ts:
         missing_caps.append("JavaScript / TypeScript 语言及 React / Vue 前端组件化与浏览器工程体系")
     if has_db:
@@ -905,21 +1371,21 @@ def build_traceable_evaluation(
     if has_qt:
         missing_caps.append("Qt6 信号槽机制、多线程 UI 架构或跨平台桌面客户端框架")
     if has_agent:
-        missing_caps.append("企业级 RAG 检索增强、Function Calling 容错与 Agent 自动化评测闭环")
-    if cat in ("graphics_3d", "game_engine") and not missing_caps:
-        missing_caps.append("商业级游戏引擎架构（UE5/Unity）或工业级三维几何内核/PBR 渲染管线深度经验")
+        missing_caps.append("独立设计实现企业级 RAG 检索增强、Function Calling 容错与 Agent 量化评测体系的能力")
+    if has_cpp and not missing_caps:
+        missing_caps.append("中大型 C++ 工程架构设计、现代 C++ 并发/内存深度调优及工业级线上排障经验（当前处于基础学习阶段）")
     if not missing_caps:
-        missing_caps.append("企业级中大型软件工程协作规范、线上监控排障与高并发/高可靠生产环境实践")
+        missing_caps.append("企业级软件工程协作规范、自动化测试覆盖与生产环境排障实践")
 
     # 3. C++ 背景具体能迁移到哪些要求，不能替代哪些要求 (cpp_transferability)
     transferable_to = [
         "面向对象设计（封装/继承/多态）、模块化抽象与静态类型编译期检查思维",
-        "数据结构、内存布局理解、指针/引用概念及基础性能/边界条件排查意识",
+        "数据结构、内存布局理解、指针/引用概念及基础代码调试排错意识",
     ]
     if has_cs_core:
         transferable_to.append("操作系统进程/线程同步、虚拟内存与 TCP/IP 网络通信底层原理")
     if has_go:
-        transferable_to.append("C 系语法习惯与结构体/内存效率意识可加速 Go 语言上手")
+        transferable_to.append("C 系编译型语法习惯与内存效率意识可加速 Go 语言上手")
     if has_java or has_js_ts:
         transferable_to.append("C++ 面向对象与泛型(STL)思想可迁移理解 Java 类体系或 TypeScript 类型系统")
 
@@ -928,6 +1394,8 @@ def build_traceable_evaluation(
         cannot_replace.append("不能替代 JVM 内存与垃圾回收机制、Spring Boot/Cloud 依赖注入与企业级中间件生态经验")
     if has_go:
         cannot_replace.append("不能替代 Go CSP 并发模型（Goroutine/Channel）工程习惯与云原生微服务治理经验")
+    if has_python and py_not_learned:
+        cannot_replace.append("不能直接替代 Python 语言系统语法、异步 Web 框架（FastAPI/Django）及 pytest 自动化测试工程经验")
     if has_js_ts:
         cannot_replace.append("不能替代浏览器 DOM/BOM 渲染机制、异步事件循环及 React/Vue 前端状态管理经验")
     if has_db:
@@ -944,29 +1412,42 @@ def build_traceable_evaluation(
         f"不可替代：{cannot_replace[0]}"
     )
 
-    # 4. 预计学习和转型成本判断的依据与不确定性 (transition_cost)
+    # 4. 预计学习和转型成本判断的依据与不确定性 (transition_cost / learning_cost)
     gap_cnt = len(missing_caps)
-    if (has_cpp or has_python) and not (has_java or has_go or has_js_ts) and gap_cnt <= 1:
+    if has_cpp and not (has_java or has_go or has_js_ts) and gap_cnt <= 1:
         cost_level = "低（约 1–3 周）"
         cost_code = "low"
         est_weeks = "1-3周"
         cost_basis = (
-            f"JD 主要技术栈（{'/'.join(detected_langs) or 'C++/Python'}）与当前已接触语言一致，"
-            "无需跨语言切换，主要学习成本集中在具体工程框架与测试规范。"
+            "岗位核心语言为 C/C++，与当前正在学习的语言一致，无需跨语言切换；主要学习成本在于从课堂/小型练习过渡到企业级工程规范与调试工具。"
         )
+    elif has_python and not (has_java or has_go or has_js_ts or has_cpp):
+        if py_not_learned:
+            cost_level = "中低（约 3–5 周）"
+            cost_code = "medium_low"
+            est_weeks = "3-5周"
+            cost_basis = (
+                "岗位以 Python 为主；根据 profile.yaml 声明，你虽通过 AI 接触过 Python 工作流但『本人还没开始学习』，"
+                "需花 1–2 周系统补齐 Python 语法与标准库，再花 2–3 周掌握对应 Web/测试/数据工程框架。"
+            )
+        else:
+            cost_level = "低（约 1–3 周）"
+            cost_code = "low"
+            est_weeks = "1-3周"
+            cost_basis = "岗位以 Python 为主，可结合已有脚本实践在 1–3 周内补齐工程框架与测试规范。"
     elif has_go and not has_java and gap_cnt <= 2:
         cost_level = "中低（约 3–5 周）"
         cost_code = "medium_low"
         est_weeks = "3-5周"
         cost_basis = (
-            "虽需新学 Go 语言与服务端数据库/中间件，但 Go 同属编译型 C 系语法，利用现有 C++ 与 Linux 基础通常 1–2 周可掌握语法、2–3 周可完成微服务小项目。"
+            "虽需新学 Go 语言与服务端中间件，但 Go 同属编译型 C 系语法，利用现有 C++ 与 Linux 基础通常 1–2 周可掌握语法、2–3 周可完成微服务小项目。"
         )
     elif (has_cpp and has_qt) or (gap_cnt == 2 and not has_java and not has_js_ts):
         cost_level = "中低（约 3–5 周）"
         cost_code = "medium_low"
         est_weeks = "3-5周"
         cost_basis = (
-            f"核心语言或系统基础可复用，但需专门投入 3–5 周补齐 {missing_caps[0][:24]} 等工程组件。"
+            f"编程基础与系统概念可复用，但需专门投入 3–5 周系统学习 {missing_caps[0][:24]} 等工程模块。"
         )
     elif (has_java or has_js_ts) and gap_cnt <= 3:
         cost_level = "中（约 4–8 周）"
@@ -974,7 +1455,7 @@ def build_traceable_evaluation(
         est_weeks = "4-8周"
         cost_basis = (
             f"岗位使用 {'/'.join(detected_langs) or '非C++技术栈'}，虽然计算机底层基础（算法/OS/网络/OOP）通用，"
-            f"但需系统学习新语言生态与主流框架（{missing_caps[0][:26]}），预计需 1–2 个月构建合格项目作品。"
+            f"但需系统学习新语言生态与主流框架（{missing_caps[0][:26]}），预计需 4–8 周构建合格工程作品。"
         )
     else:
         cost_level = "高（约 2–4 个月以上）"
@@ -982,28 +1463,34 @@ def build_traceable_evaluation(
         est_weeks = "8-16周+"
         cost_basis = (
             f"JD 同时涉及多项跨领域技术要求（共识别到 {gap_cnt} 项待补能力：{', '.join(m[:14] for m in missing_caps[:3])}），"
-            "短期突击转型成本较高，建议评估是否符合阶段性投入产出比。"
+            "短期突击转型成本较高，注意：容易上手≠更适合，转型成本高≠不感兴趣，应结合实际工作内容兴趣权衡。"
         )
 
     cost_uncertainty = (
-        "【不确定性】公开 JD 未说明团队对应届/实习生是要求“熟练掌握框架源码”还是“具备计算机基础即可入职培养”，"
-        "亦未披露内部工具链完善度，实际学习压力需在面试中确认。"
+        "【不确定性】公开 JD 未说明团队对本科实习/应届生是要求“入职前已熟练掌握框架”还是“看重计算机底座、入职后导师带教培养”，"
+        "实际上手压力需在面试中核实。"
     )
 
-    # 5. 为什么这个岗位值得考虑 (why_worth_considering)
-    pref_cities = [str(c).strip() for c in (prof.get("preferred_cities") or []) if str(c).strip()]
-    city_matched = bool(city and any(pc in city for pc in pref_cities))
+    # 5. 为什么这个岗位值得考虑 / 不推荐 (why_worth_considering)
     worth_parts = [f"属【{cat_label}】方向（{track}）"]
-    if is_explicitly_bachelor_eligible(job):
+    if interest["status"] in ("high", "medium_high"):
+        worth_parts.append(f"日常工作内容兴趣适配{interest['level'][:2]}（含问题分析/系统构建/验证反馈）")
+    elif interest["status"] == "insufficient_evidence":
+        worth_parts.append("JD职责描述较简略（兴趣待确认）")
+    elif interest["status"] == "low":
+        worth_parts.append("日常职责偏重复/配置/支持事务（兴趣适配度低）")
+    if elig["bachelor_eligible"]:
         worth_parts.append("明确接受本科学历")
-    if wlb["status"] in ("positive", "inferred_moderate"):
-        worth_parts.append("具备积极的 WLB / 稳健组织信号")
-    elif wlb["status"] == "unknown":
-        worth_parts.append("技术栈具备跨行业复利价值（工时待核实）")
-    if city_matched:
-        worth_parts.append(f"位于意向城市（{city}）")
+    if wlb["status"] == "positive":
+        worth_parts.append("JD含明确双休/福利保障信号")
+    elif wlb["status"] == "risk":
+        worth_parts.append("存在显式高压/加班/驻场风险信号")
+    if elig["city_matched"] and elig["city"] != "未披露":
+        worth_parts.append(f"位于意向城市（{elig['city']}）")
+    elif not elig["city_matched"]:
+        worth_parts.append(f"地点（{elig['city']}）不在首选意向城市内")
     if detected_langs:
-        worth_parts.append(f"可帮助了解 {'/'.join(detected_langs)} 技术栈的真实工业界要求")
+        worth_parts.append(f"涉及 {'/'.join(detected_langs)} 技术栈")
     why_worth = "；".join(worth_parts) + "。"
 
     return {
@@ -1024,115 +1511,103 @@ def build_traceable_evaluation(
             "basis": cost_basis,
             "uncertainty": cost_uncertainty,
         },
-        "city_matched": city_matched,
+        "city_matched": elig["city_matched"],
+        "interest_fit": interest,
+        "eligibility": elig,
     }
 
 
 def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
-    """7维解耦、去 C++ 语言偏置的岗位匹配评分器（支持探索模式与定向求职模式）。
+    """基于新版 profile.yaml 的 7 维独立解耦评分器。
 
-    在探索模式 (exploration) 下：
-    - 仅因为用户正在学习 C++，绝不自动给 C++ 岗位加方向分或语言偏置分；
-    - 预计学习和转型成本 (transition_cost) 独立评估并展示，不替代岗位适合度总分 (match_score)；
-    - 在其他条件（硬性资格、领域工程价值、通用计算机基础要求、WLB与个人条件）相近时，
-      C++、Java、Go、Python、TypeScript 岗位获得相同的总体匹配分。
+    严格区分 7 大评估维度（绝不重复计分、绝不混淆学习成本与兴趣/适合度）：
+    1. eligibility：硬性资格是否符合（学历、届别、求职轨道、意向城市）。硬性不符一票否决。
+    2. interest_fit：实际工作内容与个人兴趣的适配程度（基于日常职责中的问题拆解、系统构建、测试验证与技术深度，而非职位名/关键词/爱好）。
+    3. career_fit：与长期技术积累、工程能力提升和跨行业迁移价值的适配程度。
+    4. skill_fit：当前技能与岗位通用计算机工程要求的匹配程度（严格遵守 skill_proficiency 边界）。
+    5. learning_cost：达到岗位要求所需的学习和转型成本（独立展示，探索模式下不因成本低自动抬高总分，也不因合理跨语言学习扣减兴趣分）。
+    6. wlb_fit：工作生活平衡的适配程度（基于 JD 原文事实与审慎行业线索，拒绝高压加班信号）。
+    7. evidence_confidence：当前判断的证据充分程度（区分原文事实、合理推断与未知信息；证据不足时限制虚高分）。
     """
     prof = profile if profile is not None else load_active_profile()
     mode = resolve_recommendation_mode(prof)
     title = str(job.get("title") or "")
     jd_raw = str(job.get("jd_raw") or "")
-    city = str(job.get("city") or "").strip()
     combined = f"{title}\n{jd_raw}"
+
     cat_info = classify_job_categories(job, prof)
     cat = cat_info["primary_category"]
-    track = job_track_label(job)
-    wlb = wlb_signal_audit(job)
-    trace = build_traceable_evaluation(job, prof, cat_info=cat_info, wlb_info=wlb)
+    wlb = wlb_signal_audit(job, prof)
+    elig = evaluate_hard_eligibility(job, prof)
+    interest = evaluate_work_content_interest(job, prof, cat_info=cat_info)
+    trace = build_traceable_evaluation(
+        job, prof, cat_info=cat_info, wlb_info=wlb, elig_info=elig, interest_info=interest
+    )
+    track = elig["track"]
 
-    if not is_cs_software_role(job) or is_direction_out_job(job):
+    # ── 硬性资格一票否决门禁（五.1：先处理硬性资格，不能用高兴趣分抵消明确的资格不符） ──
+    if not elig["passed"]:
+        inel_score = 30 if "硕士" in elig["ineligible_reason"] or "博士" in elig["ineligible_reason"] else 25
         return {
-            "match_score": 25,
+            "match_score": inel_score,
             "recommendation": "不推荐",
             "recommendation_mode": mode,
             "advantages": [],
-            "gaps": ["非计算机/软件研发方向"],
-            "summary": "非软件研发目标方向，已过滤",
+            "gaps": [f"【硬性资格不符】{elig['ineligible_reason']}"],
+            "summary": f"硬性资格不符：{elig['ineligible_reason']}",
+            "final_decision_reason": f"因硬性条件不符（{elig['ineligible_reason']}）直接排除，不进入推荐列表。",
             "analysis_status": "ineligible",
+            "score_breakdown": {"core_direction": 0, "required_skills": 0, "project_evidence": 0, "engineering_stack": 0, "basic_criteria": 0},
+            "dimensions": {
+                "eligibility": elig,
+                "interest_fit": interest,
+                "wlb_fit": wlb,
+            },
             "evaluation_factors": {},
             "traceable_evidence": trace,
         }
 
-    degree = str(prof.get("degree") or "本科")
-    if "本科" in degree and is_master_phd_only_job(job):
-        return {
-            "match_score": 30,
-            "recommendation": "不推荐",
-            "recommendation_mode": mode,
-            "advantages": [],
-            "gaps": ["【事实】JD明确要求硕士或博士及以上学历，普通本科直接应聘受阻"],
-            "summary": "学历门槛为硕博，不符合本科直通就业要求",
-            "analysis_status": "ineligible",
-            "evaluation_factors": {},
-            "traceable_evidence": trace,
-        }
+    limits = prof.get("score_component_limits") or {
+        "core_direction": 20, "required_skills": 25, "project_evidence": 20,
+        "engineering_stack": 15, "basic_criteria": 20,
+    }
+    c_lim = int(limits.get("core_direction", 20))
+    r_lim = int(limits.get("required_skills", 25))
+    p_lim = int(limits.get("project_evidence", 20))
+    e_lim = int(limits.get("engineering_stack", 15))
+    b_lim = int(limits.get("basic_criteria", 20))
 
-    score = 52
     advantages = []
     gaps = []
 
-    # ── 因素 2：学历、毕业时间、实习时间等硬性资格 (hard_qualifications) ──
-    qual_score = 0
-    if is_intern_job(job):
-        qual_score += 10
-        reason = internship_reason(job) or "支持实习/在读投递"
-        advantages.append(f"【硬性资格·当前可投】{reason}，契合本科阶段实习探索目标")
-    else:
-        advantages.append("【硬性资格·校招参考】应届全职岗位，用于横向了解不同方向的真实招聘要求")
-
-    if is_explicitly_bachelor_eligible(job):
-        qual_score += 8
-        advantages.append("【硬性资格·学历匹配】JD明确标注本科及以上可投，无硕博学历一刀切")
-    else:
-        gaps.append("【未知·学历下限】JD正文未显式写明学历下限，投递前需在官网确认是否接受本科")
-    score += qual_score
-
-    # ── 因素 1：岗位职责和技术领域的匹配度 (domain_and_role_fit) —— 探索模式跨语言平权 ──
-    domain_score = 0
-    domain_explain = ""
-    if cat == "backend_dist":
-        domain_score = 8
-        domain_explain = "后端与分布式系统研发，市场岗位基数最大、涵盖 Java/Go/Python/C++ 等主流栈，跨行业通用性极强"
-    elif cat == "software_cpp":
-        domain_score = 8
-        domain_explain = "客户端、桌面、跨平台与前端应用研发，贴近用户交互与工程产品落地，本科接纳度高"
-    elif cat == "testing_quality":
-        domain_score = 8
-        domain_explain = "测试开发(SDET)/质量工程/研发效能工具，本科入行友好，重自动化工程与系统质量保障"
-    elif cat in ("sys_infra", "security"):
-        domain_score = 8
-        domain_explain = "系统软件、云原生基础设施与安全工程，技术生命周期长，抗短期业务框架更迭风险"
-    elif cat == "data_platform":
-        domain_score = 8
-        domain_explain = "数据工程、数据库与存储系统，SQL 与数据管道能力在各行业高度通用"
+    # ── 维度 2 & 3：实际工作内容兴趣 (interest_fit) + 职业发展长线价值 (career_fit) → 映射至 core_direction (上限 c_lim=20) ──
+    if cat in ("backend_dist", "software_cpp", "testing_quality", "sys_infra", "security", "data_platform"):
+        career_raw = 6  # 跨行业通用性高、本科工程成长路径清晰
+        career_level = "高（跨行业可迁移性强，重软件工程长期积累）"
+        career_explain = f"【{cat_info['primary_label']}】具备成熟的软件工程规范与跨行业迁移价值，契合本科直通就业与长期技术积累目标"
     elif cat == "ai_ml":
         if _AI_ENG_TITLE_RE.search(title):
-            domain_score = 8
-            domain_explain = "偏工程落地的 AI 应用/Agent 研发（非纯论文科研岗），本科生可通过软件工程能力切入"
+            career_raw = 6
+            career_level = "高（偏AI工程化落地与系统集成，具备高可迁移工程价值）"
+            career_explain = "偏工程落地的 AI 应用/Agent 系统研发（非纯论文科研岗），可将软件工程底座与 AI 工具链结合积累"
         else:
-            domain_score = -8
-            domain_explain = "核心算法科研岗通常存在隐性硕博与顶会论文竞争，普通本科直通就业性价比偏低"
-            gaps.append(f"【领域门槛推断】{domain_explain}")
+            career_raw = 2
+            career_level = "中低（纯算法研究岗隐性硕博竞争激烈，本科工程性价比偏低）"
+            career_explain = "传统算法/模型研究岗通常存在隐性硕博与论文门槛，普通本科直通就业投入产出比偏低"
     elif cat == "embedded_device":
-        domain_score = 5
-        domain_explain = "嵌入式与设备软件研发，工程稳定性好，但需留意是否依赖特定硬件板卡知识"
+        career_raw = 5
+        career_level = "中高（实业/设备软件生命周期长，需注意硬件平台绑定度）"
+        career_explain = "嵌入式与设备软件生命周期稳健，可复用 C/C++ 与 OS 基础，需留意硬件专用性"
     elif cat in ("graphics_3d", "game_engine"):
-        domain_score = 4
-        domain_explain = "图形学、三维与游戏引擎方向（当前作为个人兴趣参照支线，需综合评估细分岗位面与行业工时）"
+        career_raw = 4
+        career_level = "中（属个人兴趣探索支线，细分领域专业性强但行业面相对集中）"
+        career_explain = "图形渲染与游戏引擎属个人兴趣参照支线，需综合权衡细分岗位面宽度与行业作息节奏"
     else:
-        domain_score = 4
-        domain_explain = "通用或其他计算机技术岗位，具备一定工程探索参考价值"
+        career_raw = 4
+        career_level = "中（通用技术岗位，需结合具体部门业务判断成长空间）"
+        career_explain = "具备一定工程实践价值，需结合具体团队技术栈评估长期成长性"
 
-    # 若处于【定向求职模式 (targeted)】，根据用户锁定的目标方向与目标语言额外加权/筛选
+    # 定向求职模式调整
     targeted_delta = 0
     if mode == "targeted":
         locked_dirs = [
@@ -1149,138 +1624,320 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
         dir_hit = any(ld in blob_lower for ld in locked_dirs if len(ld) >= 2)
         lang_hit = any(ll in blob_lower for ll in locked_langs if len(ll) >= 1)
         if dir_hit or lang_hit:
-            targeted_delta = 6
-            domain_explain += "（🎯 定向求职模式：命中已锁定的目标方向/技术栈）"
+            targeted_delta = 3
+            career_explain += "（🎯 定向求职模式：命中已锁定的主攻方向/技术栈）"
         elif locked_dirs or locked_langs:
-            targeted_delta = -5
-            domain_explain += "（🎯 定向求职模式：非当前锁定的主攻方向，适度降权）"
+            targeted_delta = -4
+            career_explain += "（🎯 定向求职模式：非当前锁定的主攻方向）"
 
-    score += domain_score + targeted_delta
-    if domain_score > 0:
-        advantages.append(f"【职责与领域价值】{domain_explain}")
+    # 1) core_direction (0~20)：仅由『实际工作内容兴趣 (0~14)』+『职业长线迁移价值 (0~6)』构成，不重复计入技能或学历
+    interest_part = round(interest["score"] * 13.0 / 25.0)
+    if len(interest.get("jd_evidence_quotes") or []) >= 2 and interest["status"] == "high":
+        interest_part = min(14, interest_part + 1)
+    core_dir_pts = max(2, min(c_lim, round((interest_part + career_raw + targeted_delta) * c_lim / 20.0)))
 
-    # ── 因素 7：用户已经具备的技能所带来的实际优势 (existing_skill_advantage) ──
-    skill_adv_score = 0
-    matched_adv_list = []
-    if _LANG_ALL_CS_RE.search(combined):
-        skill_adv_score += 5
-        langs_str = "/".join(trace["detected_languages"][:3]) or "主流编程语言"
-        matched_adv_list.append(
-            f"JD 要求 {langs_str} 编程，现有结构化编程、面向对象与代码调试基础可提供通用支撑"
+    if interest["matched_preferences"]:
+        advantages.append(interest["matched_preferences"][0])
+    if interest["status"] in ("high", "medium_high"):
+        advantages.append(f"【工作内容兴趣：{interest['level']}】{interest['work_content_summary'][:65]}")
+    elif interest["status"] == "insufficient_evidence":
+        gaps.append("【兴趣待确认·职责证据不足】JD未写明具体日常开发与问题解决任务，不伪装成高匹配")
+    elif interest["status"] == "low":
+        gaps.append(
+            interest["mismatched_or_risk_points"][0]
+            if interest["mismatched_or_risk_points"]
+            else f"【工作内容兴趣偏低】{interest['level']}"
         )
-    if _CS_CORE_MATCH_RE.search(combined):
-        skill_adv_score += 5
-        matched_adv_list.append("考察数据结构与算法、操作系统、计算机网络或 Linux 等跨语言高保值底座")
-    if _ENG_TOOL_MATCH_RE.search(combined):
-        skill_adv_score += 4
-        matched_adv_list.append("涉及 Git、构建工具、Python 脚本或单元测试/自动化调试等工程实践")
+
+    # ── 维度 4：当前技能与岗位要求的匹配度 (skill_fit) → 映射至 required_skills (上限 r_lim=25，绝不重复计入学历或工具) ──
+    has_any_lang = bool(_LANG_ALL_CS_RE.search(combined))
+    has_cs_core = bool(_CS_CORE_MATCH_RE.search(combined))
+    has_eng_tool = bool(_ENG_TOOL_MATCH_RE.search(combined))
+
+    cs_core_areas = sum([
+        bool(re.search(r"数据结构|算法基础|常用算法", combined, re.I)),
+        bool(re.search(r"操作系统|\bLinux\b|进程|线程|并发|多线程", combined, re.I)),
+        bool(re.search(r"计算机网络|TCP/IP|Socket|\bHTTP\b", combined, re.I)),
+    ])
+    skill_raw = 8  # 软件工程在读基础分
+    matched_foundations = []
+    if has_any_lang:
+        skill_raw += 5
+        langs_str = "/".join(trace["detected_languages"][:3]) or "主流编程语言"
+        matched_foundations.append(f"要求 {langs_str} 编程，现有结构化/面向对象编程与调试训练可提供基础支撑")
+    if cs_core_areas > 0:
+        skill_raw += min(7, cs_core_areas * 2 + 1)
+        matched_foundations.append("考察数据结构与算法、操作系统、计算机网络或 Linux 等跨语言高保值底座")
 
     builtin_skill_tokens = {
         "c++", "c/c++", "python", "linux", "git", "cmake",
-        "opengl/glsl", "opengl", "数据结构与算法", "操作系统与计算机网络", "sqlite", "sqlite与轻量级数据存储",
+        "opengl/glsl", "opengl", "数据结构与算法", "操作系统与计算机系统", "sqlite",
     }
     user_skills = [str(s).strip() for s in (prof.get("skills") or []) if str(s).strip()]
-    custom_bonus = 0
     for sk in user_skills:
         core_kw = sk.split(" ")[0].split("(")[0].split("（")[0].replace("基础", "").replace("实践", "").strip()
         if len(core_kw) >= 2 and core_kw.lower() not in builtin_skill_tokens:
             if core_kw.lower() in combined.lower():
-                custom_bonus += 3
-                matched_adv_list.append(f"命中个人扩展技能栈：{core_kw}")
-    skill_adv_score += min(6, custom_bonus)
-    score += skill_adv_score
+                skill_raw += 2
+                matched_foundations.append(f"命中个人扩展技能栈：{core_kw}")
 
-    if matched_adv_list:
-        advantages.append("【已具备/可迁移基础】" + "；".join(matched_adv_list[:2]))
-    advantages.append(trace["cpp_transferability"]["summary"])
+    if mode == "targeted":
+        locked_langs = [str(x).strip().lower() for x in (prof.get("locked_target_languages") or []) if str(x).strip()]
+        if locked_langs:
+            if any(ll in combined.lower() for ll in locked_langs):
+                skill_raw += 3
+            else:
+                skill_raw -= 4
 
-    # ── 因素 5：工作与生活平衡及稳定成长方面的证据 (wlb_and_growth) ──
-    score += wlb["score_delta"]
-    if wlb["status"] == "risk":
-        gaps.append(wlb["label"])
-    elif wlb["status"] in ("positive", "inferred_moderate"):
-        advantages.append(wlb["label"])
-    else:
-        gaps.append(wlb["label"])
+    req_skills_pts = max(5, min(r_lim, round(skill_raw * r_lim / 25.0)))
+    if matched_foundations:
+        advantages.append("【技能基础支撑】" + "；".join(matched_foundations[:2]))
 
-    # ── 因素 3 & 因素 4：当前技能差距 (skill_gap) 与预计学习/转型成本 (transition_cost) ──
-    missing_caps = trace["missing_capabilities"]
-    t_cost = trace["transition_cost"]
+    # ── 维度 5：真实项目与学习证据支撑度 → 映射至 project_evidence (上限 p_lim=20，独立评估 4 类实践证据，不重复计入 CS 基础) ──
+    proj_raw = 8
+    if re.search(r"调试|排障|性能优化|性能分析|定位|重构|单元测试|代码开发|模块开发|模块的设计", combined, re.I):
+        proj_raw += 4  # 对应证据1：小型项目编码与调试定位实践
+    if re.search(r"SQL|数据库|数据持久化|数据管道|数据清洗|存储", combined, re.I):
+        proj_raw += 3  # 对应证据3：SQLite与数据处理工作流实践
+    if re.search(r"自动化|脚本|工作流|Agent|智能体|\bRAG\b|评测|CI/CD|CMake|构建", combined, re.I):
+        proj_raw += 3  # 对应证据3/4：自动化工作流与构建工具实践
+    if re.search(r"OpenGL|GLSL|渲染|图形|三维|CAD|客户端|桌面|界面|\bQt\b", combined, re.I):
+        proj_raw += 2  # 对应证据2：图形与客户端界面实践
+    proj_ev_pts = max(5, min(p_lim, round(proj_raw * p_lim / 20.0)))
+
+    # ── 维度 6：工程栈规范度 → 映射至 engineering_stack (上限 e_lim=15，仅评估版本控制/构建/自动化测试/工程规范) ──
+    eng_raw = 7
+    if re.search(r"\bGit\b|\bCMake\b|Maven|Gradle|CI/CD|持续集成|Docker", combined, re.I):
+        eng_raw += 3
+    if re.search(r"单元测试|自动化测试|接口测试|性能测试|压测|代码评审|Code\s*Review|质量保障|评测", combined, re.I):
+        eng_raw += 4
+    if re.search(r"\bLinux\b|开源|微服务|分布式", combined, re.I):
+        eng_raw += 1
     raw_gap_hits = sum(
         bool(pat.search(combined))
         for pat in (_GAP_JAVA_RE, _GAP_GO_RE, _GAP_JS_TS_RE, _GAP_DB_RE, _GAP_CLOUD_RE, _GAP_QT_RE, _GAP_AGENT_RE)
     )
-    gap_penalty = 0
-    if mode == "targeted":
-        if raw_gap_hits >= 2:
-            gap_penalty = min(6, (raw_gap_hits - 1) * 2)
+    if mode == "targeted" and raw_gap_hits >= 2:
+        eng_raw -= min(4, raw_gap_hits)
+    elif raw_gap_hits >= 5:
+        eng_raw -= 3
+    eng_stack_pts = max(4, min(e_lim, round(eng_raw * e_lim / 15.0)))
+
+    # ── 维度 1 & 6：硬性资格清晰度 (eligibility) + WLB 与个人条件 (wlb_fit) → 映射至 basic_criteria (上限 b_lim=20) ──
+    basic_raw = 5  # 基础合格分
+    if is_intern_job(job):
+        basic_raw += 4
+    elif elig["bachelor_eligible"]:
+        basic_raw += 4
     else:
-        if raw_gap_hits >= 4:
-            gap_penalty = 6
-    score -= gap_penalty
+        basic_raw += 0  # 未明确写出本科学历的不额外加确定性分
 
-    for mc in missing_caps[:2]:
-        gaps.append(f"【能力差距】需补充：{mc}")
-    gaps.append(f"【预计转型成本：{t_cost['level']}】{t_cost['basis']}")
-    if trace["cpp_transferability"]["cannot_replace"]:
-        gaps.append(f"【C++不可替代项】{trace['cpp_transferability']['cannot_replace'][0]}")
+    if elig["city_status"] == "matched":
+        basic_raw += 4
+    elif elig["city_status"] == "unspecified":
+        basic_raw += 1
+    else:
+        basic_raw -= 6  # 非意向城市显著降权
 
-    # ── 因素 6：薪酬、地点、行业和其他个人条件 (personal_conditions) ──
-    personal_cond_explain = (
-        f"工作地点：{city or '未标注'}（{'命中意向城市' if trace['city_matched'] else '非首选城市或待确认'}）；"
-        f"岗位轨道：{track}；薪酬与培养机制需结合面试核实。"
-    )
+    basic_raw += wlb["score_delta"]
+    basic_pts = max(0, min(b_lim, round(basic_raw * b_lim / 20.0)))
+
+    bd = {
+        "core_direction": core_dir_pts,
+        "required_skills": req_skills_pts,
+        "project_evidence": proj_ev_pts,
+        "engineering_stack": eng_stack_pts,
+        "basic_criteria": basic_pts,
+    }
+    raw_total = sum(bd.values())
+
+    # ── 维度 7：信息可信度与证据充分度 (evidence_confidence) 及门禁上限保护 ──
+    facts_list = [r for r in elig["reasons"] if "事实" in r]
+    if interest["has_substantive_duties"] and interest["jd_evidence_quotes"]:
+        facts_list.append(f"【职责原文】“{interest['jd_evidence_quotes'][0][:65]}”")
+    if wlb["fact_evidence"] and not wlb["fact_evidence"].startswith("无"):
+        facts_list.append(f"【WLB事实】{wlb['fact_evidence']}")
+
+    inferences_list = [
+        f"【领域迁移推断】{career_explain}",
+        f"【转型周期推断】预计学习与转型成本为 {trace['transition_cost']['level']}（{trace['transition_cost']['basis'][:60]}）",
+    ]
+    if wlb["inferred_note"]:
+        inferences_list.append(f"【WLB推断】{wlb['inferred_note']}")
+
+    unknowns_list = list(interest["uncertain_points"])
+    if wlb["unknown_note"]:
+        unknowns_list.append(wlb["unknown_note"])
+    if not elig["bachelor_eligible"]:
+        unknowns_list.append("【未知】JD未显式写出本科学历字样，需在网申系统确认学历下限")
+
+    if interest["has_substantive_duties"] and elig["bachelor_eligible"] and len(jd_raw) >= 160:
+        ev_conf_level = "high"
+        ev_conf_label = "高（JD职责描述具体、学历要求明确、原文依据充分）"
+        ev_score_cap = 95
+    elif interest["has_substantive_duties"] and len(jd_raw) >= 100:
+        ev_conf_level = "medium"
+        ev_conf_label = "中（JD具备基本职责与要求，但部分学历细节或日常工时待核实）"
+        ev_score_cap = 86
+    else:
+        ev_conf_level = "low"
+        ev_conf_label = "低（JD职责描述笼统或信息单薄，兴趣与适配度待进一步核实）"
+        ev_score_cap = 68
+
+    # 应用非掩盖门禁规则（五：不能让总分掩盖硬性不合格、明显兴趣冲突、WLB冲突或严重证据不足）
+    score = min(raw_total, ev_score_cap)
+    cap_reasons = []
+    if wlb["violates_constraint"] or wlb["status"] == "risk":
+        score = min(score, 58)
+        cap_reasons.append(f"触发WLB工时风险约束（{wlb['label']}）")
+    if interest["status"] == "low":
+        score = min(score, 56)
+        cap_reasons.append(f"日常工作内容兴趣适配度低（{interest['level']}）")
+    if interest["status"] == "insufficient_evidence" or ev_conf_level == "low":
+        score = min(score, 68)
+        cap_reasons.append("JD具体工作职责证据不足，标记为『兴趣待确认』并限制最高分")
+    elif interest["status"] == "medium_uncertain":
+        score = min(score, 74)
+        cap_reasons.append(f"日常工作内容兴趣为中等/待确认（{interest['level']}），归入探索样本池")
+    if not elig["city_matched"]:
+        score = min(score, 72)
+        cap_reasons.append(f"工作地点（{elig['city']}）不在意向城市列表内，不进入主推荐")
+    if cat == "ai_ml" and not _AI_ENG_TITLE_RE.search(title):
+        score = min(score, 66)
+        cap_reasons.append("属核心算法研究岗，隐性硕博竞争高，降为探索观察")
 
     score = max(35, min(92, score))
+    # 同步修正 breakdown 使其总和与最终 score 对齐，方便前端展示
+    diff_bd = score - sum(bd.values())
+    if diff_bd < 0:
+        # 从 core_direction 和 basic_criteria 扣减因门禁上限降低的分数
+        cut_c = min(bd["core_direction"], abs(diff_bd) // 2)
+        bd["core_direction"] -= cut_c
+        rem = abs(diff_bd) - cut_c
+        cut_b = min(bd["basic_criteria"], rem)
+        bd["basic_criteria"] -= cut_b
+        rem -= cut_b
+        if rem > 0:
+            bd["required_skills"] = max(0, bd["required_skills"] - rem)
+
     thresholds = prof.get("score_thresholds") or {}
     rec_th = int(thresholds.get("recommend", 75))
     con_th = int(thresholds.get("consider", 60))
-    rec = "推荐" if score >= rec_th else ("考虑" if score >= con_th else "不推荐")
+    if score >= rec_th and not cap_reasons:
+        rec = "推荐"
+    elif score >= con_th:
+        rec = "考虑"
+    else:
+        rec = "不推荐"
 
-    limits = prof.get("score_component_limits") or {
-        "core_direction": 20, "required_skills": 25, "project_evidence": 20,
-        "engineering_stack": 15, "basic_criteria": 20,
+    # 组装优势与差距列表（确保包含资格、工作内容兴趣依据、技能差距、学习成本与WLB）
+    if elig["bachelor_eligible"]:
+        advantages.append(f"【硬性资格通过】本科可投 · {elig['city']} · {track}")
+    if wlb["status"] in ("positive", "inferred_moderate"):
+        advantages.append(wlb["label"])
+    elif wlb["status"] == "risk":
+        gaps.insert(0, wlb["label"])
+    else:
+        gaps.append(wlb["label"])
+
+    t_cost = trace["transition_cost"]
+    missing_caps = trace["missing_capabilities"]
+    if missing_caps:
+        gaps.append(f"【当前技能差距】需补充：{missing_caps[0]}")
+    gaps.append(f"【学习与转型成本：{t_cost['level']}】{t_cost['basis'][:65]}")
+    if interest["mismatched_or_risk_points"] and interest["mismatched_or_risk_points"][0] not in gaps:
+        gaps.insert(0, interest["mismatched_or_risk_points"][0])
+    if not elig["city_matched"]:
+        gaps.insert(0, f"【地点偏离】工作地点为 {elig['city']}，非首选意向城市")
+
+    if rec == "推荐":
+        final_reason = (
+            f"【推荐主因】通过本科硬性资格与意向城市核验；JD日常工作包含“{interest['work_content_summary'][:45]}”，"
+            f"契合个人问题分析与系统构建偏好（兴趣适配：{interest['level']}）；"
+            f"预计转型成本为 {t_cost['level']}（独立评估，未虚增总分），{wlb['label']}。"
+        )
+    elif cap_reasons:
+        final_reason = f"【未入主推原因】{'；'.join(cap_reasons)}（当前评定为“{rec}”，得分 {score} 分）。"
+    else:
+        final_reason = (
+            f"【探索参考原因】符合基础资格（{track}），工作内容兴趣为“{interest['level']}”，"
+            f"转型成本 {t_cost['level']}，可作为跨方向代表性样本进一步了解。"
+        )
+
+    dimensions = {
+        "eligibility": {
+            "name": "1. 硬性资格 (eligibility)",
+            "score": bd["basic_criteria"],
+            **elig,
+        },
+        "interest_fit": {
+            "name": "2. 实际工作内容与兴趣适配 (interest_fit)",
+            **interest,
+        },
+        "career_fit": {
+            "name": "3. 职业发展与长期积累适配 (career_fit)",
+            "level": career_level,
+            "score": career_raw,
+            "category": cat_info["primary_label"],
+            "explanation": career_explain,
+        },
+        "skill_fit": {
+            "name": "4. 当前技能匹配与差距 (skill_fit)",
+            "score": bd["required_skills"],
+            "matched_foundations": matched_foundations,
+            "skill_gaps": missing_caps,
+            "explanation": "；".join(matched_foundations[:2]) if matched_foundations else "具备软件工程本科基础",
+        },
+        "learning_cost": {
+            "name": "5. 预计学习与转型成本 (learning_cost)",
+            **t_cost,
+            "cpp_transferability": trace["cpp_transferability"],
+        },
+        "wlb_fit": {
+            "name": "6. 工作与生活平衡适配 (wlb_fit)",
+            **wlb,
+        },
+        "evidence_confidence": {
+            "name": "7. 信息可信度与证据充分度 (evidence_confidence)",
+            "level": ev_conf_level,
+            "label": ev_conf_label,
+            "score_cap": ev_score_cap,
+            "facts": facts_list,
+            "inferences": inferences_list,
+            "unknowns": unknowns_list,
+        },
     }
-    c_lim = int(limits.get("core_direction", 20))
-    r_lim = int(limits.get("required_skills", 25))
-    p_lim = int(limits.get("project_evidence", 20))
-    e_lim = int(limits.get("engineering_stack", 15))
-    b_lim = int(limits.get("basic_criteria", 20))
-    ratio = score / 100.0
-    bd = {
-        "core_direction": min(c_lim, max(0, round(c_lim * ratio))),
-        "required_skills": min(r_lim, max(0, round(r_lim * ratio))),
-        "project_evidence": min(p_lim, max(0, round(p_lim * ratio))),
-        "engineering_stack": min(e_lim, max(0, round(e_lim * ratio))),
-        "basic_criteria": min(b_lim, max(0, round(b_lim * ratio))),
-    }
-    diff_bd = score - sum(bd.values())
-    if diff_bd != 0:
-        bd["required_skills"] = max(0, min(r_lim, bd["required_skills"] + diff_bd))
 
     evaluation_factors = {
+        **dimensions,
         "1_domain_and_role_fit": {
-            "label": "1. 岗位职责和技术领域的匹配度",
-            "score_delta": domain_score + targeted_delta,
+            "label": "1. 岗位职责、实际工作内容与领域匹配度",
+            "score_delta": bd["core_direction"],
             "category": cat_info["primary_label"],
-            "explanation": domain_explain,
+            "interest_level": interest["level"],
+            "work_content_summary": interest["work_content_summary"],
+            "jd_evidence_quotes": interest["jd_evidence_quotes"],
+            "explanation": f"{interest['level']} | {career_explain}",
         },
         "2_hard_qualifications": {
-            "label": "2. 学历、毕业时间、实习时间等硬性资格",
-            "score_delta": qual_score,
+            "label": "2. 学历、毕业时间、实习身份与城市等硬性资格",
+            "score_delta": bd["basic_criteria"],
+            "passed": elig["passed"],
             "track": track,
-            "bachelor_eligible": is_explicitly_bachelor_eligible(job),
-            "explanation": "；".join(trace["met_requirements"][:2]),
+            "bachelor_eligible": elig["bachelor_eligible"],
+            "city": elig["city"],
+            "city_matched": elig["city_matched"],
+            "explanation": "；".join(elig["reasons"][:3]),
         },
         "3_skill_gap": {
-            "label": "3. 当前技能与岗位要求的差距",
+            "label": "3. 当前技能匹配与能力差距 (严格遵循 skill_proficiency 边界)",
             "gap_count": raw_gap_hits,
-            "score_penalty": -gap_penalty,
+            "score_penalty": 0 if mode == "exploration" else -max(0, raw_gap_hits - 1),
             "missing_capabilities": missing_caps,
             "explanation": "、".join(missing_caps[:3]),
         },
         "4_transition_cost": {
-            "label": "4. 预计学习和转型成本（独立评估，不直接等同于适合度）",
+            "label": "4. 预计学习和转型成本（独立评估，不直接等同于适合度或兴趣）",
             "level": t_cost["level"],
             "code": t_cost["code"],
             "estimated_weeks": t_cost["estimated_weeks"],
@@ -1290,100 +1947,250 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
         "5_wlb_and_growth": {
             "label": "5. 工作与生活平衡及稳定成长方面的证据",
             "status": wlb["status"],
+            "level": wlb["level"],
             "score_delta": wlb["score_delta"],
+            "fact_evidence": wlb["fact_evidence"],
             "explanation": wlb["label"],
         },
         "6_personal_conditions": {
             "label": "6. 薪酬、地点、行业和其他个人条件",
-            "city": city or "未披露",
-            "city_matched": trace["city_matched"],
+            "city": elig["city"],
+            "city_matched": elig["city_matched"],
             "track": track,
-            "explanation": personal_cond_explain,
+            "explanation": f"地点：{elig['city']}（{'符合意向城市' if elig['city_matched'] else '非意向城市'}）；轨道：{track}",
         },
         "7_existing_skill_advantage": {
-            "label": "7. 用户已经具备的技能所带来的实际优势",
-            "score_delta": skill_adv_score,
-            "matched_advantages": matched_adv_list,
+            "label": "7. 现有技能实际优势与信息可信度",
+            "score_delta": bd["required_skills"],
+            "matched_advantages": matched_foundations,
             "cpp_transferability": trace["cpp_transferability"],
+            "evidence_confidence": dimensions["evidence_confidence"],
         },
     }
 
     mode_tag = "探索模式" if mode == "exploration" else "定向模式"
     summary = (
-        f"[{mode_tag} · {track} · {cat_info['primary_label']}] "
-        f"转型成本：{t_cost['level']} | {wlb['label']}"
+        f"[{mode_tag} · {cat_info['primary_label']} · 兴趣:{interest['level'].split('（')[0]}] "
+        f"转型成本:{t_cost['level']} | {wlb['label']}"
     )
 
     return {
         "match_score": score,
         "score_breakdown": bd,
         "recommendation_mode": mode,
+        "dimensions": dimensions,
         "evaluation_factors": evaluation_factors,
         "traceable_evidence": trace,
+        "final_decision_reason": final_reason,
         "evidence": [],
-        "evidence_level": "partial" if score >= 70 else "adjacent",
+        "evidence_level": "direct" if ev_conf_level == "high" else ("partial" if ev_conf_level == "medium" else "adjacent"),
         "recommendation": rec,
         "advantages": advantages[:4],
         "gaps": gaps[:4],
         "summary": summary,
         "analysis_status": "local_scored",
-        "analysis_version": "local-7d-v3.0",
-        "model": "local-rule-v3",
+        "analysis_version": ANALYSIS_LOCAL_VERSION,
+        "model": "local-rule-v4",
     }
 
 
 def ensure_traceable_analysis(job: dict, analysis: dict | None, profile: dict | None = None) -> dict | None:
-    """确保从数据库或 AI 返回的任意 analysis 字典均具备完整的 evaluation_factors 与 traceable_evidence。"""
+    """确保从数据库或 AI 返回的任意 analysis 字典均具备完整的 7 维 dimensions、evaluation_factors、traceable_evidence 与 final_decision_reason。"""
     if not isinstance(analysis, dict):
         return analysis
-    if analysis.get("traceable_evidence") and analysis.get("evaluation_factors"):
+    if (
+        analysis.get("traceable_evidence")
+        and analysis.get("evaluation_factors")
+        and analysis.get("dimensions")
+        and analysis.get("final_decision_reason")
+    ):
         return analysis
     prof = profile if isinstance(profile, dict) else load_active_profile()
-    trace = build_traceable_evaluation(job, prof)
-    analysis.setdefault("recommendation_mode", trace["recommendation_mode"])
-    analysis.setdefault("traceable_evidence", trace)
-    if not analysis.get("evaluation_factors"):
-        wlb = wlb_signal_audit(job)
-        cat_info = classify_job_categories(job, prof)
-        analysis["evaluation_factors"] = {
-            "1_domain_and_role_fit": {
-                "label": "1. 岗位职责和技术领域的匹配度",
-                "category": cat_info["primary_label"],
-                "explanation": trace["why_worth_considering"],
-            },
-            "2_hard_qualifications": {
-                "label": "2. 学历、毕业时间、实习时间等硬性资格",
-                "track": job_track_label(job),
-                "bachelor_eligible": is_explicitly_bachelor_eligible(job),
-                "explanation": "；".join(trace["met_requirements"][:2]),
-            },
-            "3_skill_gap": {
-                "label": "3. 当前技能与岗位要求的差距",
-                "missing_capabilities": trace["missing_capabilities"],
-                "explanation": "、".join(trace["missing_capabilities"][:3]),
-            },
-            "4_transition_cost": {
-                "label": "4. 预计学习和转型成本（独立评估，不直接等同于适合度）",
-                **trace["transition_cost"],
-            },
-            "5_wlb_and_growth": {
-                "label": "5. 工作与生活平衡及稳定成长方面的证据",
-                "status": wlb["status"],
-                "score_delta": wlb["score_delta"],
-                "explanation": wlb["label"],
-            },
-            "6_personal_conditions": {
-                "label": "6. 薪酬、地点、行业和其他个人条件",
-                "city": str(job.get("city") or "未披露"),
-                "city_matched": trace["city_matched"],
-                "track": job_track_label(job),
-            },
-            "7_existing_skill_advantage": {
-                "label": "7. 用户已经具备的技能所带来的实际优势",
-                "cpp_transferability": trace["cpp_transferability"],
-            },
-        }
+    baseline = score_job_against_profile(job, prof)
+    analysis.setdefault("recommendation_mode", baseline["recommendation_mode"])
+    analysis.setdefault("dimensions", baseline["dimensions"])
+    analysis.setdefault("evaluation_factors", baseline["evaluation_factors"])
+    analysis.setdefault("traceable_evidence", baseline["traceable_evidence"])
+    analysis.setdefault("final_decision_reason", baseline["final_decision_reason"])
     return analysis
+
+
+def curate_recommendations_with_interest_policy(
+    items: list[dict],
+    profile: dict | None = None,
+) -> dict:
+    """执行新版 profile.yaml 四-C 的岗位兴趣过滤与结果展示策略 (result_policy)：
+
+    1. 主推荐列表 (primary_recommendations)：
+       - 必须通过硬性资格 (eligibility.passed == True) 且位于意向城市或未限定城市 (city_matched == True)；
+       - 实际工作内容兴趣匹配较高 (interest_fit.status in {'high', 'medium_high'})；
+       - 无显式 WLB 高压加班冲突，且信息可信度非低置信度 (match_score >= recommend_threshold)；
+       - 为控制信息量、避免同一家大厂刷屏几十条相似岗位，主推荐列表对同公司同类别岗位做代表性去重精选（每家公司每个类别最多展示前 2 个最高分代表岗，主列表默认精选 Top 36 个最值得投入注意力的岗位，完整合格列表仍可在下方表格检索）。
+    2. 探索样本列表 (exploration_samples)：
+       - 针对符合硬性条件、工作节奏无明显风险，但『兴趣待确认（职责描述偏简略或中等匹配）』的岗位，按不同技术方向各保留 1~2 个代表性探索样本（共最多 12 个），保持跨方向开放探索空间，同时避免重新堆出上千条岗位。
+    3. 过滤与降权统计及防误杀抽查样本 (filtered_summary)：
+       - 汇总被排除或移出主推荐列表的 5 类原因统计及每类 2~3 个真实岗位样本，供用户随时核查是否误杀。
+    """
+    prof = profile if isinstance(profile, dict) else load_active_profile()
+    thresholds = prof.get("score_thresholds") or {}
+    rec_th = int(thresholds.get("recommend", 75))
+    con_th = int(thresholds.get("consider", 60))
+    if_cfg = (prof.get("interest_filtering") if isinstance(prof, dict) else None) or {}
+    sample_per_cat = int(if_cfg.get("exploration_sample_per_category", 2))
+    max_exp_samples = int(if_cfg.get("max_exploration_samples", 12))
+
+    qualified_high_candidates = []
+    exploration_pool = []
+
+    filter_buckets = {
+        "hard_ineligible": {
+            "key": "hard_ineligible",
+            "label": "硬性资格不符（硕博学历限定 / 非CS软件研发 / 往届）",
+            "reason_desc": "违反学历、专业方向或届别硬性条件，不能用兴趣分抵消",
+            "count": 0,
+            "examples": [],
+        },
+        "low_interest_work_content": {
+            "key": "low_interest_work_content",
+            "label": "工作内容兴趣匹配低（偏机械重复 / 低代码配置 / 驻场运维 / 纯理论刷榜）",
+            "reason_desc": "根据招聘原文职责判断日常工作缺乏系统构建与问题拆解空间，或偏向高强度纯理论科研",
+            "count": 0,
+            "examples": [],
+        },
+        "wlb_overtime_risk": {
+            "key": "wlb_overtime_risk",
+            "label": "WLB 与工时风险冲突（JD显式含高强度 / 抗压 / 大小周 / 长期出差驻场）",
+            "reason_desc": "触发 constraints.reject_high_overtime_signals 约束，从主推荐列表中排除",
+            "count": 0,
+            "examples": [],
+        },
+        "non_preferred_city": {
+            "key": "non_preferred_city",
+            "label": "工作地点不在意向城市列表（如非成沪深杭广武苏京地区）",
+            "reason_desc": "岗位硬性地点不在 preferred_cities 配置范围内，移出主推荐列表",
+            "count": 0,
+            "examples": [],
+        },
+        "insufficient_duty_evidence": {
+            "key": "insufficient_duty_evidence",
+            "label": "职责描述单薄 / 兴趣证据不足（仅列标题或技术栈，未写清日常具体任务）",
+            "reason_desc": "标记为『兴趣待确认』并限制虚高分，仅保留少量代表性样本进入探索栏",
+            "count": 0,
+            "examples": [],
+        },
+    }
+
+    def _add_example(bucket_key: str, item: dict, detail_reason: str):
+        b = filter_buckets[bucket_key]
+        b["count"] += 1
+        if len(b["examples"]) < 3:
+            j = item["job"]
+            a = item.get("analysis") or {}
+            b["examples"].append({
+                "company": j.get("company", ""),
+                "title": j.get("title", ""),
+                "city": j.get("city", "") or "未披露",
+                "score": a.get("match_score"),
+                "jd_url": j.get("jd_url", ""),
+                "reason": detail_reason,
+            })
+
+    for it in items:
+        job = it["job"]
+        a = it.get("analysis")
+        if not a:
+            # 检查是否因硬性条件不符（硕博限定 / 非CS研发 / 往届）而在评分阶段被拦截跳过
+            elig_only = evaluate_hard_eligibility(job, prof)
+            if not elig_only.get("passed"):
+                _add_example("hard_ineligible", it, elig_only.get("ineligible_reason") or "硬性条件不符")
+            continue
+        a = ensure_traceable_analysis(job, a, prof)
+        it["analysis"] = a
+        dims = a.get("dimensions") or {}
+        elig = dims.get("eligibility") or evaluate_hard_eligibility(job, prof)
+        interest = dims.get("interest_fit") or evaluate_work_content_interest(job, prof)
+        wlb = dims.get("wlb_fit") or wlb_signal_audit(job, prof)
+        score = int(a.get("match_score") or 0)
+
+        if not elig.get("passed") or a.get("analysis_status") == "ineligible":
+            _add_example("hard_ineligible", it, elig.get("ineligible_reason") or "硬性条件不符")
+            continue
+        if wlb.get("status") == "risk" or wlb.get("violates_constraint"):
+            _add_example("wlb_overtime_risk", it, wlb.get("label") or "存在WLB风险信号")
+            continue
+        if interest.get("status") == "low":
+            mm = (interest.get("mismatched_or_risk_points") or [interest.get("level", "低兴趣匹配")])[0]
+            _add_example("low_interest_work_content", it, mm)
+            continue
+        if not elig.get("city_matched"):
+            _add_example("non_preferred_city", it, f"工作地点为 {elig.get('city')}，不在意向城市列表中")
+            continue
+        if interest.get("status") == "insufficient_evidence":
+            _add_example("insufficient_duty_evidence", it, "JD职责描述笼统，标记为兴趣待确认")
+            if score >= con_th:
+                exploration_pool.append(it)
+            continue
+
+        if score >= rec_th and interest.get("status") in ("high", "medium_high"):
+            qualified_high_candidates.append(it)
+        elif score >= con_th:
+            exploration_pool.append(it)
+
+    # 排序：先按分数，再按兴趣得分，再按显式本科学历友好度
+    qualified_high_candidates.sort(
+        key=lambda x: (
+            int((x.get("analysis") or {}).get("match_score") or 0),
+            int(((x.get("analysis") or {}).get("dimensions", {}).get("interest_fit") or {}).get("score") or 0),
+            bool(((x.get("analysis") or {}).get("dimensions", {}).get("eligibility") or {}).get("bachelor_eligible")),
+        ),
+        reverse=True,
+    )
+
+    # 控制主推荐列表规模并保证跨公司/跨方向多样性（同公司同类别最多2个进入主推大卡，上限36个）
+    primary_recommendations = []
+    co_cat_counter: Counter = Counter()
+    co_total_counter: Counter = Counter()
+    max_primary = int(if_cfg.get("max_primary_recommendations", 36))
+    for it in qualified_high_candidates:
+        job = it["job"]
+        co = str(job.get("company") or "").strip()
+        cat = classify_job_categories(job, prof)["primary_category"]
+        if co_cat_counter[(co, cat)] >= 2 or co_total_counter[co] >= 3:
+            continue
+        co_cat_counter[(co, cat)] += 1
+        co_total_counter[co] += 1
+        primary_recommendations.append(it)
+        if len(primary_recommendations) >= max_primary:
+            break
+
+    # 从 exploration_pool 中跨类别挑选少量有代表性的探索样本（每类最多 sample_per_cat 个，总计最多 max_exp_samples 个）
+    exploration_pool.sort(
+        key=lambda x: int((x.get("analysis") or {}).get("match_score") or 0),
+        reverse=True,
+    )
+    exploration_samples = []
+    exp_cat_counter: Counter = Counter()
+    exp_co_counter: Counter = Counter()
+    for it in exploration_pool:
+        job = it["job"]
+        co = str(job.get("company") or "").strip()
+        cat = classify_job_categories(job, prof)["primary_category"]
+        if exp_cat_counter[cat] >= sample_per_cat or exp_co_counter[co] >= 1:
+            continue
+        exp_cat_counter[cat] += 1
+        exp_co_counter[co] += 1
+        exploration_samples.append(it)
+        if len(exploration_samples) >= max_exp_samples:
+            break
+
+    return {
+        "qualified_high_total": len(qualified_high_candidates),
+        "primary_recommendations": primary_recommendations,
+        "exploration_pool_total": len(exploration_pool),
+        "exploration_samples": exploration_samples,
+        "filtered_buckets": list(filter_buckets.values()),
+        "total_filtered_or_demoted": sum(b["count"] for b in filter_buckets.values()),
+    }
 
 
 # ==============================================================================
@@ -1416,7 +2223,7 @@ TECH_REQUIREMENT_CATALOG = (
         "极高（金山办公、卡斯柯、联影医疗、万兴科技、腾讯客户端、高德C++后端的核心语言）",
         "高（已具备学习基础，转换成本最低；可用于投递高WLB工业/办公软件与客户端）",
         "高（训练严谨的模块化设计、内存安全与性能分析思维）",
-        "【事实】已具备 C++17 与小项目经验；【建议】巩固 RAII、智能指针、多线程与 GDB/ASan 调试，暂缓偏门模板元编程",
+        "【事实】当前处于 C++ 基础学习阶段（面向对象、STL 与小型项目编码调试）；【建议】巩固 RAII、智能指针、多线程与 GDB/ASan 调试，暂缓偏门模板元编程",
     ),
     (
         "prog_python",
@@ -1428,7 +2235,7 @@ TECH_REQUIREMENT_CATALOG = (
         "极高（几乎所有现代研发团队的胶水语言与自动化验证标准语言）",
         "极高（投入产出比最高，能让你从单一C++平滑拓展到测开、数据、AI工程与外企IT）",
         "极高（编写自动化测试、数据处理管道、后端接口原型与日常效率工具的利器）",
-        "【事实】维护本 Career Agent 项目已具备 Python 实战经验；【建议】补齐 pytest 与 FastAPI 工程规范",
+        "【事实】目前已通过 AI 辅助接触 Python 工作流排查，但 profile.yaml 标注本人尚未开始系统学习 Python；【建议】花 2–3 周系统补齐 Python 语法、pytest 与 FastAPI 工程基础",
     ),
     (
         "ds_algo_core",
@@ -1668,8 +2475,8 @@ def generate_comprehensive_advice(items: list[dict], profile: dict | None = None
 
     skills_list = [str(s) for s in (prof.get("skills") or [])]
     matching_cfg = prof.get("matching") or {}
-    proj_evidence = [str(x) for x in (matching_cfg.get("project_evidence") or [])]
-    learning_targets = [str(x) for x in (matching_cfg.get("learning_targets") or [])]
+    proj_evidence = [str(x) for x in (prof.get("project_evidence") or matching_cfg.get("project_evidence") or [])]
+    learning_targets = [str(x) for x in (prof.get("learning_targets") or matching_cfg.get("learning_targets") or [])]
     degree = str(prof.get("degree") or "本科")
     target_cohort = str(prof.get("target_cohort") or "2029")
     job_type = str(prof.get("job_type") or "实习")
@@ -2054,17 +2861,23 @@ def sanitize_sensitive_text(text: str) -> str:
 
 
 def _canonical_profile_for_version(profile: dict | None) -> dict:
-    """提取非敏感、规范化的个人画像字段用于计算版本指纹。"""
+    """提取非敏感、规范化的个人画像字段用于计算版本指纹（含 personal_profile 与 interest_filtering）。"""
     p = profile if isinstance(profile, dict) else load_active_profile()
     edu = p.get("education") if isinstance(p.get("education"), dict) else {}
     prefs = p.get("preferences") if isinstance(p.get("preferences"), dict) else {}
     constraints = p.get("constraints") if isinstance(p.get("constraints"), dict) else {}
     goals = p.get("long_term_goals") if isinstance(p.get("long_term_goals"), dict) else {}
+    user_state = p.get("user_state") if isinstance(p.get("user_state"), dict) else {}
+    personal_profile = p.get("personal_profile") if isinstance(p.get("personal_profile"), dict) else {}
+    interest_filtering = p.get("interest_filtering") if isinstance(p.get("interest_filtering"), dict) else {}
     return {
         "recommendation_mode": resolve_recommendation_mode(p),
         "target_direction_locked": bool(p.get("target_direction_locked", False) or p.get("locked_target_directions")),
         "locked_target_directions": [str(x).strip() for x in (p.get("locked_target_directions") or []) if str(x).strip()],
         "locked_target_languages": [str(x).strip() for x in (p.get("locked_target_languages") or []) if str(x).strip()],
+        "user_state": user_state,
+        "personal_profile": personal_profile,
+        "interest_filtering": interest_filtering,
         "degree": str(p.get("degree") or "本科").strip(),
         "job_type": str(p.get("job_type") or "实习").strip(),
         "target_cohort": int(p.get("target_cohort") or edu.get("graduation_year") or 2029),
@@ -2118,7 +2931,7 @@ def _short_val_summary(val) -> str:
     if isinstance(val, dict):
         if not val:
             return "默认/空"
-        pairs = [f"{k}={v}" for k, v in list(val.items())[:4]]
+        pairs = [f"{k}={_short_val_summary(v) if isinstance(v, list) else v}" for k, v in list(val.items())[:4]]
         return "{ " + ", ".join(pairs) + (" …}" if len(val) > 4 else " }")
     return str(val or "未设置")[:60]
 
@@ -2159,8 +2972,11 @@ def diff_profile_versions(old_profile: dict | None, new_profile: dict | None) ->
         "target_direction_locked": ("interest", "职业主线锁定状态"),
         "locked_target_directions": ("interest", "已锁定目标方向"),
         "locked_target_languages": ("interest", "已锁定目标语言栈"),
+        "user_state": ("interest", "用户状态与反偏置守则"),
+        "personal_profile": ("interest", "个人画像与工作内容偏好"),
+        "interest_filtering": ("interest", "岗位兴趣过滤策略"),
         "skills": ("capability", "已掌握技术栈"),
-        "skill_proficiency": ("capability", "技能掌握熟练度"),
+        "skill_proficiency": ("capability", "技能掌握熟练度与边界"),
         "project_evidence": ("capability", "实际项目经历与证据"),
         "learning_targets": ("capability", "计划学习目标"),
         "unverified_skills": ("capability", "待验证技能"),
@@ -2187,7 +3003,6 @@ def diff_profile_versions(old_profile: dict | None, new_profile: dict | None) ->
     change_items = []
     direction_transitions = []
 
-    # 专门检测方向在“重点探索 (directions)”与“一般兴趣 (optional_interest_branches)”之间的迁移
     old_primary = set(old_c.get("directions") or [])
     new_primary = set(new_c.get("directions") or [])
     old_optional = set(old_c.get("optional_interest_branches") or [])

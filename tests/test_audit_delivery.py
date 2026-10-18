@@ -148,16 +148,18 @@ def test_scoring_subsystem_six_states_and_no_artificial_64_cap(tmp_path):
     assert pro_res["recommendation"] == "推荐"
     db.save_analysis(conn, jid_high, pro_res)
 
-    # 2. 本地五维规则评分岗位（完整 JD，本科可投 C++ 客户端岗）
+    # 2. 本地七维规则评分岗位（完整 JD，本科可投、意向城市、含明确问题分析+系统构建+验证反馈职责）
     local_job = {
         "company": "金山办公",
         "title": "2027届-C++跨平台客户端开发工程师",
-        "city": "珠海",
+        "city": "武汉",
         "job_type": "校招",
         "jd_url": "https://example.com/wps/cpp",
         "jd_raw": (
-            "岗位职责：负责 WPS 桌面客户端核心模块研发与性能优化。"
-            "任职要求：本科及以上学历，熟悉 C/C++、STL、数据结构与算法、操作系统与 Linux/Windows 编程，双休福利完善。" * 2
+            "岗位职责：1. 负责 WPS 跨平台桌面客户端核心模块的设计与实现；"
+            "2. 参与复杂文档渲染与内存性能瓶颈分析、故障排查与稳定性调优；"
+            "3. 编写单元测试与自动化回归测试脚本，参与代码评审与持续集成闭环。"
+            "任职要求：2027届本科及以上学历，熟悉 C/C++、STL、数据结构与算法、操作系统、计算机网络与 Linux/Git/CMake，周末双休。"
         ),
         "published_at": "2026-10-18",
         "source": "金山办公",
@@ -542,9 +544,10 @@ def test_exploration_mode_cross_language_score_parity_and_independent_transition
     assert res_cpp["match_score"] == res_java["match_score"] == res_go["match_score"] == res_py["match_score"] == res_ts["match_score"]
     assert res_cpp["recommendation"] == res_java["recommendation"] == "推荐"
 
-    # 2. 验证学习与转型成本独立评估：C++ 与 Python 转型成本为 low，Go 为 medium_low，Java 与 TS 为 medium
+    # 2. 验证学习与转型成本独立评估（严格遵守新版 profile.yaml 中 Python "本人还没开始学习" 的边界声明）：
+    #    C++ 为 low，Python 与 Go 为 medium_low，Java 与 TS 为 medium
     assert res_cpp["traceable_evidence"]["transition_cost"]["code"] == "low"
-    assert res_py["traceable_evidence"]["transition_cost"]["code"] == "low"
+    assert res_py["traceable_evidence"]["transition_cost"]["code"] == "medium_low"
     assert res_go["traceable_evidence"]["transition_cost"]["code"] == "medium_low"
     assert res_java["traceable_evidence"]["transition_cost"]["code"] == "medium"
     assert res_ts["traceable_evidence"]["transition_cost"]["code"] == "medium"
@@ -620,3 +623,250 @@ def test_recommendation_mode_switching_and_traceable_evidence_fields():
     assert trace["transition_cost"]["level"]
     assert trace["transition_cost"]["basis"]
     assert trace["transition_cost"]["uncertainty"]
+
+
+
+def test_new_personal_profile_and_interest_filtering_parsed_and_versioned():
+    """验证新版 profile.yaml 中的 personal_profile、interest_filtering、skill_proficiency 被完整读取并纳入版本指纹。"""
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+    pp = prof["personal_profile"]
+    if_cfg = prof["interest_filtering"]
+    sp_map = profile_config.extract_skill_proficiency_map(prof)
+
+    assert len(pp["thinking_and_work_style"]) >= 4
+    assert len(pp["hobbies_and_general_interests"]) >= 4
+    assert len(pp["possible_work_content_preferences"]) >= 4
+    assert len(pp["interest_caveats"]) >= 3
+    assert if_cfg["enabled"] is True
+    assert if_cfg["evaluate_actual_work_content"] is True
+    assert if_cfg["use_hobbies_as_soft_evidence_only"] is True
+    assert if_cfg["separate_interest_fit_from_skill_fit"] is True
+    assert if_cfg["separate_interest_fit_from_learning_cost"] is True
+    assert sp_map["python"]["not_learned_yet"] is True
+    assert "本人还没开始学习" in sp_map["python"]["limitation"]
+    assert "基础学习阶段" in sp_map["c++"]["level"]
+
+    # 修改 personal_profile 中的偏好必须改变 profile_version_id 并被 diff_profile_versions 捕获
+    vid_before = job_filters.profile_version_id(prof)
+    prof_modified = {
+        **prof,
+        "personal_profile": {
+            **pp,
+            "liked_work_content": ["分布式存储引擎性能诊断"],
+        },
+    }
+    vid_after = job_filters.profile_version_id(prof_modified)
+    assert vid_before != vid_after
+    diff = job_filters.diff_profile_versions(prof, prof_modified)
+    assert diff["has_changes"] is True
+    assert "personal_profile" in diff["changed_fields"]
+
+
+def test_work_content_interest_evaluation_and_hobby_anti_bias():
+    """验证 4.1 & 4.3：兴趣判断基于实际日常工作内容而非职位名/热门标签/爱好，且有效识别低兴趣重复岗与职责证据不足岗。"""
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+
+    # 案例 1：同名“AI Agent 工程师”，A 岗深入核心机制研发、问题排查与量化评测；B 岗主要是 Dify 低代码拖拽配置与整理文档/演示材料
+    deep_agent_job = {
+        "company": "甲科技",
+        "title": "2027届-AI Agent研发工程师",
+        "city": "上海",
+        "job_type": "校招",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": (
+            "岗位职责：1. 参与 Agent 系统核心模块的设计与实现，深入任务规划、上下文管理与工具调用底层机制；"
+            "2. 排查并解决高并发场景下的响应延迟与状态一致性问题，开展性能优化；"
+            "3. 搭建自动化评测基准与监控诊断闭环，用量化数据验证迭代效果。"
+            "任职要求：2027届本科及以上学历，扎实掌握数据结构与算法、操作系统、计算机网络与 Linux，熟悉 C++/Go/Python 之一，周末双休。"
+        ),
+    }
+    lowcode_agent_job = {
+        "company": "甲科技",
+        "title": "2027届-AI Agent开发工程师",
+        "city": "上海",
+        "job_type": "校招",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": (
+            "岗位职责：1. 负责使用 Dify、FastGPT 等低代码搭建工具完成日常工作流简单配置；"
+            "2. 负责数据录入、资料整理、台账整理以及整理项目文档与PPT演示材料。"
+            "任职要求：2027届本科及以上学历，熟悉常用 OFFICE 办公软件，了解 Python 基础。"
+        ),
+    }
+    res_deep = job_filters.score_job_against_profile(deep_agent_job, prof)
+    res_lowcode = job_filters.score_job_against_profile(lowcode_agent_job, prof)
+
+    assert res_deep["dimensions"]["interest_fit"]["status"] == "high"
+    assert res_lowcode["dimensions"]["interest_fit"]["status"] == "low"
+    assert res_deep["match_score"] >= 75 and res_deep["recommendation"] == "推荐"
+    assert res_lowcode["match_score"] < 60 and res_lowcode["recommendation"] == "不推荐"
+    assert "反偏置声明" in res_deep["dimensions"]["interest_fit"]["caveat_applied"]
+
+    # 案例 2：游戏/图形与高强度纯算法科研反偏置校验
+    pure_research_job = {
+        "company": "乙研究院",
+        "title": "2027届-【北斗】大模型算法研究员",
+        "city": "北京",
+        "job_type": "校招",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": (
+            "岗位职责：负责前沿强化学习理论推导，以第一作者发表 NeurIPS / ICML / CVPR 顶会论文。"
+            "任职要求：2027届毕业生，博士优先，具备顶尖数学推导能力。"
+        ),
+    }
+    res_research = job_filters.score_job_against_profile(pure_research_job, prof)
+    assert res_research["dimensions"]["interest_fit"]["status"] == "low"
+    assert res_research["recommendation"] == "不推荐"
+
+    # 案例 3：职责描述不足（仅有任职要求，无具体日常职责）→ 标记为 insufficient_evidence，绝不伪装成高分推荐
+    vague_duty_job = {
+        "company": "丙软件",
+        "title": "2027届-C++软件开发工程师",
+        "city": "成都",
+        "job_type": "校招",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": (
+            "任职要求：1. 2027届本科及以上学历，计算机或软件工程专业；"
+            "2. 熟悉 C/C++ 编程语言、数据结构与算法、操作系统、计算机网络与 Linux；"
+            "3. 熟悉 Git 与 CMake，周末双休，五险一金。" * 2
+        ),
+    }
+    res_vague = job_filters.score_job_against_profile(vague_duty_job, prof)
+    assert res_vague["dimensions"]["interest_fit"]["status"] == "insufficient_evidence"
+    assert res_vague["match_score"] <= 68
+    assert res_vague["recommendation"] != "推荐"
+
+
+def test_seven_dimensions_strict_separation_and_hard_gates():
+    """验证 4.2 & 五：7个评价维度独立存在，且硬性不合格、WLB风险、非意向城市不能被高兴趣分掩盖。"""
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+    expected_dims = {
+        "eligibility",
+        "interest_fit",
+        "career_fit",
+        "skill_fit",
+        "learning_cost",
+        "wlb_fit",
+        "evidence_confidence",
+    }
+
+    # 高兴趣但要求硕士及以上学历 → 硬性资格一票否决
+    master_job = {
+        "company": "丁科技",
+        "title": "2027届-分布式存储系统研发工程师",
+        "city": "杭州",
+        "job_type": "校招",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": (
+            "岗位职责：负责分布式存储引擎核心模块架构设计、代码实现、性能瓶颈排查与单元测试闭环。"
+            "任职要求：硕士研究生及以上学历，熟悉 C++/Go、Linux、数据结构与算法，周末双休。"
+        ),
+    }
+    res_master = job_filters.score_job_against_profile(master_job, prof)
+    assert res_master["analysis_status"] == "ineligible"
+    assert res_master["dimensions"]["eligibility"]["passed"] is False
+    assert res_master["match_score"] <= 30
+    assert res_master["recommendation"] == "不推荐"
+
+    # 非计算机硬件/IC/视觉设计岗位假阳性拦截验证
+    for non_cs_title in ("数字IC工程师(前端方向)", "27届正式批-PCB工程师（机器人方向）", "【27届校招】视觉设计培训生", "安全管理/损耗控制"):
+        assert job_filters.is_cs_software_role({"title": non_cs_title}) is False
+
+    # 高兴趣但存在显式高压加班/驻场要求 → 触发 WLB 门禁，不得评为“推荐”
+    overtime_job = {
+        "company": "戊科技",
+        "title": "2027届-后端研发工程师",
+        "city": "深圳",
+        "job_type": "校招",
+        "cohort": 2027,
+        "cohort_status": "confirmed",
+        "jd_raw": (
+            "岗位职责：负责核心后端服务架构设计与开发、故障定位排查与自动化测试验证。"
+            "任职要求：2027届本科及以上学历，熟悉 Java/Go/C++、Linux、数据结构与算法；"
+            "需具备极强的抗压能力，适应高强度加班、大小周及长期出差驻场开发。"
+        ),
+    }
+    res_ot = job_filters.score_job_against_profile(overtime_job, prof)
+    assert expected_dims.issubset(set(res_ot["dimensions"].keys()))
+    assert res_ot["dimensions"]["wlb_fit"]["status"] == "risk"
+    assert res_ot["dimensions"]["wlb_fit"]["violates_constraint"] is True
+    assert res_ot["match_score"] <= 58
+    assert res_ot["recommendation"] == "不推荐"
+
+
+def test_curation_policy_and_report_seven_dim_rendering(tmp_path):
+    """验证 4.4 & 六：主推荐列表控制、探索样本保留、过滤统计抽查面板及报告七维详情渲染。"""
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+    items = [
+        {
+            "job": {
+                "id": 201,
+                "company": "优必选",
+                "title": "2027届-Java后端开发工程师",
+                "city": "深圳",
+                "job_type": "校招",
+                "jd_url": "https://example.com/ubtech/java",
+                "cohort": 2027,
+                "cohort_status": "confirmed",
+                "jd_raw": (
+                    "岗位职责：1. 负责云平台后端服务架构设计与核心模块开发；"
+                    "2. 排查并优化高并发接口性能瓶颈与故障定位；"
+                    "3. 编写单元测试与接口自动化测试，参与持续集成与代码评审。"
+                    "任职要求：2027届本科及以上学历，熟悉 Java/Spring Boot、数据结构与算法、操作系统、计算机网络与 Linux/Git，周末双休。"
+                ),
+            },
+            "analysis": None,
+        },
+        {
+            "job": {
+                "id": 202,
+                "company": "探索科技",
+                "title": "2027届-软件开发工程师",
+                "city": "成都",
+                "job_type": "校招",
+                "jd_url": "https://example.com/explore/sw",
+                "cohort": 2027,
+                "cohort_status": "confirmed",
+                "jd_raw": (
+                    "任职要求：2027届本科及以上学历，熟悉 C++ 或 Go 语言，掌握数据结构与算法、操作系统、Linux 与 Git，周末双休。" * 2
+                ),
+            },
+            "analysis": None,
+        },
+        {
+            "job": {
+                "id": 203,
+                "company": "重复事务公司",
+                "title": "2027届-IT技术支持与配置工程师",
+                "city": "上海",
+                "job_type": "校招",
+                "jd_url": "https://example.com/low/ops",
+                "cohort": 2027,
+                "cohort_status": "confirmed",
+                "jd_raw": (
+                    "岗位职责：负责日常数据录入、资料整理、桌面运维值守及售后客服电话回访。"
+                    "任职要求：2027届本科及以上学历，熟悉 Office 软件。"
+                ),
+            },
+            "analysis": None,
+        },
+    ]
+    for it in items:
+        it["analysis"] = job_filters.score_job_against_profile(it["job"], prof)
+
+    curation = job_filters.curate_recommendations_with_interest_policy(items, prof)
+    assert len(curation["primary_recommendations"]) == 1
+    assert curation["primary_recommendations"][0]["job"]["id"] == 201
+    assert len(curation["exploration_samples"]) == 1
+    assert curation["exploration_samples"][0]["job"]["id"] == 202
+    assert curation["total_filtered_or_demoted"] >= 2
+
+    report_path = reporter.generate_report("2026-10-18", {"date": "2026-10-18", "items": items}, str(tmp_path))
+    html_text = Path(report_path).read_text(encoding="utf-8")
+    assert "展开七维独立评估详情" in html_text
+    assert "跨方向代表性探索样本" in html_text
+    assert "已从主推荐列表排除/降权的岗位统计与防误杀抽查样本" in html_text
