@@ -292,19 +292,20 @@ def test_high_score_section_inserts_blank_lines(monkeypatch):
     assert sep_row == [{"tag": "text", "text": ""}]
 
 
-def test_report_url_uses_cloudflare_pages(monkeypatch):
-    """报告链接固定为 Cloudflare Pages（不再依赖 GITHUB_REPOSITORY）。"""
+def test_report_url_resolves_explicit_or_github_pages_and_never_uses_hardcoded_author_domain(monkeypatch):
+    """报告链接优先使用 REPORT_BASE_URL，次选由 GITHUB_REPOSITORY 自动推导 GitHub Pages，绝不回退原作者旧域名。"""
     monkeypatch.setenv("FEISHU_WEBHOOK", "https://open.feishu.cn/dummy")
-    monkeypatch.delenv("GITHUB_REPOSITORY", raising=False)
+    monkeypatch.delenv("REPORT_BASE_URL", raising=False)
+    monkeypatch.setenv("GITHUB_REPOSITORY", "student-user/career-agent")
     with patch("notifier.requests.post") as mock_post:
         mock_post.return_value.status_code = 200
         mock_post.return_value.json.return_value = {"code": 0}
-        notifier.send([], [], {"date": "2026-05-15"})
+        notifier.send([], [], {"date": "2026-05-15", "report_meta": {"report_version_id": "rep-1234abcd"}})
 
     flat = json.dumps(
         mock_post.call_args.kwargs["json"]["content"]["post"]["zh_cn"]["content"],
         ensure_ascii=False,
     )
-    # 固定指向 index.html（始终最新；事后录入的投递只更新 index.html）
-    assert "https://career-agent-4z4.pages.dev/index.html" in flat
+    assert "https://student-user.github.io/career-agent/index.html?v=rep-1234abcd" in flat
+    assert "career-agent-4z4.pages.dev" not in flat
     assert "2026-05-15.html" not in flat

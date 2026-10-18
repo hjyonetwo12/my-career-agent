@@ -206,9 +206,47 @@ def _jobs_payload(items: list, app_index=None) -> list[dict]:
     for idx, it in enumerate(items):
         job = it["job"]
         a = it.get("analysis") or {}
-        evaluated = bool(a) and not _is_unevaluated(a)
+        a_status = str(a.get("analysis_status") or ("complete" if a else "")).strip().lower()
+        is_failed = a_status == "failed" or (a.get("summary") or "") == _FAIL_SUMMARY
+        is_ineligible = a_status == "ineligible" or (
+            not bool(a)
+            and bool(it.get("_is_current"))
+            and (
+                ("本科" in str(prof.get("degree") or "本科") and job_filters.is_master_phd_only_job(job))
+                or not job_filters.is_cs_software_role(job)
+            )
+        )
+        jd_incomplete = a_status == "jd_incomplete" or (not bool(a) and job_details.is_jd_incomplete(job))
+        evaluated = (
+            bool(a)
+            and a_status in {"complete", "local_scored"}
+            and not is_failed
+            and not is_ineligible
+            and not _is_unevaluated(a)
+        )
         pending = not bool(a)
-        jd_incomplete = job_details.is_jd_incomplete(job)
+        if evaluated:
+            rec_label = a.get("recommendation") or "考虑"
+            st_code = a_status
+        elif not it.get("_is_current"):
+            rec_label = "不评分"
+            st_code = "cohort_unconfirmed"
+        elif is_failed:
+            rec_label = "评分失败"
+            st_code = "failed"
+        elif jd_incomplete:
+            rec_label = "JD待补全"
+            st_code = "jd_incomplete"
+        elif is_ineligible:
+            rec_label = "资格不符"
+            st_code = "ineligible"
+        elif pending:
+            rec_label = "待评估"
+            st_code = "unscored"
+        else:
+            rec_label = "未评估"
+            st_code = "unevaluated"
+
         app = app_index.get(job.get("id"))
         ap = _STAGE_LABELS.get(app.get("current_stage"), app.get("current_stage") or "已投递") if app else ""
         cat_info = job_filters.classify_job_categories(job, prof)
@@ -217,16 +255,9 @@ def _jobs_payload(items: list, app_index=None) -> list[dict]:
             "c": job.get("company", ""),
             "t": job.get("title", ""),
             "ct": _city_short(job.get("city", "") or "", 40),
-            "s": a.get("match_score") if evaluated else None,
-            "r": a.get("recommendation") if evaluated else (
-                "不评分"
-                if not it.get("_is_current")
-                else (
-                    "JD待补全"
-                    if pending and jd_incomplete
-                    else ("待评估" if pending else "未评估")
-                )
-            ),
+            "s": int(a.get("match_score") or 0) if evaluated else None,
+            "r": rec_label,
+            "st": st_code,
             "p": _platform_of(job.get("jd_url", "")),
             "u": job.get("jd_url", ""),
             "k": job.get("link_kind", "detail"),
@@ -2343,8 +2374,8 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
       } else {
-        const rowsWithoutCo = filtered(true);
-        activeCompaniesForCat = Array.from(new Set(rowsWithoutCo.map(j => j.c).filter(Boolean))).sort();
+        const rowsForCat = JOBS.filter(j => jobMatchesCategory(j, cat));
+        activeCompaniesForCat = Array.from(new Set(rowsForCat.map(j => j.c).filter(Boolean))).sort();
         const allRows = filtered(false);
         // 严格按岗位 ID 去重统计，防止一岗多类被重复计入汇总
         const uniqueJobIds = new Set();
@@ -2400,6 +2431,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (fCategory) fCategory.value = catKey || '';
       if (fCompany) fCompany.value = companyName || '';
       if (jobSearch) jobSearch.value = searchKw || '';
+      if (fPlatform) fPlatform.value = '';
+      if (fEval) fEval.value = '';
+      if (fScore) fScore.value = '';
       highlightedJobId = targetJobId || null;
       page = 1;
       render().then(() => {
@@ -3158,16 +3192,51 @@ def render_html(date_str: str, report_data: dict, editable: bool = False,
     cat_order_json = json.dumps(list(job_filters.PRIMARY_CATEGORY_ORDER), ensure_ascii=False)
     season_json = json.dumps(season_info, ensure_ascii=False).replace("</", "<\\/")
 
+    import hashlib
+    from datetime import datetime, timedelta, timezone
+    _cn_tz = timezone(timedelta(hours=8))
+    prof_vid = job_filters.profile_version_id()
+    raw_ver_seed = json.dumps({
+        "date": str(date_str),
+        "total": len(all_items),
+        "current": _stats.get("active", 0),
+        "high": _stats.get("high_match", 0),
+        "prof": prof_vid,
+    }, sort_keys=True)
+    report_version_id = "rep-" + hashlib.sha256(raw_ver_seed.encode("utf-8")).hexdigest()[:8]
+    report_meta = {
+        "report_version_id": report_version_id,
+        "scan_date": str(date_str),
+        "generated_at": datetime.now(_cn_tz).strftime("%Y-%m-%d %H:%M:%S CST"),
+        "profile_version_id": prof_vid,
+        "total_items": len(all_items),
+        "current_27_jobs": _stats.get("active", 0),
+        "active_companies": _stats.get("companies", 0),
+        "high_match_jobs": _stats.get("high_match", 0),
+        "hidden_jobs": _stats.get("hidden", 0),
+    }
+    if isinstance(report_data, dict):
+        report_data["report_meta"] = report_meta
+    report_meta_json = json.dumps(report_meta, ensure_ascii=False).replace("</", "<\\/")
+    old_pill = f'<span class="meta-pill">📅 扫描日期：{html.escape(date_str)}</span>'
+    new_pill = (
+        old_pill
+        + f'\n      <span class="meta-pill" id="reportVersionBadge" title="报告版本标识（用于核对本地、GitHub Pages与飞书链接一致性）">🔖 版本：{html.escape(report_version_id)}</span>'
+    )
+    page_rec_html = page_rec_html.replace(old_pill, new_pill, 1)
+
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="career-agent-report-version" content="{html.escape(report_version_id)}">
 <title>{html.escape(job_filters.PRODUCT_BRAND_NAME)} · {html.escape(season_info['season_badge'])} · {html.escape(date_str)}</title>
 <style>{_CSS}</style>
 </head>
 <body>
 <script>
+window.__REPORT_META = {report_meta_json};
 window.__COMPANY_CAREERS = {careers_urls_json};
 window.__COMPANY_SUMMARIES = {company_summaries_json};
 window.__DIRECTORY_DATA = {dir_json};
@@ -3197,10 +3266,38 @@ window.__SEASON_INFO = {season_json};
 
 def generate_report(date_str: str, report_data: dict, reports_dir: str = "reports",
                     out_name: str | None = None) -> str:
-    """生成静态 HTML 报告（只读）并落盘。"""
-    Path(reports_dir).mkdir(parents=True, exist_ok=True)
+    """唯一权威静态 HTML 报告生成入口：生成报告并同步写入 report_meta.json 与 outputs/index.html。"""
+    import shutil
+    rdir = Path(reports_dir)
+    rdir.mkdir(parents=True, exist_ok=True)
     html_content = render_html(date_str, report_data, editable=False)
 
-    output_path = Path(reports_dir) / f"{out_name or date_str}.html"
+    output_path = rdir / f"{out_name or date_str}.html"
     output_path.write_text(html_content, encoding="utf-8")
+
+    meta = (report_data.get("report_meta") if isinstance(report_data, dict) else None) or {}
+    if meta:
+        try:
+            (rdir / "report_meta.json").write_text(
+                json.dumps(meta, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+        except OSError:
+            pass
+
+    # 当生成正式主页 index.html 到默认 reports 目录时，同步镜像至 outputs/index.html，彻底消除新旧报告分叉
+    default_rdir = Path(__file__).resolve().parent / "reports"
+    if (out_name == "index") and (rdir.resolve() == default_rdir.resolve()):
+        try:
+            out_dir = Path(__file__).resolve().parent / "outputs"
+            out_dir.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(output_path, out_dir / "index.html")
+            if meta:
+                (out_dir / "report_meta.json").write_text(
+                    json.dumps(meta, ensure_ascii=False, indent=2),
+                    encoding="utf-8",
+                )
+        except OSError:
+            pass
+
     return str(output_path.resolve())

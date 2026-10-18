@@ -1,5 +1,6 @@
-"""飞书群自定义机器人推送模块 — 支持运行统计摘要、高价值岗位、无新增通知、分阶段异常提醒与防重复刷屏。"""
+"""飞书群自定义机器人推送模块 — 支持运行统计摘要、高价值岗位、无新增通知、部署状态校验与防重复刷屏。"""
 
+import argparse
 import hashlib
 import json
 import logging
@@ -50,15 +51,40 @@ def _truncate(text: str, max_len: int = _CITY_TRUNCATE_LEN) -> str:
     return s if len(s) <= max_len else s[: max_len] + "…"
 
 
-_REPORT_BASE_URL = "https://career-agent-4z4.pages.dev"
+def _resolve_report_base_url() -> str:
+    """按优先级解析正式报告基础 URL：
+    1. 显式配置的环境变量 REPORT_BASE_URL（如自定义 Cloudflare Pages 或 GitHub Pages 域名）
+    2. GitHub Actions 自动注入的 GITHUB_REPOSITORY（自动推导为 https://<owner>.github.io/<repo>）
+    3. 本地未配置外部域名时返回空字符串，绝不回退任何第三方或原作者硬编码旧域名。
+    """
+    explicit = (os.environ.get("REPORT_BASE_URL") or "").strip().rstrip("/")
+    if explicit:
+        if explicit.endswith("/index.html"):
+            explicit = explicit[: -len("/index.html")].rstrip("/")
+        return explicit
+
+    gh_repo = (os.environ.get("GITHUB_REPOSITORY") or "").strip().strip("/")
+    if "/" in gh_repo:
+        owner, repo = gh_repo.split("/", 1)
+        owner = owner.strip()
+        repo = repo.strip()
+        if owner and repo:
+            if repo.lower() == f"{owner.lower()}.github.io":
+                return f"https://{owner}.github.io"
+            return f"https://{owner}.github.io/{repo}"
+    return ""
 
 
-def _report_url(date_str: str = "") -> str:
-    """返回完整 HTML 报告链接（支持环境变量 REPORT_BASE_URL 覆盖；空字符串自动回退默认域名）。"""
-    base = (os.environ.get("REPORT_BASE_URL") or "").strip().rstrip("/")
+def _report_url(date_str: str = "", report_version_id: str = "") -> str:
+    """返回完整 HTML 报告链接（带可选版本查询参数防缓存；无有效公开域名时返回空字符串）。"""
+    base = _resolve_report_base_url()
     if not base:
-        base = _REPORT_BASE_URL.strip().rstrip("/")
-    return f"{base}/index.html" if base else ""
+        return ""
+    url = f"{base}/index.html"
+    ver = (report_version_id or "").strip()
+    if ver:
+        return f"{url}?v={ver}"
+    return url
 
 
 def _format_new_job(item: dict) -> list[list[dict]]:
@@ -102,7 +128,7 @@ def _collect_top_gaps(all_jobs: list[dict], top_n: int = 5) -> list[tuple[str, i
     gaps: list[str] = []
     for it in all_jobs:
         a = it.get("analysis") or {}
-        if a.get("match_score", 0) < _HIGH_SCORE_THRESHOLD:
+        if (a.get("match_score") or 0) < _HIGH_SCORE_THRESHOLD:
             continue
         for g in (a.get("gaps", []) or []):
             g = (g or "").strip()
@@ -115,7 +141,7 @@ def _collect_top_gaps(all_jobs: list[dict], top_n: int = 5) -> list[tuple[str, i
 
 
 def _format_run_stats_rows(run_stats: dict) -> list[list[dict]]:
-    """将运行统计与分阶段异常状态渲染为飞书富文本行。"""
+    """将运行统计、评分明细与分阶段异常状态渲染为飞书富文本行。"""
     rows: list[list[dict]] = []
     started = run_stats.get("started_at") or "—"
     finished = run_stats.get("finished_at") or datetime.now(_CHINA_TZ).strftime("%Y-%m-%d %H:%M:%S CST")
@@ -126,8 +152,12 @@ def _format_run_stats_rows(run_stats: dict) -> list[list[dict]]:
     passed_cnt = int(run_stats.get("passed_filter_count", 0))
     scored_ok = int(run_stats.get("scored_success_count", 0))
     scored_fail = int(run_stats.get("scored_failed_count", 0))
+    local_scored = int(run_stats.get("local_scored_count", 0))
     advice_ver = run_stats.get("advice_version_id") or "—"
     advice_strategy = run_stats.get("advice_strategy") or "no_change"
+    report_ver = run_stats.get("report_version_id") or ""
+    deploy_status = str(run_stats.get("deploy_status") or "").strip().lower()
+    pipeline_status = str(run_stats.get("pipeline_status") or "").strip().lower()
 
     rows.append([{"tag": "text", "text": "━━━ 运行摘要与阶段状态 ━━━"}])
     rows.append([{"tag": "text", "text": f"⏱️ 运行时间: {started} → {finished}"}])
@@ -138,20 +168,28 @@ def _format_run_stats_rows(run_stats: dict) -> list[list[dict]]:
             f"更新 {updated_cnt} 条 | 去重合并 {dedup_cnt} 条"
         ),
     }])
-    rows.append([{
-        "tag": "text",
-        "text": (
-            f"🎯 筛选与评分: 通过筛选 {passed_cnt} 条 | "
-            f"AI评分成功 {scored_ok} 条 | 评分失败 {scored_fail} 条"
-        ),
-    }])
-    rows.append([{
-        "tag": "text",
-        "text": f"🧭 综合建议闭环: 版本 {advice_ver} ({advice_strategy})",
-    }])
+    score_line = (
+        f"🎯 筛选与评分: 通过筛选 {passed_cnt} 条 | "
+        f"AI评分成功 {scored_ok} 条 | 评分失败 {scored_fail} 条"
+    )
+    if local_scored > 0:
+        score_line += f" | 五维规则覆盖 {local_scored} 条"
+    rows.append([{"tag": "text", "text": score_line}])
+    ver_line = f"🧭 综合建议闭环: 版本 {advice_ver} ({advice_strategy})"
+    if report_ver:
+        ver_line += f" | 报告版本 {report_ver}"
+    rows.append([{"tag": "text", "text": ver_line}])
 
-    # 明确区分：抓取失败、评分失败、无新增岗位与正常状态
     alerts = []
+    if pipeline_status in ("failure", "cancelled", "failed"):
+        alerts.append("❌ 流水线异常: 本次主程序执行未成功，请检查 GitHub Actions 运行日志")
+    if deploy_status in ("failure", "cancelled", "failed"):
+        alerts.append(
+            "❌ 网页部署失败: 本次报告未能发布至 GitHub Pages，为防旧网页冒充新报告已拦截旧链接，请在 GitHub Actions Artifacts 下载最新报告包"
+        )
+    elif deploy_status == "success":
+        alerts.append("✅ 网页部署成功: 最新报告已发布至正式分支并完成版本校验")
+
     if run_stats.get("crawl_failed"):
         alerts.append("⚠️ 抓取异常: 所有企业爬虫均未返回岗位，请检查网络或目标站点状态")
     elif run_stats.get("failed_companies_count", 0) > 0:
@@ -160,7 +198,7 @@ def _format_run_stats_rows(run_stats: dict) -> list[list[dict]]:
         alerts.append(f"⚠️ AI评分异常: {scored_fail} 个岗位评分未完成（已保留待下次自动重试）")
     if run_stats.get("advice_error"):
         alerts.append(f"⚠️ 综合建议刷新异常: {job_filters.sanitize_sensitive_text(str(run_stats['advice_error']))[:80]}（已回退保留上一份有效建议）")
-    if new_cnt == 0 and not run_stats.get("crawl_failed"):
+    if new_cnt == 0 and not run_stats.get("crawl_failed") and pipeline_status not in ("failure", "cancelled", "failed"):
         alerts.append("✅ 本轮无新增岗位（爬虫与筛选链路运行正常）")
 
     for al in alerts:
@@ -178,7 +216,18 @@ def _build_payload(
 ) -> dict:
     """组装 Feishu post 富文本 payload。"""
     today = report_data.get("date") or date.today().isoformat()
-    stats_obj = run_stats or report_data.get("run_stats")
+    stats_obj = run_stats or report_data.get("run_stats") or {}
+    report_meta = report_data.get("report_meta") or {}
+    report_version_id = (
+        stats_obj.get("report_version_id")
+        or report_meta.get("report_version_id")
+        or ""
+    )
+    deploy_status = str(
+        stats_obj.get("deploy_status")
+        or report_data.get("deploy_status")
+        or ""
+    ).strip().lower()
 
     content_rows: list[list[dict]] = []
     if isinstance(stats_obj, dict) and stats_obj:
@@ -199,9 +248,9 @@ def _build_payload(
         a = analysis_by_url.get(nj["jd_url"])
         if not a:
             continue
-        if a.get("recommendation") == "不推荐":
+        if a.get("recommendation") in ("不推荐", "未评估", "资格不符"):
             continue
-        if a.get("match_score", 0) < _HIGH_SCORE_THRESHOLD:
+        if (a.get("match_score") or 0) < _HIGH_SCORE_THRESHOLD:
             continue
         filtered_new.append({"job": nj, "analysis": a})
 
@@ -228,11 +277,11 @@ def _build_payload(
     # 段 2：全部追踪高分岗位（score >= 60，过滤实习，降序）
     high = [
         it for it in all_jobs
-        if it["analysis"]
-        and it["analysis"].get("match_score", 0) >= _HIGH_SCORE_THRESHOLD
+        if it.get("analysis")
+        and (it["analysis"].get("match_score") or 0) >= _HIGH_SCORE_THRESHOLD
         and not _is_intern_title(it["job"].get("title", ""))
         and _is_current_cohort(it["job"])
-        and it["analysis"].get("recommendation") != "不推荐"
+        and it["analysis"].get("recommendation") not in ("不推荐", "未评估", "资格不符")
     ]
     high.sort(key=lambda x: x["analysis"]["match_score"], reverse=True)
     truncated = len(high) > _MAX_HIGH_SCORE_ROWS
@@ -271,21 +320,34 @@ def _build_payload(
     else:
         content_rows.append([{"tag": "text", "text": "  —"}])
 
-    # 段 4：完整报告链接
-    url = _report_url(today)
-    if url:
-        content_rows.append([{"tag": "text", "text": ""}])
-        content_rows.append([
-            {"tag": "text", "text": "📄 "},
-            {"tag": "a", "text": "完整报告", "href": url},
-        ])
+    # 段 4：完整报告链接（严格校验部署状态，部署失败时绝不发送旧链接冒充新报告）
+    content_rows.append([{"tag": "text", "text": ""}])
+    if deploy_status in ("failure", "cancelled", "failed"):
+        content_rows.append([{
+            "tag": "text",
+            "text": "⚠️ 本次网页部署失败，已拦截旧版网页链接（请前往 GitHub Actions 下载最新 career-agent-report Artifact 查看）",
+        }])
+    else:
+        url = _report_url(today, report_version_id=report_version_id)
+        if url:
+            link_label = f"完整报告 ({report_version_id})" if report_version_id else "完整报告"
+            content_rows.append([
+                {"tag": "text", "text": "📄 "},
+                {"tag": "a", "text": link_label, "href": url},
+            ])
+        else:
+            content_rows.append([{
+                "tag": "text",
+                "text": "📄 本地报告已生成至 reports/index.html（如需飞书跳转在线网页，请配置 REPORT_BASE_URL 或在 GitHub Actions 中启用 GitHub Pages）",
+            }])
 
+    title_ver = f" [{report_version_id}]" if report_version_id else ""
     return {
         "msg_type": "post",
         "content": {
             "post": {
                 "zh_cn": {
-                    "title": f"🤖 AI校招情报 {today}",
+                    "title": f"🤖 AI校招情报 {today}{title_ver}",
                     "content": content_rows,
                 }
             }
@@ -371,3 +433,85 @@ def send(
             logger.warning("飞书推送异常: %s", job_filters.sanitize_sensitive_text(str(e)))
             return False
     return False
+
+
+def send_from_workspace(
+    deploy_status: str = "",
+    pipeline_status: str = "success",
+    db_path: str | Path | None = None,
+    summary_path: str | Path | None = None,
+    report_meta_path: str | Path | None = None,
+) -> bool:
+    """从数据库、运行摘要与报告元数据读取最新状态并推送到飞书（供 CI 部署后独立调用）。"""
+    import db as db_module
+
+    root = Path(__file__).resolve().parent
+    dpath = Path(db_path) if db_path else root / "data" / "jobs.db"
+    spath = Path(summary_path) if summary_path else root / "outputs" / "latest_run_summary.json"
+    mpath = Path(report_meta_path) if report_meta_path else root / "reports" / "report_meta.json"
+
+    run_stats = {}
+    if spath.exists():
+        try:
+            run_stats = json.loads(spath.read_text(encoding="utf-8")) or {}
+        except Exception:
+            run_stats = {}
+
+    report_meta = {}
+    if mpath.exists():
+        try:
+            report_meta = json.loads(mpath.read_text(encoding="utf-8")) or {}
+        except Exception:
+            report_meta = {}
+
+    if deploy_status:
+        run_stats["deploy_status"] = deploy_status
+    if pipeline_status:
+        run_stats["pipeline_status"] = pipeline_status
+    if report_meta.get("report_version_id"):
+        run_stats["report_version_id"] = report_meta["report_version_id"]
+
+    all_items = []
+    notify_new = []
+    if dpath.exists():
+        conn = db_module.init_db(str(dpath))
+        try:
+            all_items = db_module.get_all_jobs_with_analysis(conn)
+            latest_crawl = db_module.get_latest_crawl_date(conn)
+            active = db_module.get_active_jobs(conn)
+            notify_new = [
+                j for j in active
+                if job_cohorts.is_confirmed_current(j) and j.get("crawled_at") == latest_crawl
+            ]
+        finally:
+            conn.close()
+
+    report_data = {
+        "date": report_meta.get("scan_date") or date.today().isoformat(),
+        "run_stats": run_stats,
+        "report_meta": report_meta,
+        "deploy_status": deploy_status,
+    }
+    return send(notify_new, all_items, report_data, run_stats=run_stats)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Send Feishu notification after report deployment.")
+    parser.add_argument("--deploy-status", default="", help="Deployment step outcome (success/failure/skipped)")
+    parser.add_argument("--pipeline-status", default="success", help="Pipeline step outcome (success/failure)")
+    parser.add_argument("--db", default="", help="Optional path to jobs.db")
+    parser.add_argument("--summary", default="", help="Optional path to latest_run_summary.json")
+    parser.add_argument("--report-meta", default="", help="Optional path to report_meta.json")
+    args = parser.parse_args()
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+    send_from_workspace(
+        deploy_status=args.deploy_status,
+        pipeline_status=args.pipeline_status,
+        db_path=args.db or None,
+        summary_path=args.summary or None,
+        report_meta_path=args.report_meta or None,
+    )
+
+
+if __name__ == "__main__":
+    main()

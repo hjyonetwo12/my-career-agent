@@ -639,7 +639,8 @@ def purge_screening_tier_b_analyses(conn: sqlite3.Connection) -> int:
             """SELECT job.*
                FROM jobs AS job
                INNER JOIN job_analysis AS analysis ON analysis.job_id = job.id
-               WHERE UPPER(TRIM(COALESCE(job.screening_tier, ''))) = 'B'"""
+               WHERE UPPER(TRIM(COALESCE(job.screening_tier, ''))) = 'B'
+                 AND COALESCE(analysis.analysis_status, 'complete') = 'complete'"""
         ).fetchall()
         if analyzer.analysis_screening_tier(dict(row)) == "B"
     ]
@@ -989,6 +990,8 @@ def get_active_jobs(conn: sqlite3.Connection) -> list[dict]:
     anchor_str = (row_max["d"] if row_max and row_max["d"] else "")[:10]
     try:
         anchor_date = date.fromisoformat(anchor_str) if anchor_str else date.today()
+        if (date.today() - anchor_date).days > 30:
+            anchor_date = date.today()
     except ValueError:
         anchor_date = date.today()
     cutoff = (anchor_date - timedelta(days=ACTIVE_WINDOW_DAYS - 1)).isoformat()
@@ -1103,6 +1106,164 @@ def analysis_is_current(
         and row["profile_fingerprint"] == profile_fingerprint
         and row["model"] == model
     )
+
+
+def sync_local_baseline_scores(
+    conn: sqlite3.Connection,
+    profile: dict | None = None,
+) -> dict[str, int]:
+    """Ensure all eligible confirmed-current CS jobs with complete JDs have an up-to-date score,
+    and recalculate any legacy capped Pro scores without overwriting AI Pro analyses."""
+    import analyzer
+    import job_cohorts
+    import job_details
+    import job_filters
+
+    prof = profile if isinstance(profile, dict) else job_filters.load_active_profile()
+    prof_fp = analyzer.profile_fingerprint(prof)
+    now_iso = datetime.now().isoformat()
+
+    # 1. Recalculate any existing AI Pro ("complete") rows that have a valid score_breakdown
+    pro_rows = conn.execute(
+        """SELECT a.*, j.company, j.title, j.city, j.jd_raw
+           FROM job_analysis a
+           INNER JOIN jobs j ON j.id = a.job_id
+           WHERE COALESCE(a.analysis_status, 'complete') = 'complete'"""
+    ).fetchall()
+    pro_updates = []
+    for row in pro_rows:
+        try:
+            bd = json.loads(row["score_breakdown"] or "{}")
+            if not bd:
+                continue
+            ev = json.loads(row["evidence"] or "[]")
+            adv = json.loads(row["advantages"] or "[]")
+            gaps = json.loads(row["gaps"] or "[]")
+            raw_obj = {
+                "score_breakdown": bd,
+                "evidence_level": row["evidence_level"] or "partial",
+                "evidence": ev,
+                "missing_core_requirements": [],
+                "advantages": adv,
+                "gaps": gaps,
+                "summary": row["summary"] or "",
+            }
+            job_stub = {
+                "company": row["company"],
+                "title": row["title"],
+                "city": row["city"],
+                "jd_raw": row["jd_raw"],
+            }
+            recalc = analyzer._finalize_analysis(
+                raw_obj, job_stub, prof, row["model"] or "deepseek-v4-pro"
+            )
+            if recalc["match_score"] != row["match_score"] or recalc["recommendation"] != row["recommendation"]:
+                pro_updates.append((
+                    recalc["match_score"],
+                    recalc["recommendation"],
+                    row["job_id"],
+                ))
+        except Exception:
+            continue
+    if pro_updates:
+        conn.executemany(
+            "UPDATE job_analysis SET match_score = ?, recommendation = ? WHERE job_id = ?",
+            pro_updates,
+        )
+
+    # 2. Fetch active jobs and existing analysis metadata
+    active_jobs = get_active_jobs(conn)
+    existing_map = {
+        r["job_id"]: (r["analysis_status"] or "complete", r["profile_fingerprint"] or "", r["jd_fingerprint"] or "")
+        for r in conn.execute(
+            "SELECT job_id, analysis_status, profile_fingerprint, jd_fingerprint FROM job_analysis"
+        ).fetchall()
+    }
+
+    stats = {
+        "active_total": len(active_jobs),
+        "confirmed_current_formal": 0,
+        "ai_pro_kept": 0,
+        "pro_recalculated": len(pro_updates),
+        "local_scored_upserted": 0,
+        "local_scored_cached": 0,
+        "jd_incomplete_skipped": 0,
+        "ineligible_skipped": 0,
+    }
+    to_upsert = []
+    stale_ids_to_delete = []
+
+    for job in active_jobs:
+        jid = job["id"]
+        if not (
+            job_cohorts.is_confirmed_current(job)
+            and job_filters.is_formal_campus_job(job)
+            and not job_filters.is_direction_out_job(job)
+        ):
+            continue
+        stats["confirmed_current_formal"] += 1
+        ex_status, ex_pfp, ex_jfp = existing_map.get(jid, ("", "", ""))
+        if ex_status == "complete":
+            # If the underlying job turns out to be Master/PhD-only for an undergrad, remove the stale score
+            if "本科" in str(prof.get("degree") or "本科") and job_filters.is_master_phd_only_job(job):
+                stale_ids_to_delete.append((jid,))
+                stats["ineligible_skipped"] += 1
+            else:
+                stats["ai_pro_kept"] += 1
+            continue
+
+        if job_details.is_jd_incomplete(job):
+            stats["jd_incomplete_skipped"] += 1
+            if ex_status:
+                stale_ids_to_delete.append((jid,))
+            continue
+
+        if not job_filters.is_cs_software_role(job) or (
+            "本科" in str(prof.get("degree") or "本科") and job_filters.is_master_phd_only_job(job)
+        ):
+            stats["ineligible_skipped"] += 1
+            if ex_status:
+                stale_ids_to_delete.append((jid,))
+            continue
+
+        j_fp = analyzer.jd_fingerprint(job)
+        if ex_status == "local_scored" and ex_pfp == prof_fp and ex_jfp == j_fp:
+            stats["local_scored_cached"] += 1
+            continue
+
+        scored = job_filters.score_job_against_profile(job, prof)
+        to_upsert.append((
+            jid,
+            scored["match_score"],
+            json.dumps(scored.get("advantages", []), ensure_ascii=False),
+            json.dumps(scored.get("gaps", []), ensure_ascii=False),
+            scored.get("summary", ""),
+            scored.get("recommendation", "考虑"),
+            json.dumps(scored.get("score_breakdown", {}), ensure_ascii=False),
+            json.dumps(scored.get("evidence", []), ensure_ascii=False),
+            scored.get("evidence_level", "adjacent"),
+            "local_scored",
+            scored.get("analysis_version", "local-5d-v2.0"),
+            j_fp,
+            prof_fp,
+            scored.get("model", "local-rule-v2"),
+            now_iso,
+        ))
+        stats["local_scored_upserted"] += 1
+
+    if stale_ids_to_delete:
+        conn.executemany("DELETE FROM job_analysis WHERE job_id = ?", stale_ids_to_delete)
+    if to_upsert:
+        conn.executemany(
+            """INSERT OR REPLACE INTO job_analysis
+               (job_id, match_score, advantages, gaps, summary, recommendation,
+                score_breakdown, evidence, evidence_level, analysis_status,
+                analysis_version, jd_fingerprint, profile_fingerprint, model, analyzed_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            to_upsert,
+        )
+    conn.commit()
+    return stats
 
 
 def _join_analysis(conn: sqlite3.Connection, jobs: list[dict]) -> dict:

@@ -4,7 +4,7 @@ import logging
 import os
 import sys
 import webbrowser
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
@@ -76,7 +76,7 @@ def _normalize_configured_listing_links(company: dict, jobs: list[dict]) -> list
 
 
 def _crawl_one(company: dict) -> tuple[str, list[dict]]:
-    """跑单家爬虫，返回 (公司名, 岗位列表)。异常吞掉返回空，不影响其他公司。"""
+    """跑单家爬虫，返回 (公司名, 岗位列表)。异常记录日志并返回空，不影响其他公司。"""
     key = company["crawler"]
     cls = CRAWLER_MAP.get(key)
     if not cls:
@@ -129,12 +129,12 @@ def _print_delta(new_jobs: list[dict], disappeared: list[dict]) -> None:
 
     if new_jobs:
         print(f"\n新增 {len(new_jobs)} 个岗位：")
-        for j in new_jobs:
+        for j in new_jobs[:30]:
             city = f"  ({j.get('city','')})" if j.get("city") else ""
             print(f"  + [{j['company']}] {j['title']}{city}")
     if disappeared:
         print(f"\n下线 {len(disappeared)} 个岗位：")
-        for j in disappeared:
+        for j in disappeared[:30]:
             city = f"  ({j.get('city','')})" if j.get("city") else ""
             print(f"  - [{j['company']}] {j['title']}{city}")
     if not new_jobs and not disappeared:
@@ -147,7 +147,7 @@ def main():
     skip_crawl = os.environ.get("SKIP_CRAWL", "").strip().lower() in ("1", "true", "yes")
     force_advice_refresh = os.environ.get("FORCE_ADVICE_REFRESH", "").strip().lower() in ("1", "true", "yes")
 
-    # 1. 加载配置
+    # 1. 加载并校验配置
     config_path = Path(__file__).parent / "config.yaml"
     if not config_path.exists():
         logger.error("找不到 config.yaml，请确认文件存在")
@@ -239,7 +239,7 @@ def main():
         job_filters.profile_version_id(profile),
     )
 
-    # 2. 初始化数据库
+    # 2. 初始化数据库与历史数据修正
     db_path = Path(
         os.environ.get("JOBS_DB_PATH", Path(__file__).parent / "data" / "jobs.db")
     )
@@ -281,7 +281,7 @@ def main():
     if purged_noncurrent_analysis:
         logger.info("已清理 %d 条非确认27届岗位的历史评分", purged_noncurrent_analysis)
 
-    # 3. 运行爬虫（或跳过爬虫）
+    # 3. 采集、清洗、去重与资格筛选
     crawled_total = 0
     new_jobs = []
     updated_existing_count = 0
@@ -313,7 +313,7 @@ def main():
         logger.info("开始抓取 %d 家企业...", len(config["companies"]))
         all_jobs, successful_companies = run_crawlers(config["companies"])
         crawled_total = len(all_jobs)
-        logger.info("共抓取到 %d 个岗位（成功公司：%s）", crawled_total, successful_companies)
+        logger.info("共抓取到 %d 个岗位（成功公司：%d 家）", crawled_total, len(successful_companies))
 
         # 批次内按 (company, title, city, jd_url) 去重计数
         unique_seen = set()
@@ -431,7 +431,7 @@ def main():
 
         disappeared = db_module.get_disappeared_jobs(conn, successful_companies)
 
-    # 6. 细分析活跃岗位
+    # 6. AI Pro 深度分析活跃岗位（受预算上限保护）
     active = db_module.get_active_jobs(conn)
     active_current = [
         job for job in active if job_cohorts.is_confirmed_current(job)
@@ -444,7 +444,7 @@ def main():
     ]
 
     logger.info(
-        "活跃岗位 %d 个，其中确认当前届别 %d 个 → 待新增/更新细分析 %d 个",
+        "活跃岗位 %d 个，其中确认当前届别 %d 个 → 待新增/更新 Pro 细分析 %d 个",
         len(active),
         len(active_current),
         len(unanalyzed),
@@ -457,7 +457,7 @@ def main():
             if os.environ.get("ALLOW_FULL_PRO_ANALYSIS") == "1"
             else (int(override_max) if override_max.isdigit() else int(llm_cfg.get("max_pro_jobs_per_run", 0)))
         )
-        logger.info("开始 DeepSeek 细分析 %d 个岗位...", len(unanalyzed))
+        logger.info("开始 DeepSeek 细分析 %d 个候选岗位...", len(unanalyzed))
         scored_results = analyzer.batch_analyze(
             unanalyzed,
             profile,
@@ -485,6 +485,18 @@ def main():
     if post_hydration_noncurrent:
         logger.info("届别验收后二次清理 %d 条非确认27届评分", post_hydration_noncurrent)
 
+    # 6.2 同步本地五维基准评分（为具备完整 JD 但受限于 Pro 配额尚未调用 API 的合格27届计算机岗提供五维规则评分）
+    score_sync_stats = db_module.sync_local_baseline_scores(conn, profile=profile)
+    logger.info(
+        "评分同步完成：AI精析保留 %d、Pro重算修正 %d、五维规则新增/更新 %d（缓存复用 %d）、JD待补全跳过 %d、资格不符跳过 %d",
+        score_sync_stats.get("ai_pro_kept", 0),
+        score_sync_stats.get("pro_recalculated", 0),
+        score_sync_stats.get("local_scored_upserted", 0),
+        score_sync_stats.get("local_scored_cached", 0),
+        score_sync_stats.get("jd_incomplete_skipped", 0),
+        score_sync_stats.get("ineligible_skipped", 0),
+    )
+
     # 6.5 执行个人需求变化驱动的综合建议自动更新闭环
     all_items = db_module.get_all_jobs_with_analysis(conn)
     advice_obj = job_filters.update_or_get_comprehensive_advice(
@@ -503,7 +515,9 @@ def main():
 
     finished_at = datetime.now(_CHINA_TZ).strftime("%Y-%m-%d %H:%M:%S CST")
     scored_ok = len(scored_results)
-    scored_fail = max(0, min(len(unanalyzed), int(llm_cfg.get("max_pro_jobs_per_run", len(unanalyzed)) or len(unanalyzed))) - scored_ok) if unanalyzed else 0
+    attempted_pro = min(len(unanalyzed), int(llm_cfg.get("max_pro_jobs_per_run", len(unanalyzed)) or len(unanalyzed))) if unanalyzed else 0
+    scored_fail = max(0, attempted_pro - scored_ok) if unanalyzed else 0
+    local_scored_total = score_sync_stats.get("local_scored_upserted", 0) + score_sync_stats.get("local_scored_cached", 0)
 
     run_stats = {
         "started_at": started_at,
@@ -511,13 +525,20 @@ def main():
         "timezone": "Asia/Shanghai (UTC+8)",
         "skip_crawl": skip_crawl,
         "crawled_total": crawled_total,
+        "deduped_count": deduped_count,
+        "after_dedup_count": max(0, crawled_total - deduped_count),
         "new_inserted_count": len(new_jobs),
         "updated_existing_count": updated_existing_count,
-        "deduped_count": deduped_count,
         "disappeared_count": len(disappeared),
         "passed_filter_count": len(active_current),
+        "ineligible_filter_count": score_sync_stats.get("ineligible_skipped", 0),
+        "jd_incomplete_count": score_sync_stats.get("jd_incomplete_skipped", 0),
         "scored_success_count": scored_ok,
         "scored_failed_count": scored_fail,
+        "ai_pro_total_count": score_sync_stats.get("ai_pro_kept", 0),
+        "local_scored_count": local_scored_total,
+        "unscored_count": score_sync_stats.get("jd_incomplete_skipped", 0),
+        "ranking_score_field": "job_analysis.match_score (INTEGER DESC)",
         "successful_companies_count": len(successful_companies),
         "failed_companies_count": max(0, len(config["companies"]) - len(successful_companies)) if not skip_crawl else 0,
         "crawl_failed": (not skip_crawl and len(config["companies"]) > 0 and len(successful_companies) == 0),
@@ -526,6 +547,25 @@ def main():
         "advice_strategy": advice_vinfo.get("strategy_label", advice_vinfo.get("update_strategy", "")),
         "advice_error": advice_vinfo.get("last_error", ""),
     }
+
+    # 7. 从最终数据库状态生成唯一权威报告（同时生成当日快照与正式 index.html + report_meta.json）
+    reports_dir = os.environ.get("REPORTS_DIR", str(Path(__file__).parent / "reports"))
+    today_iso = date.today().isoformat()
+    applications = db_module.get_applications(conn)
+    unified_report_data = {
+        "items": all_items,
+        "applications": applications,
+        "date": today_iso,
+        "run_stats": run_stats,
+    }
+    report_path = reporter.generate_report(today_iso, unified_report_data, reports_dir)
+    index_path = reporter.generate_report(today_iso, unified_report_data, reports_dir, out_name="index")
+
+    report_meta = unified_report_data.get("report_meta") or {}
+    run_stats["report_version_id"] = report_meta.get("report_version_id", "")
+    run_stats["report_included_jobs_count"] = report_meta.get("current_27_jobs", 0)
+    run_stats["report_generated"] = Path(index_path).exists()
+
     try:
         (_LOG_DIR / "latest_run_summary.json").write_text(
             json.dumps(run_stats, ensure_ascii=False, indent=2),
@@ -534,44 +574,24 @@ def main():
     except Exception as exc:
         logger.warning("保存 latest_run_summary.json 失败: %s", exc)
 
-    # 7. 生成报告
-    reports_dir = os.environ.get("REPORTS_DIR", str(Path(__file__).parent / "reports"))
-    today_iso = date.today().isoformat()
-    report_data = db_module.get_active_report_data(conn)
-    report_data["run_stats"] = run_stats
-    report_path = reporter.generate_report(today_iso, report_data, reports_dir)
-
-    reporter.generate_report(
-        today_iso,
-        {
-            "items": all_items,
-            "applications": db_module.get_applications(conn),
-            "date": today_iso,
-            "run_stats": run_stats,
-        },
-        reports_dir,
-        out_name="index",
-    )
-
-    # 8. 飞书推送
-    all_jobs_with_analysis = all_items
+    # 8. 飞书推送（CI 环境通过 SKIP_NOTIFY=1 延迟到 gh-pages 部署成功后由 notifier.py 独立推送）
     latest_crawl = db_module.get_latest_crawl_date(conn)
     notify_new = [
         j for j in active_current if j.get("crawled_at") == latest_crawl
     ]
     if not os.environ.get("SKIP_NOTIFY"):
-        notifier.send(notify_new, all_jobs_with_analysis, report_data)
+        notifier.send(notify_new, all_items, unified_report_data, run_stats=run_stats)
 
     conn.close()
 
     # 9. 终端输出 delta + 报告路径
     _print_delta(new_jobs, disappeared)
-    print(f"活跃岗位总数：{len(active)}  →  {report_path}")
+    print(f"活跃岗位总数：{len(active)}  →  {index_path} (版本: {run_stats.get('report_version_id')})")
     print()
 
     # 10. 本地运行才自动打开浏览器（CI 环境跳过）
     if not os.environ.get("CI"):
-        webbrowser.open(f"file:///{report_path.replace(os.sep, '/')}")
+        webbrowser.open(f"file:///{index_path.replace(os.sep, '/')}")
 
 
 if __name__ == "__main__":

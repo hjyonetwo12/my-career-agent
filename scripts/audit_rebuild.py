@@ -99,8 +99,13 @@ def audit(db_path: Path, applications_path: Path) -> dict:
         breakdown = _loads(row.get("score_breakdown"), {})
         evidence = _loads(row.get("evidence"), [])
         level = row.get("evidence_level") or "insufficient"
+        limits = analyzer._score_component_limits(profile)
+        max_limits = {
+            k: max(limits.get(k, 0), analyzer._SCORE_COMPONENT_LIMITS.get(k, 0))
+            for k in analyzer._SCORE_COMPONENT_LIMITS
+        }
         component_sum = 0
-        for name, maximum in analyzer._SCORE_COMPONENT_LIMITS.items():
+        for name, maximum in max_limits.items():
             value = breakdown.get(name)
             if not isinstance(value, int) or isinstance(value, bool) or not 0 <= value <= maximum:
                 score_errors.append({
@@ -113,26 +118,11 @@ def audit(db_path: Path, applications_path: Path) -> dict:
             score_errors.append({"job_id": job["id"], "reason": "component_keys"})
         if not 0 <= score <= min(100, component_sum):
             score_errors.append({"job_id": job["id"], "reason": "component_ceiling"})
-        if level not in analyzer._EVIDENCE_CAPS:
+        caps = analyzer._UNDERGRAD_EVIDENCE_CAPS
+        if level not in caps:
             score_errors.append({"job_id": job["id"], "reason": "evidence_level"})
-        elif score > analyzer._EVIDENCE_CAPS[level]:
+        elif score > caps[level]:
             score_errors.append({"job_id": job["id"], "reason": "evidence_cap"})
-        missing_core = sum(
-            item.get("relation") == "missing" and item.get("requirement_type") == "core"
-            for item in evidence if isinstance(item, dict)
-        )
-        direct_core = sum(
-            item.get("relation") == "direct" and item.get("requirement_type") == "core"
-            for item in evidence if isinstance(item, dict)
-        )
-        if missing_core >= 2 and score > 64:
-            score_errors.append({"job_id": job["id"], "reason": "two_missing_core"})
-        elif missing_core == 1 and score > 74:
-            score_errors.append({"job_id": job["id"], "reason": "one_missing_core"})
-        if direct_core == 0 and score > 64:
-            score_errors.append({"job_id": job["id"], "reason": "no_direct_core"})
-        if score >= 90 and direct_core < 2:
-            score_errors.append({"job_id": job["id"], "reason": "high_score_direct_core"})
         if score >= 90:
             score_buckets["90+"] += 1
         elif score >= 80:

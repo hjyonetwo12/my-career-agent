@@ -1,7 +1,7 @@
 name: Sync report (applications)
 
 # 本地录入投递（data/applications.json）或修改个人画像（profile.yaml）push 后，
-# 只重新生成报告与综合建议并部署，不爬取、不调岗位评分 API（零 token）。
+# 重新计算本地五维评分、刷新综合建议并部署最新报告，不爬取、不调用付费 API（零 token）。
 on:
   push:
     branches: [main]
@@ -30,16 +30,21 @@ jobs:
     env:
       TZ: Asia/Shanghai
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - name: Install deps
         run: pip install -r requirements.txt
-      - name: Regenerate report and advice (no crawl / no DeepSeek)
+      - name: Regenerate report, local scores and advice (no crawl / no DeepSeek)
+        id: run_sync
         env:
           CI: "true"
         run: python view_all.py
+      - name: Verify generated report integrity
+        run: |
+          test -s reports/index.html
+          test -s reports/report_meta.json
       - name: Upload updated report artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -49,11 +54,24 @@ jobs:
           if-no-files-found: ignore
           path: |
             reports/index.html
+            reports/report_meta.json
             data/advice_state.json
       - name: Deploy report to gh-pages
+        id: deploy_pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./reports
           publish_branch: gh-pages
           keep_files: true
+      - name: Send Feishu notification after sync deployment
+        if: always()
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          REPORT_BASE_URL: ${{ vars.REPORT_BASE_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          DEDUP_FEISHU_PUSH: "1"
+        run: |
+          python notifier.py \
+            --deploy-status "${{ steps.deploy_pages.outcome }}" \
+            --pipeline-status "${{ steps.run_sync.outcome }}"

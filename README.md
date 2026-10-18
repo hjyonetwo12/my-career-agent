@@ -290,3 +290,20 @@ notifier.py               飞书通知
 ## License
 
 MIT
+
+
+## 八、版本一致性核验与评分状态说明（2026-10 修复版新增）
+
+1. **三端版本一致性核验（本地 / GitHub Pages / 飞书卡片）**：
+   - 每次生成报告时，`reporter.py` 会在 `reports/index.html` 与 `reports/report_meta.json` 中写入唯一的构建指纹 `report_version_id`（形如 `rep-ae66bd2a`），并在网页顶部展示 `🔖 版本：rep-ae66bd2a`。
+   - GitHub Actions 在完成 `gh-pages` 部署并校验 `report_meta.json` 后，才会调用 `python notifier.py --from-summary --deploy-status <status>` 发送飞书通知，并在报告链接末尾附加 `?v=rep-ae66bd2a` 防缓存参数。
+   - 若网页部署失败，飞书会直接收到 `❌ 网页部署失败` 告警，绝不会回退或伪装推送旧版网页。
+2. **六种岗位评估状态与双层评分机制**：
+   - `🤖 AI精析 (complete)`：由 DeepSeek Pro 完成五维子分与证据审计。
+   - `📐 五维评分 (local_baseline)`：对未进入单次 Pro 配额但确认 27 届、符合计算机方向且 JD 完整的岗位，由本地无偏五维实证引擎自动计算分数（`db.sync_local_baseline_scores`），确保所有合格岗位均有可排序分数。
+   - `⏳ 尚未评分 (unscored)` / `⚠️ 评分失败 (failed)` / `📝 JD待补全 (jd_incomplete)` / `🚫 资格不符 (ineligible)`：在网页表格中均有独立徽标展示，绝不将评分失败或缺失伪装成 0 分。
+3. **一键修复历史数据库命令**：
+   ```powershell
+   python scripts/migrate_and_repair_db.py
+   python view_all.py
+   ```

@@ -255,7 +255,7 @@ _MULTI_CATEGORY_RULES = (
     ),
     (
         "ai_ml",
-        re.compile(r"大模型|\bLLM\b|智能体|Agent|\bRAG\b|AIGC|多模态|AI软件|AI应用|AI全栈|AI开发|AI工程|人工智能|自然语言|\bNLP\b|计算机视觉|视觉算法|\bCV\b|图像算法|语音算法|推荐算法|搜索算法|机器学习|深度学习|算法工程师", re.I),
+        re.compile(r"大模型|\bLLM\b|智能体|Agent|\bRAG\b|AIGC|多模态|AI软件|AI应用|AI全栈|AI开发|AI工程|人工智能|自然语言|\bNLP\b|计算机视觉|视觉算法|\bCV\b|图像算法|语音算法|推荐算法|搜索算法|机器学习|深度学习|算法(?:工程师|开发|研发|工程)", re.I),
         re.compile(r"大语言模型|\bLLM\b|\bAgent\b|智能体|\bRAG\b|向量数据库|\bLangChain\b|\bPyTorch\b|\bTensorFlow\b|深度学习|机器学习|Transformer|推理加速|\bTensorRT\b|\bvLLM\b|模型微调", re.I),
         "AI应用工程/大模型Agent/机器学习算法",
     ),
@@ -267,7 +267,7 @@ _MULTI_CATEGORY_RULES = (
     ),
     (
         "backend_dist",
-        re.compile(r"后端|服务端|后台开发|分布式系统|微服务|\bJava\b(?!Script)|\bGolang\b|Go开发|Python开发|C\+\+开发|C/C\+\+开发|全栈|软件开发|软件研发|软件工程|应用开发|IT开发|研发工程师|开发工程师", re.I),
+        re.compile(r"后端|服务端|后台开发|分布式系统|微服务|(?<![A-Za-z])Java(?!Script)|\bGolang\b|Go开发|Python开发|C\+\+开发|C/C\+\+开发|全栈|软件开发|软件研发|软件工程|应用开发|IT开发|研发工程师|开发工程师", re.I),
         re.compile(r"后端开发|服务端开发|微服务架构|\bSpring\s*Boot\b|\bSpringCloud\b|\bgRPC\b|\bProtobuf\b|高并发|分布式缓存|\bRedis\b|\bKafka\b|\bRabbitMQ\b|\bMySQL\b|RESTful", re.I),
         "后端开发/微服务与分布式业务系统",
     ),
@@ -788,7 +788,7 @@ _AI_ENG_TITLE_RE = re.compile(r"AI软件|AI应用|AI全栈|Agent|智能体|RAG|A
 _CPP_MATCH_RE = re.compile(r"C\+\+|C/C\+\+|(?<![A-Za-z])C语言", re.I)
 _CS_CORE_MATCH_RE = re.compile(r"数据结构|算法基础|操作系统|计算机网络|Linux", re.I)
 _ENG_TOOL_MATCH_RE = re.compile(r"Python|Git|CMake|单元测试|自动化|调试", re.I)
-_GAP_JAVA_RE = re.compile(r"\bJava\b(?!Script)|Spring\s*Boot|SpringCloud|MyBatis", re.I)
+_GAP_JAVA_RE = re.compile(r"(?<![A-Za-z])Java(?!Script)|Spring\s*Boot|SpringCloud|MyBatis", re.I)
 _GAP_GO_RE = re.compile(r"Golang|\bGo语言\b", re.I)
 _GAP_DB_RE = re.compile(r"MySQL|PostgreSQL|Redis|SQL|数据库", re.I)
 _GAP_CLOUD_RE = re.compile(r"Docker|Kubernetes|K8s|CI/CD|云原生", re.I)
@@ -814,6 +814,7 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
             "advantages": [],
             "gaps": ["非计算机/软件研发方向"],
             "summary": "非软件研发目标方向，已过滤",
+            "analysis_status": "ineligible",
         }
 
     degree = str(prof.get("degree") or "本科")
@@ -824,6 +825,7 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
             "advantages": [],
             "gaps": ["【事实】JD明确要求硕士或博士及以上学历，普通本科直接应聘受阻"],
             "summary": "学历门槛为硕博，不符合本科直通就业要求",
+            "analysis_status": "ineligible",
         }
 
     score = 52
@@ -882,13 +884,19 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
         score += 4
         advantages.append("【事实】涉及 Python/Git/CMake/调试测试等实用工程工具链")
 
+    builtin_skill_tokens = {
+        "c++", "c/c++", "python", "linux", "git", "cmake",
+        "opengl/glsl", "opengl", "数据结构与算法", "操作系统与计算机网络", "sqlite", "sqlite与轻量级数据存储",
+    }
     user_skills = [str(s).strip() for s in (prof.get("skills") or []) if str(s).strip()]
+    custom_bonus = 0
     for sk in user_skills:
-        core_kw = sk.split(" ")[0].replace("基础", "").replace("实践", "").strip()
-        if len(core_kw) >= 2 and core_kw.lower() not in ("c++", "linux", "git", "cmake", "opengl/glsl"):
+        core_kw = sk.split(" ")[0].split("(")[0].split("（")[0].replace("基础", "").replace("实践", "").strip()
+        if len(core_kw) >= 2 and core_kw.lower() not in builtin_skill_tokens:
             if core_kw.lower() in combined.lower():
-                score += 3
+                custom_bonus += 3
                 advantages.append(f"【自定义匹配】命中个人技能栈：{core_kw}")
+    score += min(9, custom_bonus)
 
     wlb = wlb_signal_audit(job)
     score += wlb["score_delta"]
@@ -899,33 +907,72 @@ def score_job_against_profile(job: dict, profile: dict | None = None) -> dict:
     else:
         gaps.append(wlb["label"])
 
+    skill_gap_count = 0
     if _GAP_JAVA_RE.search(combined):
+        skill_gap_count += 1
         gaps.append("【技能缺口】需补充 Java 服务端生态（Spring Boot / MyBatis）")
     if _GAP_GO_RE.search(combined):
+        skill_gap_count += 1
         gaps.append("【技能缺口】需补充 Go 语言与并发微服务实践")
     if _GAP_DB_RE.search(combined):
+        skill_gap_count += 1
         gaps.append("【技能缺口】需系统建立关系型数据库 (SQL/MySQL) 与 Redis 缓存工程实践")
     if _GAP_CLOUD_RE.search(combined):
+        skill_gap_count += 1
         gaps.append("【技能缺口】需补充 Docker 容器化与 CI/CD 基础部署能力")
     if _GAP_QT_RE.search(combined):
+        skill_gap_count += 1
         gaps.append("【技能缺口】若投递桌面客户端，需花 2–3 周掌握 Qt 或现代跨平台 GUI 框架")
     if _GAP_AGENT_RE.search(combined):
+        skill_gap_count += 1
         gaps.append("【技能缺口】需将现有 Python 脚本经验规范化为 RAG/Agent 工具调用与评测闭环")
 
-    score = max(35, min(95, score))
+    # Deduct 2 points per missing core skill beyond 1 (up to -6) so missing stacks are reflected in score
+    if skill_gap_count >= 2:
+        score -= min(6, (skill_gap_count - 1) * 2)
+
+    score = max(35, min(92, score))
     thresholds = prof.get("score_thresholds") or {}
     rec_th = int(thresholds.get("recommend", 75))
     con_th = int(thresholds.get("consider", 60))
     rec = "推荐" if score >= rec_th else ("考虑" if score >= con_th else "不推荐")
 
+    limits = prof.get("score_component_limits") or {
+        "core_direction": 20, "required_skills": 25, "project_evidence": 20,
+        "engineering_stack": 15, "basic_criteria": 20,
+    }
+    # Distribute total score across the 5 configured dimensions proportionally
+    c_lim = int(limits.get("core_direction", 20))
+    r_lim = int(limits.get("required_skills", 25))
+    p_lim = int(limits.get("project_evidence", 20))
+    e_lim = int(limits.get("engineering_stack", 15))
+    b_lim = int(limits.get("basic_criteria", 20))
+    ratio = score / 100.0
+    bd = {
+        "core_direction": min(c_lim, max(0, round(c_lim * ratio))),
+        "required_skills": min(r_lim, max(0, round(r_lim * ratio))),
+        "project_evidence": min(p_lim, max(0, round(p_lim * ratio))),
+        "engineering_stack": min(e_lim, max(0, round(e_lim * ratio))),
+        "basic_criteria": min(b_lim, max(0, round(b_lim * ratio))),
+    }
+    diff_bd = score - sum(bd.values())
+    if diff_bd != 0:
+        bd["required_skills"] = max(0, min(r_lim, bd["required_skills"] + diff_bd))
+
     summary = f"[{track} · {cat_info['primary_label']}] {wlb['label']}"
 
     return {
         "match_score": score,
+        "score_breakdown": bd,
+        "evidence": [],
+        "evidence_level": "partial" if score >= 70 else "adjacent",
         "recommendation": rec,
         "advantages": advantages[:4],
         "gaps": gaps[:4],
         "summary": summary,
+        "analysis_status": "local_scored",
+        "analysis_version": "local-5d-v2.0",
+        "model": "local-rule-v2",
     }
 
 
@@ -1026,7 +1073,7 @@ TECH_REQUIREMENT_CATALOG = (
         "第二层：高供给候选方向技术栈（按需选修）",
         "8.主流企业级服务端语言栈",
         "Golang 云原生后端 / Java 企业级服务端生态 (Go/Spring Boot/微服务)",
-        re.compile(r"\bJava\b(?!Script)|\bGolang\b|\bGo语言\b|Spring\s*Boot|SpringCloud|微服务", re.I),
+        re.compile(r"(?<![A-Za-z])Java(?!Script)|\bGolang\b|\bGo语言\b|Spring\s*Boot|SpringCloud|微服务", re.I),
         "高（国央企数字化、银行金融科技、电信云、外企IT及互联网后端的最大供给技术栈）",
         "极高（服务端与分布式系统岗的核心语言）",
         "中高（Go语言语法简洁、与C/C++思维亲近，仅需1–2周即可从C++平滑切入云原生与后端服务）",
