@@ -1932,7 +1932,7 @@ def _page_skill_projects(items: list, date_str: str) -> str:
           </div>
         </div>""")
 
-    # ── 区域 2 & 区域 3：候选项目方案列表（快速比较卡片）+ 项目深度详情面板（含 12 项要素、技能覆盖审计表、AI 边界）──
+    # ── 区域 2 & 区域 3：候选项目方案列表（第一层：普通用户先看懂）+ 项目深度详情面板（第一层白话定义 + 第二层可展开技术详情）──
     selected_pid = str(workspace.get("selected_project_id") or "")
     summary_cards_html = []
     detail_panes_html = []
@@ -1950,6 +1950,18 @@ def _page_skill_projects(items: list, date_str: str) -> str:
         sel_border = "2px solid #0D9488" if is_sel else "1px solid #CBD5E1"
         sel_bg = "#F0FDFA" if is_sel else "#FFFFFF"
 
+        l1 = p.get("layer1_overview") or {}
+        p_intro = p.get("plain_intro") or {}
+        tech_rat = p.get("tech_selection_rationale") or {}
+        skill_cls = p.get("skill_classification_breakdown") or {}
+
+        what_it_does = str(l1.get("what_it_does") or p.get("core_purpose") or p.get("project_goal") or "")
+        final_outcome = str(l1.get("final_outcome") or "可独立运行的代码仓库 + 自动化单元测试 + 实测基线对比报告")
+        v1_first_step = str(l1.get("v1_first_step") or (p.get("mvp_scope") or {}).get("must_have_mvp") or "")
+        realistic_time = str(l1.get("realistic_time") or p.get("estimated_effort") or "")
+        what_you_learn = str(l1.get("what_you_learn") or p_langs)
+        biggest_challenge = str(l1.get("biggest_challenge") or ((p.get("engineering_challenges") or [""])[0]))
+
         summary_cards_html.append(f"""
         <div class="sp-candidate-card" id="sp-card-{html.escape(pid)}" data-project-id="{html.escape(pid)}" style="background:{sel_bg};border:{sel_border};border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);">
           <div>
@@ -1958,19 +1970,31 @@ def _page_skill_projects(items: list, date_str: str) -> str:
               <span style="padding:2px 8px;border-radius:999px;background:#EDE9FE;color:#5B21B6;font-size:12px;font-weight:600;">🎨 兴趣切入点：{html.escape(str(p.get('interest_theme_tag') or ''))}</span>
             </div>
             <h3 style="font-size:16px;color:#0F172A;margin:0 0 6px 0;line-height:1.4;">{html.escape(ptitle)}</h3>
-            <p style="font-size:13px;color:#334155;margin:0 0 8px 0;line-height:1.55;">
-              <b>核心用途：</b>{html.escape(str(p.get('core_purpose') or p.get('project_goal') or '')[:145])}
-            </p>
-            <div style="font-size:12.5px;color:#475569;line-height:1.6;background:#F8FAFC;padding:8px 10px;border-radius:8px;">
-              <div><b>💻 主力技术栈：</b><span style="color:#0369A1;font-weight:600;">{html.escape(p_langs)}</span></div>
-              <div><b>🎯 对应岗位类别：</b>{html.escape(p_cats_short)}（共关联 <b>{p.get('covered_unique_jobs', 0)}</b> 个独立岗）</div>
-              <div><b>📊 技能覆盖审计：</b><span style="color:#0F766E;font-weight:600;">{html.escape(str(cov_sum.get('summary_badge') or ''))}</span></div>
-              <div><b>⏱️ 难度与周期：</b>{html.escape(str(p.get('difficulty_level') or ''))} · {html.escape(str(p.get('estimated_effort') or ''))}</div>
+
+            <!-- 第一层：普通用户先看懂（默认展示 6 大白话要点） -->
+            <div class="sp-layer1-card-box" style="font-size:12.5px;color:#1E293B;line-height:1.6;background:#F8FAFC;border:1px solid #E2E8F0;padding:10px 12px;border-radius:8px;margin-bottom:8px;">
+              <div style="font-weight:700;color:#0F766E;margin-bottom:4px;font-size:12px;">👁️ 第一层：普通人先看懂（它到底是个什么东西？）</div>
+              <p class="sp-card-purpose" style="margin:0 0 4px 0;"><b>1. 这项目是干什么的：</b>{html.escape(what_it_does)}</p>
+              <div style="margin-bottom:4px;"><b>2. 最终能做出什么：</b>{html.escape(final_outcome)}</div>
+              <div class="sp-card-v1" style="margin-bottom:4px;color:#0369A1;"><b>3. 第一版 (MVP) 先做什么：</b>{html.escape(v1_first_step)}</div>
+              <div class="sp-card-time" style="margin-bottom:4px;"><b>4. 大概要投入多少时间：</b>{html.escape(realistic_time)}</div>
+              <div style="margin-bottom:4px;"><b>5. 能学到什么核心本领：</b>{html.escape(what_you_learn)}</div>
+              <div style="color:#92400E;"><b>6. 最大的难点是什么：</b>{html.escape(biggest_challenge)}</div>
             </div>
+
+            <!-- 第二层：技术概要折叠区 -->
+            <details style="font-size:12px;color:#475569;background:#FFFFFF;border:1px dashed #CBD5E1;border-radius:8px;padding:6px 10px;">
+              <summary style="cursor:pointer;font-weight:600;color:#0284C7;">🔧 展开第二层：技术选型、关联岗位与技能覆盖速览</summary>
+              <div style="margin-top:6px;line-height:1.6;">
+                <div><b>💻 单一主力技术栈：</b><span style="color:#0369A1;font-weight:600;">{html.escape(str(tech_rat.get('primary_stack') or p_langs))}</span></div>
+                <div><b>🎯 对应岗位类别：</b>{html.escape(p_cats_short)}（关联 <b>{p.get('covered_unique_jobs', 0)}</b> 个独立岗）</div>
+                <div><b>📊 技能覆盖审计：</b><span class="sp-card-cov-badge" style="color:#0F766E;font-weight:600;">{html.escape(str(cov_sum.get('summary_badge') or '未知 / 待补充'))}</span></div>
+              </div>
+            </details>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;padding-top:8px;border-top:1px solid #E2E8F0;">
             <button type="button" class="sp-btn-view-detail" data-sp-detail="{html.escape(pid)}" style="flex:1;padding:7px 10px;border-radius:6px;border:1px solid #0284C7;background:#EFF6FF;color:#0369A1;font-size:12.5px;font-weight:600;cursor:pointer;">
-              🔍 查看详情与覆盖表
+              🔍 查看双层详情与覆盖表
             </button>
             <button type="button" class="sp-btn-select-proj" data-sp-select="{html.escape(pid)}" style="flex:1;padding:7px 10px;border-radius:6px;border:none;background:{'#059669' if is_sel else '#0D9488'};color:#FFFFFF;font-size:12.5px;font-weight:700;cursor:pointer;">
               {'✅ 已选为当前方案' if is_sel else '📌 选择此项目'}
@@ -1978,9 +2002,9 @@ def _page_skill_projects(items: list, date_str: str) -> str:
           </div>
         </div>""")
 
-        # 构造项目详情面板（包含 Section 6.4 要求的全部 12 项 + Section 6.5 技能覆盖审计表 + Section 6.6 AI 边界）
+        # 构造项目详情面板（严格分成 第一层：白话定义与MVP闭环 + 第二层：可展开技术实施详情与技能覆盖审计表）
         mvp_obj = p.get("mvp_scope") or {}
-        mvp_must_li = "".join(f"<li>{html.escape(str(m))}</li>" for m in (mvp_obj.get("must_have") or p.get("core_features") or []))
+        mvp_ops_li = "".join(f"<li>{html.escape(str(m))}</li>" for m in (mvp_obj.get("core_operations") or mvp_obj.get("must_have") or p.get("core_features") or []))
         mvp_out_li = "".join(f"<li>{html.escape(str(x))}</li>" for x in (mvp_obj.get("out_of_scope_initially") or []))
         challenges_li = "".join(f"<li>{html.escape(str(c))}</li>" for c in (p.get("engineering_challenges") or p.get("engineering_tasks") or []))
         accept_li = "".join(f"<li>{html.escape(str(a))}</li>" for a in (p.get("acceptance_criteria") or []))
@@ -1994,7 +2018,13 @@ def _page_skill_projects(items: list, date_str: str) -> str:
         ai_accel_li = "".join(f"<li>{html.escape(str(a))}</li>" for a in (ai_bound.get("ai_can_accelerate") or []))
         verify_li = "".join(f"<li>{html.escape(str(v))}</li>" for v in (ai_bound.get("verification_proof") or []))
 
-        # 技能覆盖审计表 (Section 6.5)
+        prog_tiers_li = "".join(
+            f"<li><b>{html.escape(str(t.get('tier') or ''))}</b>：<code>{html.escape(str(t.get('stack') or ''))}</code> —— {html.escape(str(t.get('why_needed') or ''))}</li>"
+            for t in (tech_rat.get("progression_tiers") or [])
+        )
+        restraint_li = "".join(f"<li>{html.escape(str(r))}</li>" for r in (tech_rat.get("restraint_rules_applied") or []))
+
+        # 技能覆盖审计表 (Section 七)
         cov_rows_html = []
         for crow in (p.get("skill_coverage_table") or []):
             clevel = str(crow.get("coverage_level") or "未覆盖")
@@ -2018,8 +2048,8 @@ def _page_skill_projects(items: list, date_str: str) -> str:
                 </span>
               </td>
               <td style="font-size:12px;color:#334155;">
-                {f'<div><b>验收：</b>{html.escape(str(crow.get("verification_criteria") or ""))}</div>' if crow.get("verification_criteria") else ''}
-                <div style="color:#92400E;"><b>补充建议：</b>{html.escape(str(crow.get('supplementary_advice') or ''))}</div>
+                {f'<div><b>验收证据：</b>{html.escape(str(crow.get("verification_criteria") or ""))}</div>' if crow.get("verification_criteria") else ''}
+                <div style="color:#92400E;"><b>补充练习建议：</b>{html.escape(str(crow.get('supplementary_advice') or ''))}</div>
               </td>
             </tr>""")
 
@@ -2029,104 +2059,151 @@ def _page_skill_projects(items: list, date_str: str) -> str:
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid #E2E8F0;">
             <div>
               <div style="font-size:12.5px;font-weight:700;color:#0284C7;margin-bottom:4px;">
-                候选方案深度剖析（含 12 项设计要素 · 技能覆盖审计表 · AI 协同边界）
+                候选方案双层剖析（第一层：先用大白话讲清项目与最小闭环 · 第二层：展开查看克制技术选型与技能覆盖审计）
               </div>
               <h3 style="font-size:18px;color:#0F172A;margin:0 0 4px 0;">1. {html.escape(ptitle)}</h3>
-              <div style="font-size:13px;color:#475569;"><b>核心用途：</b>{html.escape(str(p.get('core_purpose') or ''))}</div>
+              <div class="sp-detail-purpose" style="font-size:13px;color:#475569;"><b>核心定位：</b>{html.escape(str(p.get('core_purpose') or ''))}</div>
             </div>
             <div style="display:flex;gap:8px;align-items:center;">
               <button type="button" class="sp-btn-select-proj" data-sp-select="{html.escape(pid)}" style="padding:8px 16px;border-radius:8px;border:none;background:#0D9488;color:#FFFFFF;font-size:13px;font-weight:700;cursor:pointer;">
-                📌 选定此方案并配置实施计划
+                📌 选定此方案并生成 4 阶段实施计划
               </button>
             </div>
           </div>
 
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:12px;font-size:13px;line-height:1.6;">
-            <div style="background:#F8FAFC;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
-              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">2. 为什么契合你的个人兴趣画像（非换皮 CRUD）</div>
-              <div style="color:#334155;">{html.escape(str(p.get('why_matches_interest') or ''))}</div>
-              <div style="font-weight:700;color:#0F172A;margin:10px 0 4px 0;">3. 对应真实岗位类别及招聘需求</div>
-              <div style="color:#334155;">覆盖：{html.escape(p_cats_short)}；典型职位：{html.escape('、'.join(p.get('target_roles') or []))}（代表企业：{html.escape('、'.join(p.get('representative_companies') or []))}）</div>
+          <!-- 第一层：普通用户先看懂（第一步：6个白话问答+日常比喻 + 第二步：MVP 最小闭环） -->
+          <div style="background:#F0FDFA;border:2px solid #99F6E4;border-radius:10px;padding:14px;margin-top:12px;font-size:13px;line-height:1.65;color:#134E4A;">
+            <div style="font-weight:700;font-size:14.5px;color:#0F766E;margin-bottom:8px;">
+              👁️ 第一层：先用普通话讲清楚这个项目到底是什么、第一版怎么做（不堆砌技术黑话）
             </div>
-            <div style="background:#F8FAFC;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
-              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">4. 如何自然使用目标技术栈（{html.escape(p_langs)}）</div>
-              <div style="color:#334155;">{html.escape(str(p.get('natural_tech_stack_usage') or ''))}</div>
-              <div style="font-weight:700;color:#0F172A;margin:10px 0 4px 0;">9. 预计难度、工作量范围与主要开发风险</div>
-              <div style="color:#334155;"><b>难度与周期：</b>{html.escape(str(p.get('difficulty_level') or ''))}（{html.escape(str(p.get('estimated_effort') or ''))}）</div>
-              <ul style="margin:4px 0 0 18px;color:#991B1B;">{risks_li}</ul>
-            </div>
-          </div>
-
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:12px;font-size:13px;line-height:1.6;">
-            <div style="background:#F0FDFA;padding:12px;border-radius:8px;border:1px solid #99F6E4;">
-              <div style="font-weight:700;color:#0F766E;margin-bottom:4px;">6. MVP 功能范围（第一版最小闭环 vs 明确延后项）</div>
-              <div style="font-weight:600;color:#115E59;">✅ MVP 必须完成（约 {html.escape(str(mvp_obj.get('estimated_mvp_weeks') or '2–3周'))}）：</div>
-              <ul style="margin:2px 0 6px 18px;color:#134E4A;">{mvp_must_li}</ul>
-              <div style="font-weight:600;color:#92400E;">⏸️ 第一版明确不做（防战线过长）：</div>
-              <ul style="margin:2px 0 0 18px;color:#78350F;">{mvp_out_li}</ul>
-            </div>
-            <div style="background:#EFF6FF;padding:12px;border-radius:8px;border:1px solid #BFDBFE;">
-              <div style="font-weight:700;color:#1E3A8A;margin-bottom:4px;">7. 主要工程挑战 &amp; 8. 测试、调试与量化验收标准</div>
-              <div style="font-weight:600;color:#1E40AF;">⚙️ 核心工程挑战：</div>
-              <ul style="margin:2px 0 6px 18px;color:#1E3A8A;">{challenges_li}</ul>
-              <div style="font-weight:600;color:#065F46;">🧪 量化验收标准：</div>
-              <ul style="margin:2px 0 0 18px;color:#064E3B;">{accept_li}</ul>
-            </div>
-          </div>
-
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:12px;font-size:13px;line-height:1.6;">
-            <div style="background:#FFFFFF;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
-              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">10. 最终可展示的运行成果、技术文档与演示</div>
-              <ul style="margin:2px 0 8px 18px;color:#334155;">{deliv_li}</ul>
-              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">11. 后续分阶段扩展空间</div>
-              <ul style="margin:2px 0 0 18px;color:#334155;">{exts_li}</ul>
-            </div>
-            <div style="background:#FFFFFF;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
-              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">5. 原始技能清单在项目中的具体训练落点</div>
-              <ul style="margin:2px 0 8px 18px;color:#334155;">{train_loc_li}</ul>
-              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">12. 判断依据说明（哪些来自真实数据 vs 哪些属于合理推断）</div>
-              <div style="font-size:12.5px;color:#166534;margin-bottom:4px;">📊 <b>数据事实支撑：</b>{html.escape(str(ev_bound.get('data_backed_facts') or ''))}</div>
-              <div style="font-size:12.5px;color:#92400E;">🧭 <b>合理推断与边界：</b>{html.escape(str(ev_bound.get('reasonable_inferences') or ''))}</div>
-            </div>
-          </div>
-
-          <div style="margin-top:14px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px;overflow-x:auto;">
-            <div style="font-weight:700;font-size:14px;color:#0F172A;margin-bottom:6px;">
-              📋 技能覆盖审计表（Section 6.5 · 严格区分「完整覆盖 / 部分覆盖 / 未覆盖」，不因引入依赖或 AI 生成代码而虚报覆盖）
-            </div>
-            <table class="job-table" style="width:100%;font-size:12.5px;">
-              <thead>
-                <tr>
-                  <th style="width:16%">技能约束</th>
-                  <th style="width:18%">来源岗位类别与频率</th>
-                  <th style="width:28%">对应项目功能或工程任务</th>
-                  <th style="width:12%">覆盖程度</th>
-                  <th style="width:26%">验收标准 / 缺口补充训练建议</th>
-                </tr>
-              </thead>
-              <tbody>{"".join(cov_rows_html)}</tbody>
-            </table>
-          </div>
-
-          <div style="margin-top:14px;background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:12px;font-size:13px;line-height:1.6;">
-            <div style="font-weight:700;color:#0F172A;margin-bottom:8px;">
-              🤝 AI 辅助开发与个人能力成长边界（Section 6.6 · 拒绝一次性让 AI 生成全部黑盒代码）
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;">
-              <div style="background:#FEF2F2;border:1px solid #FECACA;padding:10px;border-radius:8px;">
-                <div style="font-weight:700;color:#991B1B;margin-bottom:4px;">🧠 必须亲自理解、设计与实现的核心任务</div>
-                <ul style="margin:0;padding-left:18px;color:#7F1D1D;">{user_core_li}</ul>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;">
+              <div style="background:#FFFFFF;padding:12px;border-radius:8px;border:1px solid #CCFBF1;">
+                <div style="font-weight:700;color:#0F172A;margin-bottom:6px;">第一步：六个问题说清项目本质</div>
+                <div><b>① 项目名称：</b><span class="sp-intro-name">{html.escape(str(p_intro.get('what_is_it_called') or ptitle))}</span></div>
+                <div><b>② 它是给谁用的：</b><span class="sp-intro-who">{html.escape(str(p_intro.get('who_uses_it') or ''))}</span></div>
+                <div><b>③ 解决什么具体痛点：</b><span class="sp-intro-prob">{html.escape(str(p_intro.get('user_problem') or ''))}</span></div>
+                <div><b>④ 打开程序能干什么：</b><span class="sp-intro-do">{html.escape(str(p_intro.get('what_user_can_do') or ''))}</span></div>
+                <div><b>⑤ 最终看得见的成果：</b><span class="sp-intro-out">{html.escape(str(p_intro.get('visible_outcome') or ''))}</span></div>
+                <div><b>⑥ 为什么值得做（求职价值）：</b>{html.escape(str(p_intro.get('why_worth_doing') or p.get('resume_value') or ''))}</div>
+                <div style="margin-top:6px;padding:8px;background:#FEF3C7;border-radius:6px;color:#92400E;font-size:12.5px;">
+                  {html.escape(str(p_intro.get('everyday_example') or ''))}
+                </div>
               </div>
-              <div style="background:#EFF6FF;border:1px solid #BFDBFE;padding:10px;border-radius:8px;">
-                <div style="font-weight:700;color:#1E40AF;margin-bottom:4px;">🤖 可由 AI 加速的重复性/辅助性任务</div>
-                <ul style="margin:0;padding-left:18px;color:#1E3A8A;">{ai_accel_li}</ul>
-              </div>
-              <div style="background:#ECFDF5;border:1px solid #A7F3D0;padding:10px;border-radius:8px;">
-                <div style="font-weight:700;color:#065F46;margin-bottom:4px;">🔬 证明你真正掌握的测试、调试与审查要求</div>
-                <ul style="margin:0;padding-left:18px;color:#064E3B;">{verify_li}</ul>
+              <div style="background:#FFFFFF;padding:12px;border-radius:8px;border:1px solid #CCFBF1;">
+                <div style="font-weight:700;color:#0F766E;margin-bottom:6px;">第二步：最小可交付版本 (MVP · 约 {html.escape(str(mvp_obj.get('estimated_mvp_weeks') or '1.5–2周'))})</div>
+                <div><b>🎯 第一版解决的问题：</b><span class="sp-mvp-prob">{html.escape(str(mvp_obj.get('problem_solved') or ''))}</span></div>
+                <div style="font-weight:600;color:#115E59;margin-top:4px;">✅ 用户可完成的 4 个核心操作：</div>
+                <ul class="sp-mvp-ops-list" style="margin:2px 0 6px 18px;color:#134E4A;">{mvp_ops_li}</ul>
+                <div><b>📥 输入是什么：</b><span class="sp-mvp-in">{html.escape(str(mvp_obj.get('inputs') or ''))}</span></div>
+                <div><b>📤 输出是什么：</b><span class="sp-mvp-out">{html.escape(str(mvp_obj.get('outputs') or ''))}</span></div>
+                <div><b>🖥️ 如何展示结果：</b>{html.escape(str(mvp_obj.get('display_method') or ''))}</div>
+                <div style="font-weight:600;color:#92400E;margin-top:4px;">🚫 第一版明确不做（拒绝过度设计）：</div>
+                <ul style="margin:2px 0 6px 18px;color:#78350F;">{mvp_out_li}</ul>
+                <div style="padding:6px 8px;background:#ECFDF5;border:1px solid #A7F3D0;border-radius:6px;color:#065F46;font-size:12px;">
+                  <b>🔄 最小闭环证明（输入→处理→保存→重读→验证）：</b><span class="sp-mvp-proof">{html.escape(str(mvp_obj.get('closed_loop_proof') or ''))}</span>
+                </div>
               </div>
             </div>
           </div>
+
+          <!-- 第二层：技术实施详情（通过展开区域呈现技术选型、知识映射、技能覆盖审计表与AI分工） -->
+          <details open style="margin-top:14px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:14px;">
+            <summary style="cursor:pointer;font-weight:700;font-size:15px;color:#0284C7;user-select:none;">
+              🔧 第二层：点击展开 / 折叠『技术实施详情』（克制技术选型、基础版→进阶版阶梯、技能覆盖审计表与 AI 协作边界）
+            </summary>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:12px;font-size:13px;line-height:1.6;">
+              <div style="background:#F8FAFC;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
+                <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">3. 克制且有理由的技术选型（基础版 → 进阶版 → 更进一步）</div>
+                <div><b>主力技术栈：</b><span style="color:#0369A1;font-weight:700;">{html.escape(str(tech_rat.get('primary_stack') or p_langs))}</span></div>
+                <div style="margin-top:4px;"><b>为什么这样选：</b>{html.escape(str(tech_rat.get('why_chosen') or ''))}</div>
+                <div style="margin-top:4px;font-weight:600;color:#0F766E;">📈 渐进式演进阶梯（按需引入，拒绝一上来堆满组件）：</div>
+                <ul style="margin:2px 0 6px 18px;color:#334155;">{prog_tiers_li}</ul>
+                <div style="font-weight:600;color:#991B1B;">🛡️ 克制选型铁律：</div>
+                <ul style="margin:2px 0 4px 18px;color:#7F1D1D;">{restraint_li}</ul>
+                <div style="font-size:12px;color:#92400E;background:#FFFBEB;padding:6px 8px;border-radius:6px;">
+                  <b>📚 学习前置条件与差距说明：</b>{html.escape(str(tech_rat.get('prerequisites') or p.get('prerequisites') or ''))}
+                </div>
+              </div>
+
+              <div style="background:#F8FAFC;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
+                <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">4. 岗位技能约束的四类区分（不把所有技能硬塞进同一项目）</div>
+                <div style="font-size:12.5px;color:#334155;line-height:1.65;">
+                  <div>• <b>岗位实际要求技能：</b>{html.escape('、'.join(skill_cls.get('job_required_skills') or []))}</div>
+                  <div>• <b style="color:#166534;">为完成本项目确实需要的核心技能：</b>{html.escape('、'.join(skill_cls.get('project_essential_skills') or []))}</div>
+                  <div>• <b style="color:#0369A1;">可在项目后期扩展的技能：</b>{html.escape('、'.join(skill_cls.get('later_extension_skills') or []))}</div>
+                  <div>• <b style="color:#92400E;">仅适合通过独立小练习补充的技能：</b>{html.escape('、'.join(skill_cls.get('standalone_exercise_skills') or []))}</div>
+                </div>
+                <div style="font-weight:700;color:#0F172A;margin:10px 0 4px 0;">4.2 每个技术点解决的实际问题</div>
+                <div style="color:#334155;white-space:pre-line;">{html.escape(str(p.get('natural_tech_stack_usage') or ''))}</div>
+                <div style="font-weight:700;color:#0F172A;margin:10px 0 4px 0;">9. 现实时间估算、估算前提与主要风险</div>
+                <div style="color:#334155;"><b>难度与总工时：</b>{html.escape(str(p.get('difficulty_level') or ''))} · {html.escape(str((p.get('difficulty_workload_risks') or {}).get('workload_range') or p.get('estimated_effort') or ''))}</div>
+                <div style="font-size:12px;color:#475569;margin-top:2px;">{html.escape(str((p.get('difficulty_workload_risks') or {}).get('estimation_premise') or ''))}</div>
+                <ul style="margin:4px 0 0 18px;color:#991B1B;">{risks_li}</ul>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:12px;font-size:13px;line-height:1.6;">
+              <div style="background:#EFF6FF;padding:12px;border-radius:8px;border:1px solid #BFDBFE;">
+                <div style="font-weight:700;color:#1E3A8A;margin-bottom:4px;">7. 主要工程挑战 &amp; 8. 可执行、可复现的阶段验收标准（拒绝空泛口号）</div>
+                <div style="font-weight:600;color:#1E40AF;">⚙️ 核心工程挑战：</div>
+                <ul style="margin:2px 0 6px 18px;color:#1E3A8A;">{challenges_li}</ul>
+                <div style="font-weight:600;color:#065F46;">🧪 可复现验收步骤（执行命令 + 输入 + 预期结果 + 异常测试）：</div>
+                <ul class="sp-detail-acc-list" style="margin:2px 0 0 18px;color:#064E3B;">{accept_li}</ul>
+              </div>
+              <div style="background:#FFFFFF;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
+                <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">10. 最终可展示的运行成果 &amp; 11. 分阶段实施路线</div>
+                <ul style="margin:2px 0 8px 18px;color:#334155;">{deliv_li}</ul>
+                <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">分阶段学习与演进路径：</div>
+                <ul style="margin:2px 0 6px 18px;color:#334155;">{exts_li}</ul>
+                <div style="font-size:12px;color:#166534;">📊 <b>数据事实：</b>{html.escape(str(ev_bound.get('data_backed_facts') or ''))}</div>
+                <div style="font-size:12px;color:#92400E;">🧭 <b>合理推断：</b>{html.escape(str(ev_bound.get('reasonable_inferences') or ''))}</div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px;overflow-x:auto;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+                <div style="font-weight:700;font-size:14px;color:#0F172A;">
+                  📋 技能覆盖审计表（Section 七 · 汇总统计与明细表 100% 同步一致，未覆盖项优先推荐独立小练习）
+                </div>
+                <span class="sp-detail-cov-summary" style="padding:2px 10px;border-radius:999px;background:#DCFCE7;color:#166534;font-size:12px;font-weight:700;">
+                  {html.escape(str(cov_sum.get('summary_badge') or '未知 / 待补充'))}
+                </span>
+              </div>
+              <table class="job-table" style="width:100%;font-size:12.5px;">
+                <thead>
+                  <tr>
+                    <th style="width:16%">技能约束</th>
+                    <th style="width:16%">来源岗位类别与频率</th>
+                    <th style="width:28%">项目内具体实现任务与代码模块</th>
+                    <th style="width:12%">覆盖程度</th>
+                    <th style="width:28%">可复现验收证据 / 独立小练习补充建议</th>
+                  </tr>
+                </thead>
+                <tbody class="sp-detail-cov-tbody">{"".join(cov_rows_html)}</tbody>
+              </table>
+            </div>
+
+            <div style="margin-top:14px;background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:12px;font-size:13px;line-height:1.6;">
+              <div style="font-weight:700;color:#0F172A;margin-bottom:8px;">
+                🤝 重新定义 AI 与你自己的分工（Section 八 · 拒绝一次性让 AI 生成整个黑盒项目）
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;">
+                <div style="background:#FEF2F2;border:1px solid #FECACA;padding:10px;border-radius:8px;">
+                  <div style="font-weight:700;color:#991B1B;margin-bottom:4px;">🧠 你必须亲自掌握与编写的部分</div>
+                  <ul class="sp-detail-user-ul" style="margin:0;padding-left:18px;color:#7F1D1D;">{user_core_li}</ul>
+                </div>
+                <div style="background:#EFF6FF;border:1px solid #BFDBFE;padding:10px;border-radius:8px;">
+                  <div style="font-weight:700;color:#1E40AF;margin-bottom:4px;">🤖 AI 可以加速的辅助部分（仍需你测试验证）</div>
+                  <ul class="sp-detail-ai-ul" style="margin:0;padding-left:18px;color:#1E3A8A;">{ai_accel_li}</ul>
+                </div>
+                <div style="background:#ECFDF5;border:1px solid #A7F3D0;padding:10px;border-radius:8px;">
+                  <div style="font-weight:700;color:#065F46;margin-bottom:4px;">🔬 不依赖 AI 直接给答案的自检问题</div>
+                  <ul style="margin:0;padding-left:18px;color:#064E3B;">{verify_li}</ul>
+                </div>
+              </div>
+            </div>
+          </details>
         </article>""")
 
     # 项目详情切换按钮组
@@ -4104,7 +4181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     activate(rawHash);
   }
-  // ── 「技能栈与实现项目」模块完整前端交互闭环（v2.2：防空白兜底 + 提示词深度重构引擎 + 自动清理旧版缓存 + 双轨持久化恢复）──
+  // ── 「技能栈与实现项目」模块完整前端交互闭环（sp-v3.0：双层白话/技术视图 + 冲突检测提示词重构引擎 + 技能覆盖实时同步）──
   (function initSkillProjectsInteractive() {
     const spPage = el('pageSkillProjects');
     if (!spPage) return;
@@ -4112,13 +4189,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const projects = spData.candidate_projects || [];
     const constraints = spData.skill_constraints || [];
     const validIds = new Set(projects.map(p => p.project_id || p.id));
-    const LS_KEY = 'career_agent_sp_workspace_v2_2_' + ((spData.version_info || {}).profile_version_id || 'default');
+    const LS_KEY = 'career_agent_sp_workspace_v3_0_' + ((spData.version_info || {}).profile_version_id || 'default');
 
-    // 自动清理旧版 v1.0 / v2.0 残缺的 localStorage 缓存，防止出现旧版“项目一”或空白字段
+    // 自动清理所有旧版 v1 / v2 残缺的 localStorage 缓存，彻底杜绝旧版“项目一”或空表 0 项问题
     try {
       for (let i = localStorage.length - 1; i >= 0; i--) {
         const k = localStorage.key(i);
-        if (k && k.indexOf('career_agent_sp_workspace_v2_') === 0 && k !== LS_KEY) {
+        if (k && k.indexOf('career_agent_sp_workspace_') === 0 && k !== LS_KEY) {
           localStorage.removeItem(k);
         }
       }
@@ -4135,7 +4212,6 @@ document.addEventListener('DOMContentLoaded', () => {
       pending_update_notice: ''
     }, spData.user_workspace || {});
 
-    // 若服务端或本地缓存中的 selected_project_id 不在当前有效候选项目列表中（例如旧版残留ID），自动重置
     if (ws.selected_project_id && !validIds.has(ws.selected_project_id)) {
       ws.selected_project_id = null;
       ws.selected_project_title = '';
@@ -4160,14 +4236,36 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (_) {}
 
-    // 校验已保存的实施计划是否包含完整非空字段（若旧缓存计划缺字段则使用最新项目数据自动修复重建）
+    function computeConsistentCoverageSummaryJS(covTable) {
+      if (!Array.isArray(covTable) || covTable.length === 0) {
+        return {
+          audit_status: 'unknown_or_pending',
+          full_count: null,
+          partial_count: null,
+          uncovered_count: null,
+          summary_badge: '⚠️ 技能覆盖审计：未知 / 待补充（明细表缺失，拒绝虚报 0 项完成）'
+        };
+      }
+      const fullC = covTable.filter(r => r.coverage_level === '完整覆盖').length;
+      const partC = covTable.filter(r => r.coverage_level === '部分覆盖').length;
+      const noneC = covTable.filter(r => r.coverage_level === '未覆盖').length;
+      return {
+        audit_status: 'verified',
+        full_count: fullC,
+        partial_count: partC,
+        uncovered_count: noneC,
+        summary_badge: '完整覆盖 ' + fullC + ' 项 · 部分覆盖 ' + partC + ' 项 · 未覆盖 ' + noneC + ' 项（与明细表严格一致）'
+      };
+    }
+
     function isPlanComplete(plan) {
       if (!plan || typeof plan !== 'object') return false;
-      const uTasks = plan.user_core_tasks || plan['5_user_core_tasks'] || [];
-      const aTasks = plan.ai_assisted_tasks || plan['6_ai_assisted_tasks'] || [];
+      if (plan.plan_version !== 'sp-v3.0') return false;
+      const uTasks = plan.user_core_tasks || [];
+      const aTasks = plan.ai_assisted_tasks || [];
       const audit = plan.skill_coverage_and_gaps_audit || {};
-      const covItems = audit.covered_items || (plan['10_skill_constraints_coverage_and_remaining_gaps'] || {}).fully_trained_skills || [];
-      return uTasks.length > 0 && aTasks.length > 0 && covItems.length > 0;
+      const covItems = audit.covered_items || [];
+      return uTasks.length > 0 && aTasks.length > 0 && covItems.length > 0 && Array.isArray(plan.stages) && plan.stages.length >= 4;
     }
 
     function saveWorkspaceLocal() {
@@ -4213,71 +4311,261 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 针对用户输入提示词（如“东方弹幕”）实时重构候选项目的标题、场景、MVP、核心任务与卡片展示
+    // ── 客户端 sp-v3.0 提示词实质性重构与冲突检测引擎（与后端 evaluate_and_build_prompt_redesign 100% 同构）──
     function mutateProjectWithPrompt(proj, customTxt) {
       if (!proj || !customTxt) return;
-      if (!proj.base_title) proj.base_title = proj.title;
-      if (!proj.base_purpose) proj.base_purpose = proj.core_purpose || proj.project_goal || '';
-      const shortPrompt = customTxt.slice(0, 22);
+      if (!proj.base_title) proj.base_title = proj.short_title || proj.title;
+      const txt = customTxt.trim().slice(0, 220);
+      const txtLower = txt.toLowerCase();
       const langs = (proj.primary_languages || ['C++/Python/Go']).join(' / ');
+      const nowStr = new Date().toLocaleString('zh-CN', { hour12: false });
 
-      proj.interest_theme_tag = '🎯 提示词定制：' + shortPrompt;
-      proj.title = '【已按提示词「' + shortPrompt + '」定制】' + proj.base_title;
-      proj.name = proj.title;
-      proj.core_purpose =
-        '围绕您的定制提示词「' + customTxt + '」深度重构产品场景与数据模型（主力技术栈：' + langs + '）：' +
-        '在 100% 保留原方案底层硬核就业训练目标（数据结构与算法、数据库索引/缓存、并发/网络通信、自动化测试与性能调优）的前提下，' +
-        '将所有业务实体、数据集与交互验证全面切换为「' + customTxt + '」专属场景。';
+      // 1. 工程可行性与冲突检测
+      let conflictDetected = false;
+      let conflictWarning = '';
+      let alternativeProposal = '';
+      const langHits = ['c++', 'python', 'java', 'golang', 'rust'].filter(k => txtLower.indexOf(k) >= 0).length;
+      const heavyHits = ['kubernetes', 'k8s', 'kafka', '微服务集群', '分布式事务', '商业引擎', 'ue5', '重写原神', 'mmo'].filter(k => txtLower.indexOf(k) >= 0).length;
 
-      const customFeat1 = '🌟 【「' + shortPrompt + '」核心数据结构与领域建模】：针对「' + customTxt + '」设计专属实体结构与核心算法（如弹幕谱面/空间四叉树碰撞检测、或主题图谱 DAG/Trie 索引），拒绝只换背景图的表面换皮；';
-      const customFeat2 = '🌟 【「' + shortPrompt + '」高负载存储/并发与自动化测试】：构建 5万+ 条「' + shortPrompt + '」仿真数据或高频并发帧事件流，实测索引/缓存吞吐量并通过 pytest / GTest / ASan 100% 绿灯验证。';
+      if (langHits >= 3 || heavyHits >= 2 || (txt.indexOf('1周') >= 0 && (txt.indexOf('分布式') >= 0 || txt.indexOf('引擎') >= 0))) {
+        conflictDetected = true;
+        conflictWarning = '⚠️ 【工程可行性冲突预警】您的要求（「' + txt + '」）同时涉及多项重型组件或多语言混编，预计工作量将超过 120+ 小时，超出大二课余合理负担，极易沦为只有空壳配置、没有核心实现的半途而废项目。';
+        alternativeProposal = '💡 【导师替代方案】已为您自动收敛技术栈：保留当前项目的单一主力栈（' + langs + '），第一版（阶段 1）仅提取您主题中最核心的 1 个算法/存储闭环，将分布式/重型组件剥离为阶段 3 可选扩展或独立小练习。';
+      } else if (['sqlite', '简化', '去掉redis', '不用mysql', '单机', '2周'].some(k => txtLower.indexOf(k) >= 0)) {
+        conflictDetected = true;
+        conflictWarning = 'ℹ️ 【技术栈简化与技能覆盖权衡提示】按您的要求（「' + txt + '」）将存储/架构简化为轻量单机方案（如 SQLite + 内存 LRU）后，阶段 1–2 开发阻力大幅降低，但会导致岗位约束中的『分布式缓存中间件 (Redis) / 跨节点高并发调优』从完整覆盖降为部分覆盖。';
+        alternativeProposal = '💡 【平衡替代方案】阶段 1–2 100% 采纳您的简化要求（使用内置 SQLite 完成 EXPLAIN QUERY PLAN 复合索引调优 + 手写 80 行内存 LRU 缓存），确保 2 周内稳妥交付；同时在技能覆盖表中将 Redis 诚实更新为『部分覆盖』，并附赠 1.5 小时独立 Redis 练习建议。';
+      } else if ((txt.indexOf('粒子') >= 0 || txt.indexOf('动态壁纸') >= 0 || txtLower.indexOf('shader') >= 0 || txtLower.indexOf('opengl') >= 0) && langs.indexOf('C++') < 0) {
+        conflictDetected = true;
+        conflictWarning = '⚠️ 【项目底座与主题冲突提示】当前选中的【' + proj.base_title + '】主力栈为 ' + langs + '（偏服务端/数据检索），若强行在其中塞入实时图形粒子渲染（「' + txt + '」），会导致前后端职责混乱且无法发挥 C++ OpenGL 硬件加速优势。';
+        alternativeProposal = '💡 【两种合理落地路线】① 路线 A（当前已为您生成）：将本项目改造为『动态壁纸/粒子特效预设工坊的元数据检索、Shader参数版本库与性能上报服务端』；② 路线 B（更推荐）：直接点击切换到【候选项目二（C++17 + Qt6 + OpenGL 动态壁纸粒子合成工具）】！';
+      }
+
+      const isTouhou = ['东方', '弹幕', '擦弹', 'graze', '符卡', 'replay', 'stg'].some(k => txtLower.indexOf(k) >= 0);
+      const isArknights = ['明日方舟', '塔防', '干员', '技能轴', '寻路', '战棋', 'dps'].some(k => txtLower.indexOf(k) >= 0);
+      const isWallpaper = ['壁纸', '粒子', 'shader', '着色器', '特效', '渲染'].some(k => txtLower.indexOf(k) >= 0);
+      const isSqliteSimple = ['sqlite', '简化', 'lru', '2周', '缩小'].some(k => txtLower.indexOf(k) >= 0);
+
+      let newTitle = '';
+      let userScene = '';
+      let userProblem = '';
+      let coreOps = [];
+      let inputsDesc = '';
+      let outputsDesc = '';
+      let closedLoopProof = '';
+      const covAdjust = {};
+
+      if (isTouhou) {
+        newTitle = '《东方Project 弹幕谱面解析、擦弹(Graze)四叉树判定与 Replay 帧回放系统》(' + langs + ')';
+        userScene = '喜欢东方Project等弹幕射击游戏 (STG)，想拆解“满屏 5000 发弹幕为什么不会卡死、自机擦弹判定是怎么算的、为什么几十 KB 的 .rpy 录像文件能一秒不差还原整局操作”的玩家与开发者。';
+        userProblem = '满屏几千颗子弹如果每帧都和玩家角色两两计算距离（O(N) 暴力碰撞），帧率会骤降；而且一旦录像回放混入未受控的随机种子，回放到第 2 分钟就会“脱节 (Desync)”撞弹。';
+        coreOps = [
+          '操作 1（加载弹幕谱面与发射器）：读取 JSON/二进制符卡谱面（发射角度、弹速、子弹半径），初始化连续内存弹幕池；',
+          '操作 2（四叉树擦弹与命中判定）：输入自机坐标 (px, py)、判定点半径 r_hit=2px 与擦弹半径 r_graze=16px，用四叉树 (QuadTree) 毫秒级输出本帧是否中弹及新增擦弹数；',
+          '操作 3（录制与确定性 Replay 回放）：将每帧按键位掩码 (key_mask) 与随机种子追加写入 .rpy WAL 文件，重读该文件从第 1 帧重放，验证第 3600 帧自机得分与擦弹数 100% 一致；',
+          '操作 4（任意帧倒流练习模式）：输入 rewind --frame 1800 瞬间回到符卡开始前反复练习走位并输出每帧判定耗时表。'
+        ];
+        inputsDesc = '符卡弹幕配置 JSON、每帧按键输入流 (Up/Down/Left/Right/Slow/Shoot/Bomb)、或历史 .rpy 录像文件。';
+        outputsDesc = '每帧存活/中弹状态、累计擦弹 (Graze) 计数、四叉树 vs 暴力遍历耗时对比表 (perf_graze.json)、以及可 100% 复现的 .rpy 录像文件。';
+        closedLoopProof = '运行自动化测试：加载『测试符卡：千发交叉弹幕』+ 固定 600 帧输入序列 → 执行仿真并保存 test.rpy → 重新加载 test.rpy 回放 600 帧 → 断言最终擦弹数 (graze_count == 48)、存活状态与每帧状态哈希 100% 吻合。';
+        covAdjust['algo_ds_core'] = ['完整覆盖', '手写二维四叉树 (QuadTree) 弹幕空间碰撞/擦弹检索 + 连续内存子弹对象池', '运行 5000 发弹幕下四叉树 vs O(N) 距离判定耗时对比测试'];
+        covAdjust['test_automation_qa'] = ['完整覆盖', '编写 600 帧确定性 Replay 回放一致性断言与边界碰撞半径单测', '执行 pytest / ctest 验证回放零脱节 (0 Desync)'];
+      } else if (isArknights) {
+        newTitle = '《战术塔防/战棋干员技能轴排期、带权 A* 寻路与帧级伤害解构沙盒》(' + langs + ')';
+        userScene = '喜欢玩明日方舟或战棋策略游戏，经常需要计算“敌方 Boss 绕路走到蓝门需要多少秒、在哪个帧节点开启干员决战技才能打满伤害并卡住路线”的攻略分析者。';
+        userProblem = '靠脑子记或用 Excel 算技能冷却 (CD)、攻击间隔帧数与怪物移动路径极易算错；特别是当放置障碍箱子动态改变路线时，很难快速算出最优开技能时间轴。';
+        coreOps = [
+          '操作 1（导入关卡地图与敌人波次）：读取含地面、高台、障碍物的网格地图，使用带权 A* 算出每波敌人的精确移动路径与到达各格子的帧时间戳；',
+          '操作 2（编排干员部署与技能轴）：输入干员位置与技能开启帧号（如 frame=450 开启决战技），若技力 (SP) 尚未攒够则立即报错提示最早可开启帧；',
+          '操作 3（帧级战斗模拟与倒流分叉）：按每秒 30 帧推进确定性状态机，支持倒回第 300 帧测试『早开 2 秒 vs 晚开 2 秒』对总漏怪数与总伤害的差异；',
+          '操作 4（导出技能轴复盘表）：输出整局每帧伤害明细、技力恢复曲线与最优通关操作序列 JSON。'
+        ];
+        inputsDesc = '关卡网格地图 JSON、敌人属性与波次时间表、干员部署与技能释放指令序列。';
+        outputsDesc = 'A* 寻路坐标时间轴、每帧伤害结算日志、不同技能轴分支的总伤害/漏怪对比表。';
+        closedLoopProof = '运行单测：加载 10×6 地图与 1 名高甲 Boss → 动态放置 1 个障碍箱改变路线 → 断言 A* 重新规划出唯一合法路径 → 对比两个不同技能开启帧的通关结果并保存/重读操作录像验证一致。';
+        covAdjust['algo_ds_core'] = ['完整覆盖', '手写支持动态障碍重规划的 A* 寻路算法 + 最小堆帧事件调度队列', '运行动态放箱子封路检测与最短路径长度断言测试'];
+        covAdjust['test_automation_qa'] = ['完整覆盖', '编写帧级伤害结算精度测试、技力不足异常拦截测试与录像重放回归测试', '自动化测试套件 100% 通过'];
+      } else if (isWallpaper) {
+        newTitle = '《动态壁纸、樱花/雨雪粒子合成与 GLSL 着色器热重载诊断工具》(' + langs + ')';
+        userScene = '希望把静态动漫插画变成带景深视差、飘落粒子和光影特效的桌面动态壁纸，并能随时观察显卡/CPU 帧耗时性能的创作者。';
+        userProblem = '商业壁纸软件黑盒封装看不见内部机制，而自己写的简单渲染程序一加多粒子就掉帧、改着色器还要反复重编译。';
+        coreOps = [
+          '操作 1（图层导入与粒子发射）：加载背景插画，开启连续内存粒子池调节粒子数量（1,000~50,000）、风场与下落速度；',
+          '操作 2（GLSL 着色器实时热重载）：修改 .frag 文件保存后画面即刻刷新，若语法写错则在底部诊断面板报出具体行号并保持原画面不崩；',
+          '操作 3（四叉树鼠标排斥交互）：移动鼠标推开周围粒子，对比开启四叉树前后的范围查询微秒数；',
+          '操作 4（预设保存与 300 帧性能报告导出）：将壁纸配置保存为 wallpaper_preset.json 并导出帧耗时基线对比报告。'
+        ];
+        inputsDesc = '图层图片路径、粒子发射器参数 JSON、.vert/.frag 着色器源码与鼠标交互坐标。';
+        outputsDesc = '60FPS 实时合成画面、Shader 编译诊断日志与 perf_report.json 帧耗时对比表。';
+        closedLoopProof = '运行测试：初始化 20,000 粒子运行 120 帧 → 导出配置 JSON → 重新读取 JSON 校验参数一致 → 注入损坏 Shader 验证安全回退且 ASan 报告 0 内存泄漏。';
+        covAdjust['algo_ds_core'] = ['完整覆盖', '手写 Swap-and-Pop 连续内存粒子池 + 二维四叉树鼠标碰撞索引', '3万粒子下对象池与四叉树基准测试验证'];
+        covAdjust['test_debug_profile'] = ['完整覆盖', '内置帧耗时 Profiler + ASan 内存消毒零泄漏验证', '连续热重载 50 次退出 0 bytes leaked'];
+      } else if (isSqliteSimple) {
+        newTitle = '《【轻量SQLite+手写LRU精简版】' + proj.base_title + '》';
+        userScene = '希望在课业繁忙期（每周仅 6–8 小时）零配置外部数据库服务，直接用单文件 SQLite 和手写核心算法在 2–3 周内完成高含金量闭环的学生。';
+        userProblem = '同时配置 MySQL、Redis、Docker 容器容易在环境报错上浪费大量时间，导致核心数据结构、SQL 索引调优和单元测试反而没时间写透。';
+        coreOps = [
+          '操作 1（单文件 SQLite 事务写入）：无需启动外部数据库进程，直接向本地 vault.db 事务写入核心业务条目与关联关系；',
+          '操作 2（手写核心算法处理）：调用手写的数据结构模块（Trie 前缀树 / DAG 检环 / BM25 索引）完成毫秒级校验与检索；',
+          '操作 3（手写双链表+哈希表 LRU 缓存加速）：热点查询优先命中自己手写的 80 行线程安全 LRUCache，数据修改时自动触发失效；',
+          '操作 4（5万条数据 SQLite EXPLAIN QUERY PLAN 对比）：一键生成 5 万条本地数据，输出建复合索引前后的扫描计划与实测毫秒数对比。'
+        ];
+        inputsDesc = '业务条目 JSON、查询过滤参数与基准测试数据量参数。';
+        outputsDesc = 'SQLite 持久化文件、含 cache_hit 与 elapsed_ms 的响应 JSON、以及 EXPLAIN QUERY PLAN 对比表。';
+        closedLoopProof = '克隆代码后无需安装任何外部服务，直接执行 pytest -v 即可在 5 秒内跑通『SQLite 建表写入 → 手写 LRU 命中与失效 → 复合索引计划验证 → 异常边界拦截』全部 15 条测试。';
+        covAdjust['db_sql_rdbms'] = ['完整覆盖', '使用内置 SQLite 完成三表规范建模、事务控制与 5 万条数据 EXPLAIN QUERY PLAN 复合索引调优', '运行基准脚本验证 SEARCH TABLE USING INDEX'];
+        covAdjust['db_cache_mq'] = ['部分覆盖', '在项目内亲手实现 80 行哈希表+双向链表 LRUCache 与失效逻辑（暂不部署外部 Redis 容器）', '【进阶补充】若面试前需体验 Redis，只需花 1.5 小时用 redis-py 替换 LRUCache 接口实现类'];
+        covAdjust['tool_docker_k8s'] = ['未覆盖', '按精简要求去掉了 Docker Compose 多容器编排，实现零外部环境依赖', '【独立小练习】后续有空可花 1 小时单独写一个 Dockerfile 练习'];
+      } else {
+        newTitle = '《围绕「' + txt.slice(0, 20) + '」深度重构：' + proj.base_title + '》';
+        userScene = '针对你提出的「' + txt + '」场景与要求，将原有工程骨架转化为解决该具体领域痛点的可运行工具（主力技术栈保持克制：' + langs + '）。';
+        userProblem = '在「' + txt + '」场景下，普通脚本或手工表格难以兼顾数据关联查询效率、状态一致性与异常边界防护，需要一套有明确输入输出闭环和自动化测试的工程方案。';
+        coreOps = [
+          '操作 1（领域实体录入与边界校验）：录入「' + txt.slice(0, 16) + '」核心条目与关联属性，自动拦截非法格式与冲突依赖并持久化保存；',
+          '操作 2（核心数据结构/算法检索）：调用手写索引/状态机模块，毫秒级完成「' + txt.slice(0, 16) + '」的条件筛选、前缀补全或路径/状态推演；',
+          '操作 3（持久化重读与状态更新）：修改条目状态后再次读取，验证存储层与内存索引/缓存 100% 同步一致；',
+          '操作 4（基线测量与异常注入验证）：一键注入万级合成测试数据或并发/畸形请求，输出优化前后实测耗时对比表。'
+        ];
+        inputsDesc = '「' + txt.slice(0, 16) + '」领域的结构化 JSON/二进制输入、查询过滤条件与测试种子。';
+        outputsDesc = '结构化处理结果、持久化数据库/日志文件、以及基线耗时与自动化测试报告。';
+        closedLoopProof = '运行自动化测试命令：自动完成『输入 5 条「' + txt.slice(0, 14) + '」测试数据 → 执行核心算法处理并落盘 → 重启/重读校验字段 100% 一致 → 注入 3 类非法输入验证安全拦截』。';
+        if (['数据库', 'mysql', 'redis', 'sql'].some(k => txtLower.indexOf(k) >= 0)) {
+          covAdjust['db_sql_rdbms'] = ['完整覆盖', '在「' + txt.slice(0, 14) + '」中设计规范化表与复合索引，完成万级数据 EXPLAIN 对比', '执行基准脚本验证命中复合索引且结果一致'];
+          covAdjust['db_cache_mq'] = ['完整覆盖', '在「' + txt.slice(0, 14) + '」中引入 Cache-Aside 缓存与更新失效验证', '单测验证缓存命中、主动失效与降级回源'];
+        }
+        if (['并发', '多线程', '网络', '协议'].some(k => txtLower.indexOf(k) >= 0)) {
+          covAdjust['conc_multithread'] = ['完整覆盖', '在「' + txt.slice(0, 14) + '」中实现多线程/多协程并发处理并通过竞态检测', '50 并发压测与 TSan/-race 零数据竞争验证'];
+          covAdjust['net_tcp_http'] = ['完整覆盖', '在「' + txt.slice(0, 14) + '」中实现通信协议边界校验、超时重试与幂等控制', '分片/重放自动化测试 100% 通过'];
+        }
+        if (['测试', '单测', 'asan', 'ci'].some(k => txtLower.indexOf(k) >= 0)) {
+          covAdjust['test_automation_qa'] = ['完整覆盖', '针对「' + txt.slice(0, 14) + '」编写 15+ 条正常、边界与异常注入自动化单元测试', '执行 pytest/ctest/go test 100% 绿灯'];
+          covAdjust['test_debug_profile'] = ['完整覆盖', '开启 ASan 或性能剖析器定位并修复「' + txt.slice(0, 14) + '」中的边界与耗时问题', '输出修复前后实测对比表且 0 内存泄漏'];
+        }
+      }
+
+      proj.interest_theme_tag = '🎯 提示词定制：' + txt.slice(0, 24);
+      proj.title = newTitle;
+      proj.name = newTitle;
+      proj.core_purpose = '【已围绕「' + txt + '」重构】' + userProblem;
+
+      proj.plain_intro = proj.plain_intro || {};
+      proj.plain_intro.what_is_it_called = newTitle;
+      proj.plain_intro.who_uses_it = userScene;
+      proj.plain_intro.user_problem = userProblem;
+      proj.plain_intro.what_user_can_do = coreOps.join(' ');
+      proj.plain_intro.visible_outcome = outputsDesc;
+
+      proj.layer1_overview = proj.layer1_overview || {};
+      proj.layer1_overview.what_it_does = proj.core_purpose;
+      proj.layer1_overview.v1_first_step = '第一版先完成：' + coreOps[0] + ' 并跑通闭环单测。';
 
       proj.mvp_scope = proj.mvp_scope || {};
-      const baseMust = (proj.mvp_scope.must_have && proj.mvp_scope.must_have.length)
-        ? proj.mvp_scope.must_have.filter(m => String(m).indexOf('🌟') !== 0)
-        : (proj.mvp_scope.must_have_mvp ? [proj.mvp_scope.must_have_mvp] : (proj.core_features || []).slice(0, 2));
-      proj.mvp_scope.must_have = [customFeat1, customFeat2].concat(baseMust.slice(0, 2));
+      proj.mvp_scope.problem_solved = userProblem;
+      proj.mvp_scope.core_operations = coreOps;
+      proj.mvp_scope.inputs = inputsDesc;
+      proj.mvp_scope.outputs = outputsDesc;
+      proj.mvp_scope.closed_loop_proof = closedLoopProof;
+      proj.mvp_scope.must_have = coreOps.slice();
+      proj.mvp_scope.must_have_mvp = '【「' + txt.slice(0, 16) + '」定制 MVP】' + coreOps.slice(0, 2).join('；');
+      proj.core_features = coreOps.slice();
+
+      const baseAcc = (proj.acceptance_criteria || []).filter(a => String(a).indexOf('✅ 【定制闭环验收') !== 0);
+      proj.acceptance_criteria = ['✅ 【定制闭环验收（' + txt.slice(0, 16) + '）】' + closedLoopProof].concat(baseAcc.slice(0, 2));
 
       proj.ai_collab_boundary = proj.ai_collab_boundary || {};
       const baseUser = (proj.ai_collab_boundary.user_must_do || proj.ai_collab_boundary.must_do_personally || []).filter(u => String(u).indexOf('🎯') !== 0);
       const baseAi = (proj.ai_collab_boundary.ai_can_accelerate || []).filter(a => String(a).indexOf('🤖') !== 0);
       proj.ai_collab_boundary.user_must_do = [
-        '🎯 【针对「' + shortPrompt + '」必须亲自完成】亲自设计「' + customTxt + '」的核心数据结构/表结构与状态流转逻辑，并编写针对该场景边界条件的自动化单元测试。'
+        '🎯 【针对「' + txt.slice(0, 18) + '」必须亲自完成】亲自设计该场景的核心数据结构/表结构与状态流转逻辑，亲手编写并调试『' + coreOps[1].slice(0, 34) + '…』及边界单元测试。'
       ].concat(baseUser);
       proj.ai_collab_boundary.must_do_personally = proj.ai_collab_boundary.user_must_do;
       proj.ai_collab_boundary.ai_can_accelerate = [
-        '🤖 【针对「' + shortPrompt + '」可由 AI 加速】让 AI 批量生成「' + customTxt + '」主题的仿真测试数据脚本（JSON/SQL 种子数据）与基础 CLI/GUI 展示样板。'
+        '🤖 【针对「' + txt.slice(0, 18) + '」可由 AI 加速】让 AI 批量生成「' + txt.slice(0, 18) + '」主题的仿真测试样本数据（JSON/SQL/二进制种子）与命令行解析样板，生成后必须通过你的单测核验。'
       ].concat(baseAi);
 
+      // 同步更新技能覆盖明细表并重算汇总统计
+      (proj.skill_coverage_table || []).forEach(row => {
+        const adj = covAdjust[row.skill_id];
+        if (adj) {
+          row.coverage_level = adj[0];
+          row.project_task_mapping = '【已随「' + txt.slice(0, 12) + '」同步更新】' + adj[1];
+          row.verification_criteria = adj[2];
+          row.supplementary_advice = adj[0] === '完整覆盖' ? '已纳入当前定制方案核心实现与自动化验收闭环' : adj[2];
+          row.supplementary_training = row.supplementary_advice;
+        }
+      });
+      proj.coverage_summary = computeConsistentCoverageSummaryJS(proj.skill_coverage_table);
+
       proj.custom_prompt_applied = {
-        prompt_text: customTxt,
-        applied_at: new Date().toLocaleString('zh-CN', { hour12: false }),
+        prompt_text: txt,
+        applied_at: nowStr,
+        conflict_detected: conflictDetected,
+        conflict_warning: conflictWarning,
+        alternative_proposal: alternativeProposal,
         domain_redesign_summary:
-          '已将项目主题重设计为「' + customTxt + '」专属工程方案：保留 ' + langs + ' 硬核就业训练约束，将数据结构、存储/并发与自动化测试全部锚定在「' + customTxt + '」的实际工程问题上。',
+          '已围绕「' + txt + '」实质性更新了项目用途、MVP 4个核心操作、技术选型演进、阶段 0–3 任务、可复现验收标准、技能覆盖表与缩减方案。',
         skill_mapping_breakdown: [
-          '1. 数据结构与算法落点 → 解决「' + customTxt + '」中的高频检索、空间碰撞判定(四叉树/BVH)、状态图谱(DAG)或优先级调度问题；',
-          '2. 数据库/存储与缓存落点 → 存储「' + customTxt + '」的核心实体、历史记录/Replay帧流与排行榜，通过 EXPLAIN/WAL 验证读写性能；',
-          '3. 并发与网络通信落点 → 支撑「' + customTxt + '」下的多端帧同步、高并发请求处理或实时渲染线程与逻辑线程解耦；',
-          '4. 自动化测试与调试落点 → 针对「' + customTxt + '」的极端边界（空输入、高并发冲突、弱网丢包或高密度对象）编写回归单测。'
+          '1. 项目实际用途与 MVP 闭环 → 解决：' + userProblem,
+          '2. 核心操作清单 → ' + coreOps.slice(0, 2).join(' '),
+          '3. 闭环验收证明 → ' + closedLoopProof,
+          '4. 技能覆盖同步审计 → ' + proj.coverage_summary.summary_badge
         ]
       };
 
-      // 同步更新页面上的候选卡片与详情面板 DOM，让用户直观看到卡片标题与内容立即变化
+      // 同步更新页面上的候选卡片与详情面板 DOM（包括第一层白话区、MVP列表、技能覆盖表与统计徽标）
       const cardEl = el('sp-card-' + proj.project_id);
       if (cardEl) {
         const h3 = cardEl.querySelector('h3');
         if (h3) h3.textContent = proj.title;
-        const pDesc = cardEl.querySelector('p');
-        if (pDesc) pDesc.innerHTML = '<b>核心用途：</b>' + esc(proj.core_purpose.slice(0, 150));
+        const pDesc = cardEl.querySelector('.sp-card-purpose');
+        if (pDesc) pDesc.innerHTML = '<b>1. 这项目是干什么的：</b>' + esc(proj.core_purpose);
+        const pV1 = cardEl.querySelector('.sp-card-v1');
+        if (pV1) pV1.innerHTML = '<b>3. 第一版 (MVP) 先做什么：</b>' + esc(proj.layer1_overview.v1_first_step);
+        const covBadge = cardEl.querySelector('.sp-card-cov-badge');
+        if (covBadge) covBadge.textContent = proj.coverage_summary.summary_badge;
       }
       const detailEl = el('sp-detail-' + proj.project_id);
       if (detailEl) {
         const dh3 = detailEl.querySelector('h3');
         if (dh3) dh3.textContent = '1. ' + proj.title;
+        const dp = detailEl.querySelector('.sp-detail-purpose');
+        if (dp) dp.innerHTML = '<b>核心定位：</b>' + esc(proj.core_purpose);
+        const inName = detailEl.querySelector('.sp-intro-name');
+        if (inName) inName.textContent = proj.title;
+        const inWho = detailEl.querySelector('.sp-intro-who');
+        if (inWho) inWho.textContent = userScene;
+        const inProb = detailEl.querySelector('.sp-intro-prob');
+        if (inProb) inProb.textContent = userProblem;
+        const mvpProb = detailEl.querySelector('.sp-mvp-prob');
+        if (mvpProb) mvpProb.textContent = userProblem;
+        const mvpOpsUl = detailEl.querySelector('.sp-mvp-ops-list');
+        if (mvpOpsUl) mvpOpsUl.innerHTML = coreOps.map(o => '<li>' + esc(o) + '</li>').join('');
+        const mvpIn = detailEl.querySelector('.sp-mvp-in');
+        if (mvpIn) mvpIn.textContent = inputsDesc;
+        const mvpOut = detailEl.querySelector('.sp-mvp-out');
+        if (mvpOut) mvpOut.textContent = outputsDesc;
+        const mvpProof = detailEl.querySelector('.sp-mvp-proof');
+        if (mvpProof) mvpProof.textContent = closedLoopProof;
+        const detCovSum = detailEl.querySelector('.sp-detail-cov-summary');
+        if (detCovSum) detCovSum.textContent = proj.coverage_summary.summary_badge;
+        const detTbody = detailEl.querySelector('.sp-detail-cov-tbody');
+        if (detTbody && Array.isArray(proj.skill_coverage_table)) {
+          detTbody.innerHTML = proj.skill_coverage_table.map(crow => {
+            const clevel = crow.coverage_level || '未覆盖';
+            const cBg = clevel === '完整覆盖' ? '#DCFCE7' : (clevel === '部分覆盖' ? '#FEF3C7' : '#F1F5F9');
+            const cFg = clevel === '完整覆盖' ? '#166534' : (clevel === '部分覆盖' ? '#92400E' : '#64748B');
+            return '<tr>' +
+              '<td style="font-weight:600;color:#0F172A;"><span style="font-family:monospace;font-size:11px;color:#475569;">' + esc(crow.constraint_id || '') + '</span> ' + esc(crow.skill_name || '') + '</td>' +
+              '<td style="font-size:12px;">' + esc(crow.source_categories_str || '') + '<div style="color:#0369A1;font-size:11.5px;">' + esc(crow.job_frequency_str || '') + '</div></td>' +
+              '<td style="font-size:12.5px;color:#1E293B;">' + esc(crow.project_task_mapping || '') + '</td>' +
+              '<td><span style="display:inline-block;padding:2px 8px;border-radius:999px;background:' + cBg + ';color:' + cFg + ';font-weight:700;font-size:12px;">' + esc(clevel) + '</span></td>' +
+              '<td style="font-size:12px;color:#334155;">' + (crow.verification_criteria ? ('<div><b>验收证据：</b>' + esc(crow.verification_criteria) + '</div>') : '') + '<div style="color:#92400E;"><b>补充练习建议：</b>' + esc(crow.supplementary_advice || '') + '</div></td>' +
+            '</tr>';
+          }).join('');
+        }
       }
     }
 
-    // 恢复之前在 localStorage 中已保存的提示词定制
     if (ws.custom_prompts_by_project && typeof ws.custom_prompts_by_project === 'object') {
       Object.keys(ws.custom_prompts_by_project).forEach(pid => {
         const p = findProject(pid);
@@ -4288,145 +4576,146 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function buildClientImplementationPlan(proj, customFocus) {
-      const covTable = (proj.skill_coverage_table && proj.skill_coverage_table.length)
-        ? proj.skill_coverage_table
-        : constraints.map(c => ({
-            constraint_id: c.constraint_id,
-            skill_name: c.skill_name,
-            coverage_level: '完整覆盖',
-            project_task_mapping: '在项目核心模块中完成编码实现与自动化测试验证',
-            supplementary_advice: '结合单元测试与性能分析验证掌握深度'
-          }));
+      const covTable = Array.isArray(proj.skill_coverage_table) ? proj.skill_coverage_table : [];
+      const covSummary = computeConsistentCoverageSummaryJS(covTable);
       const fullSkills = covTable.filter(r => r.coverage_level === '完整覆盖');
-      const gapSkills = covTable.filter(r => r.coverage_level !== '完整覆盖');
+      const partialSkills = covTable.filter(r => r.coverage_level === '部分覆盖');
+      const noneSkills = covTable.filter(r => r.coverage_level === '未覆盖');
+      const gapSkills = partialSkills.concat(noneSkills);
+
       const mvp = proj.mvp_scope || {};
       const aiBound = proj.ai_collab_boundary || {};
-      const usesPy = (proj.primary_languages || []).some(l => l.indexOf('Python') >= 0);
+      const langsStr = (proj.primary_languages || []).join(' ');
+      const usesPy = langsStr.indexOf('Python') >= 0;
+      const usesGo = langsStr.indexOf('Go') >= 0 && !usesPy;
 
-      const mustHaveList = (mvp.must_have && mvp.must_have.length)
-        ? mvp.must_have
-        : (mvp.must_have_mvp ? [mvp.must_have_mvp] : (proj.core_features || ['完成核心数据结构、存储与接口闭环']));
+      const coreOps = (mvp.core_operations && mvp.core_operations.length)
+        ? mvp.core_operations
+        : (mvp.must_have || proj.core_features || ['完成核心数据结构与读写闭环']);
       const outOfScopeList = (mvp.out_of_scope_initially && mvp.out_of_scope_initially.length)
         ? mvp.out_of_scope_initially
-        : (mvp.out_of_scope_for_mvp
-            ? (Array.isArray(mvp.out_of_scope_for_mvp) ? mvp.out_of_scope_for_mvp : [mvp.out_of_scope_for_mvp])
-            : [
-                '第一版暂不实现复杂的多用户登录权限体系与第三方社交分享',
-                '第一版暂不引入多机分布式集群部署，优先在单机/单容器跑通核心机制与压测闭环',
-                '第一版暂不做花哨的外围附加界面，聚焦核心数据结构、数据库/并发与自动化测试'
-              ]);
+        : ['第一版明确不做复杂前端界面、多租户登录与分布式集群部署'];
 
       const userCoreTasks = (aiBound.user_must_do && aiBound.user_must_do.length)
         ? aiBound.user_must_do
-        : ((aiBound.must_do_personally && aiBound.must_do_personally.length)
-            ? aiBound.must_do_personally
-            : (proj.engineering_tasks || [
-                '亲自设计核心数据表结构/内存布局与接口契约，拒绝黑盒生成；',
-                '亲手编码实现核心数据结构算法与并发/缓存容错逻辑；',
-                '亲自编写 15+ 条自动化单元测试并使用性能分析工具完成量化对比。'
-              ]));
-
+        : (aiBound.must_do_personally || ['亲自设计核心数据结构与表字段，亲手编写核心算法与自动化测试']);
       const aiAssistedTasks = (aiBound.ai_can_accelerate && aiBound.ai_can_accelerate.length)
         ? aiBound.ai_can_accelerate
-        : [
-            '生成合成测试数据集脚本（如批量生成 5 万条模拟业务数据用于压测）；',
-            '生成基础 Web 路由样板代码、DTO 数据结构定义与 Dockerfile 基础配置；',
-            '协助编写前端轻量展示表格或 CLI 命令行参数解析器。'
-          ];
-
+        : ['生成合成测试数据集脚本与基础命令行/路由样板代码（仍需通过你的单测验证）'];
       const verifyQuestions = (aiBound.verification_proof && aiBound.verification_proof.length)
         ? aiBound.verification_proof
-        : ((aiBound.understanding_verification && aiBound.understanding_verification.length)
-            ? aiBound.understanding_verification
-            : ['闭卷画出本项目核心请求/事件的数据流向图，并解释当并发量放大 10 倍时哪个模块会最先成为瓶颈。']);
+        : (aiBound.understanding_verification || ['脱离 AI 独立画出数据流图并解释核心算法的时间/空间复杂度']);
 
-      const customApplied = proj.custom_prompt_applied || (customFocus ? {
-        prompt_text: customFocus,
-        applied_at: new Date().toLocaleString('zh-CN', { hour12: false }),
-        domain_redesign_summary: '已将您的定制要求「' + customFocus + '」深度融入下方各阶段开发任务、MVP 功能边界与核心验收指标。',
-        skill_mapping_breakdown: [
-          '• 阶段 1 领域建模：围绕「' + customFocus + '」设计核心实体 Schema、内存数据结构与接口契约；',
-          '• 阶段 2 核心攻坚：针对「' + customFocus + '」实现高并发/缓存/渲染核心逻辑并完成 15+ 条自动化单测；',
-          '• 阶段 3 压测交付：输出「' + customFocus + '」场景下的性能对比报告与可复现 GitHub 仓库。'
-        ]
-      } : null);
+      const customApplied = proj.custom_prompt_applied || null;
+      const accList = proj.acceptance_criteria || [
+        '✅ 阶段 1 验收：执行自动化测试验证输入→处理→保存→重读最小闭环 100% 通过；',
+        '✅ 阶段 2 验收：先测量未优化基线耗时，再记录开启核心优化后的实测对比数据；',
+        '✅ 阶段 3 验收：注入非法参数、空值与边界异常，验证程序零崩溃并完成复盘文档。'
+      ];
 
-      const stages = [];
+      let stage0Goal = '';
+      let stage0Test = '';
+      let stage0Hours = '4–6 小时';
       if (usesPy) {
-        stages.push({
-          stage_no: '阶段 0（前置热身 · 第 1 周，约 8–10 小时）',
-          stage_name: '从 C++ 思维快速切入 Python 工程语法与 pytest 自动化测试',
-          goal: '针对 profile.yaml 中 Python 尚未开始学习的状态，利用已有 C++ 基础快速掌握 Python 核心容器、类型注解与 pytest 单元测试，不看冗长零基础视频。',
-          deliverable: '通过 pytest -v 100% 绿灯的预热练习仓库。',
-          acceptance_gate: '能独立手写带类型注解的 Python 模块与 pytest 异常断言。'
-        });
+        stage0Hours = '6–8 小时（约 0.5–1 周课余时间）';
+        stage0Goal = '你在 profile.yaml 中声明 Python『本人还没开始学习』，不可假设你已掌握 Python Web 工程流。先利用已有 C++ 基础花 6–8 小时掌握 Python 字典/类型注解与 pytest 断言。';
+        stage0Test = '【15 分钟准备度自测】：独立编写 warmup.py（带类型注解的字典词频统计函数）与 test_warmup.py，在终端运行 pytest -v 100% 通过即可直接进入阶段 1；若未通过，先用 Python 重写 1 个 60 行定长字典缓存小练习。';
+      } else if (usesGo) {
+        stage0Hours = '6–8 小时（约 0.5–1 周课余时间）';
+        stage0Goal = '本项目探索 Go 后端，你有 C++ 结构体与指针基础，先花 6–8 小时完成 Tour of Go 前 3 章掌握 slice、error 处理与 go test。';
+        stage0Test = '【15 分钟准备度自测】：编写 account_test.go 实现余额扣减结构体与不足报错断言，执行 go test -v 通过即可进入阶段 1。';
+      } else {
+        stage0Hours = '4–6 小时';
+        stage0Goal = '直接衔接你现有的 C++ 与数据结构基础，检查本地 CMake 多目标构建（核心静态库 + GoogleTest + ASan 内存消毒）工具链就绪。';
+        stage0Test = '【15 分钟准备度自测】：用 CMake + GTest 编译 1 个 40 行核心数据结构小测试并开启 -fsanitize=address 运行通过，即可进入阶段 1。';
       }
-      stages.push(
+
+      const stages = [
         {
-          stage_no: '阶段 1（骨架与数据模型 · 第 1–2 周）',
-          stage_name: '核心领域建模、存储表结构/内存布局设计与最小闭环打通',
-          goal: '完成『' + proj.title + '』的核心数据结构与数据库 Schema / 接口契约设计，跑通第一条端到端数据流。' +
-                (customApplied ? ('（重点落地「' + customApplied.prompt_text + '」的核心实体与数据结构）') : ''),
-          deliverable: '可运行的项目骨架 + 核心表结构/头文件定义 + 基础冒烟测试。',
-          acceptance_gate: '端到端主链路可无报错跑通，无硬编码绝对路径与明文密钥。'
+          stage_no: '阶段 0（准备与基础检查 · 预计投入 ' + stage0Hours + '）',
+          stage_name: '前置必会知识核对、15 分钟准备度自测与预热小练习',
+          goal: stage0Goal,
+          time_breakdown_str: '⏱️ 工时拆解：写预热代码约 2–3h ｜ 熟悉构建测试工具与跑通自测约 3–4h ｜ 提前交付物：本地跑通第 1 个绿灯测试文件',
+          deliverable: '通过 15 分钟准备度自测（或 50 行预热小练习）的本地开发环境。',
+          acceptance_gate: stage0Test
         },
         {
-          stage_no: '阶段 2（MVP 核心攻坚 · 第 2–4 周）',
-          stage_name: '核心算法/并发/缓存机制实现与真实业务场景咬合',
-          goal: '完成 MVP 必须具备的核心功能：' + mustHaveList.slice(0, 2).join('；'),
-          deliverable: '功能完整的 MVP 可执行程序/服务 + 15+ 条核心单元测试与边界异常测试。',
-          acceptance_gate: ((proj.acceptance_criteria || [])[0] || '核心功能全部通过自动化测试验证。')
+          stage_no: '阶段 1（最小可交付闭环 MVP · 预计投入 10–14 小时，约 1.5 周）',
+          stage_name: '先完成『输入数据 → 程序处理 → 保存结果 → 再次读取 → 验证正确性』最小闭环',
+          goal: '第一版解决的问题：' + (mvp.problem_solved || proj.core_purpose || '') + '。只做以下 4 个核心操作：' + coreOps.slice(0, 4).join(' '),
+          time_breakdown_str: '⏱️ 工时拆解：写出能运行版本约 5–6h ｜ 理解数据结构、编写 10+ 条闭环单测与调试约 5–8h ｜ 超时缩减：若超 14h 则先冻结前 2 个核心操作保住闭环',
+          deliverable: '无需复杂外部服务即可独立运行的最小可用版本 (MVP) + 闭环自动化单元测试。',
+          acceptance_gate: (mvp.closed_loop_proof || accList[0])
         },
         {
-          stage_no: '阶段 3（压测、调优与作品集交付 · 第 4–5 周）',
-          stage_name: '性能瓶颈定位、故障注入实验、CI 流水线与简历/演示交付',
-          goal: '使用 GDB/ASan/EXPLAIN/压测工具完成至少 1 次有前后量化对比的性能优化或故障复盘。' +
-                (customApplied ? ('（针对「' + customApplied.prompt_text + '」定制场景输出量化压测指标）') : ''),
-          deliverable: 'GitHub 绿灯仓库 + 架构设计与压测复盘 README + 2 分钟演示录制。',
-          acceptance_gate: ((proj.acceptance_criteria || []).slice(-1)[0] || '所有验收指标达标，能脱稿讲清架构取舍。')
+          stage_no: '阶段 2（核心技术与工程化 · 预计投入 12–16 小时，约 1.5–2 周）',
+          stage_name: '针对真实瓶颈引入索引/对象池/拆包/并发机制，建立未优化基线并实测对比',
+          goal: '拒绝无理由堆砌组件！先放大数据规模复现朴素写法下的真实痛点（慢查询、帧耗时高、粘包、并发超扣），再实施核心工程优化并用实测数据验证（不预设未经实测的漂亮数字）。',
+          time_breakdown_str: '⏱️ 工时拆解：编写核心优化模块约 5–6h ｜ 生成万级测试数据建立基线、调试边界 Bug 与记录实测表约 7–10h ｜ 提前交付物：第一张基线 vs 优化后对比截图',
+          deliverable: '完成核心算法/索引/并发升级的工程代码 + 《优化前基线 vs 优化后实测对比表》。',
+          acceptance_gate: (accList[1] || accList[0])
+        },
+        {
+          stage_no: '阶段 3（验证、排障与交付 · 预计投入 6–10 小时，约 1 周）',
+          stage_name: '异常情况测试、ASan/竞态诊断、README 复盘文档与可演示成果整理',
+          goal: '补齐空值/越界/损坏文件/重复提交等异常情况处理，运行内存与竞态检查，整理讲人话的 README 与 1 个真实排障复盘案例（只保留真正有用的测试与脚本，不强加冗余部署）。',
+          time_breakdown_str: '⏱️ 工时拆解：补充异常防御代码约 2h ｜ 运行异常测试、整理架构图与复盘 README、闭卷口述自检约 4–8h',
+          deliverable: '干净可复现的 Git 仓库 + 含真实基线对比与排障复盘的 README + 演示录屏/截图。',
+          acceptance_gate: (accList[2] || accList[accList.length - 1])
         }
-      );
+      ];
 
       return {
         plan_id: 'plan-' + proj.project_id,
+        plan_version: 'sp-v3.0',
         project_id: proj.project_id,
         project_title: proj.title,
+        plain_intro: proj.plain_intro || {},
+        layer1_overview: proj.layer1_overview || {},
+        tech_selection_rationale: proj.tech_selection_rationale || {},
+        time_estimation_summary: {
+          total_hours_range: ((proj.difficulty_workload_risks || {}).workload_range || proj.estimated_effort || '约 34–46 小时'),
+          coding_vs_understanding_split: '写出能运行版本约占 40% 时间（约 14–18h）；理解原理、编写自动化测试、调试排障、测量对比基线与整理文档约占 60% 时间（约 20–26h）。',
+          estimation_basis_and_error_sources: ((proj.difficulty_workload_risks || {}).estimation_premise || '基于大二课余每周投入 8–10 小时估算；环境配置与并发/内存排障可能带来 2–4 小时正常波动。')
+        },
         generated_at: new Date().toLocaleString('zh-CN', { hour12: false }),
-        custom_focus: customFocus || (customApplied ? customApplied.prompt_text : '标准 MVP 稳步推进'),
+        custom_focus: customFocus || (customApplied ? customApplied.prompt_text : '标准 4 阶段工程闭环与可复现验证'),
         custom_prompt_applied: customApplied,
         stages: stages,
-        knowledge_and_materials: proj.knowledge_mapping || [
-          '数据结构与算法：哈希表、前缀树(Trie)、有向无环图(DAG)、四叉树(QuadTree)与优先级队列；',
-          '操作系统与计算机网络：Linux 进程线程同步、epoll 非阻塞 I/O、TCP 帧协议拆包与 HTTP 幂等设计；',
-          '数据库与缓存系统：B+ 树复合索引最左前缀原则、EXPLAIN 执行计划分析、ACID 事务隔离与 Redis 缓存防击穿。'
-        ],
+        knowledge_and_materials: proj.knowledge_mapping || [],
         problem_driven_learning_path: [
-          '① 先遇到真实卡点：在阶段 1–2 先用最直观的朴素写法跑通功能，观察慢查询、粘包、帧率抖动或并发竞态现象；',
-          '② 逆推底层原理：带着复现的 Bug 或性能指标，针对性查阅教材对应章节与官方文档，只学解决当前卡点所需的机制；',
-          '③ 实验对比验证：编写修改前后的基准测试 (Benchmark) 或回归单测，用量化数据证明改进有效。'
+          '① 先跑通朴素闭环并复现真实卡点：在阶段 1 先用最简单直观的方案跑通，阶段 2 放大数据量亲眼观察慢查询、掉帧、粘包或并发超扣；',
+          '② 带着具体问题逆推原理：只针对当前卡点查阅教材对应小节与官方文档，搞清这项技术到底解决了什么问题、不做会损失什么；',
+          '③ 基线对照实测验证：先测未优化基线数据，再测优化后数据，用自动化单测锁死正确性。'
         ],
         user_core_tasks: userCoreTasks,
         ai_assisted_tasks: aiAssistedTasks,
         verification_tasks: verifyQuestions,
         engineering_and_release_standards: [
-          '版本管理：使用 Git 特性分支开发，严禁将 .env 密钥、大体积二进制产物提交入库；',
-          '测试与调试：核心模块单元测试覆盖正常路径、空值边界与异常注入；C++ 开启 -fsanitize=address，Python/Go 配置 pytest/go test 自动执行；',
-          '文档与复盘：README 必须包含系统架构图、数据库 ER 图/协议帧格式、一键启动命令与性能优化前后对比表。'
+          '测试与异常处理：每阶段必须包含正常输入与异常边界测试（pytest / GTest / go test），禁止仅写“功能完整、性能优秀”等不可复现描述；',
+          '性能基线原则：所有性能结论必须说明本地测试环境、数据规模与未优化对照基线，严禁凭空编造 QPS 提升倍数；',
+          '克制交付：README 包含『项目是干什么的、3步运行命令、架构数据流图、基线实测对比表、1个真实排障复盘』即可，无需强凑重型集群。'
         ],
         fallback_scope_reduction: {
-          when_to_trigger: '若课业繁忙、某阶段卡壳超过 5 天或每周可投入时间不足 6 小时，立即启动以下缩减方案：',
+          when_to_trigger: '若课业繁忙、某阶段卡壳超过 4–5 天或每周可投入时间不足 6 小时，立即启动以下缩减方案：',
           reduced_mvp_plan: [
-            '1. 砍掉所有外围附加界面与花哨配置，仅保留命令行 (CLI) 或极简核心视图 + 1 个核心算法/存储引擎闭环；',
-            '2. 明确暂停这些非核心项：' + outOfScopeList.join('；'),
-            '3. 保底交付底线：宁可交付一个只有 1,200 行代码但具备完整单元测试、EXPLAIN/ASan 调优报告与清晰 README 的小而精内核，也绝不交付半途而废的庞大空壳。'
+            (mvp.shrunk_mvp_fallback || '1. 冻结阶段 2 的可选扩展组件，仅保留阶段 1 最小可用闭环 + 1 组核心基准对比实验；'),
+            '2. 明确砍掉这些非核心项：' + outOfScopeList.join('；'),
+            '3. 交付底线：宁可交付一个 800~1,200 行但具备完整输入输出闭环、12+ 条绿灯单测、真实基线对比表与清晰 README 的小而精作品，也绝不交半途而废的大空壳。'
           ]
         },
         skill_coverage_and_gaps_audit: {
-          covered_count: fullSkills.length,
-          covered_items: fullSkills.map(r => r.skill_name + '（' + (r.project_task_mapping || '核心模块编码与测试验证') + '）'),
-          remaining_gaps_count: gapSkills.length,
-          remaining_gaps_advice: gapSkills.slice(0, 8).map(r =>
-            r.skill_name + ' [' + r.coverage_level + '] → ' + (r.supplementary_advice || r.supplementary_training || '建议结合专项小练习或互补候选项目补足')
+          audit_status: covSummary.audit_status,
+          summary_badge: covSummary.summary_badge,
+          covered_count: covSummary.full_count,
+          partial_count: covSummary.partial_count,
+          uncovered_count: covSummary.uncovered_count,
+          covered_items: fullSkills.map(r => r.skill_name + '（' + (r.project_task_mapping || '') + ' ｜ 验收：' + (r.verification_criteria || '自动化单测') + '）'),
+          partial_items: partialSkills.map(r => r.skill_name + ' [部分覆盖] → ' + (r.project_task_mapping || '') + '（补充：' + (r.supplementary_advice || r.supplementary_training || '') + '）'),
+          uncovered_items: noneSkills.map(r => r.skill_name + ' [未覆盖] → ' + (r.supplementary_advice || r.supplementary_training || '建议通过 2–3 小时独立小练习补充')),
+          remaining_gaps_count: covSummary.audit_status === 'verified' ? gapSkills.length : null,
+          remaining_gaps_advice: gapSkills.map(r =>
+            r.skill_name + ' [' + r.coverage_level + '] → ' + (r.supplementary_advice || r.supplementary_training || '建议通过独立小练习补充')
           )
         }
       };
@@ -4445,11 +4734,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (subEl) {
         subEl.textContent = selProj
-          ? ('选定时间：' + (ws.selected_at || '刚刚') + ' · 点击右侧「🗺️ 生成 / 查看所选项目的分阶段实施计划」即可展开 10 维完整实施蓝图，刷新页面后自动恢复。')
+          ? ('选定时间：' + (ws.selected_at || '刚刚') + ' · 下方已为您展开 sp-v3.0 导师级 4 阶段实施计划（含准备度自测、最小闭环、双轨工时与一致技能审计），刷新页面自动恢复。')
           : '系统遵循开放探索原则：在您主动选择之前，绝不擅自将某个候选项目设为最终项目，也不将一次项目选择绑定为永久职业方向。';
       }
 
-      // 更新卡片高亮与按钮文案
       spPage.querySelectorAll('.sp-candidate-card').forEach(card => {
         const cid = card.getAttribute('data-project-id');
         const isSel = cid === selPid;
@@ -4462,7 +4750,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // 若已保存的实施计划因旧版本缓存缺少字段，自动用当前项目完整数据补齐修复
       if (ws.active_implementation_plan && selProj && !isPlanComplete(ws.active_implementation_plan)) {
         ws.active_implementation_plan = buildClientImplementationPlan(
           selProj,
@@ -4471,7 +4758,6 @@ document.addEventListener('DOMContentLoaded', () => {
         saveWorkspaceLocal();
       }
 
-      // 渲染分阶段实施计划 (Section 7.3)
       const planContainer = el('spImplementationPlanContainer');
       if (planContainer) {
         const plan = ws.active_implementation_plan;
@@ -4481,14 +4767,21 @@ document.addEventListener('DOMContentLoaded', () => {
             : '';
         } else {
           const stagesList = plan.stages || plan['1_phased_development_plan'] || [];
-          const stagesHtml = stagesList.map(st =>
-            '<div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:12px;margin-bottom:8px;">' +
+          const stagesHtml = stagesList.map(st => {
+            const tb = st.time_breakdown || {};
+            const tbStr = st.time_breakdown_str || (tb.coding_hours ? ('⏱️ 工时拆解：' + tb.coding_hours + ' ｜ ' + tb.understanding_testing_debug_doc_hours + (tb.early_milestone ? (' ｜ ' + tb.early_milestone) : '')) : '');
+            const tasksHtml = Array.isArray(st.core_tasks) && st.core_tasks.length
+              ? ('<ul style="margin:4px 0 4px 18px;font-size:12.5px;color:#334155;">' + st.core_tasks.map(t => '<li>' + esc(t) + '</li>').join('') + '</ul>')
+              : '';
+            return '<div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:12px;margin-bottom:8px;">' +
               '<div style="font-weight:700;color:#0F766E;font-size:13.5px;">' + esc(st.stage_no) + ' · ' + esc(st.stage_name) + '</div>' +
               '<div style="font-size:13px;color:#1E293B;margin-top:4px;"><b>阶段目标：</b>' + esc(st.goal) + '</div>' +
-              '<div style="font-size:12.5px;color:#0369A1;margin-top:3px;"><b>📦 可交付成果：</b>' + esc(st.deliverable) + '</div>' +
-              '<div style="font-size:12.5px;color:#166534;margin-top:3px;"><b>✅ 阶段验收标准：</b>' + esc(st.acceptance_gate) + '</div>' +
-            '</div>'
-          ).join('');
+              tasksHtml +
+              (tbStr ? ('<div style="font-size:12px;color:#7C3AED;background:#F5F3FF;padding:4px 8px;border-radius:4px;margin-top:4px;">' + esc(tbStr) + '</div>') : '') +
+              '<div style="font-size:12.5px;color:#0369A1;margin-top:4px;"><b>📦 可交付成果：</b>' + esc(st.deliverable) + '</div>' +
+              '<div style="font-size:12.5px;color:#166534;margin-top:3px;"><b>✅ 可执行验收步骤：</b>' + esc(st.acceptance_gate) + '</div>' +
+            '</div>';
+          }).join('');
 
           const kmArr = plan.knowledge_and_materials ||
             ((plan['3_required_knowledge_and_materials'] || {}).core_knowledge_points) || [];
@@ -4512,42 +4805,61 @@ document.addEventListener('DOMContentLoaded', () => {
             : (plan['6_ai_assisted_tasks'] || []);
           const aiLi = aiArr.map(a => '<li>' + esc(a) + '</li>').join('');
 
-          const stdArr = plan.engineering_and_release_standards || [
-            '测试与调试：每个阶段结束前必须运行自动化测试套件（pytest / GTest）并通过 ASan/异常注入检查；',
-            '版本管理：按功能模块使用规范 Git Commit，严禁提交 .env 密钥；',
-            '文档与复盘：README 包含架构数据流图、一键复现命令与实测性能对比表。'
-          ];
+          const verArr = plan.verification_tasks || plan.understanding_self_check_questions || [];
+          const verLi = verArr.map(v => '<li>' + esc(v) + '</li>').join('');
+
+          const stdArr = plan.engineering_and_release_standards || [];
           const stdLi = stdArr.map(s => '<li>' + esc(s) + '</li>').join('');
 
           const fbObj = plan.fallback_scope_reduction || plan['9_shrunk_mvp_fallback_plan'] || {};
           const fbArr = (fbObj.reduced_mvp_plan && fbObj.reduced_mvp_plan.length)
             ? fbObj.reduced_mvp_plan
-            : (fbObj.shrunk_scope ? [fbObj.shrunk_scope] : ['砍掉外围非核心界面，仅保留核心数据结构/存储模块 + 10 条自动化单元测试，确保 2 周内闭环交付。']);
+            : (fbObj.shrunk_scope ? [fbObj.shrunk_scope] : []);
           const fbLi = fbArr.map(r => '<li>' + esc(r) + '</li>').join('');
 
           const auditObj = plan.skill_coverage_and_gaps_audit || {};
-          const raw10 = plan['10_skill_constraints_coverage_and_remaining_gaps'] || {};
-          const covArr = (auditObj.covered_items && auditObj.covered_items.length)
-            ? auditObj.covered_items
-            : (raw10.fully_trained_skills || []);
-          const gapArr = (auditObj.remaining_gaps_advice && auditObj.remaining_gaps_advice.length)
-            ? auditObj.remaining_gaps_advice
-            : ((raw10.remaining_gaps_and_remediation || []).map(g =>
-                (typeof g === 'object' ? (g.skill_name + ' [' + g.coverage_level + '] → ' + g.remediation_action) : String(g))
-              ));
-          const covLi = covArr.map(c => '<li>' + esc(c) + '</li>').join('');
-          const gapLi = gapArr.map(g => '<li>' + esc(g) + '</li>').join('');
+          const auditUnknown = auditObj.audit_status === 'unknown_or_pending';
+          const covArr = auditObj.covered_items || [];
+          const gapArr = auditObj.remaining_gaps_advice || [];
+          const covCountTxt = (auditUnknown || auditObj.covered_count === null || auditObj.covered_count === undefined)
+            ? '未知 / 待补充'
+            : (covArr.length + ' 项');
+          const gapCountTxt = (auditUnknown || auditObj.remaining_gaps_count === null || auditObj.remaining_gaps_count === undefined)
+            ? '未知 / 待补充'
+            : (gapArr.length + ' 项');
 
-          // 提示词定制高亮横幅（让用户清晰看到提示词重构的具体落点）
+          const covLi = covArr.length
+            ? covArr.map(c => '<li>' + esc(c) + '</li>').join('')
+            : '<li style="color:#92400E;">当前技能覆盖数据缺失或待补充，系统拒绝将空列表伪报为 0 项覆盖完成。</li>';
+          const gapLi = gapArr.length
+            ? gapArr.map(g => '<li>' + esc(g) + '</li>').join('')
+            : '<li style="color:#92400E;">当前缺口明细待补充。</li>';
+
+          const timeEst = plan.time_estimation_summary || {};
+          const timeBannerHtml = timeEst.coding_vs_understanding_split
+            ? ('<div style="background:#F5F3FF;border:1px solid #DDD6FE;border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:12.5px;color:#4C1D95;line-height:1.6;">' +
+                 '<div><b>⏱️ 现实工时估算与依据：</b>' + esc(timeEst.total_hours_range || '') + '</div>' +
+                 '<div>• <b>双轨时间区分：</b>' + esc(timeEst.coding_vs_understanding_split || '') + '</div>' +
+                 '<div>• <b>估算依据与误差来源：</b>' + esc(timeEst.estimation_basis_and_error_sources || '') + '</div>' +
+               '</div>')
+            : '';
+
           const cpa = plan.custom_prompt_applied || (selProj && selProj.custom_prompt_applied) || null;
           let customBannerHtml = '';
           if (cpa && cpa.prompt_text) {
             const mapRows = (cpa.skill_mapping_breakdown || []).map(m => '<li>' + esc(m) + '</li>').join('');
+            const conflictHtml = cpa.conflict_detected
+              ? ('<div style="margin-top:8px;padding:8px 10px;background:#FFFBEB;border:1px solid #F59E0B;border-radius:6px;color:#92400E;">' +
+                   '<div><b>' + esc(cpa.conflict_warning || '') + '</b></div>' +
+                   '<div style="margin-top:3px;color:#065F46;">' + esc(cpa.alternative_proposal || '') + '</div>' +
+                 '</div>')
+              : '';
             customBannerHtml =
               '<div style="background:#EFF6FF;border:2px solid #0284C7;border-radius:8px;padding:12px;margin-bottom:12px;font-size:12.5px;line-height:1.6;color:#1E3A8A;">' +
                 '<div style="font-weight:700;font-size:14px;color:#0369A1;margin-bottom:4px;">🎯 提示词定制方案已激活：「' + esc(cpa.prompt_text) + '」</div>' +
                 '<div style="margin-bottom:6px;">' + esc(cpa.domain_redesign_summary || '') + '</div>' +
                 '<ul style="margin:0;padding-left:18px;color:#1E40AF;">' + mapRows + '</ul>' +
+                conflictHtml +
               '</div>';
           }
 
@@ -4555,13 +4867,14 @@ document.addEventListener('DOMContentLoaded', () => {
             '<div style="background:#FFFFFF;border:2px solid #0284C7;border-radius:10px;padding:16px;">' +
               '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding-bottom:10px;border-bottom:1px solid #E2E8F0;margin-bottom:12px;">' +
                 '<div>' +
-                  '<span style="background:#DBEAFE;color:#1E40AF;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;">持久绑定实施计划 · 刷新不丢失</span> ' +
+                  '<span style="background:#DBEAFE;color:#1E40AF;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;">持久绑定实施计划 (sp-v3.0) · 刷新不丢失</span> ' +
                   '<b style="font-size:16px;color:#0F172A;">' + esc(plan.project_title) + '</b>' +
                 '</div>' +
-                '<div style="font-size:12px;color:#64748B;">生成时间：' + esc(plan.generated_at) + ' · 定制焦点：<b>' + esc(plan.custom_focus || plan.custom_focus_applied || '标准 MVP') + '</b></div>' +
+                '<div style="font-size:12px;color:#64748B;">生成时间：' + esc(plan.generated_at) + ' · 定制焦点：<b>' + esc(plan.custom_focus || plan.custom_focus_applied || '标准 4 阶段闭环') + '</b></div>' +
               '</div>' +
               customBannerHtml +
-              '<h4 style="font-size:14px;color:#0F172A;margin:0 0 8px 0;">1. 分阶段开发计划、每阶段可交付成果与阶段验收标准</h4>' +
+              timeBannerHtml +
+              '<h4 style="font-size:14px;color:#0F172A;margin:0 0 8px 0;">1. 四阶段学习与开发计划（阶段 0 准备检查 → 阶段 1 最小闭环 → 阶段 2 核心工程化 → 阶段 3 验证交付）</h4>' +
               stagesHtml +
               '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:10px;font-size:12.5px;line-height:1.6;">' +
                 '<div style="background:#F8FAFC;padding:10px;border-radius:8px;border:1px solid #E2E8F0;">' +
@@ -4571,24 +4884,25 @@ document.addEventListener('DOMContentLoaded', () => {
                   '<ul style="margin:0;padding-left:18px;color:#0369A1;">' + revLi + '</ul>' +
                 '</div>' +
                 '<div style="background:#F8FAFC;padding:10px;border-radius:8px;border:1px solid #E2E8F0;">' +
-                  '<div style="font-weight:700;color:#991B1B;margin-bottom:4px;">4. 用户需要亲自完成的核心任务（拒绝 AI 黑盒代写）</div>' +
+                  '<div style="font-weight:700;color:#991B1B;margin-bottom:4px;">4. 你必须亲自掌握与编写的部分（拒绝 AI 黑盒代写）</div>' +
                   '<ul style="margin:0 0 8px 18px;color:#7F1D1D;">' + userLi + '</ul>' +
-                  '<div style="font-weight:700;color:#1E40AF;margin-bottom:4px;">5. AI 可以协助的重复性/脚手架任务</div>' +
-                  '<ul style="margin:0;padding-left:18px;color:#1E3A8A;">' + aiLi + '</ul>' +
+                  '<div style="font-weight:700;color:#1E40AF;margin-bottom:4px;">5. AI 可以加速的辅助部分（生成后须经你测试验证）</div>' +
+                  '<ul style="margin:0 0 8px 18px;color:#1E3A8A;">' + aiLi + '</ul>' +
+                  (verLi ? ('<div style="font-weight:700;color:#065F46;margin-bottom:4px;">🔬 不依赖 AI 的关键代码自检题：</div><ul style="margin:0;padding-left:18px;color:#064E3B;">' + verLi + '</ul>') : '') +
                 '</div>' +
               '</div>' +
               '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:10px;font-size:12.5px;line-height:1.6;">' +
                 '<div style="background:#FFFBEB;padding:10px;border-radius:8px;border:1px solid #FDE68A;">' +
-                  '<div style="font-weight:700;color:#92400E;margin-bottom:4px;">6. 遇到困难时的缩减方案（防半途而废）</div>' +
-                  '<div style="color:#78350F;margin-bottom:4px;">' + esc(fbObj.when_to_trigger || '若课业繁忙或某阶段卡壳超过 5 天，立即启动以下缩减方案：') + '</div>' +
+                  '<div style="font-weight:700;color:#92400E;margin-bottom:4px;">6. 超时或遇到困难时的缩减方案（防半途而废）</div>' +
+                  '<div style="color:#78350F;margin-bottom:4px;">' + esc(fbObj.when_to_trigger || '若课业繁忙或某阶段卡壳超过 4–5 天，立即启动以下缩减方案：') + '</div>' +
                   '<ul style="margin:0 0 8px 18px;color:#78350F;">' + fbLi + '</ul>' +
-                  '<div style="font-weight:700;color:#0F172A;margin-bottom:4px;">7. 测试、调试、版本管理、文档与发布要求</div>' +
+                  '<div style="font-weight:700;color:#0F172A;margin-bottom:4px;">7. 测试、调试、基线测量与克制交付要求</div>' +
                   '<ul style="margin:0;padding-left:18px;color:#334155;">' + stdLi + '</ul>' +
                 '</div>' +
                 '<div style="background:#F0FDF4;padding:10px;border-radius:8px;border:1px solid #BBF7D0;">' +
-                  '<div style="font-weight:700;color:#166534;margin-bottom:4px;">8. 原始技能约束覆盖情况（完整训练 ' + covArr.length + ' 项）</div>' +
+                  '<div style="font-weight:700;color:#166534;margin-bottom:4px;">8. 原始技能约束覆盖证据（完整覆盖：' + esc(covCountTxt) + ' · 与明细表严格一致）</div>' +
                   '<ul style="margin:0 0 8px 18px;color:#14532D;">' + covLi + '</ul>' +
-                  '<div style="font-weight:700;color:#92400E;margin-bottom:4px;">9. 剩余技能缺口与补充练习建议（' + gapArr.length + ' 项）</div>' +
+                  '<div style="font-weight:700;color:#92400E;margin-bottom:4px;">9. 部分覆盖 / 未覆盖技能与独立小练习建议（' + esc(gapCountTxt) + '）</div>' +
                   '<ul style="margin:0;padding-left:18px;color:#78350F;">' + gapLi + '</ul>' +
                 '</div>' +
               '</div>' +
@@ -4596,7 +4910,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // 渲染迭代修改记录
       const iterContainer = el('spIterationHistoryContainer');
       if (iterContainer) {
         const hist = ws.iteration_history || [];
@@ -4619,7 +4932,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 绑定「查看详情」、详情 Tab、示例提示词胶囊、选择项目与快捷迭代按钮
     spPage.addEventListener('click', async e => {
       const chipBtn = e.target.closest('.sp-prompt-chip');
       if (chipBtn) {
@@ -4653,7 +4965,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ws.selected_project_id = pid;
         ws.selected_project_title = proj.title;
         ws.selected_at = new Date().toLocaleString('zh-CN', { hour12: false });
-        // 选定项目时自动生成完整的 10 维分阶段实施计划，免去多余等待
         ws.active_implementation_plan = buildClientImplementationPlan(proj, '');
         saveWorkspaceLocal();
         switchDetailPane(pid);
@@ -4678,7 +4989,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
         } catch (_) {}
-        showNotice('✅ 已选定候选项目『' + proj.title + '』并自动展开 10 维分阶段实施计划！您可以在下方输入任意提示词（如“东方弹幕”）进一步定制方案。', false);
+        showNotice('✅ 已选定候选项目『' + proj.title + '』并展开 4 阶段实施计划！您可以在下方输入任意提示词（如“东方弹幕”、“简化为SQLite”）进一步深度重构方案。', false);
         const wsSec = el('spWorkspaceSection');
         if (wsSec) wsSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
@@ -4691,7 +5002,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 绑定「生成实施计划」按钮
     const btnGenPlan = el('btnGeneratePlan');
     if (btnGenPlan) {
       btnGenPlan.addEventListener('click', async () => {
@@ -4733,7 +5043,7 @@ document.addEventListener('DOMContentLoaded', () => {
           } catch (_) {}
           saveWorkspaceLocal();
           renderWorkspaceUI();
-          showNotice('✅ 已为『' + proj.title + '』生成 10 维分阶段实施计划并持久保存！', false);
+          showNotice('✅ 已为『' + proj.title + '』生成 4 阶段实施计划并持久保存！', false);
         } finally {
           btnGenPlan.disabled = false;
           btnGenPlan.textContent = '🗺️ 生成 / 查看所选项目的分阶段实施计划';
@@ -4741,13 +5051,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 方案迭代与提示词深度重构处理函数
     async function applyIterationAction(actionType, feedbackText) {
       let targetPid = ws.selected_project_id || getActiveDetailPid();
       const proj = findProject(targetPid);
       if (!proj) return;
 
-      // 若用户尚未选定项目就直接输入了提示词或点了迭代按钮，自动将其设为当前选定项目并生成实施计划！
       if (!ws.selected_project_id) {
         ws.selected_project_id = targetPid;
         ws.selected_project_title = proj.title;
@@ -4755,42 +5063,23 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const nowStr = new Date().toLocaleString('zh-CN', { hour12: false });
-      let changeMsg = '';
-
+      let promptToApply = feedbackText;
       if (actionType === 'shrink_mvp') {
-        changeMsg = '已将 MVP 范围压缩至 2 周可交付的核心闭环（剥离次要外围模块，优先保证核心数据结构/SQL/单测闭环）';
-        proj.estimated_effort = '约 15–22 小时（已按『缩小 MVP』指令裁减外围模块，2 周内可稳妥交付）';
+        promptToApply = '简化技术栈，先使用 SQLite / 本地文件与手写 LRU 缓存，确保 2 周内完成最小闭环';
+        proj.estimated_effort = '约 16–22 小时（已按『缩小 MVP』指令剥离外围扩展组件，2 周内可稳妥交付）';
       } else if (actionType === 'boost_sql_redis') {
-        changeMsg = '已在工程任务中新增 MySQL 复合索引 EXPLAIN 调优与 Redis 缓存防击穿实测任务，技能覆盖提升为完整覆盖';
-        (proj.skill_coverage_table || []).forEach(r => {
-          if (r.skill_id === 'db_sql_rdbms' || r.skill_id === 'db_cache_mq') {
-            r.coverage_level = '完整覆盖';
-            r.project_task_mapping = '【已通过迭代指令强化覆盖】新增 MySQL 复合索引与 Redis 缓存实训子模块';
-          }
-        });
+        promptToApply = '希望增加数据库复合索引 EXPLAIN 调优与缓存失效一致性实践';
       } else if (actionType === 'boost_network_concurrency') {
-        changeMsg = '已在工程任务中新增并发工作线程池、自定义帧协议拆包与弱网超时重传压测任务';
-        (proj.skill_coverage_table || []).forEach(r => {
-          if (r.skill_id === 'net_tcp_http' || r.skill_id === 'conc_multithread' || r.skill_id === 'os_linux_sys') {
-            r.coverage_level = '完整覆盖';
-            r.project_task_mapping = '【已通过迭代指令强化覆盖】新增非阻塞网络通信与多线程并发压测子任务';
-          }
-        });
+        promptToApply = '希望增加网络通信协议边界拆包与多线程并发同步压测实践';
       } else if (actionType === 'boost_testing_ci') {
-        changeMsg = '已在工程任务中强制接入单元测试 + ASan/Valgrind 内存检查 + GitHub Actions CI 流水线';
-        (proj.skill_coverage_table || []).forEach(r => {
-          if (r.skill_id === 'test_automation_qa' || r.skill_id === 'tool_docker_k8s' || r.skill_id === 'test_debug_profile') {
-            r.coverage_level = '完整覆盖';
-            r.project_task_mapping = '【已通过迭代指令强化覆盖】新增单元测试 + ASan 内存消毒 + GitHub Actions CI 门禁';
-          }
-        });
-      } else {
-        ws.custom_prompts_by_project = ws.custom_prompts_by_project || {};
-        ws.custom_prompts_by_project[targetPid] = feedbackText;
-        mutateProjectWithPrompt(proj, feedbackText);
-        ws.selected_project_title = proj.title;
-        changeMsg = '已按提示词「' + feedbackText + '」深度重构项目标题、核心领域模型、MVP 功能、阶段 1~3 任务与个人核心任务';
+        promptToApply = '希望增加单元测试边界断言、ASan 内存消毒与自动化回归测试实践';
       }
+
+      ws.custom_prompts_by_project = ws.custom_prompts_by_project || {};
+      ws.custom_prompts_by_project[targetPid] = promptToApply;
+      mutateProjectWithPrompt(proj, promptToApply);
+      ws.selected_project_title = proj.title;
+      const changeMsg = '已围绕「' + promptToApply + '」实质性重构项目用途、MVP 4个核心操作、阶段 0–3 计划、验收标准与技能覆盖表';
 
       ws.iteration_history = ws.iteration_history || [];
       ws.iteration_history.push({
@@ -4798,11 +5087,11 @@ document.addEventListener('DOMContentLoaded', () => {
         project_id: targetPid,
         project_title: proj.title,
         action_type: actionType,
-        user_feedback: feedbackText,
+        user_feedback: promptToApply,
         changes_applied: [changeMsg]
       });
 
-      ws.active_implementation_plan = buildClientImplementationPlan(proj, feedbackText || changeMsg);
+      ws.active_implementation_plan = buildClientImplementationPlan(proj, promptToApply);
 
       try {
         const resp = await fetch('/api/skill-projects/iterate', {
@@ -4811,7 +5100,7 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify({
             project_id: targetPid,
             action_type: actionType,
-            feedback_text: feedbackText
+            feedback_text: promptToApply
           })
         });
         if (resp.ok) {
@@ -4824,7 +5113,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       saveWorkspaceLocal();
       renderWorkspaceUI();
-      showNotice('✅ ' + changeMsg + '！请查看下方蓝框中的『🎯 提示词定制方案已激活』与更新后的各阶段任务。', false);
+      const cpa = proj.custom_prompt_applied || {};
+      showNotice(
+        cpa.conflict_detected
+          ? ('⚠️ ' + cpa.conflict_warning + ' ' + cpa.alternative_proposal)
+          : ('✅ ' + changeMsg + '！请查看下方蓝框与更新后的各阶段任务及技能覆盖统计。'),
+        Boolean(cpa.conflict_detected)
+      );
     }
 
     const btnSubmitFb = el('btnSubmitFeedback');
@@ -4841,7 +5136,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 支持在输入框按回车键直接提交提示词重构
     const inpFb = el('inpCustomFeedback');
     if (inpFb) {
       inpFb.addEventListener('keydown', async e => {
@@ -4856,7 +5150,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 双项目对比器
     const btnCompare = el('btnCompareTwo');
     if (btnCompare) {
       btnCompare.addEventListener('click', () => {
@@ -4873,6 +5166,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '<thead><tr><th style="width:16%">对比维度</th><th style="width:42%">' + esc(pA.title) + '</th><th style="width:42%">' + esc(pB.title) + '</th></tr></thead>' +
             '<tbody>' +
               '<tr><td><b>兴趣切入点</b></td><td>' + esc(pA.interest_theme_tag) + '</td><td>' + esc(pB.interest_theme_tag) + '</td></tr>' +
+              '<tr><td><b>第一版先做什么</b></td><td>' + esc((pA.layer1_overview || {}).v1_first_step || '') + '</td><td>' + esc((pB.layer1_overview || {}).v1_first_step || '') + '</td></tr>' +
               '<tr><td><b>主力技术栈</b></td><td>' + esc((pA.primary_languages || []).join(' / ')) + '</td><td>' + esc((pB.primary_languages || []).join(' / ')) + '</td></tr>' +
               '<tr><td><b>关联独立岗位数</b></td><td><b>' + (pA.covered_unique_jobs || 0) + '</b> 个独立岗</td><td><b>' + (pB.covered_unique_jobs || 0) + '</b> 个独立岗</td></tr>' +
               '<tr><td><b>技能覆盖审计</b></td><td>' + esc((pA.coverage_summary || {}).summary_badge || '') + '</td><td>' + esc((pB.coverage_summary || {}).summary_badge || '') + '</td></tr>' +
@@ -4886,7 +5180,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 绑定顶部两个独立操作按钮：「📊 仅更新技能统计」vs「✨ 重新生成候选项目方案」（带防重复点击保护）
     let actionBusy = false;
     const btnRefreshStats = el('btnRefreshSkillStats');
     const btnRegenProj = el('btnRegenerateProjects');

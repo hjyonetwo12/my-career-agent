@@ -1607,3 +1607,159 @@ def test_v2_webapp_skill_projects_api_endpoints_and_concurrency_lock(tmp_path, m
         assert r_busy.get_json()["busy"] is True
     finally:
         webapp._skill_proj_lock.release()
+
+
+# ==============================================================================
+# 十二、「技能栈与实现项目」工程项目导师标准 (sp-v3.0) 专项验收测试套件
+# ==============================================================================
+
+def test_v3_mentor_quality_standards_and_prompt_conflict_guardrails(tmp_path):
+    """验证 sp-v3.0 全套工程项目导师推荐质量标准：
+    1. 第一步：6问普通话导读 (plain_intro) 与非计算机专业生活类比 (everyday_analogy)；
+    2. 第二步：MVP 最小可交付闭环 (problem_solved, 3-5 core_operations, inputs/outputs, display_method, out_of_scope_initially, closed_loop_proof)；
+    3. 第三步：4类技能角色区分 (job_required / project_essential / later_extension / standalone_exercise)；
+    4. 克制技术选型：单一主力栈 + 「基础版 → 进阶版 → 更进一步」阶梯 + 学习前置条件；
+    5. 四阶段学习路径：阶段0(含15分钟自测题与4小时预备练习)、阶段1(MVP闭环)、阶段2(核心工程化5问)、阶段3(验证与交付)；
+    6. 现实双轨时间估算：区分“写能跑代码”与“理解/测试/排障/文档”时长 + 中间成果 + 超时缩减方案 + 估算依据与误差来源；
+    7. 可复现验收标准：禁止无依据承诺“QPS提升5倍”或“功能完整”；
+    8. 技能覆盖审计一致性：完整/部分/未覆盖统计与明细表100%一致，空表返回 unknown_or_pending（未知/待补充），绝不伪报“0项覆盖”；
+    9. 提示词实质性重构与冲突拦截：更新9大维度 + 拦截多语言/超纲中间件堆叠冲突并给出替代方案；
+    10. 界面两层渐进披露：第一层普通话先看懂 (layer1_overview) + 第二层技术实施详情折叠展开。
+    """
+    import skill_projects
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+    state_file = tmp_path / "sp_v3.json"
+    conn = db.init_db(str(tmp_path / "sp_v3.db"))
+
+    jobs = [
+        {
+            "id": 8000 + i,
+            "company": f"导师验收科技_{i}",
+            "title": "2027届-后端与客户端研发工程师",
+            "city": "成都",
+            "jd_url": f"https://example.com/v3/{i}",
+            "crawled_at": "2026-10-19",
+            "jd_raw": (
+                "岗位职责：负责核心软件模块设计、代码编写、数据库调优、并发处理与单元测试。"
+                "任职要求：2027届本科及以上学历，熟悉 C/C++、Python、Go 或 Java；"
+                "掌握数据结构与算法、Linux 操作系统、TCP/IP 网络、MySQL、Redis、Qt6、OpenGL、Git、CMake 与 pytest。"
+            ),
+        }
+        for i in range(18)
+    ]
+
+    rep = skill_projects.update_or_get_skill_projects_report(
+        jobs, profile=prof, conn=conn, state_path=state_file, force_refresh=True
+    )
+    assert rep["version_info"]["module_version"] == "sp-v3.0"
+    projects = rep["candidate_projects"]
+    assert len(projects) == 6
+
+    for p in projects:
+        # 1. 验证第一步：6 问普通话导读 + 非专业人士类比
+        pi = p["plain_intro"]
+        for k in ("q1_what_is_it", "q2_who_uses_it", "q3_what_problem", "q4_what_can_user_do", "q5_visible_outcome", "q6_why_worth_doing", "everyday_analogy"):
+            assert pi.get(k) and len(str(pi[k])) >= 15, f"{p['project_id']} missing plain_intro.{k}"
+
+        # 2. 验证第一层普通用户先看懂 (layer1_overview)
+        l1 = p["layer1_overview"]
+        for k in ("what_it_does", "final_outcome", "v1_mvp_first", "estimated_time", "what_you_learn", "biggest_challenge"):
+            assert l1.get(k), f"{p['project_id']} missing layer1_overview.{k}"
+
+        # 3. 验证第二步：MVP 最小闭环
+        mvp = p["mvp_scope"]
+        assert mvp["problem_solved"]
+        assert 3 <= len(mvp["core_operations"]) <= 5
+        assert mvp["inputs"] and mvp["outputs"] and mvp["display_method"]
+        assert len(mvp["out_of_scope_initially"]) >= 3
+        assert mvp["closed_loop_proof"]
+
+        # 4. 验证第三步：4 类技能角色区分与克制技术选型
+        scb = p["skill_classification_breakdown"]
+        for k in ("job_required_skills", "project_essential_skills", "later_extension_skills", "standalone_exercise_skills"):
+            assert len(scb.get(k) or []) >= 1, f"{p['project_id']} missing skill_classification_breakdown.{k}"
+
+        tsr = p["tech_selection_rationale"]
+        assert tsr["primary_stack"] and tsr["why_chosen"]
+        assert len(tsr["restraint_rules_applied"]) >= 2
+        assert len(tsr["progression_tiers"]) == 3
+        assert tsr["progression_tiers"][0]["tier"].startswith("基础版")
+        assert tsr["progression_tiers"][1]["tier"].startswith("进阶版")
+        assert tsr["progression_tiers"][2]["tier"].startswith("更进一步")
+
+        # 5. 验证无虚假性能承诺（禁止无依据写“QPS 提升 5 倍以上”）
+        acc_text = " ".join(p["acceptance_criteria"])
+        assert "QPS 提升 5 倍" not in acc_text
+        assert ("执行" in acc_text or "运行" in acc_text) and ("验证" in acc_text or "断言" in acc_text)
+
+        # 6. 验证技能覆盖审计统计与明细表 100% 一致
+        cov_summary = p["coverage_summary"]
+        cov_table = p["skill_coverage_table"]
+        assert cov_summary["audit_status"] == "verified"
+        assert cov_summary["full_count"] == sum(1 for r in cov_table if r["coverage_level"] == "完整覆盖")
+        assert cov_summary["partial_count"] == sum(1 for r in cov_table if r["coverage_level"] == "部分覆盖")
+        assert cov_summary["uncovered_count"] == sum(1 for r in cov_table if r["coverage_level"] == "未覆盖")
+        assert cov_summary["full_count"] + cov_summary["partial_count"] + cov_summary["uncovered_count"] == len(cov_table)
+
+        # 7. 验证四阶段实施计划与现实双轨时间估算
+        plan = skill_projects.generate_project_implementation_plan(p, prof, rep["skill_constraints"])
+        assert len(plan["stages"]) == 4
+        assert "阶段 0" in plan["stages"][0]["stage_no"]
+        assert plan["stage0_readiness"]["self_check_test"]
+        assert plan["stage0_readiness"]["prep_mini_exercise"]
+        assert len(plan["stage2_engineering_upgrades"]) >= 2
+        for upg in plan["stage2_engineering_upgrades"]:
+            for qk in ("feature_name", "problem_solved", "why_now", "required_knowledge", "how_to_test", "cost_if_skipped"):
+                assert upg.get(qk), f"{p['project_id']} stage2 upgrade missing {qk}"
+        for st in plan["stages"]:
+            assert st["coding_hours"] and st["understanding_testing_debug_doc_hours"]
+            assert st["early_deliverable_milestone"] and st["timeout_scope_reduction"]
+        assert plan["time_estimation_methodology"]["estimation_basis"]
+        assert len(plan["time_estimation_methodology"]["error_sources"]) >= 3
+
+    # 8. 验证空技能表防护：绝不把空表显示成“0项覆盖、0项缺口”，必须标记为 unknown_or_pending（未知 / 待补充）
+    empty_cov = skill_projects.compute_consistent_coverage_summary([], total_expected=14)
+    assert empty_cov["audit_status"] == "unknown_or_pending"
+    assert empty_cov["full_count"] is None
+    assert "未知 / 待补充" in empty_cov["status_label"]
+
+    # 9. 验证提示词重构：不仅改标题，而且实质性更新 MVP、技术栈、阶段计划、验收标准与技能覆盖表，并拦截不合理要求
+    # (a) 东方弹幕 + SQLite 简化定制
+    iter_touhou = skill_projects.submit_project_iteration(
+        project_id="proj_anime_4d_collection_vault",
+        action_type="custom",
+        feedback_text="把项目改成东方Project弹幕谱面与擦弹回放分析工具，希望简化技术栈，先使用 SQLite",
+        profile=prof,
+        state_path=state_file,
+        conn=conn,
+    )
+    assert iter_touhou["ok"] is True
+    updated_p1 = next(p for p in iter_touhou["candidate_projects"] if p["project_id"] == "proj_anime_4d_collection_vault")
+    assert "东方Project" in updated_p1["title"]
+    assert "SQLite" in updated_p1["primary_language_stack"]
+    assert any("Replay" in op or "擦弹" in op for op in updated_p1["mvp_scope"]["core_operations"])
+    sql_row = next(r for r in updated_p1["skill_coverage_table"] if r["skill_id"] == "db_cache_mq")
+    assert sql_row["coverage_level"] == "部分覆盖"
+
+    # (b) 冲突检测：要求同时塞入 Python+Go+C+++Java + K8s + Kafka + UE5
+    conflict_spec = skill_projects.evaluate_and_build_prompt_redesign(
+        updated_p1,
+        "我要同时用 Python、Go、C++ 和 Java 写微服务，并且加上 Kafka、Kubernetes 集群和 UE5 开放世界",
+        prof,
+    )
+    assert conflict_spec["conflict_detected"] is True
+    assert len(conflict_spec["conflict_warnings"]) >= 2
+    assert len(conflict_spec["alternative_proposals"]) >= 2
+
+    # 10. 验证 HTML 渲染包含第一层（普通用户先看懂）与第二层（技术实施详情折叠区）
+    report_file = reporter.generate_report(
+        "2026-10-19",
+        {"date": "2026-10-19", "items": [{"job": j, "analysis": None} for j in jobs], "applications": []},
+        str(tmp_path / "reports_v3"),
+        out_name="index",
+    )
+    html_v3 = Path(report_file).read_text(encoding="utf-8")
+    assert "第一层：普通人先看懂" in html_v3 and "第一层：先用普通话讲清楚这个项目到底是什么" in html_v3
+    assert "展开第二层：技术选型、关联岗位与技能覆盖速览" in html_v3 and "第二层：点击展开 / 折叠『技术实施详情』" in html_v3
+    assert "career_agent_sp_workspace_v3_0_" in html_v3
+    conn.close()

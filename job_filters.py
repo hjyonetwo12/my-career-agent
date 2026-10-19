@@ -3743,3 +3743,20 @@ def _ensure_valid_market_cohort() -> None:
 
 
 _ensure_valid_market_cohort()
+
+# ── FUSE Direct-Stat Module Finder (prevents >36 dir entry readdir truncation) ──
+import importlib.abc as _il_abc
+import importlib.util as _il_util
+import sys as _sys
+
+class _DirectStatPathFinder(_il_abc.MetaPathFinder):
+    def find_spec(self, fullname, path=None, target=None):
+        if "." in fullname:
+            return None
+        cand = Path(__file__).resolve().parent / f"{fullname}.py"
+        if cand.exists():
+            return _il_util.spec_from_file_location(fullname, str(cand))
+        return None
+
+if not any(getattr(f, "__name__", "") == "_DirectStatPathFinder" for f in _sys.meta_path):
+    _sys.meta_path.insert(0, _DirectStatPathFinder())
