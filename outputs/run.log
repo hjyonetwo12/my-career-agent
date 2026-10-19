@@ -1,80 +1,560 @@
-08:26:36 [INFO] [测试公司] 抓取完成，获得 1 个岗位
-08:26:36 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
-08:26:36 [INFO] 飞书推送成功
-08:26:36 [INFO] 飞书推送成功
-08:26:36 [INFO] 飞书推送成功
-08:26:36 [INFO] 飞书推送成功
-08:26:36 [INFO] 飞书推送成功
-08:26:36 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
-08:26:36 [INFO] 飞书推送成功
-08:26:36 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
-08:27:07 [INFO] [测试公司] 抓取完成，获得 1 个岗位
-08:27:07 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
-08:27:07 [INFO] 飞书推送成功
-08:27:07 [INFO] 飞书推送成功
-08:27:07 [INFO] 飞书推送成功
-08:27:07 [INFO] 飞书推送成功
-08:27:07 [INFO] 飞书推送成功
-08:27:07 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
-08:27:07 [INFO] 飞书推送成功
-08:27:07 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
-08:27:54 [INFO] [测试公司] 抓取完成，获得 1 个岗位
-08:27:54 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
-08:27:54 [INFO] 飞书推送成功
-08:27:54 [INFO] 飞书推送成功
-08:27:54 [INFO] 飞书推送成功
-08:27:54 [INFO] 飞书推送成功
-08:27:54 [INFO] 飞书推送成功
-08:27:54 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
-08:27:54 [INFO] 飞书推送成功
-08:27:54 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
-09:43:20 [INFO] [测试公司] 抓取完成，获得 1 个岗位
-09:43:20 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
-09:43:20 [INFO] 飞书推送成功
-09:43:20 [INFO] 飞书推送成功
-09:43:20 [INFO] 飞书推送成功
-09:43:20 [INFO] 飞书推送成功
-09:43:20 [INFO] 飞书推送成功
-09:43:20 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
-09:43:20 [INFO] 飞书推送成功
-09:43:20 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
-11:19:11 [INFO] [测试公司] 抓取完成，获得 1 个岗位
-11:19:11 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
-11:19:11 [INFO] 飞书推送成功
-11:19:11 [INFO] 飞书推送成功
-11:19:11 [INFO] 飞书推送成功
-11:19:12 [INFO] 飞书推送成功
-11:19:12 [INFO] 飞书推送成功
-11:19:12 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
-11:19:12 [INFO] 飞书推送成功
-11:19:12 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
-11:20:50 [INFO] [测试公司] 抓取完成，获得 1 个岗位
-11:20:50 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
-11:20:50 [INFO] 飞书推送成功
-11:20:50 [INFO] 飞书推送成功
-11:20:50 [INFO] 飞书推送成功
-11:20:50 [INFO] 飞书推送成功
-11:20:50 [INFO] 飞书推送成功
-11:20:50 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
-11:20:50 [INFO] 飞书推送成功
-11:20:50 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
-11:30:33 [INFO] [测试公司] 抓取完成，获得 1 个岗位
-11:30:33 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
-11:30:33 [INFO] 飞书推送成功
-11:30:33 [INFO] 飞书推送成功
-11:30:33 [INFO] 飞书推送成功
-11:30:33 [INFO] 飞书推送成功
-11:30:33 [INFO] 飞书推送成功
-11:30:33 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
-11:30:33 [INFO] 飞书推送成功
-11:30:33 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
-11:35:46 [INFO] [测试公司] 抓取完成，获得 1 个岗位
-11:35:46 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
-11:35:46 [INFO] 飞书推送成功
-11:35:46 [INFO] 飞书推送成功
-11:35:46 [INFO] 飞书推送成功
-11:35:46 [INFO] 飞书推送成功
-11:35:46 [INFO] 飞书推送成功
-11:35:46 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
-11:35:46 [INFO] 飞书推送成功
-11:35:46 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
+07:47:38 [INFO] 飞书推送成功
+07:47:38 [INFO] 飞书推送成功
+07:47:38 [INFO] 飞书推送成功
+07:47:38 [INFO] 飞书推送成功
+07:47:38 [INFO] 飞书推送成功
+07:47:38 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+07:47:38 [INFO] 飞书推送成功
+07:48:58 [INFO] [测试公司] 抓取完成，获得 1 个岗位
+07:48:58 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
+07:48:58 [INFO] 飞书推送成功
+07:48:58 [INFO] 飞书推送成功
+07:48:58 [INFO] 飞书推送成功
+07:48:58 [INFO] 飞书推送成功
+07:48:58 [INFO] 飞书推送成功
+07:48:58 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+07:48:58 [INFO] 飞书推送成功
+07:48:58 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
+08:18:18 [INFO] [测试公司] 抓取完成，获得 1 个岗位
+08:18:18 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
+08:18:18 [INFO] 飞书推送成功
+08:18:18 [INFO] 飞书推送成功
+08:18:18 [INFO] 飞书推送成功
+08:18:18 [INFO] 飞书推送成功
+08:18:18 [INFO] 飞书推送成功
+08:18:18 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+08:18:18 [INFO] 飞书推送成功
+08:20:54 [INFO] [测试公司] 抓取完成，获得 1 个岗位
+08:20:54 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
+08:20:54 [INFO] 飞书推送成功
+08:20:54 [INFO] 飞书推送成功
+08:20:54 [INFO] 飞书推送成功
+08:20:54 [INFO] 飞书推送成功
+08:20:54 [INFO] 飞书推送成功
+08:20:54 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+08:20:54 [INFO] 飞书推送成功
+08:20:54 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
+08:21:36 [INFO] [测试公司] 抓取完成，获得 1 个岗位
+08:21:36 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
+08:21:36 [INFO] 飞书推送成功
+08:21:36 [INFO] 飞书推送成功
+08:21:36 [INFO] 飞书推送成功
+08:21:36 [INFO] 飞书推送成功
+08:21:36 [INFO] 飞书推送成功
+08:21:36 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+08:21:36 [INFO] 飞书推送成功
+08:21:36 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
+08:22:34 [INFO] [测试公司] 抓取完成，获得 1 个岗位
+08:22:34 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
+08:22:34 [INFO] 飞书推送成功
+08:22:34 [INFO] 飞书推送成功
+08:22:34 [INFO] 飞书推送成功
+08:22:34 [INFO] 飞书推送成功
+08:22:34 [INFO] 飞书推送成功
+08:22:34 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+08:22:34 [INFO] 飞书推送成功
+08:22:34 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
+08:23:28 [INFO] [测试公司] 抓取完成，获得 1 个岗位
+08:23:28 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
+08:23:28 [INFO] 飞书推送成功
+08:23:28 [INFO] 飞书推送成功
+08:23:28 [INFO] 飞书推送成功
+08:23:28 [INFO] 飞书推送成功
+08:23:28 [INFO] 飞书推送成功
+08:23:28 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+08:23:28 [INFO] 飞书推送成功
+08:23:28 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
+08:25:03 [INFO] [测试公司] 抓取完成，获得 1 个岗位
+08:25:03 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
+08:25:03 [INFO] 飞书推送成功
+08:25:03 [INFO] 飞书推送成功
+08:25:03 [INFO] 飞书推送成功
+08:25:03 [INFO] 飞书推送成功
+08:25:03 [INFO] 飞书推送成功
+08:25:03 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+08:25:03 [INFO] 飞书推送成功
+08:25:03 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
+09:39:50 [INFO] [测试公司] 抓取完成，获得 1 个岗位
+09:39:50 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
+09:39:50 [INFO] 飞书推送成功
+09:39:50 [INFO] 飞书推送成功
+09:39:50 [INFO] 飞书推送成功
+09:39:50 [INFO] 飞书推送成功
+09:39:50 [INFO] 飞书推送成功
+09:39:50 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+09:39:50 [INFO] 飞书推送成功
+09:39:50 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
+03:41:02 [INFO] [测试公司] 抓取完成，获得 1 个岗位
+03:41:02 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
+03:41:02 [INFO] 飞书推送成功
+03:41:02 [INFO] 飞书推送成功
+03:41:02 [INFO] 飞书推送成功
+03:41:02 [INFO] 飞书推送成功
+03:41:02 [INFO] 飞书推送成功
+03:41:02 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+03:41:02 [INFO] 飞书推送成功
+03:45:40 [INFO] [测试公司] 抓取完成，获得 1 个岗位
+03:45:40 [ERROR] [测试公司] 分页未完整结束（safety_limit），丢弃 1 条部分结果
+03:45:40 [INFO] 飞书推送成功
+03:45:40 [INFO] 飞书推送成功
+03:45:40 [INFO] 飞书推送成功
+03:45:40 [INFO] 飞书推送成功
+03:45:40 [INFO] 飞书推送成功
+03:45:40 [INFO] 未设置 FEISHU_WEBHOOK，跳过推送
+03:45:40 [INFO] 飞书推送成功
+03:45:40 [INFO] [拼多多] 拼多多官方 API 抓到 1 个岗位
+03:48:12 [WARNING] SKIP_CRAWL 模式下加载腾讯文档27届兜底证据跳过：HTTPSConnectionPool(host='docs.qq.com', port=443): Max retries exceeded with url: /smartsheet/DY3pHYkNvb0ZRSHdi?tab=t0gmEC&viewId=vUQPXH (Caused by NameResolutionError("HTTPSConnection(host='docs.qq.com', port=443): Failed to resolve 'docs.qq.com' ([Errno -3] Temporary failure in name resolution)"))
+03:48:12 [INFO] DeepSeek 混合模式：岗位粗筛=deepseek-chat，JD 细分析=deepseek-chat（画像版本=v-c5423e95）
+03:48:13 [INFO] 数据库已就绪: /working_dir/c_b067e1c58102a900/audit_workspace/data/jobs.db
+03:49:38 [INFO] 已标记 30 条招聘列表链接，报告不再将其显示为岗位详情
+03:49:38 [INFO] 历史届别迁移：确认27届 11762、确认往届 388、届别待确认 19310
+03:49:38 [INFO] 已清理 707 条非确认27届岗位的历史评分
+03:49:38 [INFO] 已启用 SKIP_CRAWL=1，跳过爬虫抓取阶段，直接基于本地数据库评估与生成报告
+03:49:39 [INFO] SKIP_CRAWL 模式下已补全分级并清理 3405 条 C 档非目标岗位
+03:49:44 [INFO] 活跃岗位 25827 个，其中确认当前届别 7836 个 → 待新增/更新 Pro 细分析 2007 个
+03:49:44 [INFO] 开始 DeepSeek 细分析 2007 个候选岗位...
+03:49:45 [INFO] 分级预筛保留 84 个 B 档岗位展示；其中 84 个强标题稀疏 JD 允许先补全复核
+03:49:45 [INFO] 细分析前补抓 207 个不完整 JD
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU6282075e0dcad413c09efe26/pb/posDetail.html?postId=45920727&postType=campus
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670924152509696310/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://boke.jobs.feishu.cn/581609/position/7673833688886429979/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://boke.jobs.feishu.cn/581609/position/7673832095982258478/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://boke.jobs.feishu.cn/581609/position/7673827803138279721/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://boke.jobs.feishu.cn/581609/position/7673359587551463718/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://boke.jobs.feishu.cn/581609/position/7673120186930022707/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/joyson/94311#/job/d795f082-2ee4-413d-912c-4c7270081bce
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://boke.jobs.feishu.cn/581609/position/7673119268296313129/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/campus/position/7673028675730852137/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/campus/position/7673028675730557225/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/campus/position/7673027051922360622/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus-recruitment/ahjy/168235#/job/21e857aa-319a-4afe-a489-b362aa928d4e
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU6282075e0dcad413c09efe26/pb/posDetail.html?postId=20228727&postType=campus
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/campus/position/7673028161059653951/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaopeng.jobs.feishu.cn/398875/position/7688617532757182783/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaopeng.jobs.feishu.cn/398875/position/7675313280256280873/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaopeng.jobs.feishu.cn/398875/position/7658239639400106278/detail
+03:49:45 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:45 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus-recruitment/smartmore/40506#/job/fd1fbb27-cdaa-4267-9305-956222c79fb0
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://li.jobs.feishu.cn/referral/campus/position/7672245396844480787/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://join.tencent-cloud.com#/job/2445d340-de81-49fa-a0e7-e0253d33fd17
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus-recruitment/yinhetongyong/165930#/job/51e6dbbe-3288-4a41-907a-3d59e64f36e4
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/smartsenstech1/56088#/job/5add63b2-3c2b-4220-b2c4-5dc565315aba
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/jingchi/2137#/job/17106dad-d26c-4944-b453-57ab06d78e3c
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://jobs.mihoyo.com/#/campus/position/8943
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://jobs.mihoyo.com/#/campus/position/9631
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://jobs.mihoyo.com/#/campus/position/9555
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://jobs.mihoyo.com/#/campus/position/9557
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/robosense/69887#/job/19117287-a76c-4739-9f08-53fe433ae136
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU62d915040dcad43c775ec12c/pb/posDetail.html?postId=61172154&postType=campus
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/nvidia/47111#/job/9c591255-4651-4664-9276-4634f68bb00d
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/nvidia/47111#/job/5eaec65d-4323-4d80-9f54-5c1eef36c56f
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/biren/44727#/job/5dd362d7-906a-4eb5-9ec9-aa579e7198c9
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/biren/44727#/job/4f0ca6d8-6bce-4237-b520-f97ae2877533
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://bambulab.jobs.feishu.cn/campus/position/7667559045344528694/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/campus/position/7673027365039704329/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/campus/position/7685223240394721587/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/cyou-inc/42233#/job/9f1d3b6c-7eeb-48b2-88ff-ae97be1fc512
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaopeng.jobs.feishu.cn/398875/position/7695746411938728201/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaopeng.jobs.feishu.cn/398875/position/7680502473111275822/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/tuyoogame/71965#/job/c0ef62b8-e5a7-462d-82b1-ebc6ebaf3975
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/funplus01/147931#/job/c5b64633-1fca-44c4-a3eb-db149197af03
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://job.xiaohongshu.com/campus/position/21013?referer_code=0QR7KCI3CPJA
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://job.xiaohongshu.com/campus/position/22078?referer_code=0QR7KCI3CPJA
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://job.xiaohongshu.com/campus/position/22037?referer_code=0QR7KCI3CPJA
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://job.xiaohongshu.com/campus/position/22035?referer_code=0QR7KCI3CPJA
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://job.xiaohongshu.com/campus/position/22049?referer_code=0QR7KCI3CPJA
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://job.xiaohongshu.com/campus/position/21829?referer_code=0QR7KCI3CPJA
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaopeng.jobs.feishu.cn/398875/position/7658239698750671131/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://arashivision.jobs.feishu.cn/campus/position/7657143940584048939/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus-recruitment/yanfeng/45086#/job/ea4a9365-49cb-4fff-95d5-a6caa4032b49
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://smartlogictech.jobs.feishu.cn/referral/campus/position/7672275462387566858/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus-recruitment/ahjy/168235#/job/10478253-cae2-43f9-bd50-0c88d6b46167
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://x2-robot.jobs.feishu.cn/912130/position/7672737390577895731/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://kurogame.jobs.feishu.cn/campus/position/7674845716959529225/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/tesla/41460#/job/164338a8-d527-4026-8800-2f5f180bcae9
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/garena/148076#/job/ff433e5f-6ed9-44df-ae08-70bf3cd5fbb0
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/garena/148076#/job/dbaf9c15-dd91-433d-8bd8-73087414254c
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://jobs.sunrise-ai.com/campus/position/7673466401999685942/detail?share_token=MzsxNzg4Nzg4MDk5Njk2Ozc2ODI3NDM0MDM0NTc0OTczNTQ7MDsxLzI
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://li.jobs.feishu.cn/referral/campus/position/7675189381507107082/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://li.jobs.feishu.cn/referral/campus/position/7671223553434355987/detail
+03:49:46 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:46 [WARNING] 岗位详情自动补全失败或内容仍过短: https://li.jobs.feishu.cn/referral/campus/position/7671208834001553715/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://li.jobs.feishu.cn/referral/campus/position/7671187303042664755/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7681255943951190335/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7671294075379763465/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670928540578220294/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670924328497793343/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670923921634199850/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670891952493545755/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670890793439103295/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670890632957856019/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/39519af2-cdeb-42c6-a608-3dd8845082d1
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/bdc29ba3-b194-4598-8dda-2114127312a0
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/674e570c-dccd-44dd-94aa-25504ff8218e
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/8ef2cd0b-5458-494f-8206-c625b1684247
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/43b263b8-3e45-4156-aea7-ab2ea8059285
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/6d4cb7b2-774d-4beb-b177-09174b4e2f8c
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/b7f40437-564a-4273-a47f-7870c393359c
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/5477c718-4e5a-4019-9547-04b80696f109
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/0c3cc808-c677-4716-bb95-3e984a6410b7
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/abcd1171-7ed6-495e-84ce-ce0fa6f15dcc
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/3643131f-76b9-41b8-a7bc-77a899d05e54
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/bed3b19c-efd0-405b-9b42-dd3b5ed536e9
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/97c6fb22-180a-4b0e-ac10-b825dbf5d42d
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/ea232a81-3009-4bf6-b66d-c67bf6ba9825
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/33c4fe8a-f489-4045-9b19-d89af708d8f1
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/ab368353-4e3f-4493-9c7a-b2512f16a25e
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/1e73121b-63d1-481e-9b94-9db746683a04
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/8fe4776e-453f-4885-8111-05edead2fcd9
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670889861264967946/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/19117287-a76c-4739-9f08-53fe433ae136
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/3cf9e883-3061-477e-9989-19c65eb17a1d
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/c0ef62b8-e5a7-462d-82b1-ebc6ebaf3975
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/8316052f-1f61-40ae-ac11-2c5d08681ee7
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/66d1bd79-2cdf-4e62-95b2-aba452945118
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/f6bcbbf9-e569-41f3-acec-7d49a9b02410
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673027365039704329/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7685223240394721587/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673028704662456595/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673028675730852137/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673028675730557225/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673028161059653951/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673027342272416046/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673027294877632778/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673027074127776026/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673027074126891290/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673027059903973658/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673027051922360622/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673026960071559474/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673026946200406322/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus-recruitment/huolalahr/98660#/job/8573fa95-acf1-4b4c-8461-459d2501a6ba
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus-recruitment/huolalahr/98660#/job/28d4e2c1-652e-4499-ad5c-4488f89b370f
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/wps/41436#/job/2e2a4356-7b4e-43b2-b465-3b3012d4a7a2
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/wps/41436#/job/a9e78acd-c123-4486-8cc6-cb308813c392
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/wps/41436#/job/a0beb00d-743d-47f1-a98f-ec51cb1dce5e
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/wps/41436#/job/519e8431-85f2-4e2f-a081-49e4058fe3a3
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673026850813774118/detail
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU6282075e0dcad413c09efe26/pb/posDetail.html?postId=68203173&postType=campus
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU6282075e0dcad413c09efe26/pb/posDetail.html?postId=51917408&postType=campus
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU62d915040dcad43c775ec12c/pb/posDetail.html?postId=16166048&postType=campus
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU62d915040dcad43c775ec12c/pb/posDetail.html?postId=73120046&postType=campus
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU62d669e0bef57c0f7dbabacf/pb/posDetail.html?postId=31381141&postType=campus
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU62d669e0bef57c0f7dbabacf/pb/posDetail.html?postId=75817238&postType=campus
+03:49:47 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:47 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU6282075e0dcad413c09efe26/pb/posDetail.html?postId=26475676&postType=campus
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU6282075e0dcad413c09efe26/pb/posDetail.html?postId=65244874&postType=campus
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://join.tencent-cloud.com#/job/ccc404f7-a4fe-4b41-ad0f-fc6fbee750fb
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/smartsenstech1/56088#/job/3091b7dc-1090-450b-8e28-303be6784af0
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/lusterinc/44882#/job/d263ef68-7814-479f-89fd-a6c8b9a74afd
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/lusterinc/44882#/job/33048d2e-4962-4a1f-a130-425e2709f5ca
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/campus/position/7678154498359691566/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://bambulab.jobs.feishu.cn/campus/position/7670503672741120283/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/cambricon/44201#/job/318a6043-6737-4208-a224-9feaf1b7f222
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/cambricon/44201#/job/f37cb96e-0247-4e8a-92b0-3ebdf9863df3
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://bambulab.jobs.feishu.cn/campus/position/7644880847426062635/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/campus/position/7673027238186535206/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/aftershokzhr/36940#/job/c3fea5d5-0e4e-4f0b-ac07-82174c8060a4
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/tuyoogame/71965#/job/83a4d528-124b-4d03-a543-bccb69976e2b
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus-recruitment/maipu/45544#/job/874f35a9-91ae-4234-81a9-128809839787
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/funplus01/147931#/job/017be264-dd25-4714-8603-211a41889efe
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://job.ronds.com/campus-recruitment/anhuirohgzhirixin/73950#/job/febcf692-664e-4238-83e5-251b3f0f6cea
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://job.xiaohongshu.com/campus/position/22063?referer_code=0QR7KCI3CPJA
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://job.xiaohongshu.com/campus/position/22046?referer_code=0QR7KCI3CPJA
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://wecruit.hotjob.cn/SU6282075e0dcad413c09efe26/pb/posDetail.html?postId=61462449&postType=campus
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://yesv-desaysv.jobs.feishu.cn/campus/position/7675296040644659506/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://yesv-desaysv.jobs.feishu.cn/campus/position/7675295960172022058/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://zpxz.hytera.com/#/job/f4372f12-912e-44a7-a89e-08a36e591161
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://zpxz.hytera.com/#/job/9c170b98-a615-4e8b-9409-52aa2252d549
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://zpxz.hytera.com/#/job/792c59ff-d45d-4f6a-b966-2f06c8583cf2
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://zpxz.hytera.com/#/job/58e96899-102f-4f56-b74f-4141e60b93e5
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://zpxz.hytera.com/#/job/785cc46c-549e-4358-9c44-1af1096b1990
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/su/vjlqkz#/job/ba78a112-237c-4f0a-9a6e-5dca8b70b2a5
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/recommendation-apply/cambricon/46261#/job/318a6043-6737-4208-a224-9feaf1b7f222
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/recommendation-apply/cambricon/46261#/job/f37cb96e-0247-4e8a-92b0-3ebdf9863df3
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/hytera/182194#/job/9e873385-9360-4e5b-90e3-6c8070552c0e
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://arashivision.jobs.feishu.cn/campus/position/7663414660264446244/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://talent.aactechnologies.com/campus/position/7680120375531751690/detail?external_referral_code=8RY44XV
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/tesla/41460#/job/ee471cad-b02b-4730-8a0a-0e17085444bc
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/garena/148076#/job/240f5579-3b92-446c-997a-ec58279fdb80
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://talent.aactechnologies.com/campus/position/7680120313125275931/detail?external_referral_code=8RY44XV
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://li.jobs.feishu.cn/referral/campus/position/7696773835537811721/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://li.jobs.feishu.cn/referral/campus/position/7672067952426567979/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7671294631557089563/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7671294026435856667/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7671129167391459638/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670931128899537193/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670930894542965055/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670910106586417446/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/163a41a4-52f1-4e04-8647-9b7605898d19
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/b4f5fb26-e549-44d8-b6ee-64b852b9704a
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/aedbce5e-4653-4f8b-a201-8aaa77026993
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/99631df3-7455-4307-97f2-e33b2bf69fd6
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/fdd14c05-ad20-4157-88d8-cf6ea189637d
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/43a6c424-0f18-47f2-b847-b361b77f5cac
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/robosense/69887#/job/e410a642-bdfd-4b17-b37e-3c0f6fcd2658
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/zuoyebang/39595#/job/80e97f59-9ee4-43a5-8bab-2c3c7c0a2a46
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/zuoyebang/39595#/job/c3c6fbef-a742-4ae8-a942-b52d6b2810c6
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/zuoyebang/39595#/job/b5cd2bf9-0e0b-435d-83bc-c02b62e5b2b0
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/zuoyebang/39595#/job/d65f8acc-0bd9-4c65-bd5d-ac4548dce5eb
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/4e91fe9a-2ada-43c1-b8ab-bd0acf3e4409
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/4d1b15df-bbf6-4ec2-9926-89ba6e283476
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/a20ac1dc-900e-4005-9e5b-9333a0f45d4d
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/83a4d528-124b-4d03-a543-bccb69976e2b
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://xiaomi.jobs.f.mioffice.cn/campus/position/7670890705175726345/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/ead2c889-434c-4bd9-8dcb-9874eb0b03a8
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/a2a7e3db-5d84-4df1-a923-5625344aa512
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/m/campus_apply/tuyoogame/146219#/job/77871154-2f06-4c5c-8728-13ea2223fed9
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7687434851364555071/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7678158229625784619/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7678154498359691566/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7678153484214716678/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673028696329390342/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673028696329095430/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673026960070674738/detail
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/wps/41436#/job/70aba7be-64d0-4e4e-8d0f-247a530209fb
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/wps/41436#/job/7134a5ef-fcd6-4f05-bb04-eace9d481a28
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/wps/41436#/job/cfef3f50-4c7b-41a7-8d72-4351b0d53721
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://app.mokahr.com/campus_apply/wps/41436#/job/3b4db58f-1457-45b2-95d2-67920d93c3fa
+03:49:48 [ERROR] 未安装 playwright。请运行：pip install -r requirements.txt && playwright install chromium
+03:49:48 [WARNING] 岗位详情自动补全失败或内容仍过短: https://nio.jobs.feishu.cn/referral/campus/position/7673026953792522522/detail
+03:49:49 [WARNING] 跳过 207 个仍缺少完整 JD 的岗位，不调用 Pro
+03:49:49 [WARNING] Pro 硬限制生效：候选 1800 个，本次仅分析前 40 个，其余留待后续确认
+03:49:49 [WARNING] Pro 调用预算：本次 40 个岗位，单条输出上限 1200 Token，输出上限合计 48000 Token（不含输入）
+03:49:49 [ERROR] DeepSeek API 分析失败 [银河通用 机器人系统软件开发工程师-27届校招]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [NVIDIA 【2027校园招聘】机器人软件工程师 -  部署与人形机器人方向]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [NVIDIA 【2027校园招聘】机器人软件工程师 - 仿真方向]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [汇川技术 【27校招 - 通用研发】CAD/CAM软件工程师]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [华橙网络 【华橙网络】2027届C++客户端开发工程师(J10548)]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [埃夫特 27校招-工业软件测试工程师]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [东莞新能源科技 2027届秋招 机器视觉软件开发工程师]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [华睿科技 【27届】嵌入式软件工程师(机器视觉)]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [云鲸智能 机器人软件开发工程师（27届）(J14463)]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [塞力斯 凤凰技术-机器人软件测试助理工程师【2027届校招】(J21015)]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - Cross Platform]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:49 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 番茄小说/红果短剧/番茄畅听]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 飞书]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [思谋科技 【27届】机器人软件工程师]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 系统软件工程师 - AI算力基础设施]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 AI应用客户端开发工程师 - 剪映CapCut]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师（AI Music） - TikTok研发]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 飞连]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 Agent客户端开发工程师（剪映PC） - 剪映CapCut]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师（PC端基础剪辑） - 剪映CapCut]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 游戏客户端开发工程师 - 绿洲工作室]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 番茄小说/红果短剧/番茄畅听]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 中国交易与广告]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 C++客户端开发工程师 - 抖音研发]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 中国交易与广告]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师（商业化方向） - 剪映CapCut]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 抖音研发]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 抖音用户产品]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 C++客户端开发工程师 - 飞书]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 飞书]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 AI应用客户端开发工程师（即梦AI） - 剪映CapCut]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师（内容生态） - 剪映CapCut]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 财经业务]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 游戏客户端开发工程师 - Glow Studio]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 C++客户端开发工程师 - 飞书]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - APM]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师 - 业务中台]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师（创作Agent） - 剪映CapCut]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [ERROR] DeepSeek API 分析失败 [字节跳动 客户端开发工程师（图像Agent） - 剪映CapCut]: 未找到 DEEPSEEK_API_KEY，请在系统环境变量或项目 .env 中配置
+03:49:50 [INFO] 细分析完成：成功 0 / 失败(下次重试) 40（并发 4 worker）
+03:49:55 [INFO] 评分同步完成：AI精析保留 0、Pro重算修正 0、五维规则新增/更新 22（缓存复用 2978）、JD待补全跳过 1040、资格不符跳过 3796
+03:50:16 [INFO] 模块一(技能栈与项目推荐)同步完成：版本=sp-35284538，指纹=sk-8b2e83e7
+03:50:16 [INFO] 模块二(社区WLB证据审核)同步完成：覆盖公司=20，有效证据=23
+03:50:25 [INFO] 综合建议闭环完成：建议版本=adv-54236345，画像版本=v-c5423e95，策略=refresh_market_data

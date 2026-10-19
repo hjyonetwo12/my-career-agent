@@ -190,6 +190,59 @@ def regenerate_advice_api():
     })
 
 
+@app.route("/api/skill-projects/refresh", methods=["POST", "GET"])
+def refresh_skill_projects_api():
+    """手动触发模块一（高频技能栈与实现项目推荐）刷新。"""
+    import skill_projects
+    from profile_config import load_profile
+    snapshot, _ = _get_snapshot()
+    try:
+        prof = load_profile(_ROOT / "profile.yaml")
+    except ValueError as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 400
+    conn = db_module.init_db(str(_DB_PATH))
+    try:
+        res = skill_projects.update_or_get_skill_projects_report(
+            snapshot["items"], profile=prof, conn=conn, force_refresh=True
+        )
+    finally:
+        conn.close()
+    with _page_cache_lock:
+        _page_cache["html"] = None
+    return jsonify({
+        "ok": True,
+        "version_info": res.get("version_info", {}),
+        "projects_count": len(res.get("tier_b_projects") or []),
+    })
+
+
+@app.route("/api/wlb-audit/refresh", methods=["POST", "GET"])
+def refresh_wlb_audit_api():
+    """手动触发模块二（社区讨论 WLB 证据审核）刷新。"""
+    import wlb_community
+    from profile_config import load_profile
+    snapshot, _ = _get_snapshot()
+    try:
+        prof = load_profile(_ROOT / "profile.yaml")
+    except ValueError as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 400
+    conn = db_module.init_db(str(_DB_PATH))
+    try:
+        res = wlb_community.update_or_get_wlb_community_audits(
+            snapshot["items"], profile=prof, conn=conn, force_refresh=True
+        )
+    finally:
+        conn.close()
+    with _page_cache_lock:
+        _page_cache["html"] = None
+    return jsonify({
+        "ok": True,
+        "version_info": res.get("version_info", {}),
+        "audited_companies_count": (res.get("summary_stats") or {}).get("audited_companies_count", 0),
+        "total_evidence_items": (res.get("summary_stats") or {}).get("total_valid_evidences", 0),
+    })
+
+
 @app.route("/api/health")
 def health():
     return jsonify({"ok": True, "build": _BUILD_ID})

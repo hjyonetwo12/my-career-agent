@@ -1,0 +1,3728 @@
+{
+  "company_audits": {
+    "优必选": {
+      "company": "优必选",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "优必选 深圳 Java 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "优必选 深圳 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "优必选 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(优必选 OR UBTECH) 深圳 Java 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "优必选 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "优必选 深圳 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "优必选",
+        "queries_generated": 6,
+        "seed_hits": 1,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "优必选",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "广东省·深圳市"
+        ],
+        "sampled_titles": [
+          "Java 开发工程师(J18700)",
+          "大模型算法研究员（优核U-Core计划）(J18717)",
+          "世界模型算法研究员（优核U-Core计划）(J18715)",
+          "具身强化算法研究员（优核U-Core计划）(J18716)",
+          "强化学习算法研究员（优核U-Core计划）(J18718)"
+        ],
+        "sampled_jd_urls": [
+          "https://ubtrobot.zhiye.com/campus/detail?jobAdId=eb84fe20-d4bd-4571-a50d-ed3837d40e4e",
+          "https://ubtrobot.zhiye.com/campus/detail?jobAdId=489da7a4-583a-4751-80c4-9540d69ee3e5",
+          "https://ubtrobot.zhiye.com/campus/detail?jobAdId=cca78dad-3f84-4024-a6e6-d8b50a103372"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 1,
+        "rejected_noise_samples": [
+          {
+            "title": "在优衣库工作是怎样的体验？ - 知乎（搜索词近似噪声样本）",
+            "url": "https://www.zhihu.com/question/32097850/answer/1311688369",
+            "reason": "讨论正文未出现目标公司『优必选』或其已知别名，拒绝强行关联。"
+          }
+        ],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『优必选』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『Java 开发工程师(J18700)』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "汇川技术": {
+      "company": "汇川技术",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "mixed_controversial",
+      "verdict_label": "3. 观点分歧较大（不同来源、不同时期或不同部门的说法不一致）",
+      "evidence_confidence": "medium_high (中高 · 含 2 条同城/同岗近期证据，均值权重 0.71)",
+      "explainable_numeric_index": 38,
+      "score_rule_explanation": "参考指数 38/100（计算规则：基准 65 分 + 正向证据 0×10 - 负向信号 1×12 - JD高压词15；该数值仅作排序辅助，必须结合下方证据置信度与分歧说明阅读）。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "汇川技术 南京 算法 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "汇川技术 南京 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "汇川技术 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(汇川技术 OR 苏州汇川) 南京 算法 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "汇川技术 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "汇川技术 南京 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "汇川技术",
+        "queries_generated": 6,
+        "seed_hits": 3,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "汇川技术",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "南京市",
+          "苏州市",
+          "苏州市 / 南京市",
+          "苏州市 / 深圳市",
+          "苏州市 / 深圳市 / 西安市"
+        ],
+        "sampled_titles": [
+          "【27校招 - 数字化】数字化应用开发工程师",
+          "【27校招 - 联合动力】嵌入式软件工程师（车载电源/电机控制器/底盘等）",
+          "【27校招 - 联合动力】电源控制算法工程师",
+          "【27校招 - 联合动力】电机控制算法工程师",
+          "【27校招-通用研发】可靠性工程师"
+        ],
+        "sampled_jd_urls": [
+          "https://recruit.inovance.com/#/jobs/019fefe6-0e89-77b8-bc55-05a87411e6b4",
+          "https://recruit.inovance.com/#/jobs/019f4bc9-a3d4-7e6c-81db-9ab18ecab94b",
+          "https://recruit.inovance.com/#/jobs/019f5a55-a4a3-70b9-9297-c527bab58be1"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [
+          "高强度"
+        ],
+        "jd_fact_summary": "【招聘原文事实】JD 显式包含高压/加班/出差要求（原文提及：“高强度”）",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 3,
+        "tier1_exact_count": 2,
+        "recent_evidence_count": 2,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "汇川技术怎么样？ - 知乎",
+            "url": "https://www.zhihu.com/question/657739868",
+            "platform": "知乎",
+            "published_at": "2024-05-31",
+            "crawled_at": "2026-10-19",
+            "snippet": "围绕汇川技术近年业务扩张下的研发工作强度、薪酬绩效回报与事业部差异展开讨论。",
+            "relevant_comments": [
+              "正面反馈认可其在工控行业的龙头地位与应届生培养体系；负面或审慎反馈提到部分车载/新能源相关业务线工作节奏偏快、有平时加班情况。"
+            ],
+            "mentioned_cities": [
+              "苏州",
+              "深圳"
+            ],
+            "mentioned_depts": [],
+            "match_tier": "tier_1_exact_role_city",
+            "match_tier_label": "1. 同公司 + 同城(苏州,深圳) + 相似研发岗 (2024-05-31)",
+            "confidence_weight": 0.9,
+            "is_valid_target": true,
+            "is_outdated": false,
+            "polarity": "mixed",
+            "polarity_label": "正负分歧/视部门而定",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "management_and_schedule",
+              "intern_boundary_experience",
+              "department_variance"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "4. 管理方式、考勤打卡与工作安排",
+              "5. 实习生的工作体验与工作边界",
+              "6. 部门、业务线或城市差异"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎公开问答；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中高（发布于 2024-05-31，包含具体城市/岗位上下文与工时细节）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "社区个体经验存在幸存者偏差，建议在面试中向直属主管二次核实"
+          },
+          {
+            "title": "在汇川技术工作是什么样的体验？23秋招offer，坐标研发部门，base苏州",
+            "url": "https://www.iivd.net/thread-82992-1-1.html",
+            "platform": "公开职场论坛",
+            "published_at": "2023-10-15",
+            "crawled_at": "2026-10-19",
+            "snippet": "23秋招拿到汇川技术苏州研发部门offer，公开讨论苏州研发基地的工作体验、加班频次与部门管理方式。",
+            "relevant_comments": [
+              "讨论提及汇川技术作为工业自动化与工控龙头，苏州研发中心技术氛围较扎实，但不同事业部（通用自动化、新能源汽车电控、数字化）赶项目节点时存在加班差异。"
+            ],
+            "mentioned_cities": [
+              "苏州"
+            ],
+            "mentioned_depts": [
+              "苏州研发部门"
+            ],
+            "match_tier": "tier_1_exact_role_city",
+            "match_tier_label": "1. 同公司 + 同城(苏州) + 相似研发岗 (2023-10-15)",
+            "confidence_weight": 0.78,
+            "is_valid_target": true,
+            "is_outdated": false,
+            "polarity": "negative",
+            "polarity_label": "负面/加班预警信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "release_cycle_pressure",
+              "management_and_schedule",
+              "department_variance"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "3. 项目上线、交付和版本周期工作压力",
+              "4. 管理方式、考勤打卡与工作安排",
+              "6. 部门、业务线或城市差异"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（公开帖子讨论；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中高（发布于 2023-10-15，包含具体城市/岗位上下文与工时细节）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "社区个体经验存在幸存者偏差，建议在面试中向直属主管二次核实"
+          },
+          {
+            "title": "苏州汇川技术怎么样呢？ - 知乎",
+            "url": "https://www.zhihu.com/question/423680743",
+            "platform": "知乎",
+            "published_at": "2020-09-30",
+            "crawled_at": "2026-10-19",
+            "snippet": "针对苏州汇川技术的应届生入职体验、日常下班时间、周末休息及园区工作环境进行问答分享。",
+            "relevant_comments": [
+              "回答指出苏州总部研发岗相比一线互联网大厂更为稳健，但并非完全朝九晚五不加班，视所在产品线交付周期而定。"
+            ],
+            "mentioned_cities": [
+              "苏州"
+            ],
+            "mentioned_depts": [],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:苏州，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "mixed",
+            "polarity_label": "正负分歧/视部门而定",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "weekend_holiday_work",
+              "release_cycle_pressure",
+              "intern_boundary_experience",
+              "positive_wlb_experience",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "2. 周末或节假日工作 (双休/大小周)",
+              "3. 项目上线、交付和版本周期工作压力",
+              "5. 实习生的工作体验与工作边界",
+              "7. 正面 WLB 与福利休假体验",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎公开问答；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中低（发布于 2020-09-30，距今约 6 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2020-09-30（距今约 6 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】关于『汇川技术』的社区口碑存在明显分歧或时期/部门差异（例如：传统稳定事业部 vs 新兴冲刺业务线，或历史高强度 vs 近期反过度加班新规），不能简单贴上“全公司好”或“全公司差”的标签。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 1 条 / 分歧或中性 2 条；近3年内证据 2 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『【27校招 - 数字化】数字化应用开发工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "中国联通": {
+      "company": "中国联通",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "outdated_evidence",
+      "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
+      "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "有效社区证据仅 1 条（样本单薄），不生成数值型 WLB 分数，仅展示定性证据摘录。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "中国联通 北京 数据 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "中国联通 北京 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "中国联通 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(中国联通 OR 联通软件研究院) 北京 数据 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "中国联通 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "中国联通 北京 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "中国联通",
+        "queries_generated": 6,
+        "seed_hits": 1,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "中国联通",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "兰州-七里河区",
+          "北京-东城区",
+          "南京-秦淮区",
+          "天津-东丽区",
+          "张家口-怀来县"
+        ],
+        "sampled_titles": [
+          "研发工程师",
+          "数据工程师",
+          "软件开发工程师",
+          "AI算法工程师",
+          "人工智能研发工程师"
+        ],
+        "sampled_jd_urls": [
+          "https://www.iguopin.com/job/detail?id=215284640758367770",
+          "https://www.iguopin.com/job/detail?id=215284643996370458",
+          "https://www.iguopin.com/job/detail?id=218162398584899110"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 1,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "济南联通软件研究院怎么样 / 联通系统集成西安研发中心待遇怎么样？ - 知乎",
+            "url": "https://www.zhihu.com/question/317904125",
+            "platform": "知乎",
+            "published_at": "2020-10-30",
+            "crawled_at": "2026-10-19",
+            "snippet": "对比华为等高强度民企与联通软件研究院/省公司数字化研发岗的加班情况、薪酬职级体系（1-17岗）及工作稳定性。",
+            "relevant_comments": [
+              "普遍反馈运营商研发院/省本部技术岗双休稳定、加班显著少于互联网大厂，适合追求WLB的应届生；但也指出国企职级晋升较慢、部分政企支撑团队存在文书汇报与流程性事务。"
+            ],
+            "mentioned_cities": [
+              "济南",
+              "西安",
+              "北京",
+              "深圳",
+              "广州"
+            ],
+            "mentioned_depts": [
+              "联通软件研究院",
+              "系统集成研发中心"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:济南,西安，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "positive",
+            "polarity_label": "正面/作息稳健信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "weekend_holiday_work",
+              "management_and_schedule",
+              "intern_boundary_experience",
+              "positive_wlb_experience",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "2. 周末或节假日工作 (双休/大小周)",
+              "4. 管理方式、考勤打卡与工作安排",
+              "5. 实习生的工作体验与工作边界",
+              "7. 正面 WLB 与福利休假体验",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎公开问答；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中低（发布于 2020-10-30，距今约 6 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2020-10-30（距今约 6 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】目前检索到的『中国联通』社区讨论主要发布于 4 年以前，存在明显时效性局限，不能直接等同于 2026–2027 届入职后的真实作息。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 1 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『研发工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "柏楚电子": {
+      "company": "柏楚电子",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "outdated_evidence",
+      "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
+      "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "有效社区证据仅 1 条（样本单薄），不生成数值型 WLB 分数，仅展示定性证据摘录。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "柏楚电子 上海 Java 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "柏楚电子 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "柏楚电子 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(柏楚电子 OR 上海柏楚) 上海 Java 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "柏楚电子 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "柏楚电子 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "柏楚电子",
+        "queries_generated": 6,
+        "seed_hits": 1,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "柏楚电子",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海市",
+          "上海市·闵行区"
+        ],
+        "sampled_titles": [
+          "27校招-软件开发工程师(J10808)",
+          "27校招-机器人算法工程师(J10780)",
+          "27校招-java开发工程师(J10855)",
+          "27校招-技术支持工程师（工业软件）(J10785)",
+          "27校招-算法工程师(J10790)"
+        ],
+        "sampled_jd_urls": [
+          "https://fscut.zhiye.com/campus/detail?jobAdId=1063c842-77ea-494e-a882-3a63205af72c",
+          "https://fscut.zhiye.com/campus/detail?jobAdId=2548f22e-705e-49d3-ab73-ab2e5d48bbe3",
+          "https://fscut.zhiye.com/campus/detail?jobAdId=5d94fdd3-be50-4b60-af67-a348cf0db32f"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 1,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "柏楚电子怎么样？ - 知乎",
+            "url": "https://www.zhihu.com/question/359051902",
+            "platform": "知乎",
+            "published_at": "2019-12-02",
+            "crawled_at": "2026-10-19",
+            "snippet": "坐标上海闵行紫竹高新区，激光切割控制系统科创板上市企业柏楚电子的研发工作体验、薪酬福利与团队文化讨论。",
+            "relevant_comments": [
+              "讨论提到公司深耕激光加工控制工业软件与CAD/CAM几何算法，利润率高、园区环境好，研发团队以C++和算法为主，但公开讨论样本较少且主帖时间较早（2019年底）。"
+            ],
+            "mentioned_cities": [
+              "上海"
+            ],
+            "mentioned_depts": [
+              "激光控制研发"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:上海，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "neutral",
+            "polarity_label": "中性/经验讨论",
+            "theme_tags": [
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎公开问答；不以搜索排名冒充热度）",
+              "relevance": "中（讨论公司整体研发氛围与待遇）",
+              "credibility": "中低（发布于 2019-12-02，距今约 7 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2019-12-02（距今约 7 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】目前检索到的『柏楚电子』社区讨论主要发布于 4 年以前，存在明显时效性局限，不能直接等同于 2026–2027 届入职后的真实作息。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 1 条；近3年内证据 0 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『27校招-软件开发工程师(J10808)』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "合合信息": {
+      "company": "合合信息",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "outdated_evidence",
+      "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
+      "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "有效社区证据仅 1 条（样本单薄），不生成数值型 WLB 分数，仅展示定性证据摘录。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "合合信息 上海 测试 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "合合信息 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "合合信息 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(合合信息 OR 扫描全能王) 上海 测试 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "合合信息 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "合合信息 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "合合信息",
+        "queries_generated": 6,
+        "seed_hits": 1,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "合合信息",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海市"
+        ],
+        "sampled_titles": [
+          "【27校招】Agent开发工程师(J14436)",
+          "27届校招-AI全栈开发工程师(J14430)",
+          "27届校招-大模型算法工程师(J14380)",
+          "27届校招-测试工程师(J14407)",
+          "27届校招-AI软件开发工程师(J14404)"
+        ],
+        "sampled_jd_urls": [
+          "https://intsig.zhiye.com/campus/detail?jobAdId=a8af8876-5666-43e5-b26a-623ea9c1ae7f",
+          "https://intsig.zhiye.com/campus/detail?jobAdId=b63e05c4-5fc0-41fa-8db3-1e7a17836efc",
+          "https://intsig.zhiye.com/campus/detail?jobAdId=9cfac9d7-4eb0-48c0-96fa-8e17b152396c"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 1,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "简单询问一下上海合合信息公司IT 加班严重吗? - V2EX",
+            "url": "https://www.v2ex.com/t/670925",
+            "platform": "V2EX",
+            "published_at": "2020-05-12",
+            "crawled_at": "2026-10-19",
+            "snippet": "职场话题讨论：针对上海合合信息（名片全能王、扫描全能王母公司）IT与研发岗位的日常加班情况、上下班作息与团队工作节奏进行公开询问与经验交流。",
+            "relevant_comments": [
+              "社区跟帖讨论指出不同产品线（C端扫描全能王 vs B端智能文字识别/启信宝）节奏存在一定差异，整体属于上海中型盈利软件企业节奏，但该帖发布于2020年，距今已有一定年限。"
+            ],
+            "mentioned_cities": [
+              "上海"
+            ],
+            "mentioned_depts": [
+              "C端产品线",
+              "B端业务线"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:上海，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "negative",
+            "polarity_label": "负面/加班预警信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（V2EX 公开主题帖（搜索摘要未展示实时回复总数）；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中低（发布于 2020-05-12，距今约 6 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2020-05-12（距今约 6 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】目前检索到的『合合信息』社区讨论主要发布于 4 年以前，存在明显时效性局限，不能直接等同于 2026–2027 届入职后的真实作息。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 1 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『【27校招】Agent开发工程师(J14436)』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "贝壳": {
+      "company": "贝壳",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "positive_signal",
+      "verdict_label": "2. 存在较明确的正面信号（有相关且相对具体的双休/弹性/合规证据支持）",
+      "evidence_confidence": "medium_high (中高 · 含 1 条同城/同岗近期证据，均值权重 0.90)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "有效社区证据仅 1 条（样本单薄），不生成数值型 WLB 分数，仅展示定性证据摘录。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "贝壳 北京 算法 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "贝壳 北京 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "贝壳 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(贝壳 OR 贝壳找房) 北京 算法 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "贝壳 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "贝壳 北京 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "贝壳",
+        "queries_generated": 6,
+        "seed_hits": 1,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "贝壳",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "北京市"
+        ],
+        "sampled_titles": [
+          "研发工程师【2027届秋招】(J72264)",
+          "Agent算法工程师【2027届秋招】(J72260)",
+          "大模型算法工程师【2027届秋招】(J72259)",
+          "全模态算法工程师（Agent方向）【2027届秋招】(J72252)",
+          "空间智能算法工程师【2027届秋招】(J72250)"
+        ],
+        "sampled_jd_urls": [
+          "https://campus.ke.com/campus/detail?jobAdId=5a953c9f-b93c-4e29-9b32-8e0896ae6719",
+          "https://campus.ke.com/campus/detail?jobAdId=b5325d56-096c-4d41-a31e-a0105894402c",
+          "https://campus.ke.com/campus/detail?jobAdId=210349dd-e4f5-426a-94ef-80e4694fa06e"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [
+          "快节奏"
+        ],
+        "jd_fact_summary": "【招聘原文事实】JD 显式包含高压/加班/出差要求（原文提及：“快节奏”）",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 1,
+        "tier1_exact_count": 1,
+        "recent_evidence_count": 1,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "[25届校招内推] 贝壳找房秋招开启啦～～工作时间1075，无内卷文化 - V2EX",
+            "url": "https://www.v2ex.com/t/1066527",
+            "platform": "V2EX",
+            "published_at": "2024-08-20",
+            "crawled_at": "2026-10-19",
+            "snippet": "贝壳找房北京研发团队校招内推帖，提及团队作息为 10-7-5（早10点晚7点双休）、入职即享10天年假与三餐免费。",
+            "relevant_comments": [
+              "多条V2EX贝壳研发帖（含t/1039232、t/1066527）提及核心房客与基础研发团队作息相对规律（约10-7-5或10-8-5，双休），但需注意此类信息部分来自内部员工内推帖，可能存在正面滤镜。"
+            ],
+            "mentioned_cities": [
+              "北京"
+            ],
+            "mentioned_depts": [
+              "核心房客业务",
+              "基础研发"
+            ],
+            "match_tier": "tier_1_exact_role_city",
+            "match_tier_label": "1. 同公司 + 同城(北京) + 相似研发岗 (2024-08-20)",
+            "confidence_weight": 0.9,
+            "is_valid_target": true,
+            "is_outdated": false,
+            "polarity": "positive",
+            "polarity_label": "正面/作息稳健信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "weekend_holiday_work",
+              "management_and_schedule",
+              "intern_boundary_experience",
+              "positive_wlb_experience"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "2. 周末或节假日工作 (双休/大小周)",
+              "4. 管理方式、考勤打卡与工作安排",
+              "5. 实习生的工作体验与工作边界",
+              "7. 正面 WLB 与福利休假体验"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（V2EX 公开主题帖；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中（内部员工招聘/内推帖，含具体作息说明但可能带有招募正面滤镜）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "来源包含内推招募信息，需警惕宣传美化偏差"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】现有社区讨论与 JD 福利条款一致指向『贝壳』整体作息较为规范（双休有保障、强制加班较少），但仍需核实具体对接团队是否存在跨时区会议或发版赶工。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 1 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 1 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『研发工程师【2027届秋招】(J72264)』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "华橙网络": {
+      "company": "华橙网络",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "华橙网络 杭州 C++ 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "华橙网络 杭州 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "华橙网络 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(华橙网络 OR 乐橙) 杭州 C++ 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "华橙网络 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "华橙网络 杭州 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "华橙网络",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "华橙网络",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "浙江省·杭州市",
+          "浙江省·杭州市、陕西省·西安市"
+        ],
+        "sampled_titles": [
+          "【华橙网络】2027届C++客户端开发工程师(J10548)",
+          "【华橙网络】2027届嵌入式软件工程师(J10545)",
+          "【华橙网络】2027届Agent开发工程师（杭州）(J10557)",
+          "【华橙网络】2027届智能算法工程师(J10547)",
+          "【华橙网络】2027届音频算法工程师(J10549)"
+        ],
+        "sampled_jd_urls": [
+          "https://job.imou.com/campus/detail?jobAdId=4a430fed-1c3f-42cb-97bb-7d114b083a04",
+          "https://job.imou.com/campus/detail?jobAdId=e876e43a-d040-42c0-9264-87e5075e2e6d",
+          "https://job.imou.com/campus/detail?jobAdId=ac1be841-d901-4b6e-9825-dd2faf505d17"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『华橙网络』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『【华橙网络】2027届C++客户端开发工程师(J10548)』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "阳光保险": {
+      "company": "阳光保险",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "阳光保险 北京 Java 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "阳光保险 北京 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "阳光保险 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "阳光保险 北京 Java 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "阳光保险 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "阳光保险 北京 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "阳光保险",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "阳光保险",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "北京市",
+          "北京市·通州区",
+          "广东省·深圳市"
+        ],
+        "sampled_titles": [
+          "数科Java开发工程师｜2027科技培训生(J21436)",
+          "数科数据挖掘工程师｜2027科技培训生(J19562)",
+          "数科AI应用算法工程师｜2027科技培训生(J19560)",
+          "集团应用系统开发工程师｜2027科技培训生(J22133)",
+          "产险智能应用研发岗｜2027科技培训生(J22099)"
+        ],
+        "sampled_jd_urls": [
+          "https://sunzhaopin.sinosig.com/campus/detail?jobAdId=e3b7dfe1-16db-4428-a30c-a17c42159444",
+          "https://sunzhaopin.sinosig.com/campus/detail?jobAdId=ba8065b6-6d41-476f-a466-78cea9b98d31",
+          "https://sunzhaopin.sinosig.com/campus/detail?jobAdId=b8891261-1398-47b5-a576-7bf058723113"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『阳光保险』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『数科Java开发工程师｜2027科技培训生(J21436)』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "字节跳动": {
+      "company": "字节跳动",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "mixed_controversial",
+      "verdict_label": "3. 观点分歧较大（不同来源、不同时期或不同部门的说法不一致）",
+      "evidence_confidence": "medium_high (中高 · 含 1 条同城/同岗近期证据，均值权重 0.68)",
+      "explainable_numeric_index": 53,
+      "score_rule_explanation": "参考指数 53/100（计算规则：基准 65 分 + 正向证据 0×10 - 负向信号 1×12 ；该数值仅作排序辅助，必须结合下方证据置信度与分歧说明阅读）。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "字节跳动 上海 测试 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "字节跳动 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "字节跳动 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(字节跳动 OR 字节) 上海 测试 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "字节跳动 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "字节跳动 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "字节跳动",
+        "queries_generated": 6,
+        "seed_hits": 2,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "字节跳动",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海",
+          "北京",
+          "北京 / 上海 / 成都",
+          "北京 / 上海 / 杭州",
+          "深圳 / 北京"
+        ],
+        "sampled_titles": [
+          "AI全栈工程师 - 抖音用户产品",
+          "AI全栈研发工程师 - AI算力基础设施",
+          "全栈开发/测试开发工程师（用户增长） - TikTok研发",
+          "全栈开发工程师（用户增长与数据） - 中国交易与广告",
+          "Agentic RL For Long Horizon Task-剪映数据与智能团队"
+        ],
+        "sampled_jd_urls": [
+          "https://jobs.bytedance.com/campus/position/7668203832703781125/detail",
+          "https://jobs.bytedance.com/campus/position/7664436511980636421/detail",
+          "https://jobs.bytedance.com/campus/position/7668564191087855925/detail"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 2,
+        "tier1_exact_count": 1,
+        "recent_evidence_count": 1,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "字节跳动招聘26届实习生（以转正为招聘要求和目标），上海 - V2EX",
+            "url": "https://www.v2ex.com/t/1128872",
+            "platform": "V2EX",
+            "published_at": "2025-04-29",
+            "crawled_at": "2026-10-19",
+            "snippet": "字节跳动IaaS与基础架构团队招募研发实习生（ByteIntern），介绍团队工程实践与转正考核标准。",
+            "relevant_comments": [
+              "团队内推帖说明取消大小周后一般为双休（10-7/9-5或10-8/9-5视业务线而定），但核心业务如抖音/TikTok版本迭代期仍有较高排期压力。"
+            ],
+            "mentioned_cities": [
+              "上海",
+              "北京",
+              "杭州"
+            ],
+            "mentioned_depts": [
+              "IaaS",
+              "基础架构"
+            ],
+            "match_tier": "tier_1_exact_role_city",
+            "match_tier_label": "1. 同公司 + 同城(上海,北京) + 相似研发岗 (2025-04-29)",
+            "confidence_weight": 0.9,
+            "is_valid_target": true,
+            "is_outdated": false,
+            "polarity": "negative",
+            "polarity_label": "负面/加班预警信号",
+            "theme_tags": [
+              "weekend_holiday_work",
+              "release_cycle_pressure",
+              "management_and_schedule",
+              "intern_boundary_experience",
+              "department_variance"
+            ],
+            "theme_labels": [
+              "2. 周末或节假日工作 (双休/大小周)",
+              "3. 项目上线、交付和版本周期工作压力",
+              "4. 管理方式、考勤打卡与工作安排",
+              "5. 实习生的工作体验与工作边界",
+              "6. 部门、业务线或城市差异"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（V2EX 酷工作节点公开帖；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中（内部员工招聘/内推帖，含具体作息说明但可能带有招募正面滤镜）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "来源包含内推招募信息，需警惕宣传美化偏差"
+          },
+          {
+            "title": "我在字节跳动实习的三个月 - V2EX",
+            "url": "https://www.v2ex.com/t/639004",
+            "platform": "V2EX",
+            "published_at": "2020-01-18",
+            "crawled_at": "2026-10-19",
+            "snippet": "本科大三学生分享在字节跳动后端开发实习三个月的真实日常作息、Mentor带教、代码评审规范与工作强度。",
+            "relevant_comments": [
+              "正面提到技术基建完善、文档齐全、实习生能接触真实高并发系统且三餐下午茶福利好；同时也指出日常下班时间普遍在晚8:30–10:00之间，节奏较快。"
+            ],
+            "mentioned_cities": [
+              "北京",
+              "上海"
+            ],
+            "mentioned_depts": [
+              "后端研发"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:北京,上海，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "mixed",
+            "polarity_label": "正负分歧/视部门而定",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "intern_boundary_experience",
+              "positive_wlb_experience",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "5. 实习生的工作体验与工作边界",
+              "7. 正面 WLB 与福利休假体验",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "较高（V2EX 多页热门帖）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中低（发布于 2020-01-18，距今约 6 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2020-01-18（距今约 6 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】关于『字节跳动』的社区口碑存在明显分歧或时期/部门差异（例如：传统稳定事业部 vs 新兴冲刺业务线，或历史高强度 vs 近期反过度加班新规），不能简单贴上“全公司好”或“全公司差”的标签。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 1 条 / 分歧或中性 1 条；近3年内证据 1 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『AI全栈工程师 - 抖音用户产品』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "bilibili": {
+      "company": "bilibili",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "bilibili 上海 Agent 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "bilibili 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "bilibili 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(bilibili OR 哔哩哔哩) 上海 Agent 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "bilibili 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "bilibili 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "bilibili",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "bilibili",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海",
+          "北京/上海"
+        ],
+        "sampled_titles": [
+          "基础架构研发工程师【2027届】",
+          "Agent开发工程师【2027届】",
+          "游戏服务端工程师【2027届】",
+          "【B-UP】AI Infra模型开发工程师（校招）",
+          "【B-UP】视频生成算法工程师（校招）"
+        ],
+        "sampled_jd_urls": [
+          "https://jobs.bilibili.com/campus/positions/29681",
+          "https://jobs.bilibili.com/campus/positions/30904",
+          "https://jobs.bilibili.com/campus/positions/29745"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『bilibili』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『基础架构研发工程师【2027届】』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "OPPO": {
+      "company": "OPPO",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "mixed_controversial",
+      "verdict_label": "3. 观点分歧较大（不同来源、不同时期或不同部门的说法不一致）",
+      "evidence_confidence": "medium_high (中高 · 含 1 条同城/同岗近期证据，均值权重 0.78)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "有效社区证据仅 1 条（样本单薄），不生成数值型 WLB 分数，仅展示定性证据摘录。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "OPPO 成都 C++ 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "OPPO 成都 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "OPPO 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(OPPO OR 欧加) 成都 C++ 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "OPPO 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "OPPO 成都 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "OPPO",
+        "queries_generated": 6,
+        "seed_hits": 1,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "OPPO",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "成都市,深圳市",
+          "成都市,深圳市,上海市",
+          "成都市,深圳市,东莞市",
+          "成都市,深圳市,南京市",
+          "深圳市"
+        ],
+        "sampled_titles": [
+          "全栈开发工程师",
+          "AI全栈工程师",
+          "多媒体开发工程师（C++）",
+          "音频算法工程师",
+          "算法测试开发工程师"
+        ],
+        "sampled_jd_urls": [
+          "https://careers.oppo.com/university/oppo/campus/post/1724",
+          "https://careers.oppo.com/university/oppo/campus/post/1849",
+          "https://careers.oppo.com/university/oppo/campus/post/1761"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 1,
+        "tier1_exact_count": 1,
+        "recent_evidence_count": 1,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "OPPO软件开发岗工作弹性打卡半个小时，加班偏多 - 牛客网",
+            "url": "https://www.nowcoder.com/discuss/536141254409588736",
+            "platform": "牛客网",
+            "published_at": "2023-09-26",
+            "crawled_at": "2026-10-19",
+            "snippet": "在OPPO软件开发岗工作两年多的员工分享：标准工作时间8:30-17:30（弹性打卡半小时，午休两小时），一般双休，但部分系统/业务部门日常加班偏多，有加班餐。",
+            "relevant_comments": [
+              "牛客与知乎（question/420016446）讨论显示：OPPO整体双休比例高于早年，午休2小时体验好，但ColorOS系统研发、底层驱动及部分互联网业务组在发版期仍存在晚8:30-9:30下班或月末周六加班情况。"
+            ],
+            "mentioned_cities": [
+              "深圳",
+              "成都",
+              "东莞",
+              "上海"
+            ],
+            "mentioned_depts": [
+              "软件工程系统",
+              "硬件测试部"
+            ],
+            "match_tier": "tier_1_exact_role_city",
+            "match_tier_label": "1. 同公司 + 同城(深圳,成都) + 相似研发岗 (2023-09-26)",
+            "confidence_weight": 0.78,
+            "is_valid_target": true,
+            "is_outdated": false,
+            "polarity": "mixed",
+            "polarity_label": "正负分歧/视部门而定",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "weekend_holiday_work",
+              "release_cycle_pressure",
+              "management_and_schedule",
+              "department_variance"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "2. 周末或节假日工作 (双休/大小周)",
+              "3. 项目上线、交付和版本周期工作压力",
+              "4. 管理方式、考勤打卡与工作安排",
+              "6. 部门、业务线或城市差异"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（牛客网在职员工经验贴；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中高（发布于 2023-09-26，包含具体城市/岗位上下文与工时细节）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "社区个体经验存在幸存者偏差，建议在面试中向直属主管二次核实"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】关于『OPPO』的社区口碑存在明显分歧或时期/部门差异（例如：传统稳定事业部 vs 新兴冲刺业务线，或历史高强度 vs 近期反过度加班新规），不能简单贴上“全公司好”或“全公司差”的标签。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 1 条；近3年内证据 1 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『全栈开发工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "OBSBOT寻影": {
+      "company": "OBSBOT寻影",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:17:11 CST",
+      "verdict_code": "negative_signal",
+      "verdict_label": "1. 存在较明确的负面信号（有相关且相对具体的加班/高压证据支持）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "OBSBOT寻影 深圳 测试 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "OBSBOT寻影 深圳 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "OBSBOT寻影 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "OBSBOT寻影 深圳 测试 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "OBSBOT寻影 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "OBSBOT寻影 深圳 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "OBSBOT寻影",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "OBSBOT寻影",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "深圳",
+          "西安"
+        ],
+        "sampled_titles": [
+          "自动化测试平台开发工程师",
+          "图像算法工程师（画质）",
+          "图像算法工程师（几何）",
+          "图像测试工程师",
+          "嵌入式开发工程师"
+        ],
+        "sampled_jd_urls": [
+          "https://n8r2cr07gk.jobs.feishu.cn/920634/position/7681624128470534438/detail",
+          "https://n8r2cr07gk.jobs.feishu.cn/920634/position/7672619779950004490/detail",
+          "https://n8r2cr07gk.jobs.feishu.cn/920634/position/7672619779949758730/detail"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [
+          "抗压能力强"
+        ],
+        "jd_fact_summary": "【招聘原文事实】JD 显式包含高压/加班/出差要求（原文提及：“抗压能力强”）",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】综合招聘原文与社区讨论，『OBSBOT寻影』存在较具体的加班或考核压力信号（如晚间加班、历史大小周或特定时期考核淘汰争议），对高 WLB 诉求者存在风险。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『自动化测试平台开发工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "快手": {
+      "company": "快手",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "negative_signal",
+      "verdict_label": "1. 存在较明确的负面信号（有相关且相对具体的加班/高压证据支持）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "快手 上海 测试 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "快手 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "快手 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "快手 上海 测试 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "快手 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "快手 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "快手",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "快手",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海、北京",
+          "北京",
+          "北京、深圳"
+        ],
+        "sampled_titles": [
+          "AI全栈开发工程师-数据平台",
+          "网络库SDK开发工程师",
+          "测试开发工程师",
+          "【快Star】安全工程师-安全攻防Agentic AI方向",
+          "【快Star】大语言模型算法工程师"
+        ],
+        "sampled_jd_urls": [
+          "https://campus.kuaishou.cn/recruit/campus/e/?#/campus/jobDetail/7740fb39d4024143adaea42e4d4de530",
+          "https://campus.kuaishou.cn/recruit/campus/e/?#/campus/jobDetail/3445b0379eb84394808bbb0217588472",
+          "https://campus.kuaishou.cn/recruit/campus/e/?#/campus/jobDetail/bd67e64a61e44dd7a74227cd0b5e9f0d"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [
+          "抗压能力强"
+        ],
+        "jd_fact_summary": "【招聘原文事实】JD 显式包含高压/加班/出差要求（原文提及：“抗压能力强”）",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】综合招聘原文与社区讨论，『快手』存在较具体的加班或考核压力信号（如晚间加班、历史大小周或特定时期考核淘汰争议），对高 WLB 诉求者存在风险。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『AI全栈开发工程师-数据平台』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "蔚来": {
+      "company": "蔚来",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:17:11 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "蔚来 上海 后端 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "蔚来 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "蔚来 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "蔚来 上海 后端 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "蔚来 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "蔚来 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "蔚来",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "蔚来",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海",
+          "上海、北京",
+          "上海、圣何塞"
+        ],
+        "sampled_titles": [
+          "校招-后端AI工程师",
+          "Super Sparks-校招-智能体原生OS研究员/工程师",
+          "Super Sparks-校招-大模型应用研究员/工程师",
+          "Super Sparks-校招-大语言模型后训练/Agentic算法工程师",
+          "Super Sparks-校招-端到端大模型闭环数据迭代"
+        ],
+        "sampled_jd_urls": [
+          "https://nio.jobs.feishu.cn/campus/position/7678158229625784619/detail",
+          "https://nio.jobs.feishu.cn/campus/position/7661854032978774310/detail",
+          "https://nio.jobs.feishu.cn/campus/position/7661854032978463014/detail"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『蔚来』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『校招-后端AI工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "vivo": {
+      "company": "vivo",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:17:11 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "vivo 上海 后端 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "vivo 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "vivo 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "vivo 上海 后端 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "vivo 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "vivo 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "vivo",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "vivo",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海市",
+          "广东省·东莞市",
+          "广东省·深圳市",
+          "广东省·深圳市、江苏省·南京市、浙江省·杭州市",
+          "广东省·深圳市、浙江省·杭州市"
+        ],
+        "sampled_titles": [
+          "软件工程师（后端方向）-27届秋招",
+          "Agent工程师（感知记忆方向）-27届蓝极星",
+          "Agent工程师（AI搜索方向）-27届蓝极星",
+          "Agent工程师（Harness方向）-27届蓝极星",
+          "大模型推理infra工程师-27届蓝极星"
+        ],
+        "sampled_jd_urls": [
+          "https://hr-campus.vivo.com/campus/detail?jobAdId=c8d11763-7018-4156-af4f-6d8f4221590e",
+          "https://hr-campus.vivo.com/campus/detail?jobAdId=56a27068-21eb-4822-866b-7075c06eb8ad",
+          "https://hr-campus.vivo.com/campus/detail?jobAdId=0ee045d9-f5d1-42e6-ade0-42c37b526a19"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『vivo』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『软件工程师（后端方向）-27届秋招』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "埃夫特": {
+      "company": "埃夫特",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:17:11 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "埃夫特 上海 测试 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "埃夫特 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "埃夫特 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "埃夫特 上海 测试 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "埃夫特 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "埃夫特 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "埃夫特",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "埃夫特",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海市",
+          "安徽省·芜湖市",
+          "安徽省·芜湖市、上海市",
+          "浙江省·杭州市",
+          "浙江省·杭州市、上海市"
+        ],
+        "sampled_titles": [
+          "27校招-具身嵌入式软件工程师",
+          "27校招-具身操作算法工程师",
+          "27校招-人形运控算法工程师",
+          "27校招-工业软件测试工程师",
+          "27校招-工业C++开发工程师(应用开发)"
+        ],
+        "sampled_jd_urls": [
+          "https://efort.zhiye.com/campus/detail?jobAdId=16a1206e-ebb7-42ee-8b79-fcf35bdb216a",
+          "https://efort.zhiye.com/campus/detail?jobAdId=950c1223-43af-46f6-8ad3-743f0bca6832",
+          "https://efort.zhiye.com/campus/detail?jobAdId=7f44543d-9751-4c70-b62a-eba067ce3cc7"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『埃夫特』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『27校招-具身嵌入式软件工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "广和通": {
+      "company": "广和通",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:17:11 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "广和通 深圳 测试 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "广和通 深圳 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "广和通 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "广和通 深圳 测试 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "广和通 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "广和通 深圳 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "广和通",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "广和通",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "广东省·深圳市",
+          "陕西省·西安市"
+        ],
+        "sampled_titles": [
+          "AI应用开发工程师（2027届校招-CSG-深圳）(J14217)",
+          "软件工程师（2027届校招-WSG-西安）(J14223)",
+          "软件工程师（2027届校招-WSG-深圳）(J14222)",
+          "软件测试工程师（2027届校招-WSG-西安）(J14220)",
+          "AI算法工程师-定位/导航（2027届校招-CSG-深圳）(J14214)"
+        ],
+        "sampled_jd_urls": [
+          "https://fibocom.zhiye.com/campus/detail?jobAdId=74786067-396c-497d-ad50-2189063548b9",
+          "https://fibocom.zhiye.com/campus/detail?jobAdId=0b260321-8098-42fc-9163-1301b36868ad",
+          "https://fibocom.zhiye.com/campus/detail?jobAdId=cde7da87-2c6d-4140-8166-bd5a0a49c007"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『广和通』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『AI应用开发工程师（2027届校招-CSG-深圳）(J14217)』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "云天励飞": {
+      "company": "云天励飞",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:17:11 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "云天励飞 上海 后端 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "云天励飞 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "云天励飞 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "云天励飞 上海 后端 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "云天励飞 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "云天励飞 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "云天励飞",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "云天励飞",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海市、广东省·深圳市、江苏省·南京市",
+          "上海市、陕西省·西安市、江苏省·南京市",
+          "四川省·成都市、广东省·深圳市、江苏省·南京市、陕西省·西安市",
+          "广东省·深圳市、上海市",
+          "广东省·深圳市、陕西省·西安市、上海市"
+        ],
+        "sampled_titles": [
+          "27届校招-AI 开发工程师(J10889)",
+          "27届校招-大模型推理开发工程师-南京(J10774)",
+          "27届校招-嵌入式软件驱动开发工程师-南京(J10772)",
+          "27届校招-数字后端设计工程师-深圳/西安/上海(J10778)",
+          "27届校招-编译器开发工程师-成都/深圳/南京/西安(J10779)"
+        ],
+        "sampled_jd_urls": [
+          "https://intellif.zhiye.com/campus/detail?jobAdId=a478cb73-a992-4460-99fd-243addff4664",
+          "https://intellif.zhiye.com/campus/detail?jobAdId=9d9d68b5-f598-48f1-9f2b-f652fd6f4773",
+          "https://intellif.zhiye.com/campus/detail?jobAdId=12aa9d1c-4c86-4c97-9435-4e421a34a587"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『云天励飞』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『27届校招-AI 开发工程师(J10889)』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "中科创达": {
+      "company": "中科创达",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:17:11 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "中科创达 上海 C++ 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "中科创达 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "中科创达 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "中科创达 上海 C++ 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "中科创达 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "中科创达 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "中科创达",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "中科创达",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海",
+          "上海、武汉",
+          "北京",
+          "大连",
+          "成都"
+        ],
+        "sampled_titles": [
+          "智能汽车-C/C++开发工程师-日韩业务群",
+          "智能汽车-C/C++开发工程师-滴水OS",
+          "智能汽车-C/C++开发工程师-畅行智驾",
+          "智能硬件-嵌入式软件开发-深圳",
+          "智能硬件-嵌入式软件开发工程师C/C++-大连"
+        ],
+        "sampled_jd_urls": [
+          "https://thundersoft.jobs.feishu.cn/campus/position/7683108460577229092/detail",
+          "https://thundersoft.jobs.feishu.cn/campus/position/7683105214858316074/detail",
+          "https://thundersoft.jobs.feishu.cn/campus/position/7683107589111154994/detail"
+        ],
+        "explicit_positive_terms": [
+          "五险一金",
+          "双休",
+          "弹性打卡"
+        ],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】JD 明确写出福利/休假保障（原文提及：“五险一金、双休、弹性打卡”），但未写明具体日常上下班打卡时间",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『中科创达』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『智能汽车-C/C++开发工程师-日韩业务群』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "新凯来": {
+      "company": "新凯来",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:17:11 CST",
+      "verdict_code": "insufficient_evidence",
+      "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
+      "evidence_confidence": "insufficient (证据不足)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "当前无有效社区讨论证据（共检索到 0 条目标公司可靠讨论），系统拒绝生成数值型 WLB 分数，防止误导。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "新凯来 深圳 Agent 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "新凯来 深圳 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "新凯来 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "新凯来 深圳 Agent 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "新凯来 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "新凯来 深圳 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "新凯来",
+        "queries_generated": 6,
+        "seed_hits": 0,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "新凯来",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "深圳"
+        ],
+        "sampled_titles": [
+          "软件开发工程师",
+          "多物理场仿真工程师",
+          "AI应用开发工程师",
+          "AI Agent开发工程师",
+          "算法技术工程师"
+        ],
+        "sampled_jd_urls": [
+          "https://career.sicarrier.com/#/jobs/detail?code=157&type=0",
+          "https://career.sicarrier.com/#/jobs/detail?code=240&type=0",
+          "https://career.sicarrier.com/#/jobs/detail?code=304&type=0"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 0,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": []
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】当前公开社区针对『新凯来』研发岗位的具体工时讨论证据不足；不能因为没有负面热帖就默认其 WLB 良好，也不能无根据猜测其加班严重。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『软件开发工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "德州仪器": {
+      "company": "德州仪器",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "mixed_controversial",
+      "verdict_label": "3. 观点分歧较大（不同来源、不同时期或不同部门的说法不一致）",
+      "evidence_confidence": "medium (中等 · 共 3 条公司级证据，均值权重 0.58)",
+      "explainable_numeric_index": 51,
+      "score_rule_explanation": "参考指数 51/100（计算规则：基准 65 分 + 正向证据 1×10 - 负向信号 2×12 ；该数值仅作排序辅助，必须结合下方证据置信度与分歧说明阅读）。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "德州仪器 嵌入式 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "德州仪器 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "德州仪器 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(德州仪器 OR TI) 嵌入式 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "德州仪器 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "德州仪器 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "德州仪器",
+        "queries_generated": 6,
+        "seed_hits": 3,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "德州仪器",
+        "active_job_count": 8,
+        "sampled_cities": [],
+        "sampled_titles": [
+          "2026校招-EP FAE/现场技术应用工程师轮岗项目-嵌入式方向",
+          "2027校招-EP FAE/现场技术应用工程师轮岗项目-嵌入式方向",
+          "2027校招-IT软件开发工程师/Software Development Engineer",
+          "2027校招 - 应用工程师（嵌入式方向) / Applications Engineer",
+          "ATBP中央运营采购/Central Procurement Operation Buyer"
+        ],
+        "sampled_jd_urls": [
+          "https://app.mokahr.com/su/vjlqkz#/job/1a49302f-98ba-4842-94a0-68fd739dc747",
+          "https://app.mokahr.com/su/vjlqkz#/job/0734695e-8179-48b5-b3e9-ced506f95a04",
+          "https://app.mokahr.com/su/vjlqkz#/job/a59f7ad5-75cb-4bd3-8e8e-09824ac43e29"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 3,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 2,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "德州仪器交流讨论：德州仪器工作强度与工作体验分享 - 牛客网",
+            "url": "https://www.nowcoder.com/enterprise/920/discussion",
+            "platform": "牛客网",
+            "published_at": "2024-10-07",
+            "crawled_at": "2026-10-19",
+            "snippet": "2024秋招签约上海/成都德州仪器的应届生与在职工程师交流TI工作强度、WLB与各岗位日常节奏。",
+            "relevant_comments": [
+              "讨论普遍反映TI整体WLB显著优于国内互联网大厂，双休有保障，但如有跨时区（与美国达拉斯总部）会议时可能需要在晚间沟通。"
+            ],
+            "mentioned_cities": [
+              "上海",
+              "成都"
+            ],
+            "mentioned_depts": [],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:上海,成都，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.65,
+            "is_valid_target": true,
+            "is_outdated": false,
+            "polarity": "positive",
+            "polarity_label": "正面/作息稳健信号",
+            "theme_tags": [
+              "weekend_holiday_work",
+              "intern_boundary_experience",
+              "positive_wlb_experience"
+            ],
+            "theme_labels": [
+              "2. 周末或节假日工作 (双休/大小周)",
+              "5. 实习生的工作体验与工作边界",
+              "7. 正面 WLB 与福利休假体验"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（牛客网企业讨论区（14人参与工作强度话题）；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中高（发布于 2024-10-07，包含具体城市/岗位上下文与工时细节）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组"
+          },
+          {
+            "title": "万兴科技被指隐性强制加班，时长不够影响晋升转正，公司回应 - 南方都市报/中经网",
+            "url": "https://m.mp.oeeee.com/a/BAAFRD000020230427791020.html",
+            "platform": "公开媒体报道 & 知乎",
+            "published_at": "2023-04-28",
+            "crawled_at": "2026-10-19",
+            "snippet": "2023年4月公开新闻与知乎（question/47153891）讨论：有员工反映万兴科技部分部门存在加班时长排名或影响转正晋升现象；万兴科技官方回应称不鼓励也没有强制员工加班。",
+            "relevant_comments": [
+              "社区经验与早年知乎回答提示其部分深圳/长沙业务线存在晚间加班传统，与“出海工具软件表面轻松”的刻板印象存在反差，入职前务必向具体部门核实考勤与转正标准。"
+            ],
+            "mentioned_cities": [
+              "深圳",
+              "长沙"
+            ],
+            "mentioned_depts": [],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:深圳,长沙，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.65,
+            "is_valid_target": true,
+            "is_outdated": false,
+            "polarity": "negative",
+            "polarity_label": "负面/加班预警信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "intern_boundary_experience",
+              "department_variance"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "5. 实习生的工作体验与工作边界",
+              "6. 部门、业务线或城市差异"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（媒体公开报道及知乎多回答交叉印证；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中高（发布于 2023-04-28，包含具体城市/岗位上下文与工时细节）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组"
+          },
+          {
+            "title": "在德州仪器（TI）工作是一种怎样的体验？ - 知乎",
+            "url": "https://www.zhihu.com/question/548835883/answer/2641640768",
+            "platform": "知乎",
+            "published_at": "2022-08-17",
+            "crawled_at": "2026-10-19",
+            "snippet": "入职德州仪器（TI）8年员工分享在TI上海/成都的工作体验、带薪年假、弹性不打卡文化与工程师培养计划。",
+            "relevant_comments": [
+              "正面评价集中在外企合规双休、年假充裕、无强制加班打卡文化、对本科应届生有系统轮岗与导师制培养。"
+            ],
+            "mentioned_cities": [
+              "上海",
+              "成都"
+            ],
+            "mentioned_depts": [
+              "研发与技术支持"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:上海,成都，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "negative",
+            "polarity_label": "负面/加班预警信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "weekend_holiday_work",
+              "management_and_schedule",
+              "intern_boundary_experience",
+              "positive_wlb_experience",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "2. 周末或节假日工作 (双休/大小周)",
+              "4. 管理方式、考勤打卡与工作安排",
+              "5. 实习生的工作体验与工作边界",
+              "7. 正面 WLB 与福利休假体验",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎实名/长期员工回答；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中低（发布于 2022-08-17，距今约 4 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2022-08-17（距今约 4 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】关于『德州仪器』的社区口碑存在明显分歧或时期/部门差异（例如：传统稳定事业部 vs 新兴冲刺业务线，或历史高强度 vs 近期反过度加班新规），不能简单贴上“全公司好”或“全公司差”的标签。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 1 条 / 负面信号 2 条 / 分歧或中性 0 条；近3年内证据 2 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『2026校招-EP FAE/现场技术应用工程师轮岗项目-嵌入式方向』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "金山办公": {
+      "company": "金山办公",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "negative_signal",
+      "verdict_label": "1. 存在较明确的负面信号（有相关且相对具体的加班/高压证据支持）",
+      "evidence_confidence": "medium (中等 · 共 2 条公司级证据，均值权重 0.53)",
+      "explainable_numeric_index": 41,
+      "score_rule_explanation": "参考指数 41/100（计算规则：基准 65 分 + 正向证据 0×10 - 负向信号 2×12 ；该数值仅作排序辅助，必须结合下方证据置信度与分歧说明阅读）。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "金山办公 算法 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "金山办公 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "金山办公 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(金山办公 OR WPS) 算法 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "金山办公 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "金山办公 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "金山办公",
+        "queries_generated": 6,
+        "seed_hits": 2,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "金山办公",
+        "active_job_count": 8,
+        "sampled_cities": [],
+        "sampled_titles": [
+          "精英算法研发工程师（全栈化业务）-面向2027届-武汉",
+          "精英算法研发工程师（全栈化业务）-面向2027届-珠海",
+          "精英算法研发工程师（全栈化业务）-面向2027届-广州",
+          "精英服务端开发工程师（全栈化业务）-面向2027届-珠海",
+          "精英服务端开发工程师（全栈化业务）-面向2027届-广州"
+        ],
+        "sampled_jd_urls": [
+          "https://join.wps.cn/campus-recruitment/wps/41436#/job/3ede78fa-510b-45f7-9979-962c3a70af1b",
+          "https://join.wps.cn/campus-recruitment/wps/41436#/job/06e9bb1b-4a6e-4810-8130-68ad894155e7",
+          "https://join.wps.cn/campus-recruitment/wps/41436#/job/ea953f77-24af-46ec-956c-652dc518bdc9"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 2,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 1,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "就业单位分析—金山办公 - 牛客网",
+            "url": "https://www.nowcoder.com/discuss/553333705289293824",
+            "platform": "牛客网",
+            "published_at": "2023-11-12",
+            "crawled_at": "2026-10-19",
+            "snippet": "针对金山办公（WPS）武汉与珠海研发中心的应届生培养、C++/Qt技术栈要求及工作作息、历史大小周改革情况进行分析。",
+            "relevant_comments": [
+              "讨论提到金山办公作为国产办公软件龙头，非常看重C++基础与客户端工程能力；早期部分团队曾推行过大小周或加班，近年多为双休但部分新业务线（如AI办公助手）发版期节奏较快。"
+            ],
+            "mentioned_cities": [
+              "武汉",
+              "珠海",
+              "北京"
+            ],
+            "mentioned_depts": [
+              "WPS客户端研发"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:武汉,珠海，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.65,
+            "is_valid_target": true,
+            "is_outdated": false,
+            "polarity": "negative",
+            "polarity_label": "负面/加班预警信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "weekend_holiday_work",
+              "release_cycle_pressure",
+              "intern_boundary_experience",
+              "department_variance"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "2. 周末或节假日工作 (双休/大小周)",
+              "3. 项目上线、交付和版本周期工作压力",
+              "5. 实习生的工作体验与工作边界",
+              "6. 部门、业务线或城市差异"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（牛客网公开讨论帖；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中高（发布于 2023-11-12，包含具体城市/岗位上下文与工时细节）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组"
+          },
+          {
+            "title": "如何评价武汉金山办公一年2次绩效考核，并且优化10%的员工？ - 知乎",
+            "url": "https://www.zhihu.com/question/488739967",
+            "platform": "知乎",
+            "published_at": "2021-09-24",
+            "crawled_at": "2026-10-19",
+            "snippet": "关于武汉金山办公2021年期间绩效考核机制与试用期/年度淘汰比例的公开争议讨论。",
+            "relevant_comments": [
+              "部分匿名回答反映特定时期绩效考核压力较大；也有回答指出不同业务组管理风格差异显著，不能一概而论。"
+            ],
+            "mentioned_cities": [
+              "武汉"
+            ],
+            "mentioned_depts": [
+              "武汉产研中心"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 仅涉及同一公司但岗位/部门不明确（公司层面弱参考）",
+            "confidence_weight": 0.4,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "negative",
+            "polarity_label": "负面/加班预警信号",
+            "theme_tags": [
+              "management_and_schedule",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "4. 管理方式、考勤打卡与工作安排",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎公开问答；不以搜索排名冒充热度）",
+              "relevance": "中（讨论公司整体研发氛围与待遇）",
+              "credibility": "中低（发布于 2021-09-24，距今约 5 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2021-09-24（距今约 5 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】综合招聘原文与社区讨论，『金山办公』存在较具体的加班或考核压力信号（如晚间加班、历史大小周或特定时期考核淘汰争议），对高 WLB 诉求者存在风险。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 2 条 / 分歧或中性 0 条；近3年内证据 1 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『精英算法研发工程师（全栈化业务）-面向2027届-武汉』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "联影医疗": {
+      "company": "联影医疗",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "outdated_evidence",
+      "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
+      "evidence_confidence": "low_outdated (偏低 · 2 条证据均超过 4 年)",
+      "explainable_numeric_index": 65,
+      "score_rule_explanation": "参考指数 65/100（计算规则：基准 65 分 + 正向证据 0×10 - 负向信号 0×12 ；该数值仅作排序辅助，必须结合下方证据置信度与分歧说明阅读）。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "联影医疗 研发 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "联影医疗 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "联影医疗 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(联影医疗 OR 上海联影) 研发 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "联影医疗 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "联影医疗 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "联影医疗",
+        "queries_generated": 6,
+        "seed_hits": 2,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "联影医疗",
+        "active_job_count": 0,
+        "sampled_cities": [],
+        "sampled_titles": [],
+        "sampled_jd_urls": [],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 2,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "在上海联影医疗的工作体验是怎么样的？尤其是mr事业部医疗软件事业部 - 知乎",
+            "url": "https://www.zhihu.com/question/24808501/answer/2271568540",
+            "platform": "知乎",
+            "published_at": "2021-12-10",
+            "crawled_at": "2026-10-19",
+            "snippet": "聚焦上海联影医疗MR事业部及医疗软件事业部的软件研发日常作息、拿证发版周期与管理风格。",
+            "relevant_comments": [
+              "回答指出医疗器械软件受合规与注册拿证周期影响，平时作息相对规律（一般双休），但在产品注册申报或大版本冻结前会有阶段性加班。"
+            ],
+            "mentioned_cities": [
+              "上海"
+            ],
+            "mentioned_depts": [
+              "MR事业部",
+              "医疗软件事业部"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:上海，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "mixed",
+            "polarity_label": "正负分歧/视部门而定",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "weekend_holiday_work",
+              "release_cycle_pressure",
+              "management_and_schedule",
+              "department_variance",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "2. 周末或节假日工作 (双休/大小周)",
+              "3. 项目上线、交付和版本周期工作压力",
+              "4. 管理方式、考勤打卡与工作安排",
+              "6. 部门、业务线或城市差异",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎公开回答；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中低（发布于 2021-12-10，距今约 5 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2021-12-10（距今约 5 年），可能无法反映近期考勤制度变化"
+          },
+          {
+            "title": "武汉联影医疗的研发岗怎么样？ - 知乎",
+            "url": "https://www.zhihu.com/question/431048744/answer/2508950980",
+            "platform": "知乎",
+            "published_at": "2022-06-01",
+            "crawled_at": "2026-10-19",
+            "snippet": "讨论武汉联影医疗研发基地的软件与算法岗位工作强度、薪资性价比及与上海总部的协同方式。",
+            "relevant_comments": [
+              "多数反馈认为相比纯互联网公司，联影医疗研发岗长期职业稳定性较好，适合C++/医学图像处理与桌面客户端方向，但不同子事业部考核强度有别。"
+            ],
+            "mentioned_cities": [
+              "武汉",
+              "上海"
+            ],
+            "mentioned_depts": [
+              "武汉研发中心"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:武汉,上海，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "neutral",
+            "polarity_label": "中性/经验讨论",
+            "theme_tags": [
+              "management_and_schedule",
+              "department_variance",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "4. 管理方式、考勤打卡与工作安排",
+              "6. 部门、业务线或城市差异",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎公开问答；不以搜索排名冒充热度）",
+              "relevance": "中（讨论公司整体研发氛围与待遇）",
+              "credibility": "中低（发布于 2022-06-01，距今约 4 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2022-06-01（距今约 4 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】目前检索到的『联影医疗』社区讨论主要发布于 4 年以前，存在明显时效性局限，不能直接等同于 2026–2027 届入职后的真实作息。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 2 条；近3年内证据 0 条，较早历史证据 2 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『研发』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "大疆": {
+      "company": "大疆",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "mixed_controversial",
+      "verdict_label": "3. 观点分歧较大（不同来源、不同时期或不同部门的说法不一致）",
+      "evidence_confidence": "medium (中等 · 共 2 条公司级证据，均值权重 0.43)",
+      "explainable_numeric_index": 63,
+      "score_rule_explanation": "参考指数 63/100（计算规则：基准 65 分 + 正向证据 1×10 - 负向信号 1×12 ；该数值仅作排序辅助，必须结合下方证据置信度与分歧说明阅读）。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "大疆 上海 测试 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "大疆 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "大疆 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(大疆 OR DJI) 上海 测试 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "大疆 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "大疆 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "大疆",
+        "queries_generated": 6,
+        "seed_hits": 2,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "大疆",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海市",
+          "北京市",
+          "广东·深圳市"
+        ],
+        "sampled_titles": [
+          "GNSS 定位算法工程师（上海）",
+          "端到端决策规划算法工程师（北京）",
+          "世界模型算法工程师（北京）",
+          "AI测试开发工程师（上海）",
+          "SLAM 算法工程师（北京）"
+        ],
+        "sampled_jd_urls": [
+          "https://apply.careers.dji.com/campus-recruitment/dji/143359?locale=zh-CN#/job/0fc324b2-b5fb-4f8e-ba58-34ea8df45bab",
+          "https://apply.careers.dji.com/campus-recruitment/dji/143359?locale=zh-CN#/job/db251970-b5e8-4a62-981a-97efb24d8c80",
+          "https://apply.careers.dji.com/campus-recruitment/dji/143359?locale=zh-CN#/job/e6526e0a-a65a-43c3-883d-52ae29182798"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 2,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 1,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "大疆开始严禁过度加班，不强制9点上班强制9点下班 - 知乎",
+            "url": "https://www.zhihu.com/question/14488841411/answer/120352616083",
+            "platform": "知乎",
+            "published_at": "2025-03-08",
+            "crawled_at": "2026-10-19",
+            "snippet": "2025年3月公开报道与知乎讨论：大疆发布内部公告优化工时管理，从2025年起严禁过度夜间加班，强制晚9点下班，员工日均工作时长约8—9.5小时。",
+            "relevant_comments": [
+              "近期证据显示公司层面正推行晚9点清场与反过度加班新规，较早年动辄深夜11-12点下班的情况有明显改善信号。"
+            ],
+            "mentioned_cities": [
+              "深圳",
+              "上海"
+            ],
+            "mentioned_depts": [
+              "深圳总部"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 仅涉及同一公司但岗位/部门不明确（公司层面弱参考）",
+            "confidence_weight": 0.4,
+            "is_valid_target": true,
+            "is_outdated": false,
+            "polarity": "positive",
+            "polarity_label": "正面/作息稳健信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "management_and_schedule"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "4. 管理方式、考勤打卡与工作安排"
+            ],
+            "four_dimensions": {
+              "popularity": "较高（知乎热议话题与媒体核实报道）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中高（发布于 2025-03-08，包含具体城市/岗位上下文与工时细节）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组"
+          },
+          {
+            "title": "在大疆公司（DJI）工作是怎样一番体验？ - 知乎",
+            "url": "https://www.zhihu.com/question/24453944",
+            "platform": "知乎",
+            "published_at": "2019-01-24",
+            "crawled_at": "2026-10-19",
+            "snippet": "早期前员工与在职工程师回顾大疆研发岗位的技术硬核程度与历史高强度加班文化。",
+            "relevant_comments": [
+              "早年回答普遍反映硬件与软硬协同研发项目期加班严重（常到晚9-11点）；需结合2025年最新反加班新规综合看待其时效性变化。"
+            ],
+            "mentioned_cities": [
+              "深圳"
+            ],
+            "mentioned_depts": [
+              "研发部"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:深圳，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "negative",
+            "polarity_label": "负面/加班预警信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "release_cycle_pressure",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "3. 项目上线、交付和版本周期工作压力",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎长期高关注问题；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中低（发布于 2019-01-24，距今约 7 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2019-01-24（距今约 7 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】关于『大疆』的社区口碑存在明显分歧或时期/部门差异（例如：传统稳定事业部 vs 新兴冲刺业务线，或历史高强度 vs 近期反过度加班新规），不能简单贴上“全公司好”或“全公司差”的标签。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 1 条 / 负面信号 1 条 / 分歧或中性 0 条；近3年内证据 1 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『GNSS 定位算法工程师（上海）』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "万兴科技": {
+      "company": "万兴科技",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "negative_signal",
+      "verdict_label": "1. 存在较明确的负面信号（有相关且相对具体的加班/高压证据支持）",
+      "evidence_confidence": "medium_high (中高 · 含 1 条同城/同岗近期证据，均值权重 0.78)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "有效社区证据仅 1 条（样本单薄），不生成数值型 WLB 分数，仅展示定性证据摘录。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "万兴科技 长沙 后端 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "万兴科技 长沙 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "万兴科技 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(万兴科技 OR 万兴) 长沙 后端 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "万兴科技 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "万兴科技 长沙 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "万兴科技",
+        "queries_generated": 6,
+        "seed_hits": 1,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "万兴科技",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "湖南省·长沙市",
+          "湖南省·长沙市、广东省·深圳市"
+        ],
+        "sampled_titles": [
+          "AI应用开发工程师【多模态方向】",
+          "算法工程化工程师",
+          "全栈开发工程师",
+          "后端开发工程师",
+          "AI应用开发工程师【agent应用与平台方向】"
+        ],
+        "sampled_jd_urls": [
+          "https://wondersharecampus.zhiye.com/campus/detail?jobAdId=4ff44f00-dab2-4b3c-9b34-f548f6f4f6cc",
+          "https://wondersharecampus.zhiye.com/campus/detail?jobAdId=035fb348-07d4-4934-8971-7b85fcbdf51f",
+          "https://wondersharecampus.zhiye.com/campus/detail?jobAdId=7f5a6c66-deda-49de-b99a-655b7a569b66"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 1,
+        "tier1_exact_count": 1,
+        "recent_evidence_count": 1,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "万兴科技被指隐性强制加班，时长不够影响晋升转正，公司回应 - 南方都市报/中经网",
+            "url": "https://m.mp.oeeee.com/a/BAAFRD000020230427791020.html",
+            "platform": "公开媒体报道 & 知乎",
+            "published_at": "2023-04-28",
+            "crawled_at": "2026-10-19",
+            "snippet": "2023年4月公开新闻与知乎（question/47153891）讨论：有员工反映万兴科技部分部门存在加班时长排名或影响转正晋升现象；万兴科技官方回应称不鼓励也没有强制员工加班。",
+            "relevant_comments": [
+              "社区经验与早年知乎回答提示其部分深圳/长沙业务线存在晚间加班传统，与“出海工具软件表面轻松”的刻板印象存在反差，入职前务必向具体部门核实考勤与转正标准。"
+            ],
+            "mentioned_cities": [
+              "深圳",
+              "长沙"
+            ],
+            "mentioned_depts": [],
+            "match_tier": "tier_1_exact_role_city",
+            "match_tier_label": "1. 同公司 + 同城(深圳,长沙) + 相似研发岗 (2023-04-28)",
+            "confidence_weight": 0.78,
+            "is_valid_target": true,
+            "is_outdated": false,
+            "polarity": "negative",
+            "polarity_label": "负面/加班预警信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "intern_boundary_experience",
+              "department_variance"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "5. 实习生的工作体验与工作边界",
+              "6. 部门、业务线或城市差异"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（媒体公开报道及知乎多回答交叉印证；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中高（发布于 2023-04-28，包含具体城市/岗位上下文与工时细节）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "社区个体经验存在幸存者偏差，建议在面试中向直属主管二次核实"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】综合招聘原文与社区讨论，『万兴科技』存在较具体的加班或考核压力信号（如晚间加班、历史大小周或特定时期考核淘汰争议），对高 WLB 诉求者存在风险。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 1 条 / 分歧或中性 0 条；近3年内证据 1 条，较早历史证据 0 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『AI应用开发工程师【多模态方向】』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "同花顺": {
+      "company": "同花顺",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "outdated_evidence",
+      "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
+      "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "有效社区证据仅 1 条（样本单薄），不生成数值型 WLB 分数，仅展示定性证据摘录。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "同花顺 杭州 算法 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "同花顺 杭州 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "同花顺 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(同花顺 OR 浙江同花顺) 杭州 算法 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "同花顺 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "同花顺 杭州 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "同花顺",
+        "queries_generated": 6,
+        "seed_hits": 1,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "同花顺",
+        "active_job_count": 1,
+        "sampled_cities": [
+          "杭州"
+        ],
+        "sampled_titles": [
+          "AIME基座预训练算法工程师"
+        ],
+        "sampled_jd_urls": [
+          "https://campus.10jqka.com.cn/job/list?type=school"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 1,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "现在同花顺B2B事业部怎么样，加班严重不？ / 同花顺在知乎的口碑如何？ - 知乎",
+            "url": "https://www.zhihu.com/question/502262196",
+            "platform": "知乎",
+            "published_at": "2021-11-28",
+            "crawled_at": "2026-10-19",
+            "snippet": "针对杭州同花顺技术研发岗的办公环境（升降桌/人体工学椅）与日常加班强度、历史大小周情况进行公开讨论。",
+            "relevant_comments": [
+              "多条知乎回答（含question/60375019、question/358206848）反映其虽然硬件办公环境好，但不少技术研发部门下班较晚（晚9点左右）且历史上存在大小周传统，对看重高WLB的求职者存在较明显的负面信号。"
+            ],
+            "mentioned_cities": [
+              "杭州"
+            ],
+            "mentioned_depts": [
+              "B2B事业部",
+              "技术研发"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:杭州，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "negative",
+            "polarity_label": "负面/加班预警信号",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "weekend_holiday_work",
+              "department_variance",
+              "positive_wlb_experience",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "2. 周末或节假日工作 (双休/大小周)",
+              "6. 部门、业务线或城市差异",
+              "7. 正面 WLB 与福利休假体验",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎多篇问答；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中低（发布于 2021-11-28，距今约 5 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2021-11-28（距今约 5 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】目前检索到的『同花顺』社区讨论主要发布于 4 年以前，存在明显时效性局限，不能直接等同于 2026–2027 届入职后的真实作息。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 1 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『AIME基座预训练算法工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "星环科技": {
+      "company": "星环科技",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "outdated_evidence",
+      "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
+      "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "有效社区证据仅 1 条（样本单薄），不生成数值型 WLB 分数，仅展示定性证据摘录。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "星环科技 测试 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "星环科技 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "星环科技 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(星环科技 OR 星环) 测试 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "星环科技 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "星环科技 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "星环科技",
+        "queries_generated": 6,
+        "seed_hits": 1,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "星环科技",
+        "active_job_count": 8,
+        "sampled_cities": [],
+        "sampled_titles": [
+          "27届-分布式存储开发工程师",
+          "27届-分布式计算开发工程师",
+          "27届-测试开发工程师",
+          "27届-AI算法工程师（量化工程）",
+          "27届-后端开发工程师"
+        ],
+        "sampled_jd_urls": [
+          "https://app.mokahr.com/campus_apply/transwarp/3196#/job/b3ecb833-55cf-4b7c-af9c-37973b5e083d",
+          "https://app.mokahr.com/campus_apply/transwarp/3196#/job/edc03563-98b6-4d5f-a18f-c95b04cf8f8a",
+          "https://app.mokahr.com/campus_apply/transwarp/3196#/job/ac92996b-6f76-4410-b369-c6fdac9367e7"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [],
+        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 1,
+        "tier1_exact_count": 0,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "星环科技南京的大数据应用开发岗，技术水平还有工作强度怎么样 - 知乎",
+            "url": "https://www.zhihu.com/question/400738423",
+            "platform": "知乎 & 牛客网",
+            "published_at": "2020-06-10",
+            "crawled_at": "2026-10-19",
+            "snippet": "讨论基础软件/大数据分布式数据库企业星环科技（上海/南京）的技术氛围、面试难度与工作强度。",
+            "relevant_comments": [
+              "正面评价认可其核心数据库与编译器/分布式研发团队技术实力强、工程师背景好，整体属硬核基础软件工程师文化；但讨论样本时间偏早（2020年），近期各部门作息需进一步核实。"
+            ],
+            "mentioned_cities": [
+              "上海",
+              "南京"
+            ],
+            "mentioned_depts": [
+              "大数据应用",
+              "云计算"
+            ],
+            "match_tier": "tier_2_company_general",
+            "match_tier_label": "2. 同公司研发参考（涉及城市:上海,南京，公司层面参考，无法确认该岗位具体团队情况）",
+            "confidence_weight": 0.45,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "neutral",
+            "polarity_label": "中性/经验讨论",
+            "theme_tags": [
+              "management_and_schedule",
+              "department_variance",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "4. 管理方式、考勤打卡与工作安排",
+              "6. 部门、业务线或城市差异",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎与牛客网公开讨论；不以搜索排名冒充热度）",
+              "relevance": "中（讨论公司整体研发氛围与待遇）",
+              "credibility": "中低（发布于 2020-06-10，距今约 6 年，仅反映历史阶段情况）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；讨论发布于 2020-06-10（距今约 6 年），可能无法反映近期考勤制度变化"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】目前检索到的『星环科技』社区讨论主要发布于 4 年以前，存在明显时效性局限，不能直接等同于 2026–2027 届入职后的真实作息。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 1 条；近3年内证据 0 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『27届-分布式存储开发工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    },
+    "米哈游": {
+      "company": "米哈游",
+      "audit_version": "wlb-v1.0",
+      "audited_at": "2026-10-19 11:18:33 CST",
+      "verdict_code": "outdated_evidence",
+      "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
+      "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
+      "explainable_numeric_index": null,
+      "score_rule_explanation": "有效社区证据仅 1 条（样本单薄），不生成数值型 WLB 分数，仅展示定性证据摘录。",
+      "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
+      "queries_used": [
+        {
+          "theme": "overtime_hours",
+          "theme_label": "工时与周末双休",
+          "query": "米哈游 上海 测试 加班 工时 下班时间 双休 周末 知乎 V2EX"
+        },
+        {
+          "theme": "wlb_rhythm",
+          "theme_label": "工作强度与节奏",
+          "query": "米哈游 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+        },
+        {
+          "theme": "intern_experience",
+          "theme_label": "实习体验与团队管理",
+          "query": "米哈游 实习体验 团队管理 转正 实习生 工作内容 知乎 V2EX"
+        },
+        {
+          "theme": "dept_role_context",
+          "theme_label": "部门与具体岗位差异",
+          "query": "(米哈游 OR miHoYo) 上海 测试 部门 工作体验 知乎"
+        },
+        {
+          "theme": "oncall_pressure",
+          "theme_label": "上线发版与绩效压力",
+          "query": "米哈游 出差 值班 版本发布 绩效考核 压力 知乎"
+        },
+        {
+          "theme": "positive_wlb",
+          "theme_label": "正向WLB与准点下班体验",
+          "query": "米哈游 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+        }
+      ],
+      "search_metadata": {
+        "company": "米哈游",
+        "queries_generated": 6,
+        "seed_hits": 1,
+        "live_hits": 0,
+        "live_attempted": false,
+        "live_status": "skipped_offline_or_cached",
+        "degraded_gracefully": false,
+        "error_note": ""
+      },
+      "jd_facts": {
+        "company": "米哈游",
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海",
+          "上海 / 北京"
+        ],
+        "sampled_titles": [
+          "游戏研发-游戏引擎开发",
+          "游戏研发-游戏渲染开发",
+          "游戏研发-游戏测试开发",
+          "游戏测试工程师",
+          "基础研究-Agent 算法研究员"
+        ],
+        "sampled_jd_urls": [
+          "https://jobs.mihoyo.com/#/campus/position/8959",
+          "https://jobs.mihoyo.com/#/campus/position/8960",
+          "https://jobs.mihoyo.com/#/campus/position/8949"
+        ],
+        "explicit_positive_terms": [],
+        "explicit_warning_terms": [
+          "较强的抗压"
+        ],
+        "jd_fact_summary": "【招聘原文事实】JD 显式包含高压/加班/出差要求（原文提及：“较强的抗压”）",
+        "department_disclosed": false
+      },
+      "community_experiences": {
+        "valid_evidence_count": 1,
+        "tier1_exact_count": 1,
+        "recent_evidence_count": 0,
+        "rejected_noise_count": 0,
+        "rejected_noise_samples": [],
+        "evidences": [
+          {
+            "title": "2023年了，米哈游还值得去吗？ / 问大家一句米哈游真的待遇好吗？ - 知乎",
+            "url": "https://www.zhihu.com/question/571873884",
+            "platform": "知乎 & V2EX",
+            "published_at": "2022-12-11",
+            "crawled_at": "2026-10-19",
+            "snippet": "对比米哈游早期（2020年前）10-7-5宽松氛围与近年多款大型二次元游戏并行研发下的项目期加班强度。",
+            "relevant_comments": [
+              "V2EX早期内推帖（t/701162）曾标榜1075不打卡、16薪福利极佳；但2022-2023年后的知乎讨论普遍反映随着大版本迭代加速，在研项目组与引擎/客户端团队在版本冲刺期加班明显增多。"
+            ],
+            "mentioned_cities": [
+              "上海"
+            ],
+            "mentioned_depts": [
+              "在研项目组"
+            ],
+            "match_tier": "tier_1_exact_role_city",
+            "match_tier_label": "1. 同公司 + 同城(上海) + 相似研发岗 (2022-12-11)",
+            "confidence_weight": 0.78,
+            "is_valid_target": true,
+            "is_outdated": true,
+            "polarity": "mixed",
+            "polarity_label": "正负分歧/视部门而定",
+            "theme_tags": [
+              "overtime_frequency_duration",
+              "release_cycle_pressure",
+              "management_and_schedule",
+              "positive_wlb_experience",
+              "outdated_or_conflicting"
+            ],
+            "theme_labels": [
+              "1. 加班频率及持续时间",
+              "3. 项目上线、交付和版本周期工作压力",
+              "4. 管理方式、考勤打卡与工作安排",
+              "7. 正面 WLB 与福利休假体验",
+              "8. 信息过时、上下文缺失或相互矛盾的讨论"
+            ],
+            "four_dimensions": {
+              "popularity": "一般或未公开（知乎高热度问答与V2EX内推帖对比；不以搜索排名冒充热度）",
+              "relevance": "高（直接讨论作息时间、加班频次或团队管理）",
+              "credibility": "中（内部员工招聘/内推帖，含具体作息说明但可能带有招募正面滤镜）",
+              "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
+            },
+            "limitations": "讨论发布于 2022-12-11（距今约 4 年），可能无法反映近期考勤制度变化；来源包含内推招募信息，需警惕宣传美化偏差"
+          }
+        ]
+      },
+      "model_inferences": {
+        "bounded_conclusions": [
+          "【审慎推断】目前检索到的『米哈游』社区讨论主要发布于 4 年以前，存在明显时效性局限，不能直接等同于 2026–2027 届入职后的真实作息。",
+          "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。"
+        ],
+        "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 1 条；近3年内证据 0 条，较早历史证据 1 条。",
+        "interview_verification_checklist": [
+          "向面试官核实团队具体作息：“请问咱们这个『游戏研发-游戏引擎开发』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
+        ]
+      }
+    }
+  },
+  "last_updated": "2026-10-19 11:51:21 CST"
+}

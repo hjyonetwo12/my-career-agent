@@ -12,6 +12,8 @@ from pathlib import Path
 import db as db_module
 import job_filters
 import reporter
+import skill_projects
+import wlb_community
 from profile_config import load_profile
 
 
@@ -45,6 +47,24 @@ def main():
     conn = db_module.init_db(str(db_path))
     score_stats = db_module.sync_local_baseline_scores(conn, profile=profile)
     data = fetch_all(conn)
+    force_refresh = os.environ.get("FORCE_ADVICE_REFRESH", "").strip().lower() in ("1", "true", "yes")
+    force_sp = os.environ.get("FORCE_SKILL_PROJECTS_REFRESH", "").strip().lower() in ("1", "true", "yes") or force_refresh
+    force_wlb = os.environ.get("FORCE_WLB_REFRESH", "").strip().lower() in ("1", "true", "yes") or force_refresh
+    try:
+        sp_report = skill_projects.update_or_get_skill_projects_report(
+            data["items"], profile=profile, conn=conn, force_refresh=force_sp
+        )
+        sp_v = (sp_report.get("version_info") or {}).get("report_version_id", "—")
+        print(f"[模块一·技能栈与项目] 版本 {sp_v} · 推荐工程项目 {len(sp_report.get('tier_b_projects') or [])} 个")
+    except Exception as exc:
+        print(f"[模块一·降级提示] 技能栈与项目推荐生成跳过: {exc}")
+    try:
+        wlb_report = wlb_community.update_or_get_wlb_community_audits(
+            data["items"], profile=profile, conn=conn, force_refresh=force_wlb
+        )
+        print(f"[模块二·社区WLB审核] 已审核重点公司 {(wlb_report.get('summary_stats') or {}).get('audited_companies_count', 0)} 家 · 有效证据 {(wlb_report.get('summary_stats') or {}).get('total_valid_evidences', 0)} 条")
+    except Exception as exc:
+        print(f"[模块二·降级提示] 社区WLB审核生成跳过: {exc}")
     conn.close()
 
     if not data["items"]:

@@ -2,6 +2,16 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+
+import importlib.machinery as _im_mach
+_orig_fill = _im_mach.FileFinder._fill_cache
+def _patched_fill_cache(self):
+    _orig_fill(self)
+    for _extra in ('skill_projects.py', 'wlb_community.py'):
+        if (Path(self.path) / _extra).is_file():
+            self._path_cache.add(_extra)
+_im_mach.FileFinder._fill_cache = _patched_fill_cache
+import importlib as _il; _il.invalidate_caches()
 import yaml
 
 
@@ -310,5 +320,21 @@ def validate_and_normalize_profile(profile: dict) -> dict:
         for k, v in matching_base.items():
             m.setdefault(k, v)
         normalized["matching"] = m
+
+    sp_mod = dict(normalized.get("skill_project_module") or {})
+    sp_mod.setdefault("enabled", True)
+    sp_mod.setdefault("min_category_samples", 15)
+    sp_mod.setdefault("min_overall_samples", 30)
+    sp_mod.setdefault("cache_enabled", True)
+    sp_mod.setdefault("use_ai_for_project_insights", False)
+    normalized["skill_project_module"] = sp_mod
+
+    wlb_mod = dict(normalized.get("wlb_community_module") or {})
+    wlb_mod.setdefault("enabled", True)
+    wlb_mod.setdefault("cache_ttl_days", 14)
+    wlb_mod.setdefault("max_companies_per_run", 20)
+    wlb_mod.setdefault("allow_live_public_search", False)
+    wlb_mod.setdefault("use_ai_for_wlb_synthesis", False)
+    normalized["wlb_community_module"] = wlb_mod
 
     return normalized

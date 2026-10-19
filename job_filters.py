@@ -5,6 +5,16 @@ import re
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+
+import importlib.machinery as _im_mach
+_orig_fill = _im_mach.FileFinder._fill_cache
+def _patched_fill_cache(self):
+    _orig_fill(self)
+    for _extra in ('skill_projects.py', 'wlb_community.py'):
+        if (Path(self.path) / _extra).is_file():
+            self._path_cache.add(_extra)
+_im_mach.FileFinder._fill_cache = _patched_fill_cache
+import importlib as _il; _il.invalidate_caches()
 from urllib.parse import urlsplit
 
 import yaml

@@ -870,3 +870,279 @@ def test_curation_policy_and_report_seven_dim_rendering(tmp_path):
     assert "展开七维独立评估详情" in html_text
     assert "跨方向代表性探索样本" in html_text
     assert "已从主推荐列表排除/降权的岗位统计与防误杀抽查样本" in html_text
+
+
+def test_module1_skill_stack_extraction_and_project_recommendations(tmp_path):
+    """验收 5.1：高频技能栈统计（按类别分组、同义词合并、重复发布去重、必需/加分/小众区分、样本不足标记）与实现项目推荐。"""
+    import skill_projects
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+
+    # 构造含同义词、重复多城发布、不同类别与小样本类别的真实感测试集
+    sample_jobs = []
+    # Java/Go 后端岗（含重复多城发布 3 条，实际应计为 1 个独立岗位）
+    for idx, city in enumerate(("深圳", "上海", "成都"), 1):
+        sample_jobs.append({
+            "id": 1000 + idx,
+            "company": "甲云科技",
+            "title": "2027届-后端开发工程师(J1001)",
+            "city": city,
+            "job_type": "校招",
+            "jd_url": f"https://example.com/backend/{idx}",
+            "crawled_at": "2026-10-18",
+            "jd_raw": (
+                "岗位职责：负责高并发微服务架构设计与核心接口开发，参与单元测试与代码评审。"
+                "任职要求：1. 熟练掌握 Golang / Go语言 或 Java (Spring Boot)；"
+                "2. 扎实掌握数据结构与算法、操作系统、TCP/IP 计算机网络与 Linux；"
+                "3. 熟练掌握 MySQL 索引调优与 Redis 缓存设计；"
+                "4. 有 Kubernetes (K8s) 或 Docker 容器经验者优先加分。"
+            ),
+        })
+    # C++ 客户端/系统岗
+    for idx in range(1, 16):
+        sample_jobs.append({
+            "id": 2000 + idx,
+            "company": f"乙工业软件_{idx}",
+            "title": "2027届-C++桌面客户端研发工程师",
+            "city": "杭州",
+            "job_type": "校招",
+            "jd_url": f"https://example.com/cpp/{idx}",
+            "crawled_at": "2026-10-18",
+            "jd_raw": (
+                "岗位职责：负责跨平台 C++17 / Qt6 客户端软件模块开发、内存泄漏排查与自动化测试。"
+                "任职要求：熟练掌握 C/C++ 编程语言、STL、数据结构与算法、Linux/Windows 操作系统与 CMake/Git；"
+                "熟悉 GDB/ASan 性能分析工具；有 OpenGL 渲染经验者优先。"
+            ),
+        })
+
+    stats = skill_projects.aggregate_skills_by_category(sample_jobs, prof, min_category_samples=10)
+    # 1. 验证单岗多城重复发布被正确识别并剔除（18条原始记录 -> 16个独立岗位，剔除2条重复）
+    assert stats["dedup_summary"]["raw_posting_count"] == 18
+    assert stats["dedup_summary"]["unique_job_count"] == 16
+    assert stats["dedup_summary"]["duplicate_postings_removed"] == 2
+
+    # 2. 验证不同岗位类别技能分开统计，不混为一谈；且样本不足类别明确标记
+    cpp_cat = stats["by_category"]["software_cpp"]
+    be_cat = stats["by_category"]["backend_dist"]
+    assert cpp_cat["unique_job_count"] == 15
+    assert cpp_cat["sample_sufficient"] is True
+    assert be_cat["unique_job_count"] == 1
+    assert be_cat["sample_sufficient"] is False
+    assert "样本仅 1 个" in be_cat["sample_warning"]
+
+    # 3. 验证必需技能(must)与加分项(bonus)区分、同义词合并
+    single_skills = skill_projects.extract_job_skills(sample_jobs[0])
+    assert single_skills["lang_golang"]["requirement_level"] == "must"
+    assert single_skills["tool_docker_k8s"]["requirement_level"] == "bonus"
+
+    # 4. 验证项目推荐包含完整 11 项要素、开源参考边界，且不局限于 C++/Python（包含 Go/Java、SQL/Redis、Qt、SDET、Agent、嵌入式仿真）
+    state_file = tmp_path / "sp_state.json"
+    conn = db.init_db(str(tmp_path / "sp_test.db"))
+    rep1 = skill_projects.update_or_get_skill_projects_report(
+        sample_jobs, profile=prof, conn=conn, state_path=state_file, force_refresh=True
+    )
+    assert rep1["enabled"] is True
+    assert rep1["version_info"]["cache_hit"] is False
+    projects = rep1["tier_b_projects"]
+    assert len(projects) >= 6
+    all_langs = " ".join(" ".join(p["primary_languages"]) for p in projects)
+    assert "Go" in all_langs and "Java" in all_langs and "C++" in all_langs
+
+    for p in projects:
+        for req_key in (
+            "project_id", "title", "skill_ids", "target_categories", "target_roles",
+            "project_goal", "core_features", "engineering_tasks", "knowledge_mapping",
+            "acceptance_criteria", "difficulty_level", "prerequisites", "estimated_effort",
+            "resume_value", "staged_extensions", "reference_and_license", "separation_evaluation",
+        ):
+            assert p.get(req_key), f"Project {p.get('project_id')} missing {req_key}"
+        assert p["reference_and_license"]["reuse_vs_self_impl"]
+        assert p["separation_evaluation"]["current_skill_base"]
+        assert p["separation_evaluation"]["learning_cost"]
+        assert p["separation_evaluation"]["interest_alignment"]
+
+    # 5. 验证缓存命中与数据库一致性（第二次运行 cache_hit=True，不重复计算）
+    rep2 = skill_projects.update_or_get_skill_projects_report(
+        sample_jobs, profile=prof, conn=conn, state_path=state_file, force_refresh=False
+    )
+    assert rep2["version_info"]["cache_hit"] is True
+    assert rep2["version_info"]["report_version_id"] == rep1["version_info"]["report_version_id"]
+
+    db_proj_cnt = conn.execute("SELECT COUNT(*) FROM skill_project_recommendations").fetchone()[0]
+    db_snap_cnt = conn.execute("SELECT COUNT(*) FROM skill_stats_snapshots").fetchone()[0]
+    conn.close()
+    assert db_proj_cnt == len(projects)
+    assert db_snap_cnt == 1
+
+
+def test_module2_wlb_community_audit_matching_four_dims_and_degradation(tmp_path):
+    """验收 5.2：社区 WLB 搜索词生成、四级实体匹配（拦截同音噪音）、四维分离、五类结论、三层数据分离、缓存与异常降级。"""
+    import wlb_community
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+
+    # 1. 验证动态搜索词构造（覆盖正/负/中性/实习/部门上下文）
+    queries = wlb_community.build_wlb_search_queries("汇川技术", "2027届-C++上位机软件开发工程师", "苏州")
+    assert len(queries) == 6
+    themes = {q["theme"] for q in queries}
+    assert {"overtime_hours", "wlb_rhythm", "intern_experience", "dept_role_context", "oncall_pressure", "positive_wlb"} == themes
+    assert any("苏州" in q["query"] and "不加班" in q["query"] for q in queries)
+
+    # 2. 验证实体匹配：拦截将“优必选”误匹配到“优衣库”的噪音，同时正确分级同城同岗 vs 同公司未知部门
+    noise_item = {
+        "company_query": "优必选",
+        "title": "在优衣库工作是种怎样的体验？店长排班与加班情况",
+        "url": "https://www.zhihu.com/question/noise_uniqlo",
+        "platform": "知乎",
+        "published_at": "2025-05-01",
+        "snippet": "优衣库门店每周排班，节假日比较忙。",
+    }
+    ev_noise = wlb_community.evaluate_discussion_item(noise_item, "优必选", "Java开发工程师", "深圳")
+    assert ev_noise["is_valid_target"] is False
+    assert ev_noise["match_tier"] == "tier_4_unverified"
+
+    tier1_item = {
+        "company_query": "金山办公",
+        "title": "金山办公(WPS)武汉研发中心C++客户端日常作息与加班情况",
+        "url": "https://www.zhihu.com/question/wps_wuhan_cpp",
+        "platform": "知乎",
+        "published_at": "2025-08-12",
+        "snippet": "武汉WPS C++客户端研发平时晚上9点左右下班，周末双休，发版周偶有加班。",
+        "engagement_info": "知乎回答 · 18赞同 · 6条评论",
+        "relevant_comments": ["武汉研发中心确实比互联网大厂温和一些，但晚8:30-9:00还是常态。"],
+    }
+    ev_t1 = wlb_community.evaluate_discussion_item(tier1_item, "金山办公", "C++客户端开发工程师", "武汉")
+    assert ev_t1["is_valid_target"] is True
+    assert ev_t1["match_tier"] == "tier_1_exact_role_city"
+    # 验证热度、相关性、可信度、代表性四维独立存在且不混为一谈
+    four_d = ev_t1["four_dimensions"]
+    assert set(four_d.keys()) == {"popularity", "relevance", "credibility", "representativeness"}
+    assert "不可直接概括为全体员工" in four_d["representativeness"]
+
+    # 3. 验证无证据时不编造数值分数、不默认 WLB 好或差，且三层结构（jd_facts / community_experiences / model_inferences）严格分离
+    empty_audit = wlb_community.audit_company_wlb(
+        "未知新创公司",
+        [{"company": "未知新创公司", "title": "C++开发工程师", "city": "成都", "jd_raw": "负责C++后端服务开发，要求熟悉Linux与算法。"}],
+        [],
+        profile=prof,
+    )
+    assert empty_audit["verdict_code"] == "insufficient_evidence"
+    assert empty_audit["explainable_numeric_index"] is None
+    assert "jd_facts" in empty_audit and "community_experiences" in empty_audit and "model_inferences" in empty_audit
+    assert "公司层面参考，无法确认该岗位具体团队情况" in empty_audit["department_scope_note"]
+
+    # 4. 验证外部搜索接口报错/受限时优雅降级，不中断流程
+    def _failing_fetcher(co, qs):
+        raise ConnectionError("HTTP 403 Forbidden: simulated anti-crawler block")
+
+    discs, smeta = wlb_community.fetch_public_wlb_discussions(
+        "合合信息", queries, allow_live_network=True, custom_fetcher=_failing_fetcher
+    )
+    assert smeta["degraded_gracefully"] is True
+    assert smeta["live_status"] == "degraded_on_error"
+    assert len(discs) >= 1  # 仍成功从本地公开证据库回退拿到合合信息讨论
+
+    # 5. 验证批量审核、SQLite 持久化与缓存命中
+    conn = db.init_db(str(tmp_path / "wlb_test.db"))
+    state_file = tmp_path / "wlb_state.json"
+    test_items = [
+        {"job": {"id": 1, "company": "汇川技术", "title": "C++软件开发工程师", "city": "苏州", "cohort": 2027, "cohort_status": "confirmed", "jd_raw": "负责工业自动化软件开发，双休，五险一金。" * 3}},
+        {"job": {"id": 2, "company": "优必选", "title": "Java开发工程师", "city": "深圳", "cohort": 2027, "cohort_status": "confirmed", "jd_raw": "负责云平台后端服务开发，双休。" * 3}},
+    ]
+    res1 = wlb_community.update_or_get_wlb_community_audits(
+        test_items, profile=prof, conn=conn, state_path=state_file, force_refresh=True
+    )
+    assert res1["summary_stats"]["fresh_computed"] > 0
+    assert res1["audits_by_company"]["汇川技术"]["verdict_code"] == "mixed_controversial"
+    # 优必选的“优衣库”同音噪音被拦截后应为 insufficient_evidence
+    assert res1["audits_by_company"]["优必选"]["community_experiences"]["rejected_noise_count"] >= 1
+    assert res1["audits_by_company"]["优必选"]["verdict_code"] == "insufficient_evidence"
+
+    # 第二次运行命中缓存
+    res2 = wlb_community.update_or_get_wlb_community_audits(
+        test_items, profile=prof, conn=conn, state_path=state_file, force_refresh=False
+    )
+    assert res2["summary_stats"]["cache_hits"] == res1["summary_stats"]["audited_companies_count"]
+    assert res2["summary_stats"]["fresh_computed"] == 0
+    conn.close()
+
+
+def test_module3_and_5_end_to_end_synergy_and_html_consistency(tmp_path):
+    """验收 5.3：端到端验证岗位筛选、高频技能统计、实现项目推荐、社区WLB审核、数据库更新、HTML报告独立页面与卡片协同锚点的一致性。"""
+    import skill_projects
+    import wlb_community
+
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+    conn = db.init_db(str(tmp_path / "e2e_synergy.db"))
+
+    raw_jobs = [
+        {
+            "company": "合合信息",
+            "title": "【27校招】Agent开发工程师",
+            "city": "上海",
+            "job_type": "校招",
+            "jd_url": "https://example.com/intsig/agent1",
+            "published_at": "2026-10-18",
+            "source": "合合信息",
+            "crawled_at": "2026-10-18",
+            "cohort": 2027,
+            "cohort_status": "confirmed",
+            "jd_raw": (
+                "岗位职责：1. 负责建设智能体的任务规划、上下文管理、记忆、工具调用、评测等核心基础设施；"
+                "2. 保障高并发场景下的低延迟、高可用，编写单元测试与自动化评测脚本。"
+                "任职要求：2027届本科及以上学历，熟悉 Python/C++/Go 之一，掌握数据结构与算法、操作系统、计算机网络、Linux、MySQL、Redis 与 Git，周末双休。"
+            ),
+        },
+        {
+            "company": "汇川技术",
+            "title": "2027届-C++软件开发工程师",
+            "city": "苏州",
+            "job_type": "校招",
+            "jd_url": "https://example.com/inovance/cpp1",
+            "published_at": "2026-10-18",
+            "source": "汇川技术",
+            "crawled_at": "2026-10-18",
+            "cohort": 2027,
+            "cohort_status": "confirmed",
+            "jd_raw": (
+                "岗位职责：1. 负责工业自动化上位机与控制软件的需求拆解、架构设计、C++/Qt6 编码实现与性能调优；"
+                "2. 参与自动化测试工具开发与现场问题排查定位。"
+                "任职要求：2027届本科及以上学历，熟悉 C/C++、STL、Qt、数据结构与算法、操作系统与 CMake/Git，五险一金。"
+            ),
+        },
+    ]
+    for j in raw_jobs:
+        db.upsert_job(conn, j)
+
+    db.sync_local_baseline_scores(conn, profile=prof)
+    all_items = db.get_all_jobs_with_analysis(conn)
+    assert len(all_items) == 2
+
+    sp_res = skill_projects.update_or_get_skill_projects_report(
+        all_items, profile=prof, conn=conn, state_path=tmp_path / "sp.json", force_refresh=True
+    )
+    wlb_res = wlb_community.update_or_get_wlb_community_audits(
+        all_items, profile=prof, conn=conn, state_path=tmp_path / "wlb.json", force_refresh=True
+    )
+    conn.close()
+
+    assert sp_res["enabled"] is True and len(sp_res["tier_b_projects"]) >= 6
+    assert wlb_res["enabled"] is True and "合合信息" in wlb_res["audits_by_company"]
+
+    report_file = reporter.generate_report(
+        "2026-10-18",
+        {"date": "2026-10-18", "items": all_items, "applications": []},
+        str(tmp_path / "reports"),
+        out_name="index",
+    )
+    html_out = Path(report_file).read_text(encoding="utf-8")
+
+    # 验证两个新增独立模块页面及岗位卡片协同栏均正确渲染在最终 HTML 报告中
+    assert "data-page=\"skill-projects\"" in html_out
+    assert "层级 A：真实招聘高频技能概览" in html_out
+    assert "层级 B：「技能栈 → 实现项目」工程训练方案" in html_out
+    assert "层级 C：分阶段工程实践建议与防坑守则" in html_out
+    assert "data-page=\"wlb-audit\"" in html_out
+    assert "① 【招聘事实 (Official JD Facts)】" in html_out
+    assert "② 【社区经验 (Community Experiences)】" in html_out
+    assert "③ 【模型审慎推断与面试核实清单 (Model Inferences & Caveats)】" in html_out
+    assert "🛠️ 对应工程训练项目：" in html_out
+    assert "⚖️ 社区WLB证据：" in html_out

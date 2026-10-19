@@ -96,6 +96,8 @@ jobs:
             outputs/latest_run_summary.json
             outputs/run.log
             data/advice_state.json
+            data/skill_projects_state.json
+            data/wlb_community_state.json
 
       - name: Commit DB and state back to main
         run: |
@@ -103,6 +105,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/jobs.db config.yaml outputs/company_integration_status.md
           if [ -f data/advice_state.json ]; then git add data/advice_state.json; fi
+          if [ -f data/skill_projects_state.json ]; then git add data/skill_projects_state.json; fi
+          if [ -f data/wlb_community_state.json ]; then git add data/wlb_community_state.json; fi
           if [ -f outputs/latest_run_summary.json ]; then git add outputs/latest_run_summary.json; fi
           if git diff --staged --quiet; then
             echo "No DB or state changes to commit"

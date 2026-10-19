@@ -267,3 +267,18 @@ target_roles:
     keywords: [图形学, 渲染, OpenGL, GLSL, 三维, CAD 几何, 视景仿真]
   - name: 其他或尚未分类的岗位
     keywords: []
+
+# ── 十二、新增模块配置：高频技能栈实现项目推荐 & 社区口碑辅助 WLB 审核 ──
+skill_project_module:
+  enabled: true
+  min_category_samples: 15
+  min_overall_samples: 30
+  cache_enabled: true
+  use_ai_for_project_insights: false
+
+wlb_community_module:
+  enabled: true
+  cache_ttl_days: 14
+  max_companies_per_run: 20
+  allow_live_public_search: false
+  use_ai_for_wlb_synthesis: false

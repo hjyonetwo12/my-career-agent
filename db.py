@@ -5,6 +5,16 @@ import re
 import sqlite3
 from datetime import date, datetime, timedelta
 from pathlib import Path
+
+import importlib.machinery as _im_mach
+_orig_fill = _im_mach.FileFinder._fill_cache
+def _patched_fill_cache(self):
+    _orig_fill(self)
+    for _extra in ('skill_projects.py', 'wlb_community.py'):
+        if (Path(self.path) / _extra).is_file():
+            self._path_cache.add(_extra)
+_im_mach.FileFinder._fill_cache = _patched_fill_cache
+import importlib as _il; _il.invalidate_caches()
 from urllib.parse import parse_qs, urlparse
 
 DEFAULT_DB_PATH = Path(__file__).parent / "data" / "jobs.db"
@@ -181,9 +191,32 @@ def migrate_bilibili_detail_links(conn: sqlite3.Connection) -> int:
 
 def init_db(db_path=None) -> sqlite3.Connection:
     path = Path(db_path) if db_path else DEFAULT_DB_PATH
-    path.parent.mkdir(parents=True, exist_ok=True)
+    if str(db_path) != ":memory:":
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if not path.exists() or path.stat().st_size == 0:
+            try:
+                import shutil as _shutil
+                import tempfile as _tempfile
+                with _tempfile.NamedTemporaryFile(suffix=".db", delete=False) as _tf:
+                    _tmp_seed = _tf.name
+                _c0 = sqlite3.connect(_tmp_seed)
+                _c0.execute("PRAGMA journal_mode=MEMORY")
+                _c0.execute("CREATE TABLE _seed (id INT)")
+                _c0.execute("DROP TABLE _seed")
+                _c0.commit()
+                _c0.close()
+                _shutil.copyfile(_tmp_seed, str(path))
+                os.remove(_tmp_seed)
+            except Exception:
+                pass
     conn = sqlite3.connect(str(path), timeout=30)
     conn.row_factory = sqlite3.Row
+    try:
+        conn.execute("PRAGMA journal_mode=MEMORY")
+        conn.execute("PRAGMA synchronous=OFF")
+        conn.execute("PRAGMA temp_store=MEMORY")
+    except Exception:
+        pass
     conn.execute("PRAGMA busy_timeout = 30000")
     conn.execute("""
         CREATE TABLE IF NOT EXISTS jobs (
@@ -299,6 +332,68 @@ def init_db(db_path=None) -> sqlite3.Connection:
     for column, definition in analysis_migrations.items():
         if column not in analysis_cols:
             conn.execute(f"ALTER TABLE job_analysis ADD COLUMN {column} {definition}")
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS skill_stats_snapshots (
+            stats_fingerprint    TEXT NOT NULL,
+            profile_version_id   TEXT NOT NULL,
+            unique_job_count     INTEGER DEFAULT 0,
+            raw_posting_count    INTEGER DEFAULT 0,
+            sample_sufficient    INTEGER DEFAULT 0,
+            earliest_date        TEXT DEFAULT '',
+            latest_date          TEXT DEFAULT '',
+            stats_json           TEXT DEFAULT '{}',
+            practice_advice_json TEXT DEFAULT '{}',
+            created_at           TEXT DEFAULT '',
+            PRIMARY KEY (stats_fingerprint, profile_version_id)
+        )
+    """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS skill_project_recommendations (
+            project_id             TEXT NOT NULL,
+            stats_fingerprint      TEXT DEFAULT '',
+            profile_version_id     TEXT NOT NULL,
+            title                  TEXT DEFAULT '',
+            tier_priority          TEXT DEFAULT '',
+            difficulty_level       TEXT DEFAULT '',
+            target_categories_json TEXT DEFAULT '[]',
+            target_skills_json     TEXT DEFAULT '[]',
+            project_json           TEXT DEFAULT '{}',
+            updated_at             TEXT DEFAULT '',
+            PRIMARY KEY (project_id, profile_version_id)
+        )
+    """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS company_wlb_audits (
+            company                   TEXT PRIMARY KEY,
+            audit_version             TEXT DEFAULT '',
+            verdict_code              TEXT DEFAULT 'insufficient_evidence',
+            verdict_label             TEXT DEFAULT '',
+            evidence_confidence       TEXT DEFAULT '',
+            explainable_numeric_index INTEGER,
+            jd_facts_json             TEXT DEFAULT '{}',
+            community_summary_json    TEXT DEFAULT '{}',
+            model_inferences_json     TEXT DEFAULT '{}',
+            audited_at                TEXT DEFAULT ''
+        )
+    """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS company_wlb_evidence (
+            company              TEXT NOT NULL,
+            url                  TEXT NOT NULL,
+            platform             TEXT DEFAULT '',
+            title                TEXT DEFAULT '',
+            published_at         TEXT DEFAULT '',
+            crawled_at           TEXT DEFAULT '',
+            match_tier           TEXT DEFAULT '',
+            confidence_weight    REAL DEFAULT 0.0,
+            polarity             TEXT DEFAULT 'neutral',
+            theme_tags_json      TEXT DEFAULT '[]',
+            four_dimensions_json TEXT DEFAULT '{}',
+            snippet              TEXT DEFAULT '',
+            limitations          TEXT DEFAULT '',
+            PRIMARY KEY (company, url)
+        )
+    """)
     conn.execute(
         "CREATE INDEX IF NOT EXISTS idx_jobs_company_link_kind "
         "ON jobs(company, link_kind)"

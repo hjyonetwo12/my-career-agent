@@ -1,0 +1,554 @@
+{
+  "schema_version": "wlb-seed-v1.0",
+  "captured_at": "2026-10-19 11:30:00 CST",
+  "source_description": "通过公开搜索引擎 (Google Search) 针对知乎、V2EX、牛客网及公开报道采集的真实社区 WLB 讨论索引（仅保留公开标题、链接、发布日期与必要短摘要，已隐去发帖人个人账号信息）。",
+  "discussions": [
+    {
+      "company_query": "合合信息",
+      "title": "简单询问一下上海合合信息公司IT 加班严重吗? - V2EX",
+      "url": "https://www.v2ex.com/t/670925",
+      "platform": "V2EX",
+      "published_at": "2020-05-12",
+      "crawled_at": "2026-10-19",
+      "snippet": "职场话题讨论：针对上海合合信息（名片全能王、扫描全能王母公司）IT与研发岗位的日常加班情况、上下班作息与团队工作节奏进行公开询问与经验交流。",
+      "relevant_comments": [
+        "社区跟帖讨论指出不同产品线（C端扫描全能王 vs B端智能文字识别/启信宝）节奏存在一定差异，整体属于上海中型盈利软件企业节奏，但该帖发布于2020年，距今已有一定年限。"
+      ],
+      "engagement_info": "V2EX 公开主题帖（搜索摘要未展示实时回复总数）",
+      "mentioned_cities": [
+        "上海"
+      ],
+      "mentioned_roles": [
+        "IT",
+        "研发"
+      ],
+      "mentioned_depts": [
+        "C端产品线",
+        "B端业务线"
+      ]
+    },
+    {
+      "company_query": "汇川技术",
+      "title": "在汇川技术工作是什么样的体验？23秋招offer，坐标研发部门，base苏州",
+      "url": "https://www.iivd.net/thread-82992-1-1.html",
+      "platform": "公开职场论坛",
+      "published_at": "2023-10-15",
+      "crawled_at": "2026-10-19",
+      "snippet": "23秋招拿到汇川技术苏州研发部门offer，公开讨论苏州研发基地的工作体验、加班频次与部门管理方式。",
+      "relevant_comments": [
+        "讨论提及汇川技术作为工业自动化与工控龙头，苏州研发中心技术氛围较扎实，但不同事业部（通用自动化、新能源汽车电控、数字化）赶项目节点时存在加班差异。"
+      ],
+      "engagement_info": "公开帖子讨论",
+      "mentioned_cities": [
+        "苏州"
+      ],
+      "mentioned_roles": [
+        "研发"
+      ],
+      "mentioned_depts": [
+        "苏州研发部门"
+      ]
+    },
+    {
+      "company_query": "汇川技术",
+      "title": "汇川技术怎么样？ - 知乎",
+      "url": "https://www.zhihu.com/question/657739868",
+      "platform": "知乎",
+      "published_at": "2024-05-31",
+      "crawled_at": "2026-10-19",
+      "snippet": "围绕汇川技术近年业务扩张下的研发工作强度、薪酬绩效回报与事业部差异展开讨论。",
+      "relevant_comments": [
+        "正面反馈认可其在工控行业的龙头地位与应届生培养体系；负面或审慎反馈提到部分车载/新能源相关业务线工作节奏偏快、有平时加班情况。"
+      ],
+      "engagement_info": "知乎公开问答",
+      "mentioned_cities": [
+        "苏州",
+        "深圳"
+      ],
+      "mentioned_roles": [
+        "研发",
+        "软件开发"
+      ],
+      "mentioned_depts": []
+    },
+    {
+      "company_query": "汇川技术",
+      "title": "苏州汇川技术怎么样呢？ - 知乎",
+      "url": "https://www.zhihu.com/question/423680743",
+      "platform": "知乎",
+      "published_at": "2020-09-30",
+      "crawled_at": "2026-10-19",
+      "snippet": "针对苏州汇川技术的应届生入职体验、日常下班时间、周末休息及园区工作环境进行问答分享。",
+      "relevant_comments": [
+        "回答指出苏州总部研发岗相比一线互联网大厂更为稳健，但并非完全朝九晚五不加班，视所在产品线交付周期而定。"
+      ],
+      "engagement_info": "知乎公开问答",
+      "mentioned_cities": [
+        "苏州"
+      ],
+      "mentioned_roles": [
+        "研发"
+      ],
+      "mentioned_depts": []
+    },
+    {
+      "company_query": "柏楚电子",
+      "title": "柏楚电子怎么样？ - 知乎",
+      "url": "https://www.zhihu.com/question/359051902",
+      "platform": "知乎",
+      "published_at": "2019-12-02",
+      "crawled_at": "2026-10-19",
+      "snippet": "坐标上海闵行紫竹高新区，激光切割控制系统科创板上市企业柏楚电子的研发工作体验、薪酬福利与团队文化讨论。",
+      "relevant_comments": [
+        "讨论提到公司深耕激光加工控制工业软件与CAD/CAM几何算法，利润率高、园区环境好，研发团队以C++和算法为主，但公开讨论样本较少且主帖时间较早（2019年底）。"
+      ],
+      "engagement_info": "知乎公开问答",
+      "mentioned_cities": [
+        "上海"
+      ],
+      "mentioned_roles": [
+        "软件开发",
+        "算法"
+      ],
+      "mentioned_depts": [
+        "激光控制研发"
+      ]
+    },
+    {
+      "company_query": "联影医疗",
+      "title": "在上海联影医疗的工作体验是怎么样的？尤其是mr事业部医疗软件事业部 - 知乎",
+      "url": "https://www.zhihu.com/question/24808501/answer/2271568540",
+      "platform": "知乎",
+      "published_at": "2021-12-10",
+      "crawled_at": "2026-10-19",
+      "snippet": "聚焦上海联影医疗MR事业部及医疗软件事业部的软件研发日常作息、拿证发版周期与管理风格。",
+      "relevant_comments": [
+        "回答指出医疗器械软件受合规与注册拿证周期影响，平时作息相对规律（一般双休），但在产品注册申报或大版本冻结前会有阶段性加班。"
+      ],
+      "engagement_info": "知乎公开回答",
+      "mentioned_cities": [
+        "上海"
+      ],
+      "mentioned_roles": [
+        "医疗软件",
+        "研发"
+      ],
+      "mentioned_depts": [
+        "MR事业部",
+        "医疗软件事业部"
+      ]
+    },
+    {
+      "company_query": "联影医疗",
+      "title": "武汉联影医疗的研发岗怎么样？ - 知乎",
+      "url": "https://www.zhihu.com/question/431048744/answer/2508950980",
+      "platform": "知乎",
+      "published_at": "2022-06-01",
+      "crawled_at": "2026-10-19",
+      "snippet": "讨论武汉联影医疗研发基地的软件与算法岗位工作强度、薪资性价比及与上海总部的协同方式。",
+      "relevant_comments": [
+        "多数反馈认为相比纯互联网公司，联影医疗研发岗长期职业稳定性较好，适合C++/医学图像处理与桌面客户端方向，但不同子事业部考核强度有别。"
+      ],
+      "engagement_info": "知乎公开问答",
+      "mentioned_cities": [
+        "武汉"
+      ],
+      "mentioned_roles": [
+        "研发岗",
+        "C++软件"
+      ],
+      "mentioned_depts": [
+        "武汉研发中心"
+      ]
+    },
+    {
+      "company_query": "金山办公",
+      "title": "就业单位分析—金山办公 - 牛客网",
+      "url": "https://www.nowcoder.com/discuss/553333705289293824",
+      "platform": "牛客网",
+      "published_at": "2023-11-12",
+      "crawled_at": "2026-10-19",
+      "snippet": "针对金山办公（WPS）武汉与珠海研发中心的应届生培养、C++/Qt技术栈要求及工作作息、历史大小周改革情况进行分析。",
+      "relevant_comments": [
+        "讨论提到金山办公作为国产办公软件龙头，非常看重C++基础与客户端工程能力；早期部分团队曾推行过大小周或加班，近年多为双休但部分新业务线（如AI办公助手）发版期节奏较快。"
+      ],
+      "engagement_info": "牛客网公开讨论帖",
+      "mentioned_cities": [
+        "武汉",
+        "珠海",
+        "北京"
+      ],
+      "mentioned_roles": [
+        "C++客户端",
+        "研发"
+      ],
+      "mentioned_depts": [
+        "WPS客户端研发"
+      ]
+    },
+    {
+      "company_query": "金山办公",
+      "title": "如何评价武汉金山办公一年2次绩效考核，并且优化10%的员工？ - 知乎",
+      "url": "https://www.zhihu.com/question/488739967",
+      "platform": "知乎",
+      "published_at": "2021-09-24",
+      "crawled_at": "2026-10-19",
+      "snippet": "关于武汉金山办公2021年期间绩效考核机制与试用期/年度淘汰比例的公开争议讨论。",
+      "relevant_comments": [
+        "部分匿名回答反映特定时期绩效考核压力较大；也有回答指出不同业务组管理风格差异显著，不能一概而论。"
+      ],
+      "engagement_info": "知乎公开问答",
+      "mentioned_cities": [
+        "武汉"
+      ],
+      "mentioned_roles": [
+        "研发"
+      ],
+      "mentioned_depts": [
+        "武汉产研中心"
+      ]
+    },
+    {
+      "company_query": "德州仪器",
+      "title": "在德州仪器（TI）工作是一种怎样的体验？ - 知乎",
+      "url": "https://www.zhihu.com/question/548835883/answer/2641640768",
+      "platform": "知乎",
+      "published_at": "2022-08-17",
+      "crawled_at": "2026-10-19",
+      "snippet": "入职德州仪器（TI）8年员工分享在TI上海/成都的工作体验、带薪年假、弹性不打卡文化与工程师培养计划。",
+      "relevant_comments": [
+        "正面评价集中在外企合规双休、年假充裕、无强制加班打卡文化、对本科应届生有系统轮岗与导师制培养。"
+      ],
+      "engagement_info": "知乎实名/长期员工回答",
+      "mentioned_cities": [
+        "上海",
+        "成都"
+      ],
+      "mentioned_roles": [
+        "工程师",
+        "软件",
+        "测试"
+      ],
+      "mentioned_depts": [
+        "研发与技术支持"
+      ]
+    },
+    {
+      "company_query": "德州仪器",
+      "title": "德州仪器交流讨论：德州仪器工作强度与工作体验分享 - 牛客网",
+      "url": "https://www.nowcoder.com/enterprise/920/discussion",
+      "platform": "牛客网",
+      "published_at": "2024-10-07",
+      "crawled_at": "2026-10-19",
+      "snippet": "2024秋招签约上海/成都德州仪器的应届生与在职工程师交流TI工作强度、WLB与各岗位日常节奏。",
+      "relevant_comments": [
+        "讨论普遍反映TI整体WLB显著优于国内互联网大厂，双休有保障，但如有跨时区（与美国达拉斯总部）会议时可能需要在晚间沟通。"
+      ],
+      "engagement_info": "牛客网企业讨论区（14人参与工作强度话题）",
+      "mentioned_cities": [
+        "上海",
+        "成都"
+      ],
+      "mentioned_roles": [
+        "工程师",
+        "研发"
+      ],
+      "mentioned_depts": []
+    },
+    {
+      "company_query": "字节跳动",
+      "title": "我在字节跳动实习的三个月 - V2EX",
+      "url": "https://www.v2ex.com/t/639004",
+      "platform": "V2EX",
+      "published_at": "2020-01-18",
+      "crawled_at": "2026-10-19",
+      "snippet": "本科大三学生分享在字节跳动后端开发实习三个月的真实日常作息、Mentor带教、代码评审规范与工作强度。",
+      "relevant_comments": [
+        "正面提到技术基建完善、文档齐全、实习生能接触真实高并发系统且三餐下午茶福利好；同时也指出日常下班时间普遍在晚8:30–10:00之间，节奏较快。"
+      ],
+      "engagement_info": "V2EX 多页热门帖",
+      "mentioned_cities": [
+        "北京",
+        "上海"
+      ],
+      "mentioned_roles": [
+        "后端开发实习生",
+        "研发实习生"
+      ],
+      "mentioned_depts": [
+        "后端研发"
+      ]
+    },
+    {
+      "company_query": "字节跳动",
+      "title": "字节跳动招聘26届实习生（以转正为招聘要求和目标），上海 - V2EX",
+      "url": "https://www.v2ex.com/t/1128872",
+      "platform": "V2EX",
+      "published_at": "2025-04-29",
+      "crawled_at": "2026-10-19",
+      "snippet": "字节跳动IaaS与基础架构团队招募研发实习生（ByteIntern），介绍团队工程实践与转正考核标准。",
+      "relevant_comments": [
+        "团队内推帖说明取消大小周后一般为双休（10-7/9-5或10-8/9-5视业务线而定），但核心业务如抖音/TikTok版本迭代期仍有较高排期压力。"
+      ],
+      "engagement_info": "V2EX 酷工作节点公开帖",
+      "mentioned_cities": [
+        "上海",
+        "北京",
+        "杭州"
+      ],
+      "mentioned_roles": [
+        "研发实习生",
+        "前端/后端/IaaS"
+      ],
+      "mentioned_depts": [
+        "IaaS",
+        "基础架构"
+      ]
+    },
+    {
+      "company_query": "大疆",
+      "title": "大疆开始严禁过度加班，不强制9点上班强制9点下班 - 知乎",
+      "url": "https://www.zhihu.com/question/14488841411/answer/120352616083",
+      "platform": "知乎",
+      "published_at": "2025-03-08",
+      "crawled_at": "2026-10-19",
+      "snippet": "2025年3月公开报道与知乎讨论：大疆发布内部公告优化工时管理，从2025年起严禁过度夜间加班，强制晚9点下班，员工日均工作时长约8—9.5小时。",
+      "relevant_comments": [
+        "近期证据显示公司层面正推行晚9点清场与反过度加班新规，较早年动辄深夜11-12点下班的情况有明显改善信号。"
+      ],
+      "engagement_info": "知乎热议话题与媒体核实报道",
+      "mentioned_cities": [
+        "深圳",
+        "上海"
+      ],
+      "mentioned_roles": [
+        "研发",
+        "工程师"
+      ],
+      "mentioned_depts": [
+        "深圳总部"
+      ]
+    },
+    {
+      "company_query": "大疆",
+      "title": "在大疆公司（DJI）工作是怎样一番体验？ - 知乎",
+      "url": "https://www.zhihu.com/question/24453944",
+      "platform": "知乎",
+      "published_at": "2019-01-24",
+      "crawled_at": "2026-10-19",
+      "snippet": "早期前员工与在职工程师回顾大疆研发岗位的技术硬核程度与历史高强度加班文化。",
+      "relevant_comments": [
+        "早年回答普遍反映硬件与软硬协同研发项目期加班严重（常到晚9-11点）；需结合2025年最新反加班新规综合看待其时效性变化。"
+      ],
+      "engagement_info": "知乎长期高关注问题",
+      "mentioned_cities": [
+        "深圳"
+      ],
+      "mentioned_roles": [
+        "研发",
+        "嵌入式",
+        "算法"
+      ],
+      "mentioned_depts": [
+        "研发部"
+      ]
+    },
+    {
+      "company_query": "贝壳",
+      "title": "[25届校招内推] 贝壳找房秋招开启啦～～工作时间1075，无内卷文化 - V2EX",
+      "url": "https://www.v2ex.com/t/1066527",
+      "platform": "V2EX",
+      "published_at": "2024-08-20",
+      "crawled_at": "2026-10-19",
+      "snippet": "贝壳找房北京研发团队校招内推帖，提及团队作息为 10-7-5（早10点晚7点双休）、入职即享10天年假与三餐免费。",
+      "relevant_comments": [
+        "多条V2EX贝壳研发帖（含t/1039232、t/1066527）提及核心房客与基础研发团队作息相对规律（约10-7-5或10-8-5，双休），但需注意此类信息部分来自内部员工内推帖，可能存在正面滤镜。"
+      ],
+      "engagement_info": "V2EX 公开主题帖",
+      "mentioned_cities": [
+        "北京"
+      ],
+      "mentioned_roles": [
+        "Java后端",
+        "研发工程师",
+        "测开"
+      ],
+      "mentioned_depts": [
+        "核心房客业务",
+        "基础研发"
+      ]
+    },
+    {
+      "company_query": "中国联通",
+      "title": "济南联通软件研究院怎么样 / 联通系统集成西安研发中心待遇怎么样？ - 知乎",
+      "url": "https://www.zhihu.com/question/317904125",
+      "platform": "知乎",
+      "published_at": "2020-10-30",
+      "crawled_at": "2026-10-19",
+      "snippet": "对比华为等高强度民企与联通软件研究院/省公司数字化研发岗的加班情况、薪酬职级体系（1-17岗）及工作稳定性。",
+      "relevant_comments": [
+        "普遍反馈运营商研发院/省本部技术岗双休稳定、加班显著少于互联网大厂，适合追求WLB的应届生；但也指出国企职级晋升较慢、部分政企支撑团队存在文书汇报与流程性事务。"
+      ],
+      "engagement_info": "知乎公开问答",
+      "mentioned_cities": [
+        "济南",
+        "西安",
+        "北京",
+        "深圳",
+        "广州"
+      ],
+      "mentioned_roles": [
+        "软件开发",
+        "技术岗"
+      ],
+      "mentioned_depts": [
+        "联通软件研究院",
+        "系统集成研发中心"
+      ]
+    },
+    {
+      "company_query": "OPPO",
+      "title": "OPPO软件开发岗工作弹性打卡半个小时，加班偏多 - 牛客网",
+      "url": "https://www.nowcoder.com/discuss/536141254409588736",
+      "platform": "牛客网",
+      "published_at": "2023-09-26",
+      "crawled_at": "2026-10-19",
+      "snippet": "在OPPO软件开发岗工作两年多的员工分享：标准工作时间8:30-17:30（弹性打卡半小时，午休两小时），一般双休，但部分系统/业务部门日常加班偏多，有加班餐。",
+      "relevant_comments": [
+        "牛客与知乎（question/420016446）讨论显示：OPPO整体双休比例高于早年，午休2小时体验好，但ColorOS系统研发、底层驱动及部分互联网业务组在发版期仍存在晚8:30-9:30下班或月末周六加班情况。"
+      ],
+      "engagement_info": "牛客网在职员工经验贴",
+      "mentioned_cities": [
+        "深圳",
+        "成都",
+        "东莞",
+        "上海"
+      ],
+      "mentioned_roles": [
+        "软件开发",
+        "测试开发",
+        "底层软件"
+      ],
+      "mentioned_depts": [
+        "软件工程系统",
+        "硬件测试部"
+      ]
+    },
+    {
+      "company_query": "万兴科技",
+      "title": "万兴科技被指隐性强制加班，时长不够影响晋升转正，公司回应 - 南方都市报/中经网",
+      "url": "https://m.mp.oeeee.com/a/BAAFRD000020230427791020.html",
+      "platform": "公开媒体报道 & 知乎",
+      "published_at": "2023-04-28",
+      "crawled_at": "2026-10-19",
+      "snippet": "2023年4月公开新闻与知乎（question/47153891）讨论：有员工反映万兴科技部分部门存在加班时长排名或影响转正晋升现象；万兴科技官方回应称不鼓励也没有强制员工加班。",
+      "relevant_comments": [
+        "社区经验与早年知乎回答提示其部分深圳/长沙业务线存在晚间加班传统，与“出海工具软件表面轻松”的刻板印象存在反差，入职前务必向具体部门核实考勤与转正标准。"
+      ],
+      "engagement_info": "媒体公开报道及知乎多回答交叉印证",
+      "mentioned_cities": [
+        "深圳",
+        "长沙"
+      ],
+      "mentioned_roles": [
+        "研发",
+        "产品",
+        "运营"
+      ],
+      "mentioned_depts": []
+    },
+    {
+      "company_query": "同花顺",
+      "title": "现在同花顺B2B事业部怎么样，加班严重不？ / 同花顺在知乎的口碑如何？ - 知乎",
+      "url": "https://www.zhihu.com/question/502262196",
+      "platform": "知乎",
+      "published_at": "2021-11-28",
+      "crawled_at": "2026-10-19",
+      "snippet": "针对杭州同花顺技术研发岗的办公环境（升降桌/人体工学椅）与日常加班强度、历史大小周情况进行公开讨论。",
+      "relevant_comments": [
+        "多条知乎回答（含question/60375019、question/358206848）反映其虽然硬件办公环境好，但不少技术研发部门下班较晚（晚9点左右）且历史上存在大小周传统，对看重高WLB的求职者存在较明显的负面信号。"
+      ],
+      "engagement_info": "知乎多篇问答",
+      "mentioned_cities": [
+        "杭州"
+      ],
+      "mentioned_roles": [
+        "技术岗",
+        "软件开发",
+        "C++/Java"
+      ],
+      "mentioned_depts": [
+        "B2B事业部",
+        "技术研发"
+      ]
+    },
+    {
+      "company_query": "米哈游",
+      "title": "2023年了，米哈游还值得去吗？ / 问大家一句米哈游真的待遇好吗？ - 知乎",
+      "url": "https://www.zhihu.com/question/571873884",
+      "platform": "知乎 & V2EX",
+      "published_at": "2022-12-11",
+      "crawled_at": "2026-10-19",
+      "snippet": "对比米哈游早期（2020年前）10-7-5宽松氛围与近年多款大型二次元游戏并行研发下的项目期加班强度。",
+      "relevant_comments": [
+        "V2EX早期内推帖（t/701162）曾标榜1075不打卡、16薪福利极佳；但2022-2023年后的知乎讨论普遍反映随着大版本迭代加速，在研项目组与引擎/客户端团队在版本冲刺期加班明显增多。"
+      ],
+      "engagement_info": "知乎高热度问答与V2EX内推帖对比",
+      "mentioned_cities": [
+        "上海"
+      ],
+      "mentioned_roles": [
+        "客户端",
+        "引擎",
+        "服务端开发"
+      ],
+      "mentioned_depts": [
+        "在研项目组"
+      ]
+    },
+    {
+      "company_query": "星环科技",
+      "title": "星环科技南京的大数据应用开发岗，技术水平还有工作强度怎么样 - 知乎",
+      "url": "https://www.zhihu.com/question/400738423",
+      "platform": "知乎 & 牛客网",
+      "published_at": "2020-06-10",
+      "crawled_at": "2026-10-19",
+      "snippet": "讨论基础软件/大数据分布式数据库企业星环科技（上海/南京）的技术氛围、面试难度与工作强度。",
+      "relevant_comments": [
+        "正面评价认可其核心数据库与编译器/分布式研发团队技术实力强、工程师背景好，整体属硬核基础软件工程师文化；但讨论样本时间偏早（2020年），近期各部门作息需进一步核实。"
+      ],
+      "engagement_info": "知乎与牛客网公开讨论",
+      "mentioned_cities": [
+        "上海",
+        "南京"
+      ],
+      "mentioned_roles": [
+        "大数据开发",
+        "云计算开发",
+        "数据库研发"
+      ],
+      "mentioned_depts": [
+        "大数据应用",
+        "云计算"
+      ]
+    },
+    {
+      "company_query": "优必选",
+      "title": "在优衣库工作是怎样的体验？ - 知乎（搜索词近似噪声样本）",
+      "url": "https://www.zhihu.com/question/32097850/answer/1311688369",
+      "platform": "知乎",
+      "published_at": "2015-07-10",
+      "crawled_at": "2026-10-19",
+      "snippet": "不请自来~先介绍一下本人情况：坐标二线城市，全职入职优衣库近一年，在门店负责排班与日常运营工作体验分享。",
+      "relevant_comments": [],
+      "engagement_info": "无关噪声测试项",
+      "mentioned_cities": [
+        "上海"
+      ],
+      "mentioned_roles": [
+        "门店店员"
+      ],
+      "mentioned_depts": []
+    }
+  ]
+}

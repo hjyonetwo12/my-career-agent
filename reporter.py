@@ -21,6 +21,8 @@ from datetime import date
 from pathlib import Path
 
 import job_filters
+import skill_projects
+import wlb_community
 import job_cohorts
 import job_details
 import yaml
@@ -451,6 +453,91 @@ def _apply_control(job: dict, app_index, editable: bool) -> str:
     return ""
 
 
+
+_SYNERGY_WLB_CACHE: dict[str, dict] = {}
+
+
+def _get_cached_wlb_map() -> dict[str, dict]:
+    if not _SYNERGY_WLB_CACHE:
+        try:
+            state = wlb_community._load_wlb_state(wlb_community.DEFAULT_WLB_STATE_PATH)
+            _SYNERGY_WLB_CACHE.update(state.get("company_audits") or {})
+        except Exception:
+            pass
+    return _SYNERGY_WLB_CACHE
+
+
+def _synergy_card_bar_html(job: dict, cat_info: dict) -> str:
+    """Module 3 Synergy: Link job requirements, matching practice project, and community WLB audit without compressing into a single score."""
+    try:
+        prof = job_filters.load_active_profile()
+    except Exception:
+        prof = {}
+    mod_sp_enabled = bool((prof.get("skill_project_module") or {}).get("enabled", True))
+    mod_wlb_enabled = bool((prof.get("wlb_community_module") or {}).get("enabled", True))
+    if not mod_sp_enabled and not mod_wlb_enabled:
+        return ""
+
+    pcat = cat_info.get("primary_category") or "backend_dist"
+    proj_part = ""
+    if mod_sp_enabled:
+        matched_projs = [
+            p for p in skill_projects.PROJECT_BLUEPRINT_CATALOG
+            if pcat in (p.get("target_categories") or [])
+        ]
+        if not matched_projs:
+            matched_projs = [skill_projects.PROJECT_BLUEPRINT_CATALOG[0]]
+        top_proj = matched_projs[0]
+        p_title = html.escape(str(top_proj.get("title") or ""))
+        p_langs = html.escape("/".join(top_proj.get("primary_languages") or []))
+        p_effort = html.escape(str(top_proj.get("estimated_effort") or "")[:28])
+        proj_part = (
+            f'<div style="flex:1;min-width:260px;">'
+            f'<span style="font-weight:600;color:#0F172A;">🛠️ 对应工程训练项目：</span>'
+            f'<a href="#skill-projects" onclick="window.location.hash=\x27#skill-projects\x27" '
+            f'style="color:#0369A1;font-weight:600;text-decoration:underline;">{p_title}</a> '
+            f'<span style="color:#64748B;font-size:12px;">（技术栈：{p_langs} · 投入：{p_effort}…）</span>'
+            f'</div>'
+        )
+
+    wlb_part = ""
+    if mod_wlb_enabled:
+        company = str(job.get("company") or "").strip()
+        wlb_map = _get_cached_wlb_map()
+        audit = wlb_map.get(company)
+        if not audit:
+            try:
+                raw_discs, smeta = wlb_community.fetch_public_wlb_discussions(company, [])
+                audit = wlb_community.audit_company_wlb(company, [job], raw_discs, profile=prof, search_meta=smeta)
+                wlb_map[company] = audit
+            except Exception:
+                audit = None
+        if isinstance(audit, dict):
+            v_label = html.escape(str(audit.get("verdict_label") or "证据不足"))
+            v_code = str(audit.get("verdict_code") or "insufficient_evidence")
+            ev_cnt = int((audit.get("community_experiences") or {}).get("valid_evidence_count") or 0)
+            conf = html.escape(str(audit.get("evidence_confidence") or "insufficient")[:18])
+            badge_bg = "#DCFCE7" if v_code == "positive_signal" else ("#FEE2E2" if v_code == "negative_signal" else ("#FEF3C7" if v_code in ("mixed_controversial", "outdated_evidence") else "#F1F5F9"))
+            badge_fg = "#166534" if v_code == "positive_signal" else ("#991B1B" if v_code == "negative_signal" else ("#92400E" if v_code in ("mixed_controversial", "outdated_evidence") else "#475569"))
+            wlb_part = (
+                f'<div style="flex:1;min-width:260px;">'
+                f'<span style="font-weight:600;color:#0F172A;">⚖️ 社区WLB证据：</span>'
+                f'<a href="#wlb-audit" onclick="window.location.hash=\x27#wlb-audit\x27" '
+                f'style="display:inline-block;padding:1px 8px;border-radius:999px;background:{badge_bg};color:{badge_fg};font-weight:600;font-size:12px;text-decoration:none;">'
+                f'{v_label}</a> '
+                f'<span style="color:#64748B;font-size:12px;">（公开讨论 {ev_cnt} 条 · 置信度:{conf} · 独立于匹配分呈现）</span>'
+                f'</div>'
+            )
+
+    if not proj_part and not wlb_part:
+        return ""
+    return (
+        f'<div class="synergy-bar" style="margin-top:8px;padding:8px 12px;background:#F0F9FF;border:1px dashed #BAE6FD;'
+        f'border-radius:8px;display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;line-height:1.5;">'
+        f'{proj_part}{wlb_part}</div>'
+    )
+
+
 def _big_job_card(item: dict, app_index=None, editable: bool = False) -> str:
     job = item["job"]
     a = item["analysis"]
@@ -551,6 +638,7 @@ def _big_job_card(item: dict, app_index=None, editable: bool = False) -> str:
       {f'<div style="color:#0B6E69;font-weight:600;">📌 最终推荐/排序结论：{html.escape(final_reason_txt)}</div>' if final_reason_txt else ''}
     </div>
   </details>
+  {_synergy_card_bar_html(job, cat_info)}
   <div class="big-card-foot">
     {f'<a href="{html.escape(job["jd_url"])}" target="_blank" rel="noopener" class="detail-link">查看岗位详情 <span>›</span></a>' if _is_detail_link(job) else f'<a href="{html.escape(job["jd_url"])}" target="_blank" rel="noopener" class="detail-link">查看招聘列表 <span>›</span></a>'}
   </div>
@@ -1683,6 +1771,416 @@ _ICON_BARS = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke
 _ICON_KANBAN = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="18" rx="1"/><rect x="11" y="3" width="6" height="12" rx="1"/><rect x="19" y="3" width="2" height="9" rx="1"/></svg>'
 _ICON_CALENDAR = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>'
 _ICON_COMPASS = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>'
+
+
+def _page_skill_projects(items: list, date_str: str) -> str:
+    """模块一独立页面：高频技能栈统计与可验证实现项目推荐（A.高频技能概览 / B.技能栈对应项目 / C.实践建议）。"""
+    prof = job_filters.load_active_profile()
+    mod_cfg = prof.get("skill_project_module") or {}
+    if not mod_cfg.get("enabled", True):
+        return """<section class="page" data-page="skill-projects"><div class="page-head"><div><h1>🛠️ 技能栈与实现项目</h1><p class="page-sub">该模块当前已在 profile.yaml (skill_project_module.enabled=false) 中关闭。</p></div></div></section>"""
+
+    try:
+        sp_data = skill_projects.update_or_get_skill_projects_report(items, profile=prof, conn=None, force_refresh=False)
+    except Exception as exc:
+        return f"""<section class="page" data-page="skill-projects"><div class="page-head"><div><h1>🛠️ 技能栈与实现项目</h1><p class="page-sub">模块加载降级：{html.escape(str(exc))}</p></div></div></section>"""
+
+    vinfo = sp_data.get("version_info") or {}
+    tier_a = sp_data.get("tier_a_skill_overview") or {}
+    tier_b = sp_data.get("tier_b_projects") or []
+    tier_c = sp_data.get("tier_c_practice_advice") or {}
+    overall = tier_a.get("overall") or {}
+    by_cat = tier_a.get("by_category") or {}
+    tr = tier_a.get("time_range") or {}
+    dedup_sum = tier_a.get("dedup_summary") or {}
+
+    # A.1 Overall top skills table
+    overall_rows = []
+    for sk in (overall.get("top_skills") or [])[:16]:
+        t_role = str(sk.get("tier_role") or "must")
+        req_lbl = html.escape(str(sk.get("tier_role_label") or "高频必需技能"))
+        req_bg = "#FEE2E2" if t_role == "must" else ("#FEF3C7" if t_role == "bonus" else "#E0F2FE")
+        req_fg = "#991B1B" if t_role == "must" else ("#92400E" if t_role == "bonus" else "#075985")
+        syns_txt = " / ".join(sk.get("synonyms_merged") or [])
+        overall_rows.append(f"""
+        <tr>
+          <td style="font-weight:600;color:#0F172A;">
+            {html.escape(str(sk.get('canonical_name') or ''))}
+            <div style="font-size:11.5px;color:#64748B;font-weight:normal;">合并同义词：{html.escape(syns_txt)}</div>
+          </td>
+          <td><span style="padding:2px 8px;border-radius:999px;background:#F1F5F9;font-size:12px;">{html.escape(str(sk.get('dimension_label') or ''))}</span></td>
+          <td><span style="padding:2px 8px;border-radius:999px;background:{req_bg};color:{req_fg};font-weight:600;font-size:12px;">{req_lbl}</span></td>
+          <td><b>{sk.get('unique_job_count', 0)}</b> 岗 ({sk.get('unique_job_pct', 0)}%)</td>
+          <td style="color:#64748B;font-size:12px;">原始记录 {sk.get('raw_posting_count', 0)} 条 (剔除重复发布 {sk.get('duplicate_posting_count', 0)} 条)</td>
+          <td>{sk.get('company_count', 0)} 家 ({html.escape('、'.join((sk.get('top_companies') or [])[:3]))})</td>
+          <td style="color:#475569;font-size:12px;">必需:{sk.get('must_count', 0)} ({sk.get('must_ratio_pct', 0)}%) / 加分:{sk.get('bonus_count', 0)}<br><span style="color:#0369A1;">{html.escape(str(sk.get('trend_summary') or ''))}</span></td>
+        </tr>""")
+
+    # A.2 Per-category skill cards
+    cat_cards = []
+    for cid, cstat in by_cat.items():
+        suff = bool(cstat.get("sample_sufficient"))
+        suff_badge = (
+            f'<span style="background:#DCFCE7;color:#166534;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;">样本充足 ({cstat.get("unique_job_count", 0)} 独立岗 / {cstat.get("company_count", 0)} 企)</span>'
+            if suff else
+            f'<span style="background:#FEF3C7;color:#92400E;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;">{html.escape(str(cstat.get("sample_warning") or "样本不足"))}</span>'
+        )
+        must_tags = "、".join(
+            f"{s['canonical_name']}({s['unique_job_pct']}%)"
+            for s in (cstat.get("must_skills") or [])[:5]
+        ) or "暂无显著高频必需项"
+        bonus_tags = "、".join(
+            f"{s['canonical_name']}({s['unique_job_pct']}%)"
+            for s in (cstat.get("bonus_skills") or [])[:5]
+        ) or "暂无显著加分项"
+        niche_tags = "、".join(
+            f"{s['canonical_name']}({s['unique_job_count']}岗)"
+            for s in (cstat.get("niche_skills") or [])[:4]
+        ) or "无"
+        combos = "；".join(
+            f"{p['pair_label']} ({p['co_unique_jobs']}岗/{p['co_pct']}%)"
+            for p in (cstat.get("common_combinations") or [])[:4]
+        ) or "样本较少"
+        cat_cards.append(f"""
+        <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+            <h4 style="font-size:15px;color:#0F172A;margin:0;">📂 {html.escape(str(cstat.get('category_label') or cid))}</h4>
+            {suff_badge}
+          </div>
+          <div style="font-size:12.5px;color:#64748B;margin-bottom:6px;">
+            去重统计：原始岗位记录 {cstat.get('raw_posting_count', 0)} 条 → 独立岗位 {cstat.get('unique_job_count', 0)} 条（剔除单岗多城重复 {cstat.get('duplicate_postings_filtered', 0)} 条）
+          </div>
+          <div style="font-size:13px;line-height:1.6;color:#334155;">
+            <div><b style="color:#991B1B;">● 高频必需技能：</b>{html.escape(must_tags)}</div>
+            <div><b style="color:#92400E;">● 常见加分技能：</b>{html.escape(bonus_tags)}</div>
+            <div><b style="color:#0369A1;">● 少量岗位特殊要求：</b>{html.escape(niche_tags)}</div>
+            <div><b style="color:#0F172A;">🔗 常见技术栈组合：</b>{html.escape(combos)}</div>
+          </div>
+        </div>""")
+
+    # B. Engineering project cards
+    proj_cards = []
+    for idx, p in enumerate(tier_b, 1):
+        p_skills = " · ".join(
+            f"{html.escape(str(s.get('canonical_name') or ''))}({s.get('unique_job_pct', 0)}%)"
+            for s in (p.get("bound_skills") or [])
+        )
+        p_cats = " / ".join(
+            f"{html.escape(str(c.get('category_label') or ''))}({c.get('unique_job_count', 0)}岗)"
+            for c in (p.get("bound_categories") or [])
+        )
+        p_roles = "、".join(html.escape(str(r)) for r in (p.get("target_roles") or []))
+        p_features = "".join(f"<li>{html.escape(str(f))}</li>" for f in (p.get("core_features") or []))
+        p_tasks = "".join(f"<li>{html.escape(str(t))}</li>" for t in (p.get("engineering_tasks") or []))
+        km_rows = "".join(f"<li>{html.escape(str(k))}</li>" for k in (p.get("knowledge_mapping") or []))
+        p_accept = "".join(f"<li>{html.escape(str(a))}</li>" for a in (p.get("acceptance_criteria") or []))
+        p_exts = "".join(f"<li>{html.escape(str(x))}</li>" for x in (p.get("staged_extensions") or []))
+        ref_lic = p.get("reference_and_license") or {}
+        os_items = "".join(f"<li>{html.escape(str(r))}</li>" for r in (ref_lic.get("references") or []))
+        sep_eval = p.get("separation_evaluation") or {}
+        gaps_br = "；".join(html.escape(str(g)) for g in (p.get("gaps_bridged") or []))
+
+        proj_cards.append(f"""
+        <article class="big-card" style="margin-bottom:16px;border-left:4px solid #0D9488;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+            <div>
+              <div style="font-size:12px;font-weight:700;color:#0D9488;margin-bottom:4px;">
+                {html.escape(str(p.get('priority_badge') or ''))} · 难度：{html.escape(str(p.get('difficulty_level') or ''))}
+              </div>
+              <h3 style="font-size:17px;color:#0F172A;margin:0 0 6px 0;">{html.escape(str(p.get('title') or ''))}</h3>
+              <div style="font-size:13px;color:#475569;">
+                <b>对应岗位：</b>{p_roles}（覆盖类别：{p_cats}，合计关联 <b>{p.get('covered_unique_jobs', 0)}</b> 个独立岗位，代表企业：{html.escape('、'.join(p.get('representative_companies') or []))}）
+              </div>
+            </div>
+            <div style="background:#F0FDFA;color:#0F766E;padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:600;max-width:340px;">
+              ⏱️ 预计投入：{html.escape(str(p.get('estimated_effort') or ''))}
+            </div>
+          </div>
+
+          <div style="margin-top:10px;padding:10px 12px;background:#F8FAFC;border-radius:8px;font-size:13px;line-height:1.6;color:#1E293B;">
+            <div><b>🎯 项目目标（最终实现什么）：</b>{html.escape(str(p.get('project_goal') or ''))}</div>
+            <div style="margin-top:4px;"><b>🔧 对应高频技能栈：</b><span style="color:#0369A1;font-weight:600;">{p_skills}</span></div>
+          </div>
+
+          <div class="big-card-grid" style="margin-top:10px;">
+            <div class="adv-block">
+              <div class="block-title"><span style="color:#0D9488;">●</span> 核心可运行功能（必须具备）</div>
+              <ul class="adv-list" style="font-size:13px;">{p_features}</ul>
+            </div>
+            <div class="gap-block">
+              <div class="block-title"><span style="color:#0284C7;">●</span> 关键工程任务（设计/实现/测试/调试/压测）</div>
+              <ul class="gap-list" style="font-size:13px;">{p_tasks}</ul>
+            </div>
+          </div>
+
+          <div style="margin-top:10px;padding:10px 12px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;font-size:13px;line-height:1.6;">
+            <div style="font-weight:700;color:#92400E;margin-bottom:4px;">✅ 可复现验收标准（如何证明自己真的掌握了）</div>
+            <ul style="margin:0;padding-left:18px;color:#78350F;">{p_accept}</ul>
+          </div>
+
+          <details style="margin-top:10px;padding:10px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;font-size:13px;line-height:1.6;color:#334155;">
+            <summary style="cursor:pointer;font-weight:600;color:#0F172A;">📚 展开知识落点、简历价值、分阶段扩展、开源参考边界与个人画像适配详情</summary>
+            <div style="margin-top:8px;display:grid;grid-template-columns:1fr;gap:8px;">
+              <div>
+                <div style="font-weight:600;color:#0F172A;">1. 课程与教材知识落点：</div>
+                <ul style="margin:2px 0 0 18px;">{km_rows}</ul>
+              </div>
+              <div>
+                <div style="font-weight:600;color:#0F172A;">2. 前置要求：</div>
+                <div>{html.escape(str(p.get('prerequisites') or ''))}</div>
+              </div>
+              <div>
+                <div style="font-weight:600;color:#0F172A;">3. 简历价值与面试/技术文档产出：</div>
+                <div>{html.escape(str(p.get('resume_value') or ''))}</div>
+              </div>
+              <div>
+                <div style="font-weight:600;color:#0F172A;">4. 分阶段后续扩展（从最小可行版本逐步演进）：</div>
+                <ul style="margin:2px 0 0 18px;">{p_exts}</ul>
+              </div>
+              <div style="padding:8px 10px;background:#F1F5F9;border-radius:6px;">
+                <div style="font-weight:600;color:#0F172A;">5. 公开开源参考 vs 建议独立实现边界（遵守许可证要求）：</div>
+                <ul style="margin:2px 0 4px 18px;">{os_items}</ul>
+                <div><b>🛠️ 复用与自研边界：</b>{html.escape(str(ref_lic.get("reuse_vs_self_impl") or ""))}</div>
+              </div>
+              <div style="padding:8px 10px;background:#EFF6FF;border-radius:6px;">
+                <div style="font-weight:600;color:#1E3A8A;">6. 个人画像三分离评估（现有基础 ≠ 学习成本 ≠ 职业兴趣）：</div>
+                <div>• {html.escape(str(sep_eval.get("current_skill_base") or ""))}</div>
+                <div>• {html.escape(str(sep_eval.get("learning_cost") or ""))}</div>
+                <div>• {html.escape(str(sep_eval.get("interest_alignment") or ""))}</div>
+                <div>• <b>可弥补的能力差距：</b>{gaps_br}</div>
+              </div>
+            </div>
+          </details>
+        </article>""")
+
+    # C. Phased practice advice
+    seq_cards = []
+    for phase in (tier_c.get("phased_roadmap") or []):
+        seq_cards.append(f"""
+        <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:14px;margin-bottom:10px;">
+          <h4 style="font-size:15px;color:#0F172A;margin:0 0 6px 0;">📌 {html.escape(str(phase.get('phase_title') or ''))}</h4>
+          <div style="font-size:13px;color:#0369A1;margin-bottom:6px;"><b>推荐依据：</b>{html.escape(str(phase.get('rationale') or ''))}</div>
+          <div style="font-size:13px;color:#334155;white-space:pre-line;">{html.escape(str(phase.get('how_to_choose') or ''))}</div>
+        </div>""")
+
+    anti_li = "".join(f"<li>{html.escape(str(a))}</li>" for a in (tier_c.get("anti_pitfalls") or []))
+    prof_notes_li = "".join(f"<li>{html.escape(str(n))}</li>" for n in (tier_c.get("profile_context_notes") or []))
+
+    return f"""
+<section class="page" data-page="skill-projects">
+  <div class="page-head">
+    <div>
+      <h1>🛠️ 高频技能栈与可验证实现项目推荐</h1>
+      <p class="page-sub">
+        {html.escape(str(tier_c.get('core_philosophy') or ''))}<br>
+        {html.escape(str(dedup_sum.get('dedup_explanation') or ''))}
+        （覆盖 {overall.get('company_count', 0)} 家企业，时间跨度 {html.escape(str(tr.get('earliest_date') or ''))} 至 {html.escape(str(tr.get('latest_date') or ''))}）
+        · 模块版本：<b>{html.escape(str(vinfo.get('report_version_id') or ''))}</b>（统计指纹：{html.escape(str(vinfo.get('stats_fingerprint') or ''))}，画像版本：{html.escape(str(vinfo.get('profile_version_id') or ''))}，缓存命中：{'是' if vinfo.get('cache_hit') else '否(本轮更新)'}）
+      </p>
+    </div>
+  </div>
+
+  <div class="section-block" style="margin-bottom:24px;">
+    <h2 style="font-size:18px;margin-bottom:10px;color:#0F172A;">层级 A：真实招聘高频技能概览（按岗位类别分组 · 区分必需/加分/特殊要求 · 已消除同义词与重复发布偏差）</h2>
+    <div style="overflow-x:auto;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:12px;margin-bottom:14px;">
+      <div style="font-weight:600;font-size:14px;margin-bottom:8px;color:#0F172A;">📊 全库计算机岗位 Top 16 规范化技能热度表（仅作全局底座参照，不代表所有方向都要学同一技术）</div>
+      <table class="job-table" style="width:100%;font-size:13px;">
+        <thead>
+          <tr>
+            <th>规范化技能栈</th>
+            <th>能力维度</th>
+            <th>招聘主要定性</th>
+            <th>去重独立岗位数 (占比)</th>
+            <th>单岗重复发布去重校准</th>
+            <th>覆盖企业数</th>
+            <th>必需 / 加分分布与时间趋势</th>
+          </tr>
+        </thead>
+        <tbody>
+          {"".join(overall_rows)}
+        </tbody>
+      </table>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:12px;">
+      {"".join(cat_cards)}
+    </div>
+  </div>
+
+  <div class="section-block" style="margin-bottom:24px;">
+    <h2 style="font-size:18px;margin-bottom:10px;color:#0F172A;">层级 B：「技能栈 → 实现项目」工程训练方案（含验收标准、教材知识落点与开源参考边界）</h2>
+    {"".join(proj_cards)}
+  </div>
+
+  <div class="section-block" style="margin-bottom:24px;">
+    <h2 style="font-size:18px;margin-bottom:10px;color:#0F172A;">层级 C：分阶段工程实践建议与防坑守则（有依据的“先做”与“探索”，不锁死唯一职业路线）</h2>
+    <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px;margin-bottom:12px;font-size:13px;color:#1E3A8A;">
+      <div style="font-weight:700;margin-bottom:4px;">🧭 个人画像与探索模式联动说明</div>
+      <ul style="margin:0;padding-left:18px;">{prof_notes_li}</ul>
+    </div>
+    {"".join(seq_cards)}
+    <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:14px;margin-top:12px;">
+      <div style="font-weight:700;color:#991B1B;margin-bottom:6px;">🛡️ 项目实践防坑守则</div>
+      <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.6;color:#7F1D1D;">{anti_li}</ul>
+    </div>
+  </div>
+</section>"""
+
+
+def _page_wlb_community_audit(items: list, date_str: str) -> str:
+    """模块二独立页面：基于招聘事实与公开社区讨论的 WLB 证据分级审核。"""
+    prof = job_filters.load_active_profile()
+    mod_cfg = prof.get("wlb_community_module") or {}
+    if not mod_cfg.get("enabled", True):
+        return """<section class="page" data-page="wlb-audit"><div class="page-head"><div><h1>⚖️ 社区 WLB 证据审核</h1><p class="page-sub">该模块当前已在 profile.yaml (wlb_community_module.enabled=false) 中关闭。</p></div></div></section>"""
+
+    try:
+        wlb_data = wlb_community.update_or_get_wlb_community_audits(items, profile=prof, conn=None, force_refresh=False)
+    except Exception as exc:
+        return f"""<section class="page" data-page="wlb-audit"><div class="page-head"><div><h1>⚖️ 社区 WLB 证据审核</h1><p class="page-sub">模块加载降级：{html.escape(str(exc))}</p></div></div></section>"""
+
+    sstats = wlb_data.get("summary_stats") or {}
+    v_counts = sstats.get("verdict_distribution") or {}
+    audits_map = wlb_data.get("audits_by_company") or {}
+
+    company_cards = []
+    for co_name, a in audits_map.items():
+        v_code = str(a.get("verdict_code") or "insufficient_evidence")
+        v_lbl = html.escape(str(a.get("verdict_label") or ""))
+        badge_bg = "#DCFCE7" if v_code == "positive_signal" else ("#FEE2E2" if v_code == "negative_signal" else ("#FEF3C7" if v_code in ("mixed_controversial", "outdated_evidence") else "#F1F5F9"))
+        badge_fg = "#166534" if v_code == "positive_signal" else ("#991B1B" if v_code == "negative_signal" else ("#92400E" if v_code in ("mixed_controversial", "outdated_evidence") else "#475569"))
+        score_val = a.get("explainable_numeric_index")
+        score_txt = f"{score_val}/100（可解释规则参考指数）" if score_val is not None else "不生成数值分（证据不足或单薄，拒绝伪精确）"
+
+        # 1. 招聘事实 (jd_facts)
+        jd_facts = a.get("jd_facts") or {}
+        pos_Terms = "、".join(jd_facts.get("explicit_positive_terms") or []) or "无显式披露"
+        warn_Terms = "、".join(jd_facts.get("explicit_warning_terms") or []) or "无显式高压词"
+        sampled_titles = " / ".join((jd_facts.get("sampled_titles") or [])[:3]) or "研发岗"
+        sampled_cities = " / ".join((jd_facts.get("sampled_cities") or [])[:3]) or "多地"
+
+        # 2. 社区经验 (community_experiences)
+        comm_exp = a.get("community_experiences") or {}
+        ev_items = comm_exp.get("evidences") or []
+        ev_rows = []
+        for ev in ev_items:
+            four_dim = ev.get("four_dimensions") or {}
+            t_labels = "、".join(ev.get("theme_labels") or [])
+            ev_rows.append(f"""
+            <div style="padding:10px;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:8px;margin-bottom:8px;font-size:12.5px;line-height:1.55;">
+              <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
+                <div>
+                  <span style="font-weight:700;color:#0F172A;">[{html.escape(str(ev.get('platform') or '公开社区'))}]</span>
+                  <a href="{html.escape(str(ev.get('url') or '#'))}" target="_blank" rel="noopener" style="color:#0369A1;font-weight:600;text-decoration:underline;">
+                    {html.escape(str(ev.get('title') or ''))}
+                  </a>
+                  <span style="margin-left:6px;padding:1px 6px;border-radius:4px;background:#F1F5F9;color:#334155;font-size:11.5px;">{html.escape(str(ev.get('polarity_label') or ''))} · {html.escape(t_labels)}</span>
+                </div>
+                <span style="color:#64748B;">📅 发布时间：{html.escape(str(ev.get('published_at') or '未知'))} · 匹配等级：<b>{html.escape(str(ev.get('match_tier_label') or ''))}</b> (权重 {ev.get('confidence_weight', 0)})</span>
+              </div>
+              <div style="color:#334155;margin-bottom:4px;"><b>摘要片段：</b>{html.escape(str(ev.get('snippet') or ''))}</div>
+              {f'<div style="color:#0F766E;margin-bottom:4px;"><b>💬 相关高互动评论与必要上下文：</b>{html.escape(" ｜ ".join(ev.get("relevant_comments") or []))}</div>' if ev.get("relevant_comments") else ''}
+              <div style="display:flex;flex-wrap:wrap;gap:6px;color:#475569;font-size:12px;background:#F8FAFC;padding:6px 8px;border-radius:6px;">
+                <span>🔥 <b>热度：</b>{html.escape(str(four_dim.get('popularity') or ''))}</span> ｜
+                <span>🎯 <b>相关性：</b>{html.escape(str(four_dim.get('relevance') or ''))}</span> ｜
+                <span>🔍 <b>可信度：</b>{html.escape(str(four_dim.get('credibility') or ''))}</span> ｜
+                <span>📊 <b>代表性：</b>{html.escape(str(four_dim.get('representativeness') or ''))}</span>
+              </div>
+              <div style="color:#92400E;font-size:12px;margin-top:4px;">⚠️ <b>证据局限与交叉印证：</b>{html.escape(str(ev.get('limitations') or ''))}（{html.escape(str(ev.get('corroboration_note') or ''))}）</div>
+            </div>""")
+
+        if not ev_rows:
+            ev_rows.append('<div style="color:#64748B;font-size:13px;padding:8px;">当前未检索到可确认为该公司目标岗位的公开社区 WLB 讨论证据，保持“证据不足”，不作正负面臆测。</div>')
+
+        rej_samples = comm_exp.get("rejected_noise_samples") or []
+        rej_html = ""
+        if rej_samples:
+            rej_txt = "；".join(f"《{html.escape(str(r.get('title') or ''))}》({html.escape(str(r.get('reason') or ''))})" for r in rej_samples)
+            rej_html = f'<div style="margin-top:6px;font-size:12px;color:#991B1B;background:#FEF2F2;padding:6px 8px;border-radius:6px;">🛡️ <b>已自动拦截的非目标公司/同音噪音：</b>{rej_txt}</div>'
+
+        # 3. 模型推断 (model_inferences)
+        m_inf = a.get("model_inferences") or {}
+        concl_list = "".join(f"<li>{html.escape(str(c))}</li>" for c in (m_inf.get("bounded_conclusions") or []))
+        q_list = "".join(f"<li>{html.escape(str(q))}</li>" for q in (m_inf.get("interview_verification_checklist") or []))
+        q_queries = " ｜ ".join(
+            f"{html.escape(str(q.get('theme_label') or ''))}: <code>{html.escape(str(q.get('query') or ''))}</code>"
+            for q in (a.get("queries_used") or [])[:4]
+        )
+
+        company_cards.append(f"""
+        <article class="big-card" style="margin-bottom:16px;border-left:4px solid {badge_fg};">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+            <div>
+              <h3 style="font-size:17px;color:#0F172A;margin:0 0 4px 0;">
+                🏢 {html.escape(co_name)}
+                <span style="font-size:13px;font-weight:normal;color:#64748B;">（在招关联岗位 {jd_facts.get('active_job_count', 0)} 个：{html.escape(sampled_titles)} · 城市：{html.escape(sampled_cities)}）</span>
+              </h3>
+              <div style="font-size:12.5px;color:#475569;">
+                <b>部门与岗位匹配边界：</b>{html.escape(str(a.get('department_scope_note') or ''))}
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <span style="display:inline-block;padding:4px 12px;border-radius:999px;background:{badge_bg};color:{badge_fg};font-weight:700;font-size:13px;">
+                {v_lbl}
+              </span>
+              <div style="font-size:12px;color:#64748B;margin-top:4px;">
+                证据置信度：<b>{html.escape(str(a.get('evidence_confidence') or 'insufficient'))}</b> · 数值参考：{html.escape(score_txt)}
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:10px;display:grid;grid-template-columns:1fr;gap:10px;">
+            <div style="padding:10px 12px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;font-size:13px;">
+              <div style="font-weight:700;color:#166534;margin-bottom:4px;">① 【招聘事实 (Official JD Facts)】（仅限官方招聘页面明确写出的可验证内容）</div>
+              <div>• 官方 JD 审计结论：{html.escape(str(jd_facts.get('jd_fact_summary') or ''))}</div>
+              <div>• 显式休假/福利词：{html.escape(pos_Terms)} ｜ 显式抗压/出差/驻场词：{html.escape(warn_Terms)}</div>
+            </div>
+
+            <div style="padding:10px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;font-size:13px;">
+              <div style="font-weight:700;color:#0F172A;margin-bottom:6px;">
+                ② 【社区经验 (Community Experiences)】（共命中有效讨论 {comm_exp.get('valid_evidence_count', 0)} 条，其中同城/同岗强匹配 {comm_exp.get('tier1_exact_count', 0)} 条，近3年内 {comm_exp.get('recent_evidence_count', 0)} 条，拦截实体不符噪音 {comm_exp.get('rejected_noise_count', 0)} 条）
+              </div>
+              {"".join(ev_rows)}
+              {rej_html}
+            </div>
+
+            <div style="padding:10px 12px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;font-size:13px;">
+              <div style="font-weight:700;color:#1E3A8A;margin-bottom:4px;">③ 【模型审慎推断与面试核实清单 (Model Inferences & Caveats)】</div>
+              <ul style="margin:0 0 6px 18px;">{concl_list}</ul>
+              <div>• <b>分歧与时效性统计：</b>{html.escape(str(m_inf.get('conflict_and_timeliness_note') or ''))}</div>
+              <div>• <b>参考指数计算规则：</b>{html.escape(str(a.get('score_rule_explanation') or ''))}</div>
+              <div style="margin-top:4px;"><b>🎤 建议在面试/HR环节当面核实的问题：</b><ul style="margin:2px 0 0 18px;">{q_list}</ul></div>
+              <div style="margin-top:6px;font-size:12px;color:#64748B;">🔎 动态构造的正/负/中性搜索词：{q_queries}</div>
+            </div>
+          </div>
+        </article>""")
+
+    return f"""
+<section class="page" data-page="wlb-audit">
+  <div class="page-head">
+    <div>
+      <h1>⚖️ 基于招聘信息与社区讨论的 WLB 证据分级审核</h1>
+      <p class="page-sub">
+        严格区分【招聘事实】【社区经验】【模型推断】三层信息 · 严格区分【热度 ≠ 相关性 ≠ 可信度 ≠ 代表性】<br>
+        当前已审核重点公司：<b>{sstats.get('audited_companies_count', 0)}</b> 家 · 有效公开社区证据：<b>{sstats.get('total_valid_evidences', 0)}</b> 条（自动拦截同音/跨公司噪音 <b>{sstats.get('total_rejected_noise', 0)}</b> 条，缓存命中 {sstats.get('cache_hits', 0)} 家 / 新算 {sstats.get('fresh_computed', 0)} 家）<br>
+        五类审核结论分布：存在较明确正面信号 <b>{v_counts.get('positive_signal', 0)}</b> 家 / 观点分歧或部门差异 <b>{v_counts.get('mixed_controversial', 0)}</b> 家 / 存在较明确负面信号 <b>{v_counts.get('negative_signal', 0)}</b> 家 / 存在明显时效性问题 <b>{v_counts.get('outdated_evidence', 0)}</b> 家 / 证据不足 <b>{v_counts.get('insufficient_evidence', 0)}</b> 家
+      </p>
+    </div>
+  </div>
+
+  <div class="section-block" style="margin-bottom:20px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:14px;">
+    <div style="font-weight:700;color:#92400E;margin-bottom:6px;">📐 社区口碑审核方法论、合规边界与反误判原则</div>
+    <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.6;color:#78350F;">
+      <li><b>四维独立评估（热度 ≠ 相关性 ≠ 可信度 ≠ 代表性）：</b>高赞情绪贴不等同于全公司普遍事实；低热度但写明具体城市、部门、上下班打卡时间与版本排期的研发帖具有更高信息密度。</li>
+      <li><b>四级实体匹配与噪音拦截：</b>严格区分①同公司+同城/同业务线+相似岗位、②同公司但部门未知（标记为“公司层面参考，无法确认该岗位团队情况”）、③行业泛化讨论、④同音异义误匹配（如搜索“优必选”混入“优衣库”已自动剔除）。</li>
+      <li><b>隐私、合规与低成本缓存：</b>仅摘录公开可访问讨论的必要短摘要与原始链接，不收集发帖人个人敏感信息，不绕过登录/验证码/反爬限制；内置 {int((prof.get('wlb_community_module') or {}).get('cache_ttl_days', 14))} 天有效期缓存，避免每次运行重复搜索或消耗 Token。</li>
+    </ul>
+  </div>
+
+  <div class="section-block">
+    {"".join(company_cards)}
+  </div>
+</section>"""
+
 
 _NAV_GROUPS = [
     ("发现", [
@@ -3294,6 +3792,8 @@ def render_html(date_str: str, report_data: dict, editable: bool = False,
     page_unknown_html = _page_unknown_cohort(
         unknown_items, app_index, editable, server_pagination
     )
+    page_skill_projects_html = _page_skill_projects(all_items, date_str)
+    page_wlb_audit_html = _page_wlb_community_audit(all_items, date_str)
     page_learning_html = _page_learning_guide(all_items, date_str)
     page_advice_html = _page_comprehensive_advice(all_items, date_str)
     page_company_detail_html = _page_company_detail()
@@ -3375,6 +3875,8 @@ window.__SEASON_INFO = {season_json};
     {page_companies_html}
     {page_previous_html}
     {page_unknown_html}
+    {page_skill_projects_html}
+    {page_wlb_audit_html}
     {page_learning_html}
     {page_advice_html}
     {page_company_detail_html}

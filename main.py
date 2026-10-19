@@ -17,6 +17,8 @@ import job_cohorts
 import job_filters
 import notifier
 import reporter
+import skill_projects
+import wlb_community
 from profile_config import load_profile
 from scripts import qq_docs_27_autumn_monitor
 from crawlers import CRAWLER_MAP
@@ -497,8 +499,36 @@ def main():
         score_sync_stats.get("ineligible_skipped", 0),
     )
 
-    # 6.5 执行个人需求变化驱动的综合建议自动更新闭环
+    # 6.5 执行个人需求变化驱动的综合建议 + 模块一(技能栈项目推荐) + 模块二(社区WLB证据审核) 独立容错更新
     all_items = db_module.get_all_jobs_with_analysis(conn)
+    sp_vinfo = {}
+    try:
+        sp_obj = skill_projects.update_or_get_skill_projects_report(
+            all_items,
+            profile=profile,
+            conn=conn,
+            force_refresh=force_advice_refresh or os.environ.get("FORCE_SKILL_PROJECTS_REFRESH") == "1",
+        )
+        sp_vinfo = sp_obj.get("version_info") or {}
+        logger.info("模块一(技能栈与项目推荐)同步完成：版本=%s，指纹=%s", sp_vinfo.get("report_version_id"), sp_vinfo.get("stats_fingerprint"))
+    except Exception as exc:
+        logger.warning("模块一(技能栈与项目推荐)运行异常，已隔离不影响主流程: %s", exc)
+
+    wlb_summary_meta = {}
+    try:
+        wlb_obj = wlb_community.update_or_get_wlb_community_audits(
+            all_items,
+            profile=profile,
+            conn=conn,
+            force_refresh=force_advice_refresh or os.environ.get("FORCE_WLB_REFRESH") == "1",
+        )
+        wlb_summary_meta = {
+            "audited_companies_count": (wlb_obj.get("summary_stats") or {}).get("audited_companies_count", 0),
+            "total_evidence_items": (wlb_obj.get("summary_stats") or {}).get("total_valid_evidences", 0),
+        }
+        logger.info("模块二(社区WLB证据审核)同步完成：覆盖公司=%d，有效证据=%d", wlb_summary_meta["audited_companies_count"], wlb_summary_meta["total_evidence_items"])
+    except Exception as exc:
+        logger.warning("模块二(社区WLB证据审核)运行异常，已隔离不影响主流程: %s", exc)
     advice_obj = job_filters.update_or_get_comprehensive_advice(
         all_items,
         profile=profile,
@@ -546,6 +576,9 @@ def main():
         "advice_version_id": advice_vinfo.get("advice_version_id", ""),
         "advice_strategy": advice_vinfo.get("strategy_label", advice_vinfo.get("update_strategy", "")),
         "advice_error": advice_vinfo.get("last_error", ""),
+        "skill_projects_version_id": sp_vinfo.get("report_version_id", ""),
+        "wlb_audited_companies_count": wlb_summary_meta.get("audited_companies_count", 0),
+        "wlb_evidence_items_count": wlb_summary_meta.get("total_evidence_items", 0),
     }
 
     # 7. 从最终数据库状态生成唯一权威报告（同时生成当日快照与正式 index.html + report_meta.json）
