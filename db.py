@@ -363,6 +363,21 @@ def init_db(db_path=None) -> sqlite3.Connection:
         )
     """)
     conn.execute("""
+        CREATE TABLE IF NOT EXISTS skill_project_user_workspace (
+            workspace_key            TEXT PRIMARY KEY,
+            selected_project_id      TEXT DEFAULT '',
+            selected_at              TEXT DEFAULT '',
+            implementation_plan_json TEXT DEFAULT '{}',
+            plan_generated_at        TEXT DEFAULT '',
+            iteration_history_json   TEXT DEFAULT '[]',
+            comparison_history_json  TEXT DEFAULT '[]',
+            profile_version_id       TEXT DEFAULT '',
+            stats_fingerprint        TEXT DEFAULT '',
+            pending_update_notice    TEXT DEFAULT '',
+            updated_at               TEXT DEFAULT ''
+        )
+    """)
+    conn.execute("""
         CREATE TABLE IF NOT EXISTS company_wlb_audits (
             company                   TEXT PRIMARY KEY,
             audit_version             TEXT DEFAULT '',

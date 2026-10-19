@@ -45,7 +45,7 @@ def _conn():
 
 def _data_signature():
     """Return a cheap cache key that changes whenever report state changes."""
-    paths = (Path(DB_PATH), db_module.APPLICATIONS_PATH, _ROOT / "profile.yaml", _ROOT / "data" / "advice_state.json")
+    paths = (Path(DB_PATH), db_module.APPLICATIONS_PATH, _ROOT / "profile.yaml", _ROOT / "data" / "advice_state.json", _ROOT / "data" / "skill_projects_state.json")
     signature = [date.today().isoformat()]
     for path in paths:
         try:
@@ -190,9 +190,13 @@ def regenerate_advice_api():
     })
 
 
-@app.route("/api/skill-projects/refresh", methods=["POST", "GET"])
-def refresh_skill_projects_api():
-    """手动触发模块一（高频技能栈与实现项目推荐）刷新。"""
+_DB_PATH = DB_PATH
+_skill_proj_lock = threading.Lock()
+
+
+@app.route("/api/skill-projects/state", methods=["GET"])
+def get_skill_projects_state_api():
+    """获取「技能栈与实现项目」模块当前完整状态（含技能统计、约束清单、候选项目、已选项目与实施计划）。"""
     import skill_projects
     from profile_config import load_profile
     snapshot, _ = _get_snapshot()
@@ -200,20 +204,184 @@ def refresh_skill_projects_api():
         prof = load_profile(_ROOT / "profile.yaml")
     except ValueError as exc:
         return jsonify({"ok": False, "error": str(exc)}), 400
-    conn = db_module.init_db(str(_DB_PATH))
+    conn = _conn()
     try:
         res = skill_projects.update_or_get_skill_projects_report(
-            snapshot["items"], profile=prof, conn=conn, force_refresh=True
+            snapshot["items"], profile=prof, conn=conn, force_refresh=False
         )
     finally:
         conn.close()
-    with _page_cache_lock:
-        _page_cache["html"] = None
     return jsonify({
         "ok": True,
         "version_info": res.get("version_info", {}),
+        "user_workspace": res.get("user_workspace", {}),
+        "skill_constraints_count": len(res.get("skill_constraints") or []),
         "projects_count": len(res.get("tier_b_projects") or []),
     })
+
+
+@app.route("/api/skill-projects/refresh-stats", methods=["POST", "GET"])
+def refresh_skill_stats_only_api():
+    """仅刷新技能统计与约束清单（不重新生成项目方案，不覆盖用户已选项目和实施计划）。"""
+    import skill_projects
+    from profile_config import load_profile
+    if not _skill_proj_lock.acquire(blocking=False):
+        return jsonify({"ok": False, "busy": True, "error": "已有技能统计或项目生成任务正在进行中，请勿重复点击"}), 429
+    try:
+        snapshot, _ = _get_snapshot()
+        try:
+            prof = load_profile(_ROOT / "profile.yaml")
+        except ValueError as exc:
+            return jsonify({"ok": False, "error": str(exc)}), 400
+        conn = _conn()
+        try:
+            res = skill_projects.refresh_skill_stats_only(
+                snapshot["items"], profile=prof, conn=conn
+            )
+        finally:
+            conn.close()
+        with _page_cache_lock:
+            _page_cache["html"] = None
+        return jsonify({
+            "ok": True,
+            "action": "refresh_stats_only",
+            "version_info": res.get("version_info", {}),
+            "user_workspace": res.get("user_workspace", {}),
+            "skill_constraints_count": len(res.get("skill_constraints") or []),
+            "projects_count": len(res.get("tier_b_projects") or []),
+        })
+    finally:
+        _skill_proj_lock.release()
+
+
+@app.route("/api/skill-projects/refresh", methods=["POST", "GET"])
+@app.route("/api/skill-projects/regenerate", methods=["POST", "GET"])
+def refresh_skill_projects_api():
+    """手动触发重新生成候选项目方案（带防重复点击锁与已选项目防无提示覆盖保护）。"""
+    import skill_projects
+    from profile_config import load_profile
+    if not _skill_proj_lock.acquire(blocking=False):
+        return jsonify({"ok": False, "busy": True, "error": "正在生成候选项目方案，请勿重复点击"}), 429
+    try:
+        payload = request.get_json(silent=True) or {}
+        mode = str(payload.get("mode") or request.args.get("mode") or "regenerate").strip()
+        confirm_overwrite = bool(payload.get("confirm_overwrite") or request.args.get("confirm_overwrite") == "1")
+        use_ai = bool(payload.get("allow_ai") or request.args.get("ai") == "1")
+        snapshot, _ = _get_snapshot()
+        try:
+            prof = load_profile(_ROOT / "profile.yaml")
+        except ValueError as exc:
+            return jsonify({"ok": False, "error": str(exc)}), 400
+        conn = _conn()
+        try:
+            if mode == "stats_only":
+                res = skill_projects.refresh_skill_stats_only(
+                    snapshot["items"], profile=prof, conn=conn
+                )
+            else:
+                res = skill_projects.update_or_get_skill_projects_report(
+                    snapshot["items"],
+                    profile=prof,
+                    conn=conn,
+                    force_refresh=True,
+                    allow_ai=use_ai,
+                    confirm_overwrite=confirm_overwrite,
+                )
+        finally:
+            conn.close()
+        with _page_cache_lock:
+            _page_cache["html"] = None
+        return jsonify({
+            "ok": True,
+            "action": mode,
+            "version_info": res.get("version_info", {}),
+            "user_workspace": res.get("user_workspace", {}),
+            "projects_count": len(res.get("tier_b_projects") or []),
+        })
+    finally:
+        _skill_proj_lock.release()
+
+
+@app.route("/api/skill-projects/select", methods=["POST"])
+def select_skill_project_api():
+    """用户选择某个感兴趣的候选项目并持久化保存（尚未点击生成实施计划前不自动塞入冗长计划）。"""
+    import skill_projects
+    payload = request.get_json(silent=True) or {}
+    project_id = str(payload.get("project_id") or request.form.get("project_id") or "").strip()
+    if not project_id:
+        return jsonify({"ok": False, "error": "缺少 project_id 参数"}), 400
+    conn = _conn()
+    try:
+        res = skill_projects.select_candidate_project(project_id, conn=conn)
+    finally:
+        conn.close()
+    if not res.get("ok"):
+        return jsonify(res), 400
+    with _page_cache_lock:
+        _page_cache["html"] = None
+    return jsonify(res)
+
+
+@app.route("/api/skill-projects/generate-plan", methods=["POST"])
+def generate_skill_project_plan_api():
+    """针对用户已选择的候选项目生成 10 维分阶段实施计划并持久化绑定。"""
+    import skill_projects
+    from profile_config import load_profile
+    payload = request.get_json(silent=True) or {}
+    project_id = str(payload.get("project_id") or request.form.get("project_id") or "").strip() or None
+    custom_focus = str(payload.get("custom_focus") or request.form.get("custom_focus") or "").strip()
+    try:
+        prof = load_profile(_ROOT / "profile.yaml")
+    except ValueError as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 400
+    conn = _conn()
+    try:
+        res = skill_projects.build_and_save_implementation_plan(
+            project_id=project_id,
+            custom_focus=custom_focus,
+            profile=prof,
+            conn=conn,
+        )
+    finally:
+        conn.close()
+    if not res.get("ok"):
+        return jsonify(res), 400
+    with _page_cache_lock:
+        _page_cache["html"] = None
+    return jsonify(res)
+
+
+@app.route("/api/skill-projects/iterate", methods=["POST"])
+def iterate_skill_project_api():
+    """用户对当前候选项目或已选项目提出迭代反馈（缩小 MVP、强化某项技能、双项目对比或自定义修改）。"""
+    import skill_projects
+    from profile_config import load_profile
+    payload = request.get_json(silent=True) or {}
+    project_id = str(payload.get("project_id") or request.form.get("project_id") or "").strip()
+    action_type = str(payload.get("action_type") or request.form.get("action_type") or "custom").strip()
+    feedback_text = str(payload.get("feedback_text") or request.form.get("feedback_text") or "").strip()
+    compare_with_id = str(payload.get("compare_with_id") or request.form.get("compare_with_id") or "").strip()
+    try:
+        prof = load_profile(_ROOT / "profile.yaml")
+    except ValueError as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 400
+    conn = _conn()
+    try:
+        res = skill_projects.submit_project_iteration(
+            project_id=project_id,
+            action_type=action_type,
+            feedback_text=feedback_text,
+            compare_with_id=compare_with_id,
+            profile=prof,
+            conn=conn,
+        )
+    finally:
+        conn.close()
+    if not res.get("ok"):
+        return jsonify(res), 400
+    with _page_cache_lock:
+        _page_cache["html"] = None
+    return jsonify(res)
 
 
 @app.route("/api/wlb-audit/refresh", methods=["POST", "GET"])

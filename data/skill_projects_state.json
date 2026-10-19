@@ -27,21 +27,28 @@
       "stats_fingerprint": "sk-8b2e83e7",
       "profile_version_id": "v-c5423e95",
       "unique_job_count": 6814
+    },
+    {
+      "report_version_id": "sp-f8cbd51a",
+      "generated_at": "2026-10-19 12:09:08 CST",
+      "stats_fingerprint": "sk-9cac2135",
+      "profile_version_id": "v-04d6622a",
+      "unique_job_count": 6802
     }
   ],
   "last_report": {
     "enabled": true,
     "status": "ok",
     "version_info": {
-      "report_version_id": "sp-35284538",
+      "report_version_id": "sp-f8cbd51a",
       "module_version": "sp-v1.0",
-      "generated_at": "2026-10-19 11:50:03 CST",
-      "checked_at": "2026-10-19 11:50:03 CST",
-      "stats_fingerprint": "sk-8b2e83e7",
-      "profile_version_id": "v-c5423e95",
-      "quick_dataset_sig": "25827:559:71615:15",
-      "unique_job_sample_count": 6814,
-      "raw_posting_count": 7186,
+      "generated_at": "2026-10-19 12:09:08 CST",
+      "checked_at": "2026-10-19 12:09:08 CST",
+      "stats_fingerprint": "sk-9cac2135",
+      "profile_version_id": "v-04d6622a",
+      "quick_dataset_sig": "24572:559:71614:15",
+      "unique_job_sample_count": 6802,
+      "raw_posting_count": 7174,
       "sample_sufficient": true,
       "cache_hit": false,
       "used_ai": false,
@@ -49,33 +56,33 @@
       "update_reason": "首次生成或检测到岗位技能分布/个人画像发生实质变化，已更新统计与项目关联数据。"
     },
     "tier_a_skill_overview": {
-      "stats_fingerprint": "sk-8b2e83e7",
-      "generated_at": "2026-10-19 11:50:15 CST",
+      "stats_fingerprint": "sk-9cac2135",
+      "generated_at": "2026-10-19 12:09:19 CST",
       "time_range": {
         "earliest_date": "2026-07-13",
         "latest_date": "2026-10-18",
         "recent_cutoff_date": "2026-10-11"
       },
       "dedup_summary": {
-        "raw_posting_count": 7186,
-        "unique_job_count": 6814,
+        "raw_posting_count": 7174,
+        "unique_job_count": 6802,
         "duplicate_postings_removed": 372,
-        "dedup_explanation": "已从 7186 条原始有效岗位中合并剔除 372 条同公司同职位多城/重复发布记录，以 6814 个独立岗位为基准计算技能占比，防止单一大厂刷屏造成伪趋势。"
+        "dedup_explanation": "已从 7174 条原始有效岗位中合并剔除 372 条同公司同职位多城/重复发布记录，以 6802 个独立岗位为基准计算技能占比，防止单一大厂刷屏造成伪趋势。"
       },
       "platform_sources": {
-        "企业官网自建站": 2477,
-        "北森(Beisen)": 1906,
-        "飞书招聘(Feishu)": 1583,
-        "Moka": 825,
+        "企业官网自建站": 2476,
+        "北森(Beisen)": 1905,
+        "飞书招聘(Feishu)": 1576,
+        "Moka": 822,
         "HotJob": 23
       },
       "overall": {
         "category_key": "overall",
         "category_label": "全库计算机研发岗位总体",
-        "unique_job_count": 6814,
-        "raw_posting_count": 7186,
+        "unique_job_count": 6802,
+        "raw_posting_count": 7174,
         "duplicate_postings_filtered": 372,
-        "company_count": 355,
+        "company_count": 354,
         "top_companies": [
           "字节跳动",
           "吉利控股",
@@ -101,11 +108,11 @@
             ],
             "dimension": "programming_language",
             "dimension_label": "编程语言",
-            "unique_job_count": 2010,
+            "unique_job_count": 2009,
             "unique_job_pct": 29.5,
-            "raw_posting_count": 2155,
+            "raw_posting_count": 2154,
             "duplicate_posting_count": 145,
-            "must_count": 1802,
+            "must_count": 1801,
             "bonus_count": 208,
             "must_ratio_pct": 90,
             "tier_role": "must",
@@ -113,8 +120,8 @@
             "company_count": 275,
             "top_companies": [
               "字节跳动",
-              "快手",
               "中国兵器工业集团",
+              "快手",
               "欣旺达",
               "腾讯"
             ],
@@ -157,16 +164,16 @@
             ],
             "dimension": "domain_specific",
             "dimension_label": "特定岗位方向专有技术栈",
-            "unique_job_count": 1186,
+            "unique_job_count": 1181,
             "unique_job_pct": 17.4,
-            "raw_posting_count": 1310,
+            "raw_posting_count": 1305,
             "duplicate_posting_count": 124,
-            "must_count": 1120,
+            "must_count": 1115,
             "bonus_count": 66,
             "must_ratio_pct": 94,
             "tier_role": "must",
             "tier_role_label": "高频必需技能",
-            "company_count": 145,
+            "company_count": 144,
             "top_companies": [
               "字节跳动",
               "腾讯",
@@ -174,7 +181,7 @@
               "京东",
               "理想汽车"
             ],
-            "trend_summary": "近7日占比 -10.5%（近期波动回调）",
+            "trend_summary": "近7日占比 -10.7%（近期波动回调）",
             "examples": [
               {
                 "company": "字节跳动",
@@ -214,7 +221,7 @@
             "dimension": "ds_algorithm",
             "dimension_label": "数据结构与算法",
             "unique_job_count": 1140,
-            "unique_job_pct": 16.7,
+            "unique_job_pct": 16.8,
             "raw_posting_count": 1277,
             "duplicate_posting_count": 137,
             "must_count": 1088,
@@ -270,7 +277,7 @@
             "dimension": "cs_foundation",
             "dimension_label": "数据库、网络与操作系统基础",
             "unique_job_count": 1079,
-            "unique_job_pct": 15.8,
+            "unique_job_pct": 15.9,
             "raw_posting_count": 1171,
             "duplicate_posting_count": 92,
             "must_count": 1014,
@@ -325,16 +332,16 @@
             ],
             "dimension": "eng_quality_tool",
             "dimension_label": "测试、构建、部署、调试与性能分析工具",
-            "unique_job_count": 978,
+            "unique_job_count": 977,
             "unique_job_pct": 14.4,
-            "raw_posting_count": 1030,
+            "raw_posting_count": 1029,
             "duplicate_posting_count": 52,
-            "must_count": 967,
+            "must_count": 966,
             "bonus_count": 11,
             "must_ratio_pct": 99,
             "tier_role": "must",
             "tier_role_label": "高频必需技能",
-            "company_count": 235,
+            "company_count": 234,
             "top_companies": [
               "中科创达",
               "字节跳动",
@@ -435,11 +442,11 @@
             ],
             "dimension": "programming_language",
             "dimension_label": "编程语言",
-            "unique_job_count": 920,
+            "unique_job_count": 919,
             "unique_job_pct": 13.5,
-            "raw_posting_count": 987,
+            "raw_posting_count": 986,
             "duplicate_posting_count": 67,
-            "must_count": 802,
+            "must_count": 801,
             "bonus_count": 118,
             "must_ratio_pct": 87,
             "tier_role": "must",
@@ -508,7 +515,7 @@
               "安克创新",
               "小米"
             ],
-            "trend_summary": "近7日占比 -6.4%（近期波动回调）",
+            "trend_summary": "近7日占比 -6.3%（近期波动回调）",
             "examples": [
               {
                 "company": "艾为电子",
@@ -563,7 +570,7 @@
               "小米",
               "中科创达"
             ],
-            "trend_summary": "近7日占比 -4.7%（近期波动回调）",
+            "trend_summary": "近7日占比 -4.6%（近期波动回调）",
             "examples": [
               {
                 "company": "艾为电子",
@@ -659,7 +666,7 @@
             "dimension": "ds_algorithm",
             "dimension_label": "数据结构与算法",
             "unique_job_count": 487,
-            "unique_job_pct": 7.1,
+            "unique_job_pct": 7.2,
             "raw_posting_count": 517,
             "duplicate_posting_count": 30,
             "must_count": 456,
@@ -772,11 +779,11 @@
             ],
             "dimension": "programming_language",
             "dimension_label": "编程语言",
-            "unique_job_count": 2010,
+            "unique_job_count": 2009,
             "unique_job_pct": 29.5,
-            "raw_posting_count": 2155,
+            "raw_posting_count": 2154,
             "duplicate_posting_count": 145,
-            "must_count": 1802,
+            "must_count": 1801,
             "bonus_count": 208,
             "must_ratio_pct": 90,
             "tier_role": "must",
@@ -784,8 +791,8 @@
             "company_count": 275,
             "top_companies": [
               "字节跳动",
-              "快手",
               "中国兵器工业集团",
+              "快手",
               "欣旺达",
               "腾讯"
             ],
@@ -828,16 +835,16 @@
             ],
             "dimension": "domain_specific",
             "dimension_label": "特定岗位方向专有技术栈",
-            "unique_job_count": 1186,
+            "unique_job_count": 1181,
             "unique_job_pct": 17.4,
-            "raw_posting_count": 1310,
+            "raw_posting_count": 1305,
             "duplicate_posting_count": 124,
-            "must_count": 1120,
+            "must_count": 1115,
             "bonus_count": 66,
             "must_ratio_pct": 94,
             "tier_role": "must",
             "tier_role_label": "高频必需技能",
-            "company_count": 145,
+            "company_count": 144,
             "top_companies": [
               "字节跳动",
               "腾讯",
@@ -845,7 +852,7 @@
               "京东",
               "理想汽车"
             ],
-            "trend_summary": "近7日占比 -10.5%（近期波动回调）",
+            "trend_summary": "近7日占比 -10.7%（近期波动回调）",
             "examples": [
               {
                 "company": "字节跳动",
@@ -885,7 +892,7 @@
             "dimension": "ds_algorithm",
             "dimension_label": "数据结构与算法",
             "unique_job_count": 1140,
-            "unique_job_pct": 16.7,
+            "unique_job_pct": 16.8,
             "raw_posting_count": 1277,
             "duplicate_posting_count": 137,
             "must_count": 1088,
@@ -941,7 +948,7 @@
             "dimension": "cs_foundation",
             "dimension_label": "数据库、网络与操作系统基础",
             "unique_job_count": 1079,
-            "unique_job_pct": 15.8,
+            "unique_job_pct": 15.9,
             "raw_posting_count": 1171,
             "duplicate_posting_count": 92,
             "must_count": 1014,
@@ -996,16 +1003,16 @@
             ],
             "dimension": "eng_quality_tool",
             "dimension_label": "测试、构建、部署、调试与性能分析工具",
-            "unique_job_count": 978,
+            "unique_job_count": 977,
             "unique_job_pct": 14.4,
-            "raw_posting_count": 1030,
+            "raw_posting_count": 1029,
             "duplicate_posting_count": 52,
-            "must_count": 967,
+            "must_count": 966,
             "bonus_count": 11,
             "must_ratio_pct": 99,
             "tier_role": "must",
             "tier_role_label": "高频必需技能",
-            "company_count": 235,
+            "company_count": 234,
             "top_companies": [
               "中科创达",
               "字节跳动",
@@ -1106,11 +1113,11 @@
             ],
             "dimension": "programming_language",
             "dimension_label": "编程语言",
-            "unique_job_count": 920,
+            "unique_job_count": 919,
             "unique_job_pct": 13.5,
-            "raw_posting_count": 987,
+            "raw_posting_count": 986,
             "duplicate_posting_count": 67,
-            "must_count": 802,
+            "must_count": 801,
             "bonus_count": 118,
             "must_ratio_pct": 87,
             "tier_role": "must",
@@ -1179,7 +1186,7 @@
               "安克创新",
               "小米"
             ],
-            "trend_summary": "近7日占比 -6.4%（近期波动回调）",
+            "trend_summary": "近7日占比 -6.3%（近期波动回调）",
             "examples": [
               {
                 "company": "艾为电子",
@@ -1223,11 +1230,11 @@
               ],
               "dimension": "programming_language",
               "dimension_label": "编程语言",
-              "unique_job_count": 2010,
+              "unique_job_count": 2009,
               "unique_job_pct": 29.5,
-              "raw_posting_count": 2155,
+              "raw_posting_count": 2154,
               "duplicate_posting_count": 145,
-              "must_count": 1802,
+              "must_count": 1801,
               "bonus_count": 208,
               "must_ratio_pct": 90,
               "tier_role": "must",
@@ -1235,8 +1242,8 @@
               "company_count": 275,
               "top_companies": [
                 "字节跳动",
-                "快手",
                 "中国兵器工业集团",
+                "快手",
                 "欣旺达",
                 "腾讯"
               ],
@@ -1277,11 +1284,11 @@
               ],
               "dimension": "programming_language",
               "dimension_label": "编程语言",
-              "unique_job_count": 920,
+              "unique_job_count": 919,
               "unique_job_pct": 13.5,
-              "raw_posting_count": 987,
+              "raw_posting_count": 986,
               "duplicate_posting_count": 67,
-              "must_count": 802,
+              "must_count": 801,
               "bonus_count": 118,
               "must_ratio_pct": 87,
               "tier_role": "must",
@@ -1349,7 +1356,7 @@
                 "小米",
                 "中科创达"
               ],
-              "trend_summary": "近7日占比 -4.7%（近期波动回调）",
+              "trend_summary": "近7日占比 -4.6%（近期波动回调）",
               "examples": [
                 {
                   "company": "艾为电子",
@@ -1500,7 +1507,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 160,
-              "unique_job_pct": 2.3,
+              "unique_job_pct": 2.4,
               "raw_posting_count": 162,
               "duplicate_posting_count": 2,
               "must_count": 133,
@@ -1665,16 +1672,16 @@
               ],
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
-              "unique_job_count": 1186,
+              "unique_job_count": 1181,
               "unique_job_pct": 17.4,
-              "raw_posting_count": 1310,
+              "raw_posting_count": 1305,
               "duplicate_posting_count": 124,
-              "must_count": 1120,
+              "must_count": 1115,
               "bonus_count": 66,
               "must_ratio_pct": 94,
               "tier_role": "must",
               "tier_role_label": "高频必需技能",
-              "company_count": 145,
+              "company_count": 144,
               "top_companies": [
                 "字节跳动",
                 "腾讯",
@@ -1682,7 +1689,7 @@
                 "京东",
                 "理想汽车"
               ],
-              "trend_summary": "近7日占比 -10.5%（近期波动回调）",
+              "trend_summary": "近7日占比 -10.7%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -1738,7 +1745,7 @@
                 "安克创新",
                 "小米"
               ],
-              "trend_summary": "近7日占比 -6.4%（近期波动回调）",
+              "trend_summary": "近7日占比 -6.3%（近期波动回调）",
               "examples": [
                 {
                   "company": "艾为电子",
@@ -1777,16 +1784,16 @@
               ],
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
-              "unique_job_count": 215,
-              "unique_job_pct": 3.2,
-              "raw_posting_count": 223,
+              "unique_job_count": 214,
+              "unique_job_pct": 3.1,
+              "raw_posting_count": 222,
               "duplicate_posting_count": 8,
-              "must_count": 187,
+              "must_count": 186,
               "bonus_count": 28,
               "must_ratio_pct": 87,
               "tier_role": "must",
               "tier_role_label": "高频必需技能",
-              "company_count": 81,
+              "company_count": 80,
               "top_companies": [
                 "字节跳动",
                 "快手",
@@ -1850,7 +1857,7 @@
                 "摩尔线程",
                 "中国兵器工业集团"
               ],
-              "trend_summary": "占比稳定（波动 -1.5%）",
+              "trend_summary": "占比稳定（波动 -1.4%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -1906,7 +1913,7 @@
                 "零跑汽车",
                 "美团"
               ],
-              "trend_summary": "占比稳定（波动 +0.5%）",
+              "trend_summary": "占比稳定（波动 +0.6%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -1948,7 +1955,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 1140,
-              "unique_job_pct": 16.7,
+              "unique_job_pct": 16.8,
               "raw_posting_count": 1277,
               "duplicate_posting_count": 137,
               "must_count": 1088,
@@ -2004,7 +2011,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 487,
-              "unique_job_pct": 7.1,
+              "unique_job_pct": 7.2,
               "raw_posting_count": 517,
               "duplicate_posting_count": 30,
               "must_count": 456,
@@ -2118,7 +2125,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 1079,
-              "unique_job_pct": 15.8,
+              "unique_job_pct": 15.9,
               "raw_posting_count": 1171,
               "duplicate_posting_count": 92,
               "must_count": 1014,
@@ -2399,16 +2406,16 @@
               ],
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
-              "unique_job_count": 978,
+              "unique_job_count": 977,
               "unique_job_pct": 14.4,
-              "raw_posting_count": 1030,
+              "raw_posting_count": 1029,
               "duplicate_posting_count": 52,
-              "must_count": 967,
+              "must_count": 966,
               "bonus_count": 11,
               "must_ratio_pct": 99,
               "tier_role": "must",
               "tier_role_label": "高频必需技能",
-              "company_count": 235,
+              "company_count": 234,
               "top_companies": [
                 "中科创达",
                 "字节跳动",
@@ -3088,7 +3095,7 @@
               "lang_python"
             ],
             "pair_label": "C/C++ + Python",
-            "co_unique_jobs": 579,
+            "co_unique_jobs": 578,
             "co_pct": 8.5
           },
           {
@@ -3116,7 +3123,7 @@
             ],
             "pair_label": "C/C++ + Java",
             "co_unique_jobs": 432,
-            "co_pct": 6.3
+            "co_pct": 6.4
           }
         ]
       },
@@ -3124,10 +3131,10 @@
         "backend_dist": {
           "category_key": "backend_dist",
           "category_label": "后端开发与分布式系统",
-          "unique_job_count": 1658,
-          "raw_posting_count": 1767,
+          "unique_job_count": 1657,
+          "raw_posting_count": 1766,
           "duplicate_postings_filtered": 109,
-          "company_count": 271,
+          "company_count": 270,
           "top_companies": [
             "字节跳动",
             "理想汽车",
@@ -3210,7 +3217,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 450,
-              "unique_job_pct": 27.1,
+              "unique_job_pct": 27.2,
               "raw_posting_count": 503,
               "duplicate_posting_count": 53,
               "must_count": 429,
@@ -3378,7 +3385,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 276,
-              "unique_job_pct": 16.6,
+              "unique_job_pct": 16.7,
               "raw_posting_count": 293,
               "duplicate_posting_count": 17,
               "must_count": 266,
@@ -3394,7 +3401,7 @@
                 "理想汽车",
                 "奇瑞"
               ],
-              "trend_summary": "占比稳定（波动 -2.5%）",
+              "trend_summary": "占比稳定（波动 -2.4%）",
               "examples": [
                 {
                   "company": "OPPO",
@@ -3432,7 +3439,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 276,
-              "unique_job_pct": 16.6,
+              "unique_job_pct": 16.7,
               "raw_posting_count": 305,
               "duplicate_posting_count": 29,
               "must_count": 247,
@@ -3503,7 +3510,7 @@
                 "bilibili",
                 "小米"
               ],
-              "trend_summary": "近7日占比 -8.1%（近期波动回调）",
+              "trend_summary": "近7日占比 -8.0%（近期波动回调）",
               "examples": [
                 {
                   "company": "艾为电子",
@@ -3615,7 +3622,7 @@
                 "中国兵器工业集团",
                 "百度"
               ],
-              "trend_summary": "近7日占比 -9.2%（近期波动回调）",
+              "trend_summary": "近7日占比 -9.1%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -3671,7 +3678,7 @@
                 "小鹏汽车",
                 "小米"
               ],
-              "trend_summary": "近7日占比 -7.9%（近期波动回调）",
+              "trend_summary": "近7日占比 -7.8%（近期波动回调）",
               "examples": [
                 {
                   "company": "OPPO",
@@ -3727,7 +3734,7 @@
                 "小米",
                 "奇瑞"
               ],
-              "trend_summary": "近7日占比 -9.3%（近期波动回调）",
+              "trend_summary": "近7日占比 -9.2%（近期波动回调）",
               "examples": [
                 {
                   "company": "艾为电子",
@@ -3881,7 +3888,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 450,
-              "unique_job_pct": 27.1,
+              "unique_job_pct": 27.2,
               "raw_posting_count": 503,
               "duplicate_posting_count": 53,
               "must_count": 429,
@@ -4049,7 +4056,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 276,
-              "unique_job_pct": 16.6,
+              "unique_job_pct": 16.7,
               "raw_posting_count": 293,
               "duplicate_posting_count": 17,
               "must_count": 266,
@@ -4065,7 +4072,7 @@
                 "理想汽车",
                 "奇瑞"
               ],
-              "trend_summary": "占比稳定（波动 -2.5%）",
+              "trend_summary": "占比稳定（波动 -2.4%）",
               "examples": [
                 {
                   "company": "OPPO",
@@ -4103,7 +4110,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 276,
-              "unique_job_pct": 16.6,
+              "unique_job_pct": 16.7,
               "raw_posting_count": 305,
               "duplicate_posting_count": 29,
               "must_count": 247,
@@ -4174,7 +4181,7 @@
                 "bilibili",
                 "小米"
               ],
-              "trend_summary": "近7日占比 -8.1%（近期波动回调）",
+              "trend_summary": "近7日占比 -8.0%（近期波动回调）",
               "examples": [
                 {
                   "company": "艾为电子",
@@ -4606,7 +4613,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 276,
-                "unique_job_pct": 16.6,
+                "unique_job_pct": 16.7,
                 "raw_posting_count": 305,
                 "duplicate_posting_count": 29,
                 "must_count": 247,
@@ -4677,7 +4684,7 @@
                   "bilibili",
                   "小米"
                 ],
-                "trend_summary": "近7日占比 -8.1%（近期波动回调）",
+                "trend_summary": "近7日占比 -8.0%（近期波动回调）",
                 "examples": [
                   {
                     "company": "艾为电子",
@@ -4994,7 +5001,7 @@
                 "dimension": "cs_foundation",
                 "dimension_label": "数据库、网络与操作系统基础",
                 "unique_job_count": 450,
-                "unique_job_pct": 27.1,
+                "unique_job_pct": 27.2,
                 "raw_posting_count": 503,
                 "duplicate_posting_count": 53,
                 "must_count": 429,
@@ -5066,7 +5073,7 @@
                   "中国兵器工业集团",
                   "百度"
                 ],
-                "trend_summary": "近7日占比 -9.2%（近期波动回调）",
+                "trend_summary": "近7日占比 -9.1%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -5446,7 +5453,7 @@
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
                 "unique_job_count": 276,
-                "unique_job_pct": 16.6,
+                "unique_job_pct": 16.7,
                 "raw_posting_count": 293,
                 "duplicate_posting_count": 17,
                 "must_count": 266,
@@ -5462,7 +5469,7 @@
                   "理想汽车",
                   "奇瑞"
                 ],
-                "trend_summary": "占比稳定（波动 -2.5%）",
+                "trend_summary": "占比稳定（波动 -2.4%）",
                 "examples": [
                   {
                     "company": "OPPO",
@@ -5686,7 +5693,7 @@
                   "优必选",
                   "中国联通"
                 ],
-                "trend_summary": "占比稳定（波动 +1.3%）",
+                "trend_summary": "占比稳定（波动 +1.4%）",
                 "examples": [
                   {
                     "company": "OPPO",
@@ -5800,7 +5807,7 @@
                   "小鹏汽车",
                   "小米"
                 ],
-                "trend_summary": "近7日占比 -7.9%（近期波动回调）",
+                "trend_summary": "近7日占比 -7.8%（近期波动回调）",
                 "examples": [
                   {
                     "company": "OPPO",
@@ -5856,7 +5863,7 @@
                   "小米",
                   "奇瑞"
                 ],
-                "trend_summary": "近7日占比 -9.3%（近期波动回调）",
+                "trend_summary": "近7日占比 -9.2%（近期波动回调）",
                 "examples": [
                   {
                     "company": "艾为电子",
@@ -6194,7 +6201,7 @@
                   "顺丰",
                   "汇川技术"
                 ],
-                "trend_summary": "近7日占比 +3.0%（近期需求上升）",
+                "trend_summary": "近7日占比 +3.1%（近期需求上升）",
                 "examples": [
                   {
                     "company": "艾为电子",
@@ -6234,7 +6241,7 @@
                 "dimension": "framework_library",
                 "dimension_label": "框架与开发库",
                 "unique_job_count": 29,
-                "unique_job_pct": 1.7,
+                "unique_job_pct": 1.8,
                 "raw_posting_count": 31,
                 "duplicate_posting_count": 2,
                 "must_count": 27,
@@ -12584,10 +12591,10 @@
         "ai_ml": {
           "category_key": "ai_ml",
           "category_label": "AI 与机器学习工程",
-          "unique_job_count": 2132,
-          "raw_posting_count": 2270,
+          "unique_job_count": 2127,
+          "raw_posting_count": 2265,
           "duplicate_postings_filtered": 138,
-          "company_count": 213,
+          "company_count": 212,
           "top_companies": [
             "字节跳动",
             "腾讯",
@@ -12613,16 +12620,16 @@
               ],
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
-              "unique_job_count": 815,
+              "unique_job_count": 812,
               "unique_job_pct": 38.2,
-              "raw_posting_count": 898,
+              "raw_posting_count": 895,
               "duplicate_posting_count": 83,
-              "must_count": 788,
+              "must_count": 785,
               "bonus_count": 27,
               "must_ratio_pct": 97,
               "tier_role": "must",
               "tier_role_label": "高频必需技能",
-              "company_count": 114,
+              "company_count": 113,
               "top_companies": [
                 "字节跳动",
                 "腾讯",
@@ -12630,7 +12637,7 @@
                 "京东",
                 "智元机器人"
               ],
-              "trend_summary": "近7日占比 -20.8%（近期波动回调）",
+              "trend_summary": "近7日占比 -21.1%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -12669,11 +12676,11 @@
               ],
               "dimension": "programming_language",
               "dimension_label": "编程语言",
-              "unique_job_count": 577,
+              "unique_job_count": 576,
               "unique_job_pct": 27.1,
-              "raw_posting_count": 644,
+              "raw_posting_count": 643,
               "duplicate_posting_count": 67,
-              "must_count": 514,
+              "must_count": 513,
               "bonus_count": 63,
               "must_ratio_pct": 89,
               "tier_role": "must",
@@ -12726,7 +12733,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 376,
-              "unique_job_pct": 17.6,
+              "unique_job_pct": 17.7,
               "raw_posting_count": 435,
               "duplicate_posting_count": 59,
               "must_count": 347,
@@ -12742,7 +12749,7 @@
                 "京东",
                 "欣旺达"
               ],
-              "trend_summary": "近7日占比 -12.8%（近期波动回调）",
+              "trend_summary": "近7日占比 -12.7%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -12779,11 +12786,11 @@
               ],
               "dimension": "programming_language",
               "dimension_label": "编程语言",
-              "unique_job_count": 327,
+              "unique_job_count": 326,
               "unique_job_pct": 15.3,
-              "raw_posting_count": 353,
+              "raw_posting_count": 352,
               "duplicate_posting_count": 26,
-              "must_count": 278,
+              "must_count": 277,
               "bonus_count": 49,
               "must_ratio_pct": 85,
               "tier_role": "must",
@@ -12796,7 +12803,7 @@
                 "美团",
                 "摩尔线程"
               ],
-              "trend_summary": "近7日占比 -6.3%（近期波动回调）",
+              "trend_summary": "近7日占比 -6.4%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -12852,7 +12859,7 @@
                 "快手",
                 "中科曙光"
               ],
-              "trend_summary": "近7日占比 -7.1%（近期波动回调）",
+              "trend_summary": "近7日占比 -7.0%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -12908,7 +12915,7 @@
                 "快手",
                 "摩尔线程"
               ],
-              "trend_summary": "占比稳定（波动 -1.5%）",
+              "trend_summary": "占比稳定（波动 -1.4%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -12964,7 +12971,7 @@
                 "快手",
                 "美团"
               ],
-              "trend_summary": "近7日占比 -6.8%（近期波动回调）",
+              "trend_summary": "近7日占比 -6.7%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -13019,7 +13026,7 @@
                 "OPPO",
                 "荣耀"
               ],
-              "trend_summary": "近7日占比 -5.4%（近期波动回调）",
+              "trend_summary": "近7日占比 -5.3%（近期波动回调）",
               "examples": [
                 {
                   "company": "中国兵器工业集团",
@@ -13075,7 +13082,7 @@
                 "快手",
                 "普渡机器人"
               ],
-              "trend_summary": "近7日占比 -5.3%（近期波动回调）",
+              "trend_summary": "近7日占比 -5.2%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -13115,7 +13122,7 @@
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
               "unique_job_count": 150,
-              "unique_job_pct": 7.0,
+              "unique_job_pct": 7.1,
               "raw_posting_count": 156,
               "duplicate_posting_count": 6,
               "must_count": 142,
@@ -13283,16 +13290,16 @@
               ],
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
-              "unique_job_count": 815,
+              "unique_job_count": 812,
               "unique_job_pct": 38.2,
-              "raw_posting_count": 898,
+              "raw_posting_count": 895,
               "duplicate_posting_count": 83,
-              "must_count": 788,
+              "must_count": 785,
               "bonus_count": 27,
               "must_ratio_pct": 97,
               "tier_role": "must",
               "tier_role_label": "高频必需技能",
-              "company_count": 114,
+              "company_count": 113,
               "top_companies": [
                 "字节跳动",
                 "腾讯",
@@ -13300,7 +13307,7 @@
                 "京东",
                 "智元机器人"
               ],
-              "trend_summary": "近7日占比 -20.8%（近期波动回调）",
+              "trend_summary": "近7日占比 -21.1%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -13339,11 +13346,11 @@
               ],
               "dimension": "programming_language",
               "dimension_label": "编程语言",
-              "unique_job_count": 577,
+              "unique_job_count": 576,
               "unique_job_pct": 27.1,
-              "raw_posting_count": 644,
+              "raw_posting_count": 643,
               "duplicate_posting_count": 67,
-              "must_count": 514,
+              "must_count": 513,
               "bonus_count": 63,
               "must_ratio_pct": 89,
               "tier_role": "must",
@@ -13396,7 +13403,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 376,
-              "unique_job_pct": 17.6,
+              "unique_job_pct": 17.7,
               "raw_posting_count": 435,
               "duplicate_posting_count": 59,
               "must_count": 347,
@@ -13412,7 +13419,7 @@
                 "京东",
                 "欣旺达"
               ],
-              "trend_summary": "近7日占比 -12.8%（近期波动回调）",
+              "trend_summary": "近7日占比 -12.7%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -13449,11 +13456,11 @@
               ],
               "dimension": "programming_language",
               "dimension_label": "编程语言",
-              "unique_job_count": 327,
+              "unique_job_count": 326,
               "unique_job_pct": 15.3,
-              "raw_posting_count": 353,
+              "raw_posting_count": 352,
               "duplicate_posting_count": 26,
-              "must_count": 278,
+              "must_count": 277,
               "bonus_count": 49,
               "must_ratio_pct": 85,
               "tier_role": "must",
@@ -13466,7 +13473,7 @@
                 "美团",
                 "摩尔线程"
               ],
-              "trend_summary": "近7日占比 -6.3%（近期波动回调）",
+              "trend_summary": "近7日占比 -6.4%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -13522,7 +13529,7 @@
                 "快手",
                 "中科曙光"
               ],
-              "trend_summary": "近7日占比 -7.1%（近期波动回调）",
+              "trend_summary": "近7日占比 -7.0%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -13578,7 +13585,7 @@
                 "快手",
                 "摩尔线程"
               ],
-              "trend_summary": "占比稳定（波动 -1.5%）",
+              "trend_summary": "占比稳定（波动 -1.4%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -13634,7 +13641,7 @@
                 "快手",
                 "美团"
               ],
-              "trend_summary": "近7日占比 -6.8%（近期波动回调）",
+              "trend_summary": "近7日占比 -6.7%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -13689,7 +13696,7 @@
                 "OPPO",
                 "荣耀"
               ],
-              "trend_summary": "近7日占比 -5.4%（近期波动回调）",
+              "trend_summary": "近7日占比 -5.3%（近期波动回调）",
               "examples": [
                 {
                   "company": "中国兵器工业集团",
@@ -14063,16 +14070,16 @@
                 ],
                 "dimension": "domain_specific",
                 "dimension_label": "特定岗位方向专有技术栈",
-                "unique_job_count": 815,
+                "unique_job_count": 812,
                 "unique_job_pct": 38.2,
-                "raw_posting_count": 898,
+                "raw_posting_count": 895,
                 "duplicate_posting_count": 83,
-                "must_count": 788,
+                "must_count": 785,
                 "bonus_count": 27,
                 "must_ratio_pct": 97,
                 "tier_role": "must",
                 "tier_role_label": "高频必需技能",
-                "company_count": 114,
+                "company_count": 113,
                 "top_companies": [
                   "字节跳动",
                   "腾讯",
@@ -14080,7 +14087,7 @@
                   "京东",
                   "智元机器人"
                 ],
-                "trend_summary": "近7日占比 -20.8%（近期波动回调）",
+                "trend_summary": "近7日占比 -21.1%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -14120,7 +14127,7 @@
                 "dimension": "domain_specific",
                 "dimension_label": "特定岗位方向专有技术栈",
                 "unique_job_count": 150,
-                "unique_job_pct": 7.0,
+                "unique_job_pct": 7.1,
                 "raw_posting_count": 156,
                 "duplicate_posting_count": 6,
                 "must_count": 142,
@@ -14345,11 +14352,11 @@
                 ],
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
-                "unique_job_count": 577,
+                "unique_job_count": 576,
                 "unique_job_pct": 27.1,
-                "raw_posting_count": 644,
+                "raw_posting_count": 643,
                 "duplicate_posting_count": 67,
-                "must_count": 514,
+                "must_count": 513,
                 "bonus_count": 63,
                 "must_ratio_pct": 89,
                 "tier_role": "must",
@@ -14399,11 +14406,11 @@
                 ],
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
-                "unique_job_count": 327,
+                "unique_job_count": 326,
                 "unique_job_pct": 15.3,
-                "raw_posting_count": 353,
+                "raw_posting_count": 352,
                 "duplicate_posting_count": 26,
-                "must_count": 278,
+                "must_count": 277,
                 "bonus_count": 49,
                 "must_ratio_pct": 85,
                 "tier_role": "must",
@@ -14416,7 +14423,7 @@
                   "美团",
                   "摩尔线程"
                 ],
-                "trend_summary": "近7日占比 -6.3%（近期波动回调）",
+                "trend_summary": "近7日占比 -6.4%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -14471,7 +14478,7 @@
                   "OPPO",
                   "荣耀"
                 ],
-                "trend_summary": "近7日占比 -5.4%（近期波动回调）",
+                "trend_summary": "近7日占比 -5.3%（近期波动回调）",
                 "examples": [
                   {
                     "company": "中国兵器工业集团",
@@ -14786,7 +14793,7 @@
                 "dimension": "ds_algorithm",
                 "dimension_label": "数据结构与算法",
                 "unique_job_count": 376,
-                "unique_job_pct": 17.6,
+                "unique_job_pct": 17.7,
                 "raw_posting_count": 435,
                 "duplicate_posting_count": 59,
                 "must_count": 347,
@@ -14802,7 +14809,7 @@
                   "京东",
                   "欣旺达"
                 ],
-                "trend_summary": "近7日占比 -12.8%（近期波动回调）",
+                "trend_summary": "近7日占比 -12.7%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -14972,7 +14979,7 @@
                   "快手",
                   "中科曙光"
                 ],
-                "trend_summary": "近7日占比 -7.1%（近期波动回调）",
+                "trend_summary": "近7日占比 -7.0%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -15297,7 +15304,7 @@
                   "快手",
                   "摩尔线程"
                 ],
-                "trend_summary": "占比稳定（波动 -1.5%）",
+                "trend_summary": "占比稳定（波动 -1.4%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -15393,7 +15400,7 @@
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
                 "unique_job_count": 82,
-                "unique_job_pct": 3.8,
+                "unique_job_pct": 3.9,
                 "raw_posting_count": 88,
                 "duplicate_posting_count": 6,
                 "must_count": 79,
@@ -15409,7 +15416,7 @@
                   "智元机器人",
                   "蔚来"
                 ],
-                "trend_summary": "占比稳定（波动 -0.1%）",
+                "trend_summary": "占比稳定（波动 +0.0%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -15624,7 +15631,7 @@
                   "快手",
                   "美团"
                 ],
-                "trend_summary": "近7日占比 -6.8%（近期波动回调）",
+                "trend_summary": "近7日占比 -6.7%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -15680,7 +15687,7 @@
                   "快手",
                   "普渡机器人"
                 ],
-                "trend_summary": "近7日占比 -5.3%（近期波动回调）",
+                "trend_summary": "近7日占比 -5.2%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -15886,7 +15893,7 @@
               ],
               "pair_label": "数据结构与常用算法 (树/图/哈希/排序/复杂度) + C/C++",
               "co_unique_jobs": 212,
-              "co_pct": 9.9
+              "co_pct": 10.0
             },
             {
               "pair_ids": [
@@ -15903,7 +15910,7 @@
                 "lang_python"
               ],
               "pair_label": "C/C++ + Python",
-              "co_unique_jobs": 178,
+              "co_unique_jobs": 177,
               "co_pct": 8.3
             },
             {
@@ -15912,8 +15919,8 @@
                 "lang_cpp"
               ],
               "pair_label": "LLM 应用工程、RAG 检索增强与 Agent 工具调用 + C/C++",
-              "co_unique_jobs": 176,
-              "co_pct": 8.3
+              "co_unique_jobs": 175,
+              "co_pct": 8.2
             },
             {
               "pair_ids": [
@@ -15921,8 +15928,8 @@
                 "lang_python"
               ],
               "pair_label": "LLM 应用工程、RAG 检索增强与 Agent 工具调用 + Python",
-              "co_unique_jobs": 176,
-              "co_pct": 8.3
+              "co_unique_jobs": 175,
+              "co_pct": 8.2
             },
             {
               "pair_ids": [
@@ -18927,10 +18934,10 @@
         "data_platform": {
           "category_key": "data_platform",
           "category_label": "数据、数据库与存储系统",
-          "unique_job_count": 196,
-          "raw_posting_count": 205,
+          "unique_job_count": 195,
+          "raw_posting_count": 204,
           "duplicate_postings_filtered": 9,
-          "company_count": 82,
+          "company_count": 81,
           "top_companies": [
             "字节跳动",
             "吉利控股",
@@ -18956,16 +18963,16 @@
               ],
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
-              "unique_job_count": 103,
-              "unique_job_pct": 52.6,
-              "raw_posting_count": 105,
+              "unique_job_count": 102,
+              "unique_job_pct": 52.3,
+              "raw_posting_count": 104,
               "duplicate_posting_count": 2,
-              "must_count": 95,
+              "must_count": 94,
               "bonus_count": 8,
               "must_ratio_pct": 92,
               "tier_role": "must",
               "tier_role_label": "高频必需技能",
-              "company_count": 57,
+              "company_count": 56,
               "top_companies": [
                 "字节跳动",
                 "小米",
@@ -18973,7 +18980,7 @@
                 "追觅",
                 "美团"
               ],
-              "trend_summary": "近7日占比 -17.4%（近期波动回调）",
+              "trend_summary": "近7日占比 -17.9%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19012,7 +19019,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 43,
-              "unique_job_pct": 21.9,
+              "unique_job_pct": 22.1,
               "raw_posting_count": 50,
               "duplicate_posting_count": 7,
               "must_count": 36,
@@ -19028,7 +19035,7 @@
                 "快手",
                 "中国联通"
               ],
-              "trend_summary": "近7日占比 +5.5%（近期需求上升）",
+              "trend_summary": "近7日占比 +5.7%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19066,7 +19073,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 42,
-              "unique_job_pct": 21.4,
+              "unique_job_pct": 21.5,
               "raw_posting_count": 48,
               "duplicate_posting_count": 6,
               "must_count": 34,
@@ -19082,7 +19089,7 @@
                 "零跑汽车",
                 "腾讯"
               ],
-              "trend_summary": "占比稳定（波动 -1.7%）",
+              "trend_summary": "占比稳定（波动 -1.5%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19122,7 +19129,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 40,
-              "unique_job_pct": 20.4,
+              "unique_job_pct": 20.5,
               "raw_posting_count": 46,
               "duplicate_posting_count": 6,
               "must_count": 34,
@@ -19138,7 +19145,7 @@
                 "腾讯",
                 "欣旺达"
               ],
-              "trend_summary": "近7日占比 +9.0%（近期需求上升）",
+              "trend_summary": "近7日占比 +9.2%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19178,7 +19185,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 38,
-              "unique_job_pct": 19.4,
+              "unique_job_pct": 19.5,
               "raw_posting_count": 43,
               "duplicate_posting_count": 5,
               "must_count": 36,
@@ -19194,7 +19201,7 @@
                 "欣旺达",
                 "快手"
               ],
-              "trend_summary": "近7日占比 +3.1%（近期需求上升）",
+              "trend_summary": "近7日占比 +3.3%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19234,7 +19241,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 38,
-              "unique_job_pct": 19.4,
+              "unique_job_pct": 19.5,
               "raw_posting_count": 43,
               "duplicate_posting_count": 5,
               "must_count": 38,
@@ -19250,7 +19257,7 @@
                 "联友科技",
                 "冠宇集团"
               ],
-              "trend_summary": "近7日占比 +9.3%（近期需求上升）",
+              "trend_summary": "近7日占比 +9.5%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19290,7 +19297,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 37,
-              "unique_job_pct": 18.9,
+              "unique_job_pct": 19.0,
               "raw_posting_count": 37,
               "duplicate_posting_count": 0,
               "must_count": 28,
@@ -19306,7 +19313,7 @@
                 "联友科技",
                 "九方智投"
               ],
-              "trend_summary": "近7日占比 +8.4%（近期需求上升）",
+              "trend_summary": "近7日占比 +8.6%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19346,7 +19353,7 @@
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
               "unique_job_count": 36,
-              "unique_job_pct": 18.4,
+              "unique_job_pct": 18.5,
               "raw_posting_count": 42,
               "duplicate_posting_count": 6,
               "must_count": 30,
@@ -19362,7 +19369,7 @@
                 "宁德时代",
                 "中国电科"
               ],
-              "trend_summary": "占比稳定（波动 -2.9%）",
+              "trend_summary": "占比稳定（波动 -2.7%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19402,7 +19409,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 28,
-              "unique_job_pct": 14.3,
+              "unique_job_pct": 14.4,
               "raw_posting_count": 28,
               "duplicate_posting_count": 0,
               "must_count": 27,
@@ -19418,7 +19425,7 @@
                 "阳光保险",
                 "360集团"
               ],
-              "trend_summary": "近7日占比 -3.9%（近期波动回调）",
+              "trend_summary": "近7日占比 -3.8%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19474,7 +19481,7 @@
                 "文远知行",
                 "bilibili"
               ],
-              "trend_summary": "占比稳定（波动 +2.6%）",
+              "trend_summary": "占比稳定（波动 +2.7%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19513,7 +19520,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 21,
-              "unique_job_pct": 10.7,
+              "unique_job_pct": 10.8,
               "raw_posting_count": 26,
               "duplicate_posting_count": 5,
               "must_count": 18,
@@ -19529,7 +19536,7 @@
                 "快手",
                 "零跑汽车"
               ],
-              "trend_summary": "占比稳定（波动 +2.3%）",
+              "trend_summary": "占比稳定（波动 +2.4%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19585,7 +19592,7 @@
                 "京东",
                 "零跑汽车"
               ],
-              "trend_summary": "占比稳定（波动 -1.6%）",
+              "trend_summary": "占比稳定（波动 -1.5%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19626,16 +19633,16 @@
               ],
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
-              "unique_job_count": 103,
-              "unique_job_pct": 52.6,
-              "raw_posting_count": 105,
+              "unique_job_count": 102,
+              "unique_job_pct": 52.3,
+              "raw_posting_count": 104,
               "duplicate_posting_count": 2,
-              "must_count": 95,
+              "must_count": 94,
               "bonus_count": 8,
               "must_ratio_pct": 92,
               "tier_role": "must",
               "tier_role_label": "高频必需技能",
-              "company_count": 57,
+              "company_count": 56,
               "top_companies": [
                 "字节跳动",
                 "小米",
@@ -19643,7 +19650,7 @@
                 "追觅",
                 "美团"
               ],
-              "trend_summary": "近7日占比 -17.4%（近期波动回调）",
+              "trend_summary": "近7日占比 -17.9%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19682,7 +19689,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 43,
-              "unique_job_pct": 21.9,
+              "unique_job_pct": 22.1,
               "raw_posting_count": 50,
               "duplicate_posting_count": 7,
               "must_count": 36,
@@ -19698,7 +19705,7 @@
                 "快手",
                 "中国联通"
               ],
-              "trend_summary": "近7日占比 +5.5%（近期需求上升）",
+              "trend_summary": "近7日占比 +5.7%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19736,7 +19743,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 42,
-              "unique_job_pct": 21.4,
+              "unique_job_pct": 21.5,
               "raw_posting_count": 48,
               "duplicate_posting_count": 6,
               "must_count": 34,
@@ -19752,7 +19759,7 @@
                 "零跑汽车",
                 "腾讯"
               ],
-              "trend_summary": "占比稳定（波动 -1.7%）",
+              "trend_summary": "占比稳定（波动 -1.5%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19792,7 +19799,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 40,
-              "unique_job_pct": 20.4,
+              "unique_job_pct": 20.5,
               "raw_posting_count": 46,
               "duplicate_posting_count": 6,
               "must_count": 34,
@@ -19808,7 +19815,7 @@
                 "腾讯",
                 "欣旺达"
               ],
-              "trend_summary": "近7日占比 +9.0%（近期需求上升）",
+              "trend_summary": "近7日占比 +9.2%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19848,7 +19855,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 38,
-              "unique_job_pct": 19.4,
+              "unique_job_pct": 19.5,
               "raw_posting_count": 43,
               "duplicate_posting_count": 5,
               "must_count": 36,
@@ -19864,7 +19871,7 @@
                 "欣旺达",
                 "快手"
               ],
-              "trend_summary": "近7日占比 +3.1%（近期需求上升）",
+              "trend_summary": "近7日占比 +3.3%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19904,7 +19911,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 38,
-              "unique_job_pct": 19.4,
+              "unique_job_pct": 19.5,
               "raw_posting_count": 43,
               "duplicate_posting_count": 5,
               "must_count": 38,
@@ -19920,7 +19927,7 @@
                 "联友科技",
                 "冠宇集团"
               ],
-              "trend_summary": "近7日占比 +9.3%（近期需求上升）",
+              "trend_summary": "近7日占比 +9.5%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -19960,7 +19967,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 37,
-              "unique_job_pct": 18.9,
+              "unique_job_pct": 19.0,
               "raw_posting_count": 37,
               "duplicate_posting_count": 0,
               "must_count": 28,
@@ -19976,7 +19983,7 @@
                 "联友科技",
                 "九方智投"
               ],
-              "trend_summary": "近7日占比 +8.4%（近期需求上升）",
+              "trend_summary": "近7日占比 +8.6%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -20016,7 +20023,7 @@
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
               "unique_job_count": 36,
-              "unique_job_pct": 18.4,
+              "unique_job_pct": 18.5,
               "raw_posting_count": 42,
               "duplicate_posting_count": 6,
               "must_count": 30,
@@ -20032,7 +20039,7 @@
                 "宁德时代",
                 "中国电科"
               ],
-              "trend_summary": "占比稳定（波动 -2.9%）",
+              "trend_summary": "占比稳定（波动 -2.7%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -20075,7 +20082,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 4,
-              "unique_job_pct": 2.0,
+              "unique_job_pct": 2.1,
               "raw_posting_count": 4,
               "duplicate_posting_count": 0,
               "must_count": 4,
@@ -20130,7 +20137,7 @@
               "dimension": "framework_library",
               "dimension_label": "框架与开发库",
               "unique_job_count": 4,
-              "unique_job_pct": 2.0,
+              "unique_job_pct": 2.1,
               "raw_posting_count": 4,
               "duplicate_posting_count": 0,
               "must_count": 3,
@@ -20383,16 +20390,16 @@
                 ],
                 "dimension": "domain_specific",
                 "dimension_label": "特定岗位方向专有技术栈",
-                "unique_job_count": 103,
-                "unique_job_pct": 52.6,
-                "raw_posting_count": 105,
+                "unique_job_count": 102,
+                "unique_job_pct": 52.3,
+                "raw_posting_count": 104,
                 "duplicate_posting_count": 2,
-                "must_count": 95,
+                "must_count": 94,
                 "bonus_count": 8,
                 "must_ratio_pct": 92,
                 "tier_role": "must",
                 "tier_role_label": "高频必需技能",
-                "company_count": 57,
+                "company_count": 56,
                 "top_companies": [
                   "字节跳动",
                   "小米",
@@ -20400,7 +20407,7 @@
                   "追觅",
                   "美团"
                 ],
-                "trend_summary": "近7日占比 -17.4%（近期波动回调）",
+                "trend_summary": "近7日占比 -17.9%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -20440,7 +20447,7 @@
                 "dimension": "domain_specific",
                 "dimension_label": "特定岗位方向专有技术栈",
                 "unique_job_count": 36,
-                "unique_job_pct": 18.4,
+                "unique_job_pct": 18.5,
                 "raw_posting_count": 42,
                 "duplicate_posting_count": 6,
                 "must_count": 30,
@@ -20456,7 +20463,7 @@
                   "宁德时代",
                   "中国电科"
                 ],
-                "trend_summary": "占比稳定（波动 -2.9%）",
+                "trend_summary": "占比稳定（波动 -2.7%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -20550,7 +20557,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 43,
-                "unique_job_pct": 21.9,
+                "unique_job_pct": 22.1,
                 "raw_posting_count": 50,
                 "duplicate_posting_count": 7,
                 "must_count": 36,
@@ -20566,7 +20573,7 @@
                   "快手",
                   "中国联通"
                 ],
-                "trend_summary": "近7日占比 +5.5%（近期需求上升）",
+                "trend_summary": "近7日占比 +5.7%（近期需求上升）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -20604,7 +20611,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 42,
-                "unique_job_pct": 21.4,
+                "unique_job_pct": 21.5,
                 "raw_posting_count": 48,
                 "duplicate_posting_count": 6,
                 "must_count": 34,
@@ -20620,7 +20627,7 @@
                   "零跑汽车",
                   "腾讯"
                 ],
-                "trend_summary": "占比稳定（波动 -1.7%）",
+                "trend_summary": "占比稳定（波动 -1.5%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -20660,7 +20667,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 40,
-                "unique_job_pct": 20.4,
+                "unique_job_pct": 20.5,
                 "raw_posting_count": 46,
                 "duplicate_posting_count": 6,
                 "must_count": 34,
@@ -20676,7 +20683,7 @@
                   "腾讯",
                   "欣旺达"
                 ],
-                "trend_summary": "近7日占比 +9.0%（近期需求上升）",
+                "trend_summary": "近7日占比 +9.2%（近期需求上升）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -20715,7 +20722,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 21,
-                "unique_job_pct": 10.7,
+                "unique_job_pct": 10.8,
                 "raw_posting_count": 26,
                 "duplicate_posting_count": 5,
                 "must_count": 18,
@@ -20731,7 +20738,7 @@
                   "快手",
                   "零跑汽车"
                 ],
-                "trend_summary": "占比稳定（波动 +2.3%）",
+                "trend_summary": "占比稳定（波动 +2.4%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -20771,7 +20778,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 4,
-                "unique_job_pct": 2.0,
+                "unique_job_pct": 2.1,
                 "raw_posting_count": 4,
                 "duplicate_posting_count": 0,
                 "must_count": 4,
@@ -20907,7 +20914,7 @@
                 "dimension": "ds_algorithm",
                 "dimension_label": "数据结构与算法",
                 "unique_job_count": 38,
-                "unique_job_pct": 19.4,
+                "unique_job_pct": 19.5,
                 "raw_posting_count": 43,
                 "duplicate_posting_count": 5,
                 "must_count": 36,
@@ -20923,7 +20930,7 @@
                   "欣旺达",
                   "快手"
                 ],
-                "trend_summary": "近7日占比 +3.1%（近期需求上升）",
+                "trend_summary": "近7日占比 +3.3%（近期需求上升）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -21020,7 +21027,7 @@
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
                 "unique_job_count": 38,
-                "unique_job_pct": 19.4,
+                "unique_job_pct": 19.5,
                 "raw_posting_count": 43,
                 "duplicate_posting_count": 5,
                 "must_count": 38,
@@ -21036,7 +21043,7 @@
                   "联友科技",
                   "冠宇集团"
                 ],
-                "trend_summary": "近7日占比 +9.3%（近期需求上升）",
+                "trend_summary": "近7日占比 +9.5%（近期需求上升）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -21092,7 +21099,7 @@
                   "360集团",
                   "网易雷火"
                 ],
-                "trend_summary": "近7日占比 +7.8%（近期需求上升）",
+                "trend_summary": "近7日占比 +7.9%（近期需求上升）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -21131,16 +21138,16 @@
                 ],
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
-                "unique_job_count": 10,
-                "unique_job_pct": 5.1,
-                "raw_posting_count": 10,
+                "unique_job_count": 9,
+                "unique_job_pct": 4.6,
+                "raw_posting_count": 9,
                 "duplicate_posting_count": 0,
-                "must_count": 10,
+                "must_count": 9,
                 "bonus_count": 0,
                 "must_ratio_pct": 100,
                 "tier_role": "must",
                 "tier_role_label": "高频必需技能",
-                "company_count": 6,
+                "company_count": 5,
                 "top_companies": [
                   "字节跳动",
                   "快手",
@@ -21148,7 +21155,7 @@
                   "京东方",
                   "宁德时代"
                 ],
-                "trend_summary": "占比稳定（波动 +2.8%）",
+                "trend_summary": "占比稳定（波动 +2.0%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -21235,7 +21242,7 @@
                 "dimension": "cs_foundation",
                 "dimension_label": "数据库、网络与操作系统基础",
                 "unique_job_count": 37,
-                "unique_job_pct": 18.9,
+                "unique_job_pct": 19.0,
                 "raw_posting_count": 37,
                 "duplicate_posting_count": 0,
                 "must_count": 28,
@@ -21251,7 +21258,7 @@
                   "联友科技",
                   "九方智投"
                 ],
-                "trend_summary": "近7日占比 +8.4%（近期需求上升）",
+                "trend_summary": "近7日占比 +8.6%（近期需求上升）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -21291,7 +21298,7 @@
                 "dimension": "cs_foundation",
                 "dimension_label": "数据库、网络与操作系统基础",
                 "unique_job_count": 28,
-                "unique_job_pct": 14.3,
+                "unique_job_pct": 14.4,
                 "raw_posting_count": 28,
                 "duplicate_posting_count": 0,
                 "must_count": 27,
@@ -21307,7 +21314,7 @@
                   "阳光保险",
                   "360集团"
                 ],
-                "trend_summary": "近7日占比 -3.9%（近期波动回调）",
+                "trend_summary": "近7日占比 -3.8%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -21363,7 +21370,7 @@
                   "文远知行",
                   "bilibili"
                 ],
-                "trend_summary": "占比稳定（波动 +2.6%）",
+                "trend_summary": "占比稳定（波动 +2.7%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -21419,7 +21426,7 @@
                   "京东",
                   "零跑汽车"
                 ],
-                "trend_summary": "占比稳定（波动 -1.6%）",
+                "trend_summary": "占比稳定（波动 -1.5%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -21517,7 +21524,7 @@
                 "dimension": "framework_library",
                 "dimension_label": "框架与开发库",
                 "unique_job_count": 4,
-                "unique_job_pct": 2.0,
+                "unique_job_pct": 2.1,
                 "raw_posting_count": 4,
                 "duplicate_posting_count": 0,
                 "must_count": 3,
@@ -21723,7 +21730,7 @@
               ],
               "pair_label": "大数据处理、数仓建模与流批计算 (Spark/Flink/Hadoop/Hive/ClickHouse) + LLM 应用工程、RAG 检索增强与 Agent 工具调用",
               "co_unique_jobs": 24,
-              "co_pct": 12.2
+              "co_pct": 12.3
             },
             {
               "pair_ids": [
@@ -21732,7 +21739,7 @@
               ],
               "pair_label": "Java + Python",
               "co_unique_jobs": 23,
-              "co_pct": 11.7
+              "co_pct": 11.8
             },
             {
               "pair_ids": [
@@ -21741,7 +21748,7 @@
               ],
               "pair_label": "分布式系统基础 (一致性/容错/负载均衡) + 大数据处理、数仓建模与流批计算 (Spark/Flink/Hadoop/Hive/ClickHouse)",
               "co_unique_jobs": 22,
-              "co_pct": 11.2
+              "co_pct": 11.3
             },
             {
               "pair_ids": [
@@ -21750,7 +21757,7 @@
               ],
               "pair_label": "C/C++ + Java",
               "co_unique_jobs": 22,
-              "co_pct": 11.2
+              "co_pct": 11.3
             }
           ]
         },
@@ -24962,8 +24969,8 @@
         "graphics_3d": {
           "category_key": "graphics_3d",
           "category_label": "图形学、渲染与三维技术",
-          "unique_job_count": 64,
-          "raw_posting_count": 66,
+          "unique_job_count": 63,
+          "raw_posting_count": 65,
           "duplicate_postings_filtered": 2,
           "company_count": 33,
           "top_companies": [
@@ -24992,7 +24999,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 39,
-              "unique_job_pct": 60.9,
+              "unique_job_pct": 61.9,
               "raw_posting_count": 40,
               "duplicate_posting_count": 1,
               "must_count": 37,
@@ -25008,7 +25015,7 @@
                 "芯动科技",
                 "腾讯"
               ],
-              "trend_summary": "近7日占比 -42.9%（近期波动回调）",
+              "trend_summary": "近7日占比 -41.1%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25048,7 +25055,7 @@
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
               "unique_job_count": 39,
-              "unique_job_pct": 60.9,
+              "unique_job_pct": 61.9,
               "raw_posting_count": 39,
               "duplicate_posting_count": 0,
               "must_count": 35,
@@ -25064,7 +25071,7 @@
                 "中国兵器工业集团",
                 "群核信息"
               ],
-              "trend_summary": "近7日占比 -34.9%（近期波动回调）",
+              "trend_summary": "近7日占比 -32.7%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25104,7 +25111,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 17,
-              "unique_job_pct": 26.6,
+              "unique_job_pct": 27.0,
               "raw_posting_count": 17,
               "duplicate_posting_count": 0,
               "must_count": 16,
@@ -25120,7 +25127,7 @@
                 "OPPO",
                 "影石"
               ],
-              "trend_summary": "近7日占比 -20.1%（近期波动回调）",
+              "trend_summary": "近7日占比 -19.4%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25160,7 +25167,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 13,
-              "unique_job_pct": 20.3,
+              "unique_job_pct": 20.6,
               "raw_posting_count": 13,
               "duplicate_posting_count": 0,
               "must_count": 13,
@@ -25176,7 +25183,7 @@
                 "网易互娱",
                 "摩尔线程"
               ],
-              "trend_summary": "近7日占比 -11.6%（近期波动回调）",
+              "trend_summary": "近7日占比 -10.9%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25214,7 +25221,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 10,
-              "unique_job_pct": 15.6,
+              "unique_job_pct": 15.9,
               "raw_posting_count": 10,
               "duplicate_posting_count": 0,
               "must_count": 10,
@@ -25230,7 +25237,7 @@
                 "网易雷火",
                 "腾讯"
               ],
-              "trend_summary": "近7日占比 -5.2%（近期波动回调）",
+              "trend_summary": "近7日占比 -4.5%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25270,7 +25277,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 9,
-              "unique_job_pct": 14.1,
+              "unique_job_pct": 14.3,
               "raw_posting_count": 9,
               "duplicate_posting_count": 0,
               "must_count": 9,
@@ -25286,7 +25293,7 @@
                 "滴滴",
                 "汇川技术"
               ],
-              "trend_summary": "近7日占比 -3.1%（近期波动回调）",
+              "trend_summary": "占比稳定（波动 -2.4%）",
               "examples": [
                 {
                   "company": "群核信息",
@@ -25326,7 +25333,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 7,
-              "unique_job_pct": 10.9,
+              "unique_job_pct": 11.1,
               "raw_posting_count": 7,
               "duplicate_posting_count": 0,
               "must_count": 7,
@@ -25342,7 +25349,7 @@
                 "OPPO",
                 "影石"
               ],
-              "trend_summary": "近7日占比 -6.9%（近期波动回调）",
+              "trend_summary": "近7日占比 -6.6%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25381,7 +25388,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 6,
-              "unique_job_pct": 9.4,
+              "unique_job_pct": 9.5,
               "raw_posting_count": 6,
               "duplicate_posting_count": 0,
               "must_count": 6,
@@ -25397,7 +25404,7 @@
                 "零跑汽车",
                 "千里科技"
               ],
-              "trend_summary": "近7日占比 -4.7%（近期波动回调）",
+              "trend_summary": "近7日占比 -4.4%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25437,7 +25444,7 @@
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
               "unique_job_count": 5,
-              "unique_job_pct": 7.8,
+              "unique_job_pct": 7.9,
               "raw_posting_count": 5,
               "duplicate_posting_count": 0,
               "must_count": 4,
@@ -25492,7 +25499,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 4,
-              "unique_job_pct": 6.2,
+              "unique_job_pct": 6.3,
               "raw_posting_count": 4,
               "duplicate_posting_count": 0,
               "must_count": 4,
@@ -25506,7 +25513,7 @@
                 "卓驭",
                 "安克创新"
               ],
-              "trend_summary": "近7日占比 +7.5%（近期需求上升）",
+              "trend_summary": "近7日占比 +8.2%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25546,7 +25553,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 4,
-              "unique_job_pct": 6.2,
+              "unique_job_pct": 6.3,
               "raw_posting_count": 4,
               "duplicate_posting_count": 0,
               "must_count": 4,
@@ -25600,7 +25607,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 3,
-              "unique_job_pct": 4.7,
+              "unique_job_pct": 4.8,
               "raw_posting_count": 3,
               "duplicate_posting_count": 0,
               "must_count": 3,
@@ -25656,7 +25663,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 39,
-              "unique_job_pct": 60.9,
+              "unique_job_pct": 61.9,
               "raw_posting_count": 40,
               "duplicate_posting_count": 1,
               "must_count": 37,
@@ -25672,7 +25679,7 @@
                 "芯动科技",
                 "腾讯"
               ],
-              "trend_summary": "近7日占比 -42.9%（近期波动回调）",
+              "trend_summary": "近7日占比 -41.1%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25712,7 +25719,7 @@
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
               "unique_job_count": 39,
-              "unique_job_pct": 60.9,
+              "unique_job_pct": 61.9,
               "raw_posting_count": 39,
               "duplicate_posting_count": 0,
               "must_count": 35,
@@ -25728,7 +25735,7 @@
                 "中国兵器工业集团",
                 "群核信息"
               ],
-              "trend_summary": "近7日占比 -34.9%（近期波动回调）",
+              "trend_summary": "近7日占比 -32.7%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25768,7 +25775,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 17,
-              "unique_job_pct": 26.6,
+              "unique_job_pct": 27.0,
               "raw_posting_count": 17,
               "duplicate_posting_count": 0,
               "must_count": 16,
@@ -25784,7 +25791,7 @@
                 "OPPO",
                 "影石"
               ],
-              "trend_summary": "近7日占比 -20.1%（近期波动回调）",
+              "trend_summary": "近7日占比 -19.4%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25824,7 +25831,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 13,
-              "unique_job_pct": 20.3,
+              "unique_job_pct": 20.6,
               "raw_posting_count": 13,
               "duplicate_posting_count": 0,
               "must_count": 13,
@@ -25840,7 +25847,7 @@
                 "网易互娱",
                 "摩尔线程"
               ],
-              "trend_summary": "近7日占比 -11.6%（近期波动回调）",
+              "trend_summary": "近7日占比 -10.9%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25878,7 +25885,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 10,
-              "unique_job_pct": 15.6,
+              "unique_job_pct": 15.9,
               "raw_posting_count": 10,
               "duplicate_posting_count": 0,
               "must_count": 10,
@@ -25894,7 +25901,7 @@
                 "网易雷火",
                 "腾讯"
               ],
-              "trend_summary": "近7日占比 -5.2%（近期波动回调）",
+              "trend_summary": "近7日占比 -4.5%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -25934,7 +25941,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 9,
-              "unique_job_pct": 14.1,
+              "unique_job_pct": 14.3,
               "raw_posting_count": 9,
               "duplicate_posting_count": 0,
               "must_count": 9,
@@ -25950,7 +25957,7 @@
                 "滴滴",
                 "汇川技术"
               ],
-              "trend_summary": "近7日占比 -3.1%（近期波动回调）",
+              "trend_summary": "占比稳定（波动 -2.4%）",
               "examples": [
                 {
                   "company": "群核信息",
@@ -25990,7 +25997,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 7,
-              "unique_job_pct": 10.9,
+              "unique_job_pct": 11.1,
               "raw_posting_count": 7,
               "duplicate_posting_count": 0,
               "must_count": 7,
@@ -26006,7 +26013,7 @@
                 "OPPO",
                 "影石"
               ],
-              "trend_summary": "近7日占比 -6.9%（近期波动回调）",
+              "trend_summary": "近7日占比 -6.6%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -26045,7 +26052,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 6,
-              "unique_job_pct": 9.4,
+              "unique_job_pct": 9.5,
               "raw_posting_count": 6,
               "duplicate_posting_count": 0,
               "must_count": 6,
@@ -26061,7 +26068,7 @@
                 "零跑汽车",
                 "千里科技"
               ],
-              "trend_summary": "近7日占比 -4.7%（近期波动回调）",
+              "trend_summary": "近7日占比 -4.4%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -26104,7 +26111,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 4,
-              "unique_job_pct": 6.2,
+              "unique_job_pct": 6.3,
               "raw_posting_count": 4,
               "duplicate_posting_count": 0,
               "must_count": 4,
@@ -26118,7 +26125,7 @@
                 "卓驭",
                 "安克创新"
               ],
-              "trend_summary": "近7日占比 +7.5%（近期需求上升）",
+              "trend_summary": "近7日占比 +8.2%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -26158,7 +26165,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 4,
-              "unique_job_pct": 6.2,
+              "unique_job_pct": 6.3,
               "raw_posting_count": 4,
               "duplicate_posting_count": 0,
               "must_count": 4,
@@ -26212,7 +26219,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 3,
-              "unique_job_pct": 4.7,
+              "unique_job_pct": 4.8,
               "raw_posting_count": 3,
               "duplicate_posting_count": 0,
               "must_count": 3,
@@ -26265,7 +26272,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 2,
-              "unique_job_pct": 3.1,
+              "unique_job_pct": 3.2,
               "raw_posting_count": 2,
               "duplicate_posting_count": 0,
               "must_count": 2,
@@ -26309,7 +26316,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 2,
-              "unique_job_pct": 3.1,
+              "unique_job_pct": 3.2,
               "raw_posting_count": 2,
               "duplicate_posting_count": 0,
               "must_count": 2,
@@ -26353,7 +26360,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 2,
-              "unique_job_pct": 3.1,
+              "unique_job_pct": 3.2,
               "raw_posting_count": 2,
               "duplicate_posting_count": 0,
               "must_count": 2,
@@ -26401,7 +26408,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 39,
-                "unique_job_pct": 60.9,
+                "unique_job_pct": 61.9,
                 "raw_posting_count": 40,
                 "duplicate_posting_count": 1,
                 "must_count": 37,
@@ -26417,7 +26424,7 @@
                   "芯动科技",
                   "腾讯"
                 ],
-                "trend_summary": "近7日占比 -42.9%（近期波动回调）",
+                "trend_summary": "近7日占比 -41.1%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -26455,7 +26462,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 10,
-                "unique_job_pct": 15.6,
+                "unique_job_pct": 15.9,
                 "raw_posting_count": 10,
                 "duplicate_posting_count": 0,
                 "must_count": 10,
@@ -26471,7 +26478,7 @@
                   "网易雷火",
                   "腾讯"
                 ],
-                "trend_summary": "近7日占比 -5.2%（近期波动回调）",
+                "trend_summary": "近7日占比 -4.5%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -26510,7 +26517,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 6,
-                "unique_job_pct": 9.4,
+                "unique_job_pct": 9.5,
                 "raw_posting_count": 6,
                 "duplicate_posting_count": 0,
                 "must_count": 6,
@@ -26526,7 +26533,7 @@
                   "零跑汽车",
                   "千里科技"
                 ],
-                "trend_summary": "近7日占比 -4.7%（近期波动回调）",
+                "trend_summary": "近7日占比 -4.4%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -26566,7 +26573,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 4,
-                "unique_job_pct": 6.2,
+                "unique_job_pct": 6.3,
                 "raw_posting_count": 4,
                 "duplicate_posting_count": 0,
                 "must_count": 4,
@@ -26580,7 +26587,7 @@
                   "卓驭",
                   "安克创新"
                 ],
-                "trend_summary": "近7日占比 +7.5%（近期需求上升）",
+                "trend_summary": "近7日占比 +8.2%（近期需求上升）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -26619,7 +26626,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 2,
-                "unique_job_pct": 3.1,
+                "unique_job_pct": 3.2,
                 "raw_posting_count": 2,
                 "duplicate_posting_count": 0,
                 "must_count": 2,
@@ -26663,7 +26670,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 2,
-                "unique_job_pct": 3.1,
+                "unique_job_pct": 3.2,
                 "raw_posting_count": 2,
                 "duplicate_posting_count": 0,
                 "must_count": 2,
@@ -26745,7 +26752,7 @@
                 "dimension": "domain_specific",
                 "dimension_label": "特定岗位方向专有技术栈",
                 "unique_job_count": 39,
-                "unique_job_pct": 60.9,
+                "unique_job_pct": 61.9,
                 "raw_posting_count": 39,
                 "duplicate_posting_count": 0,
                 "must_count": 35,
@@ -26761,7 +26768,7 @@
                   "中国兵器工业集团",
                   "群核信息"
                 ],
-                "trend_summary": "近7日占比 -34.9%（近期波动回调）",
+                "trend_summary": "近7日占比 -32.7%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -26801,7 +26808,7 @@
                 "dimension": "domain_specific",
                 "dimension_label": "特定岗位方向专有技术栈",
                 "unique_job_count": 5,
-                "unique_job_pct": 7.8,
+                "unique_job_pct": 7.9,
                 "raw_posting_count": 5,
                 "duplicate_posting_count": 0,
                 "must_count": 4,
@@ -26868,7 +26875,7 @@
                 "top_companies": [
                   "字节跳动"
                 ],
-                "trend_summary": "近7日占比 +5.9%（近期需求上升）",
+                "trend_summary": "近7日占比 +6.2%（近期需求上升）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -26930,7 +26937,7 @@
                 "dimension": "ds_algorithm",
                 "dimension_label": "数据结构与算法",
                 "unique_job_count": 17,
-                "unique_job_pct": 26.6,
+                "unique_job_pct": 27.0,
                 "raw_posting_count": 17,
                 "duplicate_posting_count": 0,
                 "must_count": 16,
@@ -26946,7 +26953,7 @@
                   "OPPO",
                   "影石"
                 ],
-                "trend_summary": "近7日占比 -20.1%（近期波动回调）",
+                "trend_summary": "近7日占比 -19.4%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -26986,7 +26993,7 @@
                 "dimension": "ds_algorithm",
                 "dimension_label": "数据结构与算法",
                 "unique_job_count": 9,
-                "unique_job_pct": 14.1,
+                "unique_job_pct": 14.3,
                 "raw_posting_count": 9,
                 "duplicate_posting_count": 0,
                 "must_count": 9,
@@ -27002,7 +27009,7 @@
                   "滴滴",
                   "汇川技术"
                 ],
-                "trend_summary": "近7日占比 -3.1%（近期波动回调）",
+                "trend_summary": "占比稳定（波动 -2.4%）",
                 "examples": [
                   {
                     "company": "群核信息",
@@ -27042,7 +27049,7 @@
                 "dimension": "ds_algorithm",
                 "dimension_label": "数据结构与算法",
                 "unique_job_count": 3,
-                "unique_job_pct": 4.7,
+                "unique_job_pct": 4.8,
                 "raw_posting_count": 3,
                 "duplicate_posting_count": 0,
                 "must_count": 3,
@@ -27098,7 +27105,7 @@
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
                 "unique_job_count": 13,
-                "unique_job_pct": 20.3,
+                "unique_job_pct": 20.6,
                 "raw_posting_count": 13,
                 "duplicate_posting_count": 0,
                 "must_count": 13,
@@ -27114,7 +27121,7 @@
                   "网易互娱",
                   "摩尔线程"
                 ],
-                "trend_summary": "近7日占比 -11.6%（近期波动回调）",
+                "trend_summary": "近7日占比 -10.9%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -27154,7 +27161,7 @@
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
                 "unique_job_count": 4,
-                "unique_job_pct": 6.2,
+                "unique_job_pct": 6.3,
                 "raw_posting_count": 4,
                 "duplicate_posting_count": 0,
                 "must_count": 4,
@@ -27208,7 +27215,7 @@
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
                 "unique_job_count": 2,
-                "unique_job_pct": 3.1,
+                "unique_job_pct": 3.2,
                 "raw_posting_count": 2,
                 "duplicate_posting_count": 0,
                 "must_count": 2,
@@ -27327,7 +27334,7 @@
                 "dimension": "cs_foundation",
                 "dimension_label": "数据库、网络与操作系统基础",
                 "unique_job_count": 7,
-                "unique_job_pct": 10.9,
+                "unique_job_pct": 11.1,
                 "raw_posting_count": 7,
                 "duplicate_posting_count": 0,
                 "must_count": 7,
@@ -27343,7 +27350,7 @@
                   "OPPO",
                   "影石"
                 ],
-                "trend_summary": "近7日占比 -6.9%（近期波动回调）",
+                "trend_summary": "近7日占比 -6.6%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -27383,7 +27390,7 @@
                 "dimension": "cs_foundation",
                 "dimension_label": "数据库、网络与操作系统基础",
                 "unique_job_count": 2,
-                "unique_job_pct": 3.1,
+                "unique_job_pct": 3.2,
                 "raw_posting_count": 2,
                 "duplicate_posting_count": 0,
                 "must_count": 2,
@@ -27499,7 +27506,7 @@
               ],
               "pair_label": "图形渲染管线、三维几何与 CAD/仿真 (OpenGL/Vulkan/Shader/UE/Unity) + C/C++",
               "co_unique_jobs": 26,
-              "co_pct": 40.6
+              "co_pct": 41.3
             },
             {
               "pair_ids": [
@@ -27508,7 +27515,7 @@
               ],
               "pair_label": "数据结构与常用算法 (树/图/哈希/排序/复杂度) + C/C++",
               "co_unique_jobs": 16,
-              "co_pct": 25.0
+              "co_pct": 25.4
             },
             {
               "pair_ids": [
@@ -27517,7 +27524,7 @@
               ],
               "pair_label": "数据结构与常用算法 (树/图/哈希/排序/复杂度) + 图形渲染管线、三维几何与 CAD/仿真 (OpenGL/Vulkan/Shader/UE/Unity)",
               "co_unique_jobs": 15,
-              "co_pct": 23.4
+              "co_pct": 23.8
             },
             {
               "pair_ids": [
@@ -27526,7 +27533,7 @@
               ],
               "pair_label": "线性代数、计算几何与数值优化 + 图形渲染管线、三维几何与 CAD/仿真 (OpenGL/Vulkan/Shader/UE/Unity)",
               "co_unique_jobs": 9,
-              "co_pct": 14.1
+              "co_pct": 14.3
             },
             {
               "pair_ids": [
@@ -27535,7 +27542,7 @@
               ],
               "pair_label": "C/C++ + Python",
               "co_unique_jobs": 8,
-              "co_pct": 12.5
+              "co_pct": 12.7
             },
             {
               "pair_ids": [
@@ -27544,7 +27551,7 @@
               ],
               "pair_label": "C/C++ + 调试排障与性能/内存分析 (GDB/ASan/Valgrind/perf/抓包)",
               "co_unique_jobs": 8,
-              "co_pct": 12.5
+              "co_pct": 12.7
             }
           ]
         },
@@ -30084,10 +30091,10 @@
         "security": {
           "category_key": "security",
           "category_label": "安全工程",
-          "unique_job_count": 163,
-          "raw_posting_count": 172,
+          "unique_job_count": 160,
+          "raw_posting_count": 169,
           "duplicate_postings_filtered": 9,
-          "company_count": 65,
+          "company_count": 64,
           "top_companies": [
             "欣旺达",
             "字节跳动",
@@ -30114,7 +30121,7 @@
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
               "unique_job_count": 58,
-              "unique_job_pct": 35.6,
+              "unique_job_pct": 36.2,
               "raw_posting_count": 62,
               "duplicate_posting_count": 4,
               "must_count": 53,
@@ -30130,7 +30137,7 @@
                 "国家开发投资集团",
                 "百度"
               ],
-              "trend_summary": "近7日占比 -7.8%（近期波动回调）",
+              "trend_summary": "近7日占比 -6.6%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30170,7 +30177,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 28,
-              "unique_job_pct": 17.2,
+              "unique_job_pct": 17.5,
               "raw_posting_count": 28,
               "duplicate_posting_count": 0,
               "must_count": 23,
@@ -30186,7 +30193,7 @@
                 "字节跳动",
                 "海信集团"
               ],
-              "trend_summary": "近7日占比 +4.7%（近期需求上升）",
+              "trend_summary": "近7日占比 +5.5%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30226,7 +30233,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 26,
-              "unique_job_pct": 16.0,
+              "unique_job_pct": 16.2,
               "raw_posting_count": 28,
               "duplicate_posting_count": 2,
               "must_count": 26,
@@ -30242,7 +30249,7 @@
                 "零跑汽车",
                 "奇瑞"
               ],
-              "trend_summary": "占比稳定（波动 +2.3%）",
+              "trend_summary": "占比稳定（波动 +2.9%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30271,62 +30278,6 @@
               ]
             },
             {
-              "skill_id": "dom_llm_agent_rag",
-              "canonical_name": "LLM 应用工程、RAG 检索增强与 Agent 工具调用",
-              "synonyms_merged": [
-                "大模型应用",
-                "LLM",
-                "Agent",
-                "智能体"
-              ],
-              "dimension": "domain_specific",
-              "dimension_label": "特定岗位方向专有技术栈",
-              "unique_job_count": 20,
-              "unique_job_pct": 12.3,
-              "raw_posting_count": 21,
-              "duplicate_posting_count": 1,
-              "must_count": 19,
-              "bonus_count": 1,
-              "must_ratio_pct": 95,
-              "tier_role": "must",
-              "tier_role_label": "高频必需技能",
-              "company_count": 14,
-              "top_companies": [
-                "字节跳动",
-                "美团",
-                "安克创新",
-                "禾赛科技",
-                "智元机器人"
-              ],
-              "trend_summary": "近7日占比 -7.5%（近期波动回调）",
-              "examples": [
-                {
-                  "company": "字节跳动",
-                  "title": "云安全工程师 - 安全与风控",
-                  "city": "北京",
-                  "url": "https://jobs.bytedance.com/campus/position/7667140283127548213/detail",
-                  "requirement_level": "must",
-                  "evidence_clause": "2、跟踪AIGC安全风险（如LLM对抗攻击、数据泄露防护、智能体安全），探索并落地防御方案"
-                },
-                {
-                  "company": "字节跳动",
-                  "title": "安全开发工程师（AI应用隐私保护/数据安全） - 安全与风控",
-                  "city": "北京 / 杭州",
-                  "url": "https://jobs.bytedance.com/campus/position/7668511815866829061/detail",
-                  "requirement_level": "must",
-                  "evidence_clause": "1、参与大模型应用的隐私安全项目实施，包括差分隐私、数据匿名化等，确保个人隐私保护基准水位"
-                },
-                {
-                  "company": "字节跳动",
-                  "title": "客户端安全工程师 - 风控",
-                  "city": "杭州 / 深圳",
-                  "url": "https://jobs.bytedance.com/campus/position/7669737480300824885/detail",
-                  "requirement_level": "must",
-                  "evidence_clause": "1、基于风险数据分析与挖掘，设计可复用、可落地的AI数据产品，参与LLM、Agent、RAG、智能工作流等风控解决方案设计与落地，推动风控数据能力的产品化、平台化沉淀"
-                }
-              ]
-            },
-            {
               "skill_id": "lang_python",
               "canonical_name": "Python",
               "synonyms_merged": [
@@ -30336,7 +30287,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 19,
-              "unique_job_pct": 11.7,
+              "unique_job_pct": 11.9,
               "raw_posting_count": 19,
               "duplicate_posting_count": 0,
               "must_count": 17,
@@ -30352,7 +30303,7 @@
                 "快手",
                 "荣耀"
               ],
-              "trend_summary": "占比稳定（波动 -1.3%）",
+              "trend_summary": "占比稳定（波动 -0.9%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30392,7 +30343,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 19,
-              "unique_job_pct": 11.7,
+              "unique_job_pct": 11.9,
               "raw_posting_count": 19,
               "duplicate_posting_count": 0,
               "must_count": 12,
@@ -30408,7 +30359,7 @@
                 "字节跳动",
                 "中国汽车工程研究院"
               ],
-              "trend_summary": "近7日占比 -3.8%（近期波动回调）",
+              "trend_summary": "近7日占比 -3.5%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30437,6 +30388,62 @@
               ]
             },
             {
+              "skill_id": "dom_llm_agent_rag",
+              "canonical_name": "LLM 应用工程、RAG 检索增强与 Agent 工具调用",
+              "synonyms_merged": [
+                "大模型应用",
+                "LLM",
+                "Agent",
+                "智能体"
+              ],
+              "dimension": "domain_specific",
+              "dimension_label": "特定岗位方向专有技术栈",
+              "unique_job_count": 18,
+              "unique_job_pct": 11.2,
+              "raw_posting_count": 19,
+              "duplicate_posting_count": 1,
+              "must_count": 17,
+              "bonus_count": 1,
+              "must_ratio_pct": 94,
+              "tier_role": "must",
+              "tier_role_label": "高频必需技能",
+              "company_count": 12,
+              "top_companies": [
+                "字节跳动",
+                "美团",
+                "安克创新",
+                "禾赛科技",
+                "智元机器人"
+              ],
+              "trend_summary": "近7日占比 -9.7%（近期波动回调）",
+              "examples": [
+                {
+                  "company": "字节跳动",
+                  "title": "云安全工程师 - 安全与风控",
+                  "city": "北京",
+                  "url": "https://jobs.bytedance.com/campus/position/7667140283127548213/detail",
+                  "requirement_level": "must",
+                  "evidence_clause": "2、跟踪AIGC安全风险（如LLM对抗攻击、数据泄露防护、智能体安全），探索并落地防御方案"
+                },
+                {
+                  "company": "字节跳动",
+                  "title": "安全开发工程师（AI应用隐私保护/数据安全） - 安全与风控",
+                  "city": "北京 / 杭州",
+                  "url": "https://jobs.bytedance.com/campus/position/7668511815866829061/detail",
+                  "requirement_level": "must",
+                  "evidence_clause": "1、参与大模型应用的隐私安全项目实施，包括差分隐私、数据匿名化等，确保个人隐私保护基准水位"
+                },
+                {
+                  "company": "字节跳动",
+                  "title": "客户端安全工程师 - 风控",
+                  "city": "杭州 / 深圳",
+                  "url": "https://jobs.bytedance.com/campus/position/7669737480300824885/detail",
+                  "requirement_level": "must",
+                  "evidence_clause": "1、基于风险数据分析与挖掘，设计可复用、可落地的AI数据产品，参与LLM、Agent、RAG、智能工作流等风控解决方案设计与落地，推动风控数据能力的产品化、平台化沉淀"
+                }
+              ]
+            },
+            {
               "skill_id": "lang_golang",
               "canonical_name": "Go (Golang)",
               "synonyms_merged": [
@@ -30447,7 +30454,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 13,
-              "unique_job_pct": 8.0,
+              "unique_job_pct": 8.1,
               "raw_posting_count": 13,
               "duplicate_posting_count": 0,
               "must_count": 10,
@@ -30463,7 +30470,7 @@
                 "四方继保",
                 "京东"
               ],
-              "trend_summary": "占比稳定（波动 -1.3%）",
+              "trend_summary": "占比稳定（波动 -1.0%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30503,7 +30510,7 @@
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
               "unique_job_count": 12,
-              "unique_job_pct": 7.4,
+              "unique_job_pct": 7.5,
               "raw_posting_count": 12,
               "duplicate_posting_count": 0,
               "must_count": 11,
@@ -30519,7 +30526,7 @@
                 "华橙网络",
                 "安克创新"
               ],
-              "trend_summary": "占比稳定（波动 -0.1%）",
+              "trend_summary": "占比稳定（波动 +0.2%）",
               "examples": [
                 {
                   "company": "卓驭",
@@ -30558,7 +30565,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 10,
-              "unique_job_pct": 6.1,
+              "unique_job_pct": 6.2,
               "raw_posting_count": 10,
               "duplicate_posting_count": 0,
               "must_count": 9,
@@ -30574,7 +30581,7 @@
                 "荣耀",
                 "联友科技"
               ],
-              "trend_summary": "近7日占比 -4.9%（近期波动回调）",
+              "trend_summary": "近7日占比 -4.8%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30614,7 +30621,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 9,
-              "unique_job_pct": 5.5,
+              "unique_job_pct": 5.6,
               "raw_posting_count": 9,
               "duplicate_posting_count": 0,
               "must_count": 8,
@@ -30630,7 +30637,7 @@
                 "海信集团",
                 "华橙网络"
               ],
-              "trend_summary": "占比稳定（波动 -1.3%）",
+              "trend_summary": "占比稳定（波动 -1.1%）",
               "examples": [
                 {
                   "company": "汇川技术",
@@ -30670,7 +30677,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 9,
-              "unique_job_pct": 5.5,
+              "unique_job_pct": 5.6,
               "raw_posting_count": 12,
               "duplicate_posting_count": 3,
               "must_count": 9,
@@ -30686,7 +30693,7 @@
                 "塞力斯",
                 "华橙网络"
               ],
-              "trend_summary": "占比稳定（波动 +1.2%）",
+              "trend_summary": "占比稳定（波动 +1.4%）",
               "examples": [
                 {
                   "company": "零跑汽车",
@@ -30726,7 +30733,7 @@
               "dimension": "ds_algorithm",
               "dimension_label": "数据结构与算法",
               "unique_job_count": 6,
-              "unique_job_pct": 3.7,
+              "unique_job_pct": 3.8,
               "raw_posting_count": 6,
               "duplicate_posting_count": 0,
               "must_count": 4,
@@ -30742,7 +30749,7 @@
                 "中科曙光",
                 "货拉拉"
               ],
-              "trend_summary": "占比稳定（波动 +0.0%）",
+              "trend_summary": "占比稳定（波动 +0.1%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30784,7 +30791,7 @@
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
               "unique_job_count": 58,
-              "unique_job_pct": 35.6,
+              "unique_job_pct": 36.2,
               "raw_posting_count": 62,
               "duplicate_posting_count": 4,
               "must_count": 53,
@@ -30800,7 +30807,7 @@
                 "国家开发投资集团",
                 "百度"
               ],
-              "trend_summary": "近7日占比 -7.8%（近期波动回调）",
+              "trend_summary": "近7日占比 -6.6%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30840,7 +30847,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 28,
-              "unique_job_pct": 17.2,
+              "unique_job_pct": 17.5,
               "raw_posting_count": 28,
               "duplicate_posting_count": 0,
               "must_count": 23,
@@ -30856,7 +30863,7 @@
                 "字节跳动",
                 "海信集团"
               ],
-              "trend_summary": "近7日占比 +4.7%（近期需求上升）",
+              "trend_summary": "近7日占比 +5.5%（近期需求上升）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30896,7 +30903,7 @@
               "dimension": "cs_foundation",
               "dimension_label": "数据库、网络与操作系统基础",
               "unique_job_count": 26,
-              "unique_job_pct": 16.0,
+              "unique_job_pct": 16.2,
               "raw_posting_count": 28,
               "duplicate_posting_count": 2,
               "must_count": 26,
@@ -30912,7 +30919,7 @@
                 "零跑汽车",
                 "奇瑞"
               ],
-              "trend_summary": "占比稳定（波动 +2.3%）",
+              "trend_summary": "占比稳定（波动 +2.9%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -30941,62 +30948,6 @@
               ]
             },
             {
-              "skill_id": "dom_llm_agent_rag",
-              "canonical_name": "LLM 应用工程、RAG 检索增强与 Agent 工具调用",
-              "synonyms_merged": [
-                "大模型应用",
-                "LLM",
-                "Agent",
-                "智能体"
-              ],
-              "dimension": "domain_specific",
-              "dimension_label": "特定岗位方向专有技术栈",
-              "unique_job_count": 20,
-              "unique_job_pct": 12.3,
-              "raw_posting_count": 21,
-              "duplicate_posting_count": 1,
-              "must_count": 19,
-              "bonus_count": 1,
-              "must_ratio_pct": 95,
-              "tier_role": "must",
-              "tier_role_label": "高频必需技能",
-              "company_count": 14,
-              "top_companies": [
-                "字节跳动",
-                "美团",
-                "安克创新",
-                "禾赛科技",
-                "智元机器人"
-              ],
-              "trend_summary": "近7日占比 -7.5%（近期波动回调）",
-              "examples": [
-                {
-                  "company": "字节跳动",
-                  "title": "云安全工程师 - 安全与风控",
-                  "city": "北京",
-                  "url": "https://jobs.bytedance.com/campus/position/7667140283127548213/detail",
-                  "requirement_level": "must",
-                  "evidence_clause": "2、跟踪AIGC安全风险（如LLM对抗攻击、数据泄露防护、智能体安全），探索并落地防御方案"
-                },
-                {
-                  "company": "字节跳动",
-                  "title": "安全开发工程师（AI应用隐私保护/数据安全） - 安全与风控",
-                  "city": "北京 / 杭州",
-                  "url": "https://jobs.bytedance.com/campus/position/7668511815866829061/detail",
-                  "requirement_level": "must",
-                  "evidence_clause": "1、参与大模型应用的隐私安全项目实施，包括差分隐私、数据匿名化等，确保个人隐私保护基准水位"
-                },
-                {
-                  "company": "字节跳动",
-                  "title": "客户端安全工程师 - 风控",
-                  "city": "杭州 / 深圳",
-                  "url": "https://jobs.bytedance.com/campus/position/7669737480300824885/detail",
-                  "requirement_level": "must",
-                  "evidence_clause": "1、基于风险数据分析与挖掘，设计可复用、可落地的AI数据产品，参与LLM、Agent、RAG、智能工作流等风控解决方案设计与落地，推动风控数据能力的产品化、平台化沉淀"
-                }
-              ]
-            },
-            {
               "skill_id": "lang_python",
               "canonical_name": "Python",
               "synonyms_merged": [
@@ -31006,7 +30957,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 19,
-              "unique_job_pct": 11.7,
+              "unique_job_pct": 11.9,
               "raw_posting_count": 19,
               "duplicate_posting_count": 0,
               "must_count": 17,
@@ -31022,7 +30973,7 @@
                 "快手",
                 "荣耀"
               ],
-              "trend_summary": "占比稳定（波动 -1.3%）",
+              "trend_summary": "占比稳定（波动 -0.9%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -31062,7 +31013,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 19,
-              "unique_job_pct": 11.7,
+              "unique_job_pct": 11.9,
               "raw_posting_count": 19,
               "duplicate_posting_count": 0,
               "must_count": 12,
@@ -31078,7 +31029,7 @@
                 "字节跳动",
                 "中国汽车工程研究院"
               ],
-              "trend_summary": "近7日占比 -3.8%（近期波动回调）",
+              "trend_summary": "近7日占比 -3.5%（近期波动回调）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -31107,6 +31058,62 @@
               ]
             },
             {
+              "skill_id": "dom_llm_agent_rag",
+              "canonical_name": "LLM 应用工程、RAG 检索增强与 Agent 工具调用",
+              "synonyms_merged": [
+                "大模型应用",
+                "LLM",
+                "Agent",
+                "智能体"
+              ],
+              "dimension": "domain_specific",
+              "dimension_label": "特定岗位方向专有技术栈",
+              "unique_job_count": 18,
+              "unique_job_pct": 11.2,
+              "raw_posting_count": 19,
+              "duplicate_posting_count": 1,
+              "must_count": 17,
+              "bonus_count": 1,
+              "must_ratio_pct": 94,
+              "tier_role": "must",
+              "tier_role_label": "高频必需技能",
+              "company_count": 12,
+              "top_companies": [
+                "字节跳动",
+                "美团",
+                "安克创新",
+                "禾赛科技",
+                "智元机器人"
+              ],
+              "trend_summary": "近7日占比 -9.7%（近期波动回调）",
+              "examples": [
+                {
+                  "company": "字节跳动",
+                  "title": "云安全工程师 - 安全与风控",
+                  "city": "北京",
+                  "url": "https://jobs.bytedance.com/campus/position/7667140283127548213/detail",
+                  "requirement_level": "must",
+                  "evidence_clause": "2、跟踪AIGC安全风险（如LLM对抗攻击、数据泄露防护、智能体安全），探索并落地防御方案"
+                },
+                {
+                  "company": "字节跳动",
+                  "title": "安全开发工程师（AI应用隐私保护/数据安全） - 安全与风控",
+                  "city": "北京 / 杭州",
+                  "url": "https://jobs.bytedance.com/campus/position/7668511815866829061/detail",
+                  "requirement_level": "must",
+                  "evidence_clause": "1、参与大模型应用的隐私安全项目实施，包括差分隐私、数据匿名化等，确保个人隐私保护基准水位"
+                },
+                {
+                  "company": "字节跳动",
+                  "title": "客户端安全工程师 - 风控",
+                  "city": "杭州 / 深圳",
+                  "url": "https://jobs.bytedance.com/campus/position/7669737480300824885/detail",
+                  "requirement_level": "must",
+                  "evidence_clause": "1、基于风险数据分析与挖掘，设计可复用、可落地的AI数据产品，参与LLM、Agent、RAG、智能工作流等风控解决方案设计与落地，推动风控数据能力的产品化、平台化沉淀"
+                }
+              ]
+            },
+            {
               "skill_id": "lang_golang",
               "canonical_name": "Go (Golang)",
               "synonyms_merged": [
@@ -31117,7 +31124,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 13,
-              "unique_job_pct": 8.0,
+              "unique_job_pct": 8.1,
               "raw_posting_count": 13,
               "duplicate_posting_count": 0,
               "must_count": 10,
@@ -31133,7 +31140,7 @@
                 "四方继保",
                 "京东"
               ],
-              "trend_summary": "占比稳定（波动 -1.3%）",
+              "trend_summary": "占比稳定（波动 -1.0%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -31173,7 +31180,7 @@
               "dimension": "domain_specific",
               "dimension_label": "特定岗位方向专有技术栈",
               "unique_job_count": 12,
-              "unique_job_pct": 7.4,
+              "unique_job_pct": 7.5,
               "raw_posting_count": 12,
               "duplicate_posting_count": 0,
               "must_count": 11,
@@ -31189,7 +31196,7 @@
                 "华橙网络",
                 "安克创新"
               ],
-              "trend_summary": "占比稳定（波动 -0.1%）",
+              "trend_summary": "占比稳定（波动 +0.2%）",
               "examples": [
                 {
                   "company": "卓驭",
@@ -31247,7 +31254,7 @@
                 "海信集团",
                 "阳光电源"
               ],
-              "trend_summary": "占比稳定（波动 -2.5%）",
+              "trend_summary": "占比稳定（波动 -2.4%）",
               "examples": [
                 {
                   "company": "拼多多",
@@ -31286,7 +31293,7 @@
               "dimension": "programming_language",
               "dimension_label": "编程语言",
               "unique_job_count": 3,
-              "unique_job_pct": 1.8,
+              "unique_job_pct": 1.9,
               "raw_posting_count": 3,
               "duplicate_posting_count": 0,
               "must_count": 3,
@@ -31300,7 +31307,7 @@
                 "快手",
                 "四方继保"
               ],
-              "trend_summary": "占比稳定（波动 -1.3%）",
+              "trend_summary": "占比稳定（波动 -1.2%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -31340,7 +31347,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 3,
-              "unique_job_pct": 1.8,
+              "unique_job_pct": 1.9,
               "raw_posting_count": 3,
               "duplicate_posting_count": 0,
               "must_count": 2,
@@ -31353,7 +31360,7 @@
                 "零跑汽车",
                 "字节跳动"
               ],
-              "trend_summary": "占比稳定（波动 -1.3%）",
+              "trend_summary": "占比稳定（波动 -1.2%）",
               "examples": [
                 {
                   "company": "字节跳动",
@@ -31393,7 +31400,7 @@
               "dimension": "eng_quality_tool",
               "dimension_label": "测试、构建、部署、调试与性能分析工具",
               "unique_job_count": 3,
-              "unique_job_pct": 1.8,
+              "unique_job_pct": 1.9,
               "raw_posting_count": 3,
               "duplicate_posting_count": 0,
               "must_count": 3,
@@ -31406,7 +31413,7 @@
                 "美团",
                 "哈喽"
               ],
-              "trend_summary": "占比稳定（波动 -1.3%）",
+              "trend_summary": "占比稳定（波动 -1.2%）",
               "examples": [
                 {
                   "company": "美团",
@@ -31538,7 +31545,7 @@
                 "dimension": "domain_specific",
                 "dimension_label": "特定岗位方向专有技术栈",
                 "unique_job_count": 58,
-                "unique_job_pct": 35.6,
+                "unique_job_pct": 36.2,
                 "raw_posting_count": 62,
                 "duplicate_posting_count": 4,
                 "must_count": 53,
@@ -31554,7 +31561,7 @@
                   "国家开发投资集团",
                   "百度"
                 ],
-                "trend_summary": "近7日占比 -7.8%（近期波动回调）",
+                "trend_summary": "近7日占比 -6.6%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -31593,16 +31600,16 @@
                 ],
                 "dimension": "domain_specific",
                 "dimension_label": "特定岗位方向专有技术栈",
-                "unique_job_count": 20,
-                "unique_job_pct": 12.3,
-                "raw_posting_count": 21,
+                "unique_job_count": 18,
+                "unique_job_pct": 11.2,
+                "raw_posting_count": 19,
                 "duplicate_posting_count": 1,
-                "must_count": 19,
+                "must_count": 17,
                 "bonus_count": 1,
-                "must_ratio_pct": 95,
+                "must_ratio_pct": 94,
                 "tier_role": "must",
                 "tier_role_label": "高频必需技能",
-                "company_count": 14,
+                "company_count": 12,
                 "top_companies": [
                   "字节跳动",
                   "美团",
@@ -31610,7 +31617,7 @@
                   "禾赛科技",
                   "智元机器人"
                 ],
-                "trend_summary": "近7日占比 -7.5%（近期波动回调）",
+                "trend_summary": "近7日占比 -9.7%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -31650,7 +31657,7 @@
                 "dimension": "domain_specific",
                 "dimension_label": "特定岗位方向专有技术栈",
                 "unique_job_count": 12,
-                "unique_job_pct": 7.4,
+                "unique_job_pct": 7.5,
                 "raw_posting_count": 12,
                 "duplicate_posting_count": 0,
                 "must_count": 11,
@@ -31666,7 +31673,7 @@
                   "华橙网络",
                   "安克创新"
                 ],
-                "trend_summary": "占比稳定（波动 -0.1%）",
+                "trend_summary": "占比稳定（波动 +0.2%）",
                 "examples": [
                   {
                     "company": "卓驭",
@@ -31708,7 +31715,7 @@
                 "dimension": "cs_foundation",
                 "dimension_label": "数据库、网络与操作系统基础",
                 "unique_job_count": 28,
-                "unique_job_pct": 17.2,
+                "unique_job_pct": 17.5,
                 "raw_posting_count": 28,
                 "duplicate_posting_count": 0,
                 "must_count": 23,
@@ -31724,7 +31731,7 @@
                   "字节跳动",
                   "海信集团"
                 ],
-                "trend_summary": "近7日占比 +4.7%（近期需求上升）",
+                "trend_summary": "近7日占比 +5.5%（近期需求上升）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -31764,7 +31771,7 @@
                 "dimension": "cs_foundation",
                 "dimension_label": "数据库、网络与操作系统基础",
                 "unique_job_count": 26,
-                "unique_job_pct": 16.0,
+                "unique_job_pct": 16.2,
                 "raw_posting_count": 28,
                 "duplicate_posting_count": 2,
                 "must_count": 26,
@@ -31780,7 +31787,7 @@
                   "零跑汽车",
                   "奇瑞"
                 ],
-                "trend_summary": "占比稳定（波动 +2.3%）",
+                "trend_summary": "占比稳定（波动 +2.9%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -31835,7 +31842,7 @@
                   "海信集团",
                   "阳光电源"
                 ],
-                "trend_summary": "占比稳定（波动 -2.5%）",
+                "trend_summary": "占比稳定（波动 -2.4%）",
                 "examples": [
                   {
                     "company": "拼多多",
@@ -31888,7 +31895,7 @@
                   "字节跳动",
                   "哈喽"
                 ],
-                "trend_summary": "占比稳定（波动 +0.0%）",
+                "trend_summary": "占比稳定（波动 +0.1%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -31956,7 +31963,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 19,
-                "unique_job_pct": 11.7,
+                "unique_job_pct": 11.9,
                 "raw_posting_count": 19,
                 "duplicate_posting_count": 0,
                 "must_count": 17,
@@ -31972,7 +31979,7 @@
                   "快手",
                   "荣耀"
                 ],
-                "trend_summary": "占比稳定（波动 -1.3%）",
+                "trend_summary": "占比稳定（波动 -0.9%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -32012,7 +32019,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 19,
-                "unique_job_pct": 11.7,
+                "unique_job_pct": 11.9,
                 "raw_posting_count": 19,
                 "duplicate_posting_count": 0,
                 "must_count": 12,
@@ -32028,7 +32035,7 @@
                   "字节跳动",
                   "中国汽车工程研究院"
                 ],
-                "trend_summary": "近7日占比 -3.8%（近期波动回调）",
+                "trend_summary": "近7日占比 -3.5%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -32067,7 +32074,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 13,
-                "unique_job_pct": 8.0,
+                "unique_job_pct": 8.1,
                 "raw_posting_count": 13,
                 "duplicate_posting_count": 0,
                 "must_count": 10,
@@ -32083,7 +32090,7 @@
                   "四方继保",
                   "京东"
                 ],
-                "trend_summary": "占比稳定（波动 -1.3%）",
+                "trend_summary": "占比稳定（波动 -1.0%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -32122,7 +32129,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 10,
-                "unique_job_pct": 6.1,
+                "unique_job_pct": 6.2,
                 "raw_posting_count": 10,
                 "duplicate_posting_count": 0,
                 "must_count": 9,
@@ -32138,7 +32145,7 @@
                   "荣耀",
                   "联友科技"
                 ],
-                "trend_summary": "近7日占比 -4.9%（近期波动回调）",
+                "trend_summary": "近7日占比 -4.8%（近期波动回调）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -32177,7 +32184,7 @@
                 "dimension": "programming_language",
                 "dimension_label": "编程语言",
                 "unique_job_count": 3,
-                "unique_job_pct": 1.8,
+                "unique_job_pct": 1.9,
                 "raw_posting_count": 3,
                 "duplicate_posting_count": 0,
                 "must_count": 3,
@@ -32191,7 +32198,7 @@
                   "快手",
                   "四方继保"
                 ],
-                "trend_summary": "占比稳定（波动 -1.3%）",
+                "trend_summary": "占比稳定（波动 -1.2%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -32233,7 +32240,7 @@
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
                 "unique_job_count": 9,
-                "unique_job_pct": 5.5,
+                "unique_job_pct": 5.6,
                 "raw_posting_count": 9,
                 "duplicate_posting_count": 0,
                 "must_count": 8,
@@ -32249,7 +32256,7 @@
                   "海信集团",
                   "华橙网络"
                 ],
-                "trend_summary": "占比稳定（波动 -1.3%）",
+                "trend_summary": "占比稳定（波动 -1.1%）",
                 "examples": [
                   {
                     "company": "汇川技术",
@@ -32289,7 +32296,7 @@
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
                 "unique_job_count": 9,
-                "unique_job_pct": 5.5,
+                "unique_job_pct": 5.6,
                 "raw_posting_count": 12,
                 "duplicate_posting_count": 3,
                 "must_count": 9,
@@ -32305,7 +32312,7 @@
                   "塞力斯",
                   "华橙网络"
                 ],
-                "trend_summary": "占比稳定（波动 +1.2%）",
+                "trend_summary": "占比稳定（波动 +1.4%）",
                 "examples": [
                   {
                     "company": "零跑汽车",
@@ -32345,7 +32352,7 @@
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
                 "unique_job_count": 3,
-                "unique_job_pct": 1.8,
+                "unique_job_pct": 1.9,
                 "raw_posting_count": 3,
                 "duplicate_posting_count": 0,
                 "must_count": 2,
@@ -32358,7 +32365,7 @@
                   "零跑汽车",
                   "字节跳动"
                 ],
-                "trend_summary": "占比稳定（波动 -1.3%）",
+                "trend_summary": "占比稳定（波动 -1.2%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -32398,7 +32405,7 @@
                 "dimension": "eng_quality_tool",
                 "dimension_label": "测试、构建、部署、调试与性能分析工具",
                 "unique_job_count": 3,
-                "unique_job_pct": 1.8,
+                "unique_job_pct": 1.9,
                 "raw_posting_count": 3,
                 "duplicate_posting_count": 0,
                 "must_count": 3,
@@ -32411,7 +32418,7 @@
                   "美团",
                   "哈喽"
                 ],
-                "trend_summary": "占比稳定（波动 -1.3%）",
+                "trend_summary": "占比稳定（波动 -1.2%）",
                 "examples": [
                   {
                     "company": "美团",
@@ -32498,7 +32505,7 @@
                 "dimension": "ds_algorithm",
                 "dimension_label": "数据结构与算法",
                 "unique_job_count": 6,
-                "unique_job_pct": 3.7,
+                "unique_job_pct": 3.8,
                 "raw_posting_count": 6,
                 "duplicate_posting_count": 0,
                 "must_count": 4,
@@ -32514,7 +32521,7 @@
                   "中科曙光",
                   "货拉拉"
                 ],
-                "trend_summary": "占比稳定（波动 +0.0%）",
+                "trend_summary": "占比稳定（波动 +0.1%）",
                 "examples": [
                   {
                     "company": "字节跳动",
@@ -32714,7 +32721,7 @@
               ],
               "pair_label": "计算机网络与协议栈 (TCP/IP/HTTP/Socket) + 网络与系统安全工程 (漏洞分析/渗透测试/加密协议/逆向)",
               "co_unique_jobs": 18,
-              "co_pct": 11.0
+              "co_pct": 11.2
             },
             {
               "pair_ids": [
@@ -32723,7 +32730,7 @@
               ],
               "pair_label": "Linux 环境与操作系统原理 (进程/内存/I/O) + 网络与系统安全工程 (漏洞分析/渗透测试/加密协议/逆向)",
               "co_unique_jobs": 17,
-              "co_pct": 10.4
+              "co_pct": 10.6
             },
             {
               "pair_ids": [
@@ -32732,7 +32739,7 @@
               ],
               "pair_label": "网络与系统安全工程 (漏洞分析/渗透测试/加密协议/逆向) + Python",
               "co_unique_jobs": 16,
-              "co_pct": 9.8
+              "co_pct": 10.0
             },
             {
               "pair_ids": [
@@ -32741,7 +32748,7 @@
               ],
               "pair_label": "Linux 环境与操作系统原理 (进程/内存/I/O) + 计算机网络与协议栈 (TCP/IP/HTTP/Socket)",
               "co_unique_jobs": 15,
-              "co_pct": 9.2
+              "co_pct": 9.4
             },
             {
               "pair_ids": [
@@ -32750,7 +32757,7 @@
               ],
               "pair_label": "Linux 环境与操作系统原理 (进程/内存/I/O) + Python",
               "co_unique_jobs": 14,
-              "co_pct": 8.6
+              "co_pct": 8.8
             },
             {
               "pair_ids": [
@@ -32759,7 +32766,7 @@
               ],
               "pair_label": "LLM 应用工程、RAG 检索增强与 Agent 工具调用 + 网络与系统安全工程 (漏洞分析/渗透测试/加密协议/逆向)",
               "co_unique_jobs": 13,
-              "co_pct": 8.0
+              "co_pct": 8.1
             }
           ]
         }
@@ -32865,7 +32872,7 @@
             "skill_id": "tool_test_auto",
             "canonical_name": "单元测试、接口测试与自动化测试框架 (pytest/GTest/JUnit)",
             "dimension_label": "测试、构建、部署、调试与性能分析工具",
-            "unique_job_count": 978,
+            "unique_job_count": 977,
             "unique_job_pct": 14.4,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 99
@@ -32884,13 +32891,13 @@
           {
             "category_key": "backend_dist",
             "category_label": "后端开发与分布式系统",
-            "unique_job_count": 1658,
+            "unique_job_count": 1657,
             "sample_sufficient": true
           },
           {
             "category_key": "data_platform",
             "category_label": "数据、数据库与存储系统",
-            "unique_job_count": 196,
+            "unique_job_count": 195,
             "sample_sufficient": true
           },
           {
@@ -32902,11 +32909,11 @@
           {
             "category_key": "ai_ml",
             "category_label": "AI 与机器学习工程",
-            "unique_job_count": 2132,
+            "unique_job_count": 2127,
             "sample_sufficient": true
           }
         ],
-        "covered_unique_jobs": 4814,
+        "covered_unique_jobs": 4807,
         "representative_companies": [
           "字节跳动",
           "理想汽车",
@@ -32999,7 +33006,7 @@
             "skill_id": "lang_cpp",
             "canonical_name": "C/C++",
             "dimension_label": "编程语言",
-            "unique_job_count": 2010,
+            "unique_job_count": 2009,
             "unique_job_pct": 29.5,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 90
@@ -33009,7 +33016,7 @@
             "canonical_name": "Linux 环境与操作系统原理 (进程/内存/I/O)",
             "dimension_label": "数据库、网络与操作系统基础",
             "unique_job_count": 1079,
-            "unique_job_pct": 15.8,
+            "unique_job_pct": 15.9,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 94
           },
@@ -33027,7 +33034,7 @@
             "canonical_name": "多线程并发与无锁/同步控制",
             "dimension_label": "数据结构与算法",
             "unique_job_count": 487,
-            "unique_job_pct": 7.1,
+            "unique_job_pct": 7.2,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 94
           },
@@ -33060,7 +33067,7 @@
           {
             "category_key": "backend_dist",
             "category_label": "后端开发与分布式系统",
-            "unique_job_count": 1658,
+            "unique_job_count": 1657,
             "sample_sufficient": true
           },
           {
@@ -33078,11 +33085,11 @@
           {
             "category_key": "security",
             "category_label": "安全工程",
-            "unique_job_count": 163,
+            "unique_job_count": 160,
             "sample_sufficient": true
           }
         ],
-        "covered_unique_jobs": 2771,
+        "covered_unique_jobs": 2767,
         "representative_companies": [
           "字节跳动",
           "莉莉丝",
@@ -33171,7 +33178,7 @@
             "skill_id": "lang_cpp",
             "canonical_name": "C/C++",
             "dimension_label": "编程语言",
-            "unique_job_count": 2010,
+            "unique_job_count": 2009,
             "unique_job_pct": 29.5,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 90
@@ -33199,7 +33206,7 @@
             "canonical_name": "多线程并发与无锁/同步控制",
             "dimension_label": "数据结构与算法",
             "unique_job_count": 487,
-            "unique_job_pct": 7.1,
+            "unique_job_pct": 7.2,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 94
           },
@@ -33232,7 +33239,7 @@
           {
             "category_key": "graphics_3d",
             "category_label": "图形学、渲染与三维技术",
-            "unique_job_count": 64,
+            "unique_job_count": 63,
             "sample_sufficient": true
           },
           {
@@ -33248,7 +33255,7 @@
             "sample_sufficient": true
           }
         ],
-        "covered_unique_jobs": 930,
+        "covered_unique_jobs": 929,
         "representative_companies": [
           "字节跳动",
           "莉莉丝",
@@ -33337,7 +33344,7 @@
             "skill_id": "lang_python",
             "canonical_name": "Python",
             "dimension_label": "编程语言",
-            "unique_job_count": 920,
+            "unique_job_count": 919,
             "unique_job_pct": 13.5,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 87
@@ -33346,7 +33353,7 @@
             "skill_id": "tool_test_auto",
             "canonical_name": "单元测试、接口测试与自动化测试框架 (pytest/GTest/JUnit)",
             "dimension_label": "测试、构建、部署、调试与性能分析工具",
-            "unique_job_count": 978,
+            "unique_job_count": 977,
             "unique_job_pct": 14.4,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 99
@@ -33398,7 +33405,7 @@
           {
             "category_key": "backend_dist",
             "category_label": "后端开发与分布式系统",
-            "unique_job_count": 1658,
+            "unique_job_count": 1657,
             "sample_sufficient": true
           },
           {
@@ -33408,7 +33415,7 @@
             "sample_sufficient": true
           }
         ],
-        "covered_unique_jobs": 2633,
+        "covered_unique_jobs": 2632,
         "representative_companies": [
           "欣旺达",
           "吉利控股",
@@ -33497,7 +33504,7 @@
             "skill_id": "lang_python",
             "canonical_name": "Python",
             "dimension_label": "编程语言",
-            "unique_job_count": 920,
+            "unique_job_count": 919,
             "unique_job_pct": 13.5,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 87
@@ -33506,7 +33513,7 @@
             "skill_id": "dom_llm_agent_rag",
             "canonical_name": "LLM 应用工程、RAG 检索增强与 Agent 工具调用",
             "dimension_label": "特定岗位方向专有技术栈",
-            "unique_job_count": 1186,
+            "unique_job_count": 1181,
             "unique_job_pct": 17.4,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 94
@@ -33524,7 +33531,7 @@
             "skill_id": "tool_test_auto",
             "canonical_name": "单元测试、接口测试与自动化测试框架 (pytest/GTest/JUnit)",
             "dimension_label": "测试、构建、部署、调试与性能分析工具",
-            "unique_job_count": 978,
+            "unique_job_count": 977,
             "unique_job_pct": 14.4,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 99
@@ -33543,13 +33550,13 @@
           {
             "category_key": "ai_ml",
             "category_label": "AI 与机器学习工程",
-            "unique_job_count": 2132,
+            "unique_job_count": 2127,
             "sample_sufficient": true
           },
           {
             "category_key": "backend_dist",
             "category_label": "后端开发与分布式系统",
-            "unique_job_count": 1658,
+            "unique_job_count": 1657,
             "sample_sufficient": true
           },
           {
@@ -33561,11 +33568,11 @@
           {
             "category_key": "data_platform",
             "category_label": "数据、数据库与存储系统",
-            "unique_job_count": 196,
+            "unique_job_count": 195,
             "sample_sufficient": true
           }
         ],
-        "covered_unique_jobs": 4814,
+        "covered_unique_jobs": 4807,
         "representative_companies": [
           "字节跳动",
           "腾讯",
@@ -33720,7 +33727,7 @@
           {
             "category_key": "backend_dist",
             "category_label": "后端开发与分布式系统",
-            "unique_job_count": 1658,
+            "unique_job_count": 1657,
             "sample_sufficient": true
           },
           {
@@ -33732,11 +33739,11 @@
           {
             "category_key": "data_platform",
             "category_label": "数据、数据库与存储系统",
-            "unique_job_count": 196,
+            "unique_job_count": 195,
             "sample_sufficient": true
           }
         ],
-        "covered_unique_jobs": 2001,
+        "covered_unique_jobs": 1999,
         "representative_companies": [
           "字节跳动",
           "理想汽车",
@@ -33827,7 +33834,7 @@
             "skill_id": "lang_cpp",
             "canonical_name": "C/C++",
             "dimension_label": "编程语言",
-            "unique_job_count": 2010,
+            "unique_job_count": 2009,
             "unique_job_pct": 29.5,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 90
@@ -33846,7 +33853,7 @@
             "canonical_name": "Linux 环境与操作系统原理 (进程/内存/I/O)",
             "dimension_label": "数据库、网络与操作系统基础",
             "unique_job_count": 1079,
-            "unique_job_pct": 15.8,
+            "unique_job_pct": 15.9,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 94
           },
@@ -33855,7 +33862,7 @@
             "canonical_name": "多线程并发与无锁/同步控制",
             "dimension_label": "数据结构与算法",
             "unique_job_count": 487,
-            "unique_job_pct": 7.1,
+            "unique_job_pct": 7.2,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 94
           },
@@ -33872,7 +33879,7 @@
             "skill_id": "tool_test_auto",
             "canonical_name": "单元测试、接口测试与自动化测试框架 (pytest/GTest/JUnit)",
             "dimension_label": "测试、构建、部署、调试与性能分析工具",
-            "unique_job_count": 978,
+            "unique_job_count": 977,
             "unique_job_pct": 14.4,
             "tier_role_label": "高频必需技能",
             "must_ratio_pct": 99

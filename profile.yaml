@@ -215,7 +215,6 @@ preferred_cities:
   - 武汉
   - 苏州
   - 北京
-  - 南京
 
 constraints:
   reject_master_phd_only: true

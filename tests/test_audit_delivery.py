@@ -1146,3 +1146,464 @@ def test_module3_and_5_end_to_end_synergy_and_html_consistency(tmp_path):
     assert "③ 【模型审慎推断与面试核实清单 (Model Inferences & Caveats)】" in html_out
     assert "🛠️ 对应工程训练项目：" in html_out
     assert "⚖️ 社区WLB证据：" in html_out
+
+
+# ==============================================================================
+# 十一、「技能栈与实现项目」独立模块 (v2.0) 专项验收测试套件
+# ==============================================================================
+
+def test_v2_navigation_and_skill_projects_page_regions(tmp_path):
+    """验证 11.1 导航与页面：左侧菜单真实入口、点击进入独立页面、6大功能区域、操作按钮与刷新后状态恢复数据包。"""
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+    sample_items = [
+        {
+            "job": {
+                "id": 3001 + i,
+                "company": f"测试科技_{i}",
+                "title": "2027届-C++/Python后端与客户端开发工程师",
+                "city": "上海",
+                "job_type": "校招",
+                "jd_url": f"https://example.com/sp_nav/{i}",
+                "crawled_at": "2026-10-18",
+                "cohort": 2027,
+                "cohort_status": "confirmed",
+                "jd_raw": (
+                    "岗位职责：负责核心服务与跨平台桌面客户端开发、性能调优与单元测试。"
+                    "任职要求：2027届本科及以上学历，熟悉 C/C++、Python、Go、数据结构与算法、操作系统、计算机网络、MySQL、Redis、CMake、Git，双休。"
+                ),
+            },
+            "analysis": None,
+        }
+        for i in range(16)
+    ]
+
+    report_file = reporter.generate_report(
+        "2026-10-19",
+        {"date": "2026-10-19", "items": sample_items, "applications": []},
+        str(tmp_path / "reports"),
+        out_name="index",
+    )
+    html_text = Path(report_file).read_text(encoding="utf-8")
+
+    # 1. 左侧导航菜单必须包含真实可点击的 nav-item 入口 (data-target="skill-projects")
+    assert '<li class="nav-item" data-target="skill-projects">' in html_text
+    assert '<span class="nav-label">技能栈与实现项目</span>' in html_text
+
+    # 2. 独立页面视图与 6 大核心区域齐全
+    assert '<section class="page" data-page="skill-projects" id="pageSkillProjects">' in html_text
+    for required_region_id in (
+        'id="spStatusBanner"',
+        'id="spActionToolbar"',
+        'id="spWorkspaceSection"',
+        'id="spProjectListSection"',
+        'id="spProjectDetailSection"',
+        'id="spSkillOverviewSection"',
+    ):
+        assert required_region_id in html_text, f"Missing region {required_region_id}"
+
+    # 3. 关键操作按钮齐全，明确区分「仅更新技能统计」与「重新生成候选项目方案」
+    for btn_id in (
+        'id="btnRefreshSkillStats"',
+        'id="btnRegenerateProjects"',
+        'id="btnGeneratePlan"',
+        'id="btnSubmitFeedback"',
+        'id="btnCompareTwo"',
+    ):
+        assert btn_id in html_text, f"Missing button {btn_id}"
+
+    # 4. 页面内嵌可恢复状态数据包 window.__SKILL_PROJECTS_DATA
+    assert "window.__SKILL_PROJECTS_DATA =" in html_text
+    assert "initSkillProjectsInteractive" in html_text
+
+
+def test_v2_auto_input_assembly_and_traceable_skill_constraints(tmp_path):
+    """验证 11.2 数据与技能统计：自动读取岗位与 profile.yaml、构造可追溯技能约束清单、样本不足不编造统计值、类别不混合。"""
+    import skill_projects
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+
+    # 验证小样本 (<15) 时明确标记数据不足，绝不伪造高置信结论
+    tiny_jobs = [
+        {
+            "id": 1,
+            "company": "小样本企",
+            "title": "2027届-后端开发工程师",
+            "city": "深圳",
+            "jd_url": "https://example.com/tiny/1",
+            "crawled_at": "2026-10-18",
+            "jd_raw": "负责后端接口开发。要求熟悉 Golang、MySQL、Redis、Linux 与数据结构算法。" * 2,
+        }
+    ]
+    assembled_tiny = skill_projects.assemble_skill_project_inputs(tiny_jobs, prof)
+    assert assembled_tiny["data_sufficient"] is False
+    assert any("低于最小稳健统计阈值" in w for w in assembled_tiny["data_warnings"])
+    assert assembled_tiny["profile_context"]["recommendation_mode"] == "exploration"
+    assert assembled_tiny["profile_context"]["skill_proficiency_map"]["python"]["not_learned_yet"] is True
+
+    # 验证充足样本下的可追溯技能约束清单 (Section 5.2)
+    rich_jobs = []
+    for i in range(18):
+        rich_jobs.append({
+            "id": 4000 + i,
+            "company": f"样本公司_{i}",
+            "title": "2027届-后端与系统研发工程师" if i % 2 == 0 else "2027届-C++客户端研发工程师",
+            "city": "上海",
+            "jd_url": f"https://example.com/rich/{i}",
+            "crawled_at": "2026-10-18",
+            "jd_raw": (
+                "岗位职责：负责核心软件模块设计、代码编写、多线程并发调优与单元测试。"
+                "任职要求：熟练掌握 C/C++ 或 Python/Go；扎实掌握数据结构与算法、操作系统、计算机网络、Linux；"
+                "熟悉 MySQL 数据库索引与 Redis 缓存；掌握 Git 与 CMake 构建；有 Docker 容器经验者优先。"
+            ),
+        })
+    stats = skill_projects.aggregate_skills_by_category(rich_jobs, prof)
+    constraints = skill_projects.build_skill_constraints_checklist(stats)
+    assert len(constraints) >= 6
+    for c in constraints:
+        assert c["constraint_id"].startswith("SC-")
+        assert c["skill_name"]
+        assert isinstance(c["source_categories"], list)
+        assert c["unique_job_count"] > 0 and c["sample_size"] == 18
+        assert c["requirement_type"] in ("must", "bonus", "optional")
+        assert c["engineering_capability"]
+        assert c["required_training_depth"]
+        assert len(c["evidence_quotes"]) >= 1
+        assert c["evidence_quotes"][0]["jd_url"].startswith("https://example.com/rich/")
+
+
+def test_v2_interest_driven_candidate_projects_and_coverage_audit_table(tmp_path):
+    """验证 11.3 项目生成：6个实质差异项目、12项必填要素、3档技能覆盖审计表、保留硬性技能要求、跨语言开放推荐与AI边界。"""
+    import skill_projects
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+
+    jobs = [
+        {
+            "id": 5000 + i,
+            "company": f"综合科技_{i}",
+            "title": "2027届-软件研发工程师",
+            "city": "成都",
+            "jd_url": f"https://example.com/proj/{i}",
+            "crawled_at": "2026-10-18",
+            "jd_raw": (
+                "岗位职责：负责软件系统架构设计、编码实现、性能分析与自动化测试验证。"
+                "任职要求：2027届本科及以上学历，熟悉 C/C++、Python、Go 或 Java；"
+                "掌握数据结构与算法、Linux 操作系统、TCP/IP 网络、MySQL、Redis、Qt6、OpenGL、Git、CMake 与 pytest。"
+            ),
+        }
+        for i in range(20)
+    ]
+    rep = skill_projects.update_or_get_skill_projects_report(
+        jobs, profile=prof, conn=None, state_path=tmp_path / "sp_proj.json", force_refresh=True
+    )
+    projects = rep["candidate_projects"]
+    assert 4 <= len(projects) <= 6
+
+    # 验证不同兴趣切入点与跨语言覆盖（绝不仅推荐 C++ 项目）
+    themes = {p["interest_theme_tag"] for p in projects}
+    assert len(themes) == len(projects)
+    langs_flat = " ".join(p["primary_language_stack"] for p in projects)
+    for lang in ("C++", "Python", "Go", "Java"):
+        assert lang in langs_flat
+
+    valid_coverage_levels = {"完整覆盖", "部分覆盖", "未覆盖"}
+    for p in projects:
+        # 验证 Section 6.4 要求的 12 项核心说明全部存在且非空
+        assert p["title"] and p["core_purpose"]
+        assert p["why_matches_interest"]
+        assert p["target_categories"] and p["target_roles"]
+        assert p["natural_tech_stack_usage"]
+        assert p["skill_training_locations"]
+        assert p["mvp_scope"]["must_have"] and p["mvp_scope"]["out_of_scope_initially"]
+        assert p["engineering_challenges"]
+        assert p["acceptance_criteria"]
+        assert p["difficulty_level"] and p["estimated_effort"] and p["main_risks"]
+        assert p["final_deliverables"]
+        assert p["staged_extensions"]
+        assert p["data_vs_inference_boundary"]["data_backed_facts"]
+        assert p["data_vs_inference_boundary"]["reasonable_inferences"]
+
+        # 验证 Section 6.5 技能覆盖审计表：覆盖程度只能使用 完整覆盖/部分覆盖/未覆盖，且诚实暴露未覆盖缺口
+        cov_table = p["skill_coverage_table"]
+        assert len(cov_table) >= len(rep["skill_constraints"])
+        constraint_ids_in_table = {r["constraint_id"] for r in cov_table}
+        for sc in rep["skill_constraints"]:
+            assert sc["constraint_id"] in constraint_ids_in_table
+        levels_seen = {row["coverage_level"] for row in cov_table}
+        assert levels_seen.issubset(valid_coverage_levels)
+        assert "完整覆盖" in levels_seen
+        assert "未覆盖" in levels_seen
+        for row in cov_table:
+            if row["coverage_level"] == "完整覆盖":
+                assert row["project_task_mapping"] != "未覆盖（本项目不主攻该技术栈）"
+                assert row["verification_criteria"]
+            else:
+                assert row["supplementary_advice"]
+
+        # 验证 Section 6.6 AI 协同与个人成长边界三分离
+        ai_b = p["ai_collab_boundary"]
+        assert ai_b["user_must_do"] and ai_b["ai_can_accelerate"] and ai_b["verification_proof"]
+
+
+def test_v2_project_selection_implementation_plan_iteration_and_persistence(tmp_path):
+    """验证 11.4 交互流程与持久化：未选前不自动锁定、选定后生成实施计划、迭代反馈、区分刷新统计与重新生成、防无提示覆盖及 Flask API 闭环。"""
+    import skill_projects
+    import webapp
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+    state_file = tmp_path / "sp_interactive.json"
+    db_file = tmp_path / "sp_interactive.db"
+    conn = db.init_db(str(db_file))
+
+    jobs = [
+        {
+            "id": 6000 + i,
+            "company": f"持久化科技_{i}",
+            "title": "2027届-后端与系统研发工程师",
+            "city": "深圳",
+            "jd_url": f"https://example.com/persist/{i}",
+            "crawled_at": "2026-10-18",
+            "jd_raw": (
+                "岗位职责：负责核心服务开发、数据库索引优化与自动化测试。"
+                "任职要求：2027届本科及以上学历，熟悉 C++/Python/Go、数据结构与算法、操作系统、网络、MySQL、Redis、Git。"
+            ),
+        }
+        for i in range(18)
+    ]
+
+    # 1. 第一次进入模块：未选择前绝不自动锁定最终项目或自动生成完整开发计划 (Section 7.2)
+    rep_init = skill_projects.update_or_get_skill_projects_report(
+        jobs, profile=prof, conn=conn, state_path=state_file, force_refresh=True
+    )
+    assert rep_init["user_workspace"]["selected_project_id"] is None
+    assert rep_init["user_workspace"]["active_implementation_plan"] is None
+
+    # 2. 用户选择候选项目一 (Python/Go 跨媒介收藏系统)
+    sel_res = skill_projects.select_candidate_project(
+        "proj_anime_4d_collection_vault", state_path=state_file, conn=conn
+    )
+    assert sel_res["ok"] is True
+    assert sel_res["selected_project_id"] == "proj_anime_4d_collection_vault"
+    assert sel_res["user_workspace"]["active_implementation_plan"] is None
+
+    # 3. 用户点击「生成实施计划」：验证包含 Section 7.3 全部 10 项要素（且针对 Python 未学自动注入阶段 0）
+    plan_res = skill_projects.build_and_save_implementation_plan(
+        project_id="proj_anime_4d_collection_vault",
+        custom_focus="重点强化 MySQL 复合索引与 Redis 缓存一致性",
+        profile=prof,
+        state_path=state_file,
+        conn=conn,
+    )
+    assert plan_res["ok"] is True
+    plan = plan_res["implementation_plan"]
+    assert plan["project_id"] == "proj_anime_4d_collection_vault"
+    assert len(plan["stages"]) >= 4
+    assert "阶段 0" in plan["stages"][0]["stage_no"]
+    assert plan["deliverables"]
+    assert plan["knowledge_and_materials"]
+    assert plan["problem_driven_learning_path"]
+    assert plan["user_core_tasks"]
+    assert plan["ai_assisted_tasks"]
+    assert plan["engineering_and_release_standards"]
+    assert plan["stage_acceptance_summary"]
+    assert plan["fallback_scope_reduction"]["reduced_mvp_plan"]
+    assert plan["skill_coverage_and_gaps_audit"]["covered_items"]
+
+    # 4. 用户提交迭代反馈：缩小 MVP + 强化网络并发 + 双项目对比 (Section 7.4)
+    iter1 = skill_projects.submit_project_iteration(
+        project_id="proj_anime_4d_collection_vault",
+        action_type="shrink_mvp",
+        feedback_text="课业较忙，希望压缩到2周内完成核心闭环",
+        profile=prof,
+        state_path=state_file,
+        conn=conn,
+    )
+    assert iter1["ok"] is True
+    assert len(iter1["user_workspace"]["iteration_history"]) == 1
+
+    iter_cmp = skill_projects.submit_project_iteration(
+        project_id="proj_anime_4d_collection_vault",
+        action_type="compare_two",
+        compare_with_id="proj_live_shader_particle_desk",
+        profile=prof,
+        state_path=state_file,
+        conn=conn,
+    )
+    assert iter_cmp["ok"] is True
+    assert iter_cmp["comparison"]["project_a"]["project_id"] == "proj_anime_4d_collection_vault"
+    assert iter_cmp["comparison"]["project_b"]["project_id"] == "proj_live_shader_particle_desk"
+
+    # 5. 验证「仅刷新技能统计」不会覆盖用户已选项目、实施计划与迭代历史 (Section 3.2.6 & 8.5)
+    jobs.append({
+        "id": 6999,
+        "company": "新增岗位企",
+        "title": "2027届-Go后端开发工程师",
+        "city": "上海",
+        "jd_url": "https://example.com/persist/new999",
+        "crawled_at": "2026-10-19",
+        "jd_raw": "负责分布式微服务研发，要求熟悉 Golang、MySQL、Redis、Linux、Docker、Git。" * 2,
+    })
+    stats_refreshed = skill_projects.refresh_skill_stats_only(
+        jobs, profile=prof, state_path=state_file, conn=conn
+    )
+    assert stats_refreshed["user_workspace"]["selected_project_id"] == "proj_anime_4d_collection_vault"
+    assert stats_refreshed["user_workspace"]["active_implementation_plan"] is not None
+    assert len(stats_refreshed["user_workspace"]["iteration_history"]) == 2
+
+    # 6. 验证「重新生成项目方案（未勾选重置 confirm_overwrite=False）」同样保护用户已选项目并归档历史快照
+    regen_protected = skill_projects.update_or_get_skill_projects_report(
+        jobs, profile=prof, conn=conn, state_path=state_file, force_refresh=True, confirm_overwrite=False
+    )
+    assert regen_protected["user_workspace"]["selected_project_id"] == "proj_anime_4d_collection_vault"
+    assert regen_protected["user_workspace"]["active_implementation_plan"] is not None
+    assert len(regen_protected["user_workspace"]["archived_workspaces"]) >= 1
+    assert "自动为您保留了已选项目" in regen_protected["user_workspace"]["pending_update_notice"]
+
+    # 验证 SQLite 表 skill_project_user_workspace 中持久化一致
+    db_ws_row = conn.execute(
+        "SELECT selected_project_id, plan_generated_at FROM skill_project_user_workspace WHERE workspace_key='default'"
+    ).fetchone()
+    assert db_ws_row is not None
+    assert db_ws_row[0] == "proj_anime_4d_collection_vault"
+    assert db_ws_row[1] != ""
+    conn.close()
+
+
+def test_v2_cost_control_ai_failure_fallback_and_secret_safety(tmp_path):
+    """验证 11.5 成本与异常：普通进入页面命中缓存不调模型、模型失败保留已有结果并显示脱敏错误、密钥不泄露。"""
+    import skill_projects
+    prof = profile_config.load_profile(ROOT / "profile.yaml")
+    state_file = tmp_path / "sp_cost.json"
+
+    jobs = [
+        {
+            "id": 7000 + i,
+            "company": f"成本测试企_{i}",
+            "title": "2027届-C++研发工程师",
+            "city": "武汉",
+            "jd_url": f"https://example.com/cost/{i}",
+            "crawled_at": "2026-10-18",
+            "jd_raw": "负责C++系统研发，要求熟悉 C/C++、Linux、数据结构与算法、MySQL、CMake、Git。" * 2,
+        }
+        for i in range(16)
+    ]
+
+    ai_call_counter = {"count": 0}
+    def _counting_ai_caller(sys_p, usr_p):
+        ai_call_counter["count"] += 1
+        return "AI定制化建议：优先实现核心存储与索引模块。"
+
+    # 首次生成（不开启 allow_ai 时 0 模型调用）
+    r1 = skill_projects.update_or_get_skill_projects_report(
+        jobs, profile=prof, state_path=state_file, force_refresh=True, allow_ai=False
+    )
+    assert ai_call_counter["count"] == 0
+    assert r1["version_info"]["cache_hit"] is False
+
+    # 普通进入页面（force_refresh=False）：直接读取缓存，不重复计算也不调用模型
+    r2 = skill_projects.update_or_get_skill_projects_report(
+        jobs, profile=prof, state_path=state_file, force_refresh=False
+    )
+    assert r2["version_info"]["cache_hit"] is True
+    assert ai_call_counter["count"] == 0
+
+    # 模型调用失败且抛出的异常包含敏感 API Key 时：必须脱敏错误、保留全部 6 个有效候选方案
+    def _failing_ai_with_secret(sys_p, usr_p):
+        raise RuntimeError("DeepSeek API Error with key sk-1234567890abcdefSECRETKEY")
+
+    r_fail = skill_projects.update_or_get_skill_projects_report(
+        jobs,
+        profile=prof,
+        state_path=state_file,
+        force_refresh=True,
+        allow_ai=True,
+        ai_caller=_failing_ai_with_secret,
+    )
+    assert r_fail["version_info"]["generation_status"] == "fallback_kept_valid"
+    assert "sk-1234567890abcdef" not in r_fail["version_info"]["last_error"]
+    assert "[REDACTED_SECRET]" in r_fail["version_info"]["last_error"]
+    assert len(r_fail["candidate_projects"]) == 6
+
+
+def test_v2_webapp_skill_projects_api_endpoints_and_concurrency_lock(tmp_path, monkeypatch):
+    """验证 11.1 & 11.5：Flask 本地服务端 /api/skill-projects/* 全套交互接口与重复点击并发锁保护。"""
+    import skill_projects
+    import webapp
+
+    test_db = tmp_path / "webapp_sp.db"
+    test_state = tmp_path / "webapp_sp_state.json"
+    conn = db.init_db(str(test_db))
+    for i in range(16):
+        db.upsert_job(conn, {
+            "company": f"接口测试企_{i}",
+            "title": "2027届-C++/Go后端开发工程师",
+            "city": "上海",
+            "job_type": "校招",
+            "jd_url": f"https://example.com/webapp_sp/{i}",
+            "published_at": "2026-10-18",
+            "source": "接口测试",
+            "crawled_at": "2026-10-18",
+            "cohort": 2027,
+            "cohort_status": "confirmed",
+            "jd_raw": "负责后端与客户端模块研发，要求熟悉 C/C++、Go、Python、MySQL、Redis、Linux、数据结构与算法、Git。" * 2,
+        })
+    conn.close()
+
+    monkeypatch.setattr(webapp, "DB_PATH", str(test_db))
+    monkeypatch.setattr(webapp, "_DB_PATH", str(test_db))
+    monkeypatch.setattr(skill_projects, "DEFAULT_SKILL_PROJECT_STATE_PATH", test_state)
+    webapp._page_cache.update(signature=None, snapshot=None, html=None)
+
+    client = webapp.app.test_client()
+
+    # 1. GET /api/skill-projects/state
+    r_state = client.get("/api/skill-projects/state")
+    assert r_state.status_code == 200
+    d_state = r_state.get_json()
+    assert d_state["ok"] is True
+    assert d_state["projects_count"] == 6
+    assert d_state["user_workspace"]["selected_project_id"] is None
+
+    # 2. POST /api/skill-projects/select
+    r_sel = client.post("/api/skill-projects/select", json={"project_id": "proj_live_shader_particle_desk"})
+    assert r_sel.status_code == 200
+    d_sel = r_sel.get_json()
+    assert d_sel["ok"] is True
+    assert d_sel["selected_project_id"] == "proj_live_shader_particle_desk"
+
+    # 3. POST /api/skill-projects/generate-plan
+    r_plan = client.post("/api/skill-projects/generate-plan", json={
+        "project_id": "proj_live_shader_particle_desk",
+        "custom_focus": "强化 RenderDoc GPU 帧分析与 Qt6 多线程通信",
+    })
+    assert r_plan.status_code == 200
+    d_plan = r_plan.get_json()
+    assert d_plan["ok"] is True
+    assert d_plan["implementation_plan"]["project_id"] == "proj_live_shader_particle_desk"
+    assert len(d_plan["implementation_plan"]["stages"]) >= 3
+
+    # 4. POST /api/skill-projects/iterate
+    r_iter = client.post("/api/skill-projects/iterate", json={
+        "project_id": "proj_live_shader_particle_desk",
+        "action_type": "boost_testing_ci",
+        "feedback_text": "增加 GTest 与 ASan 自动化回归测试",
+    })
+    assert r_iter.status_code == 200
+    d_iter = r_iter.get_json()
+    assert d_iter["ok"] is True
+    assert len(d_iter["user_workspace"]["iteration_history"]) == 1
+
+    # 5. POST /api/skill-projects/refresh-stats (仅更新技能统计，不冲掉已选项目与实施计划)
+    r_ref = client.post("/api/skill-projects/refresh-stats")
+    assert r_ref.status_code == 200
+    d_ref = r_ref.get_json()
+    assert d_ref["ok"] is True
+    assert d_ref["action"] == "refresh_stats_only"
+    assert d_ref["user_workspace"]["selected_project_id"] == "proj_live_shader_particle_desk"
+    assert d_ref["user_workspace"]["active_implementation_plan"] is not None
+
+    # 6. 验证重复点击并发锁保护：当 _skill_proj_lock 被占用时，返回 429 busy，绝不启动重复任务
+    webapp._skill_proj_lock.acquire()
+    try:
+        r_busy = client.post("/api/skill-projects/regenerate", json={"mode": "regenerate"})
+        assert r_busy.status_code == 429
+        assert r_busy.get_json()["busy"] is True
+    finally:
+        webapp._skill_proj_lock.release()

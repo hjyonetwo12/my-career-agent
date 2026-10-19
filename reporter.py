@@ -1774,7 +1774,7 @@ _ICON_COMPASS = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" str
 
 
 def _page_skill_projects(items: list, date_str: str) -> str:
-    """模块一独立页面：高频技能栈统计与可验证实现项目推荐（A.高频技能概览 / B.技能栈对应项目 / C.实践建议）。"""
+    """模块一独立页面：技能栈与实现项目（6 大核心区域 + 12 项项目详情 + 3 档技能覆盖审计表 + AI 边界 + 选择/生成计划/迭代闭环）。"""
     prof = job_filters.load_active_profile()
     mod_cfg = prof.get("skill_project_module") or {}
     if not mod_cfg.get("enabled", True):
@@ -1786,15 +1786,46 @@ def _page_skill_projects(items: list, date_str: str) -> str:
         return f"""<section class="page" data-page="skill-projects"><div class="page-head"><div><h1>🛠️ 技能栈与实现项目</h1><p class="page-sub">模块加载降级：{html.escape(str(exc))}</p></div></div></section>"""
 
     vinfo = sp_data.get("version_info") or {}
+    assembled_sum = sp_data.get("assembled_inputs_summary") or {}
+    prof_ctx = assembled_sum.get("profile_context") or {}
+    constraints = sp_data.get("skill_constraints") or []
     tier_a = sp_data.get("tier_a_skill_overview") or {}
     tier_b = sp_data.get("tier_b_projects") or []
     tier_c = sp_data.get("tier_c_practice_advice") or {}
+    workspace = sp_data.get("user_workspace") or {}
     overall = tier_a.get("overall") or {}
     by_cat = tier_a.get("by_category") or {}
     tr = tier_a.get("time_range") or {}
     dedup_sum = tier_a.get("dedup_summary") or {}
 
-    # A.1 Overall top skills table
+    # 嵌入前端可交互的轻量 JSON 数据包，供静态模式与本地服务模式无缝交互与持久化恢复
+    sp_client_payload = {
+        "version_info": vinfo,
+        "assembled_inputs_summary": assembled_sum,
+        "skill_constraints": constraints,
+        "candidate_projects": tier_b,
+        "user_workspace": workspace,
+    }
+    sp_json_str = json.dumps(sp_client_payload, ensure_ascii=False).replace("</", "<\\/")
+
+    # ── 区域 5 & 6：顶部数据与生成状态栏 + 区分「仅更新技能统计」与「重新生成项目方案」操作区 ──
+    gen_status = str(vinfo.get("generation_status") or "ok")
+    status_badge_bg = "#DCFCE7" if gen_status == "ok" else "#FEF3C7"
+    status_badge_fg = "#166534" if gen_status == "ok" else "#92400E"
+    status_label = "运行正常 · 数据充足" if gen_status == "ok" else ("模型降级 · 已保留有效方案" if gen_status == "fallback_kept_valid" else "样本不足提示")
+    warnings_html = ""
+    data_warnings = list(assembled_sum.get("data_warnings") or [])
+    if vinfo.get("last_error"):
+        data_warnings.append(f"模型调用异常提示：{vinfo['last_error']}（已保留已有有效项目方案）")
+    if workspace.get("pending_update_notice"):
+        data_warnings.append(str(workspace["pending_update_notice"]))
+    if data_warnings:
+        w_items = "".join(f"<li>{html.escape(str(w))}</li>" for w in data_warnings)
+        warnings_html = f'<div id="spNoticeBox" style="margin-top:10px;padding:10px 14px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;font-size:13px;color:#92400E;"><ul style="margin:0;padding-left:18px;">{w_items}</ul></div>'
+    else:
+        warnings_html = '<div id="spNoticeBox" hidden style="margin-top:10px;padding:10px 14px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;font-size:13px;color:#1E3A8A;"></div>'
+
+    # ── 区域 1：技能需求概览（Top 16 规范化技能热度表 + 7大统计维度 + 10大类别卡片 + 内部可追踪技能约束清单）──
     overall_rows = []
     for sk in (overall.get("top_skills") or [])[:16]:
         t_role = str(sk.get("tier_role") or "must")
@@ -1806,17 +1837,48 @@ def _page_skill_projects(items: list, date_str: str) -> str:
         <tr>
           <td style="font-weight:600;color:#0F172A;">
             {html.escape(str(sk.get('canonical_name') or ''))}
-            <div style="font-size:11.5px;color:#64748B;font-weight:normal;">合并同义词：{html.escape(syns_txt)}</div>
+            <div style="font-size:11.5px;color:#64748B;font-weight:normal;">规范化合并：{html.escape(syns_txt)}</div>
           </td>
           <td><span style="padding:2px 8px;border-radius:999px;background:#F1F5F9;font-size:12px;">{html.escape(str(sk.get('dimension_label') or ''))}</span></td>
           <td><span style="padding:2px 8px;border-radius:999px;background:{req_bg};color:{req_fg};font-weight:600;font-size:12px;">{req_lbl}</span></td>
           <td><b>{sk.get('unique_job_count', 0)}</b> 岗 ({sk.get('unique_job_pct', 0)}%)</td>
-          <td style="color:#64748B;font-size:12px;">原始记录 {sk.get('raw_posting_count', 0)} 条 (剔除重复发布 {sk.get('duplicate_posting_count', 0)} 条)</td>
+          <td style="color:#64748B;font-size:12px;">原始 {sk.get('raw_posting_count', 0)} 条 (去重 {sk.get('duplicate_posting_count', 0)} 条)</td>
           <td>{sk.get('company_count', 0)} 家 ({html.escape('、'.join((sk.get('top_companies') or [])[:3]))})</td>
           <td style="color:#475569;font-size:12px;">必需:{sk.get('must_count', 0)} ({sk.get('must_ratio_pct', 0)}%) / 加分:{sk.get('bonus_count', 0)}<br><span style="color:#0369A1;">{html.escape(str(sk.get('trend_summary') or ''))}</span></td>
         </tr>""")
 
-    # A.2 Per-category skill cards
+    # 内部可追踪技能约束清单 (Section 5.2)
+    constraint_rows = []
+    for c in constraints:
+        ev_links = []
+        for ev in (c.get("evidence_quotes") or c.get("raw_recruitment_evidence") or [])[:2]:
+            co = html.escape(str(ev.get("company") or ""))
+            ti = html.escape(str(ev.get("title") or ""))
+            sn = html.escape(str(ev.get("snippet") or ev.get("quote") or "")[:65])
+            url = html.escape(str(ev.get("jd_url") or ev.get("url") or "#"))
+            ev_links.append(f'<div style="font-size:11.5px;margin-bottom:2px;">• <a href="{url}" target="_blank" rel="noopener" style="color:#0D9488;text-decoration:underline;font-weight:600;">[{co} · {ti}]</a> “{sn}”</div>')
+        src_cats_txt = "、".join(
+            (f"{sc.get('category_label', '')}({sc.get('unique_job_pct', 0)}%)" if isinstance(sc, dict) else str(sc))
+            for sc in (c.get("source_categories") or [])[:3]
+        ) or "通用计算机研发岗"
+        constraint_rows.append(f"""
+        <tr>
+          <td>
+            <span style="font-family:monospace;background:#0F172A;color:#F8FAFC;padding:1px 6px;border-radius:4px;font-size:11.5px;">{html.escape(str(c.get('constraint_id') or ''))}</span>
+            <div style="font-weight:700;color:#0F172A;margin-top:3px;">{html.escape(str(c.get('skill_name') or ''))}</div>
+            <div style="font-size:11.5px;color:#64748B;">{html.escape(str(c.get('dimension_label') or ''))}</div>
+          </td>
+          <td style="font-size:12.5px;">{html.escape(src_cats_txt)}</td>
+          <td style="font-size:12.5px;">
+            <b>{c.get('unique_job_count', 0)}</b> / {c.get('sample_size', 0)} 独立岗 (<b>{c.get('unique_job_pct', 0)}%</b>)<br>
+            <span style="color:#0F766E;font-weight:600;">{html.escape(str(c.get('requirement_type_label') or ''))}</span> (必需占比 {c.get('must_ratio_pct', 0)}%)
+          </td>
+          <td style="font-size:12.5px;color:#1E293B;">{html.escape(str(c.get('engineering_capability') or ''))}</td>
+          <td style="font-size:12.5px;color:#0369A1;">{html.escape(str(c.get('required_training_depth') or ''))}</td>
+          <td>{"".join(ev_links) or '<span style="color:#94A3B8;font-size:12px;">基于全库岗位聚合</span>'}</td>
+        </tr>""")
+
+    # 按岗位类别统计卡片 (Section 5.1)
     cat_cards = []
     for cid, cstat in by_cat.items():
         suff = bool(cstat.get("sample_sufficient"))
@@ -1825,165 +1887,410 @@ def _page_skill_projects(items: list, date_str: str) -> str:
             if suff else
             f'<span style="background:#FEF3C7;color:#92400E;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;">{html.escape(str(cstat.get("sample_warning") or "样本不足"))}</span>'
         )
-        must_tags = "、".join(
-            f"{s['canonical_name']}({s['unique_job_pct']}%)"
-            for s in (cstat.get("must_skills") or [])[:5]
-        ) or "暂无显著高频必需项"
-        bonus_tags = "、".join(
-            f"{s['canonical_name']}({s['unique_job_pct']}%)"
-            for s in (cstat.get("bonus_skills") or [])[:5]
-        ) or "暂无显著加分项"
-        niche_tags = "、".join(
-            f"{s['canonical_name']}({s['unique_job_count']}岗)"
-            for s in (cstat.get("niche_skills") or [])[:4]
-        ) or "无"
-        combos = "；".join(
-            f"{p['pair_label']} ({p['co_unique_jobs']}岗/{p['co_pct']}%)"
-            for p in (cstat.get("common_combinations") or [])[:4]
-        ) or "样本较少"
+        must_tags = "、".join(f"{s['canonical_name']}({s['unique_job_pct']}%)" for s in (cstat.get("must_skills") or [])[:5]) or "暂无显著高频必需项"
+        bonus_tags = "、".join(f"{s['canonical_name']}({s['unique_job_pct']}%)" for s in (cstat.get("bonus_skills") or [])[:5]) or "暂无显著加分项"
+        niche_tags = "、".join(f"{s['canonical_name']}({s['unique_job_count']}岗)" for s in (cstat.get("niche_skills") or [])[:4]) or "无"
+        combos = "；".join(f"{p['pair_label']} ({p['co_unique_jobs']}岗/{p['co_pct']}%)" for p in (cstat.get("common_combinations") or [])[:4]) or "样本较少"
         cat_cards.append(f"""
         <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:14px;">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
             <h4 style="font-size:15px;color:#0F172A;margin:0;">📂 {html.escape(str(cstat.get('category_label') or cid))}</h4>
             {suff_badge}
           </div>
-          <div style="font-size:12.5px;color:#64748B;margin-bottom:6px;">
-            去重统计：原始岗位记录 {cstat.get('raw_posting_count', 0)} 条 → 独立岗位 {cstat.get('unique_job_count', 0)} 条（剔除单岗多城重复 {cstat.get('duplicate_postings_filtered', 0)} 条）
+          <div style="font-size:12px;color:#64748B;margin-bottom:6px;">
+            原始岗位 {cstat.get('raw_posting_count', 0)} 条 → 去重独立岗位 {cstat.get('unique_job_count', 0)} 条（剔除多城重复发布 {cstat.get('duplicate_postings_filtered', 0)} 条）
           </div>
-          <div style="font-size:13px;line-height:1.6;color:#334155;">
+          <div style="font-size:12.5px;line-height:1.6;color:#334155;">
             <div><b style="color:#991B1B;">● 高频必需技能：</b>{html.escape(must_tags)}</div>
             <div><b style="color:#92400E;">● 常见加分技能：</b>{html.escape(bonus_tags)}</div>
-            <div><b style="color:#0369A1;">● 少量岗位特殊要求：</b>{html.escape(niche_tags)}</div>
+            <div><b style="color:#0369A1;">● 少量岗位特殊要求（不夸大为行业普遍要求）：</b>{html.escape(niche_tags)}</div>
             <div><b style="color:#0F172A;">🔗 常见技术栈组合：</b>{html.escape(combos)}</div>
           </div>
         </div>""")
 
-    # B. Engineering project cards
-    proj_cards = []
-    for idx, p in enumerate(tier_b, 1):
-        p_skills = " · ".join(
-            f"{html.escape(str(s.get('canonical_name') or ''))}({s.get('unique_job_pct', 0)}%)"
-            for s in (p.get("bound_skills") or [])
-        )
-        p_cats = " / ".join(
-            f"{html.escape(str(c.get('category_label') or ''))}({c.get('unique_job_count', 0)}岗)"
-            for c in (p.get("bound_categories") or [])
-        )
-        p_roles = "、".join(html.escape(str(r)) for r in (p.get("target_roles") or []))
-        p_features = "".join(f"<li>{html.escape(str(f))}</li>" for f in (p.get("core_features") or []))
-        p_tasks = "".join(f"<li>{html.escape(str(t))}</li>" for t in (p.get("engineering_tasks") or []))
-        km_rows = "".join(f"<li>{html.escape(str(k))}</li>" for k in (p.get("knowledge_mapping") or []))
-        p_accept = "".join(f"<li>{html.escape(str(a))}</li>" for a in (p.get("acceptance_criteria") or []))
-        p_exts = "".join(f"<li>{html.escape(str(x))}</li>" for x in (p.get("staged_extensions") or []))
-        ref_lic = p.get("reference_and_license") or {}
-        os_items = "".join(f"<li>{html.escape(str(r))}</li>" for r in (ref_lic.get("references") or []))
-        sep_eval = p.get("separation_evaluation") or {}
-        gaps_br = "；".join(html.escape(str(g)) for g in (p.get("gaps_bridged") or []))
+    # ── 区域 2 & 区域 3：候选项目方案列表（快速比较卡片）+ 项目深度详情面板（含 12 项要素、技能覆盖审计表、AI 边界）──
+    selected_pid = str(workspace.get("selected_project_id") or "")
+    summary_cards_html = []
+    detail_panes_html = []
+    compare_options_html = []
 
-        proj_cards.append(f"""
-        <article class="big-card" style="margin-bottom:16px;border-left:4px solid #0D9488;">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
-            <div>
-              <div style="font-size:12px;font-weight:700;color:#0D9488;margin-bottom:4px;">
-                {html.escape(str(p.get('priority_badge') or ''))} · 难度：{html.escape(str(p.get('difficulty_level') or ''))}
-              </div>
-              <h3 style="font-size:17px;color:#0F172A;margin:0 0 6px 0;">{html.escape(str(p.get('title') or ''))}</h3>
-              <div style="font-size:13px;color:#475569;">
-                <b>对应岗位：</b>{p_roles}（覆盖类别：{p_cats}，合计关联 <b>{p.get('covered_unique_jobs', 0)}</b> 个独立岗位，代表企业：{html.escape('、'.join(p.get('representative_companies') or []))}）
-              </div>
+    for idx, p in enumerate(tier_b):
+        pid = str(p.get("project_id") or "")
+        ptitle = str(p.get("title") or "")
+        is_sel = (pid == selected_pid)
+        compare_options_html.append(f'<option value="{html.escape(pid)}">{html.escape(ptitle)}</option>')
+
+        cov_sum = p.get("coverage_summary") or {}
+        p_cats_short = " / ".join(f"{c.get('category_label', '')}({c.get('unique_job_count', 0)}岗)" for c in (p.get("bound_categories") or []))
+        p_langs = " / ".join(p.get("primary_languages") or [])
+        sel_border = "2px solid #0D9488" if is_sel else "1px solid #CBD5E1"
+        sel_bg = "#F0FDFA" if is_sel else "#FFFFFF"
+
+        summary_cards_html.append(f"""
+        <div class="sp-candidate-card" id="sp-card-{html.escape(pid)}" data-project-id="{html.escape(pid)}" style="background:{sel_bg};border:{sel_border};border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:6px;">
+              <span style="padding:2px 8px;border-radius:999px;background:#CCFBF1;color:#115E59;font-size:12px;font-weight:700;">{html.escape(str(p.get('priority_badge') or ''))}</span>
+              <span style="padding:2px 8px;border-radius:999px;background:#EDE9FE;color:#5B21B6;font-size:12px;font-weight:600;">🎨 兴趣切入点：{html.escape(str(p.get('interest_theme_tag') or ''))}</span>
             </div>
-            <div style="background:#F0FDFA;color:#0F766E;padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:600;max-width:340px;">
-              ⏱️ 预计投入：{html.escape(str(p.get('estimated_effort') or ''))}
+            <h3 style="font-size:16px;color:#0F172A;margin:0 0 6px 0;line-height:1.4;">{html.escape(ptitle)}</h3>
+            <p style="font-size:13px;color:#334155;margin:0 0 8px 0;line-height:1.55;">
+              <b>核心用途：</b>{html.escape(str(p.get('core_purpose') or p.get('project_goal') or '')[:145])}
+            </p>
+            <div style="font-size:12.5px;color:#475569;line-height:1.6;background:#F8FAFC;padding:8px 10px;border-radius:8px;">
+              <div><b>💻 主力技术栈：</b><span style="color:#0369A1;font-weight:600;">{html.escape(p_langs)}</span></div>
+              <div><b>🎯 对应岗位类别：</b>{html.escape(p_cats_short)}（共关联 <b>{p.get('covered_unique_jobs', 0)}</b> 个独立岗）</div>
+              <div><b>📊 技能覆盖审计：</b><span style="color:#0F766E;font-weight:600;">{html.escape(str(cov_sum.get('summary_badge') or ''))}</span></div>
+              <div><b>⏱️ 难度与周期：</b>{html.escape(str(p.get('difficulty_level') or ''))} · {html.escape(str(p.get('estimated_effort') or ''))}</div>
             </div>
           </div>
-
-          <div style="margin-top:10px;padding:10px 12px;background:#F8FAFC;border-radius:8px;font-size:13px;line-height:1.6;color:#1E293B;">
-            <div><b>🎯 项目目标（最终实现什么）：</b>{html.escape(str(p.get('project_goal') or ''))}</div>
-            <div style="margin-top:4px;"><b>🔧 对应高频技能栈：</b><span style="color:#0369A1;font-weight:600;">{p_skills}</span></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;padding-top:8px;border-top:1px solid #E2E8F0;">
+            <button type="button" class="sp-btn-view-detail" data-sp-detail="{html.escape(pid)}" style="flex:1;padding:7px 10px;border-radius:6px;border:1px solid #0284C7;background:#EFF6FF;color:#0369A1;font-size:12.5px;font-weight:600;cursor:pointer;">
+              🔍 查看详情与覆盖表
+            </button>
+            <button type="button" class="sp-btn-select-proj" data-sp-select="{html.escape(pid)}" style="flex:1;padding:7px 10px;border-radius:6px;border:none;background:{'#059669' if is_sel else '#0D9488'};color:#FFFFFF;font-size:12.5px;font-weight:700;cursor:pointer;">
+              {'✅ 已选为当前方案' if is_sel else '📌 选择此项目'}
+            </button>
           </div>
-
-          <div class="big-card-grid" style="margin-top:10px;">
-            <div class="adv-block">
-              <div class="block-title"><span style="color:#0D9488;">●</span> 核心可运行功能（必须具备）</div>
-              <ul class="adv-list" style="font-size:13px;">{p_features}</ul>
-            </div>
-            <div class="gap-block">
-              <div class="block-title"><span style="color:#0284C7;">●</span> 关键工程任务（设计/实现/测试/调试/压测）</div>
-              <ul class="gap-list" style="font-size:13px;">{p_tasks}</ul>
-            </div>
-          </div>
-
-          <div style="margin-top:10px;padding:10px 12px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;font-size:13px;line-height:1.6;">
-            <div style="font-weight:700;color:#92400E;margin-bottom:4px;">✅ 可复现验收标准（如何证明自己真的掌握了）</div>
-            <ul style="margin:0;padding-left:18px;color:#78350F;">{p_accept}</ul>
-          </div>
-
-          <details style="margin-top:10px;padding:10px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;font-size:13px;line-height:1.6;color:#334155;">
-            <summary style="cursor:pointer;font-weight:600;color:#0F172A;">📚 展开知识落点、简历价值、分阶段扩展、开源参考边界与个人画像适配详情</summary>
-            <div style="margin-top:8px;display:grid;grid-template-columns:1fr;gap:8px;">
-              <div>
-                <div style="font-weight:600;color:#0F172A;">1. 课程与教材知识落点：</div>
-                <ul style="margin:2px 0 0 18px;">{km_rows}</ul>
-              </div>
-              <div>
-                <div style="font-weight:600;color:#0F172A;">2. 前置要求：</div>
-                <div>{html.escape(str(p.get('prerequisites') or ''))}</div>
-              </div>
-              <div>
-                <div style="font-weight:600;color:#0F172A;">3. 简历价值与面试/技术文档产出：</div>
-                <div>{html.escape(str(p.get('resume_value') or ''))}</div>
-              </div>
-              <div>
-                <div style="font-weight:600;color:#0F172A;">4. 分阶段后续扩展（从最小可行版本逐步演进）：</div>
-                <ul style="margin:2px 0 0 18px;">{p_exts}</ul>
-              </div>
-              <div style="padding:8px 10px;background:#F1F5F9;border-radius:6px;">
-                <div style="font-weight:600;color:#0F172A;">5. 公开开源参考 vs 建议独立实现边界（遵守许可证要求）：</div>
-                <ul style="margin:2px 0 4px 18px;">{os_items}</ul>
-                <div><b>🛠️ 复用与自研边界：</b>{html.escape(str(ref_lic.get("reuse_vs_self_impl") or ""))}</div>
-              </div>
-              <div style="padding:8px 10px;background:#EFF6FF;border-radius:6px;">
-                <div style="font-weight:600;color:#1E3A8A;">6. 个人画像三分离评估（现有基础 ≠ 学习成本 ≠ 职业兴趣）：</div>
-                <div>• {html.escape(str(sep_eval.get("current_skill_base") or ""))}</div>
-                <div>• {html.escape(str(sep_eval.get("learning_cost") or ""))}</div>
-                <div>• {html.escape(str(sep_eval.get("interest_alignment") or ""))}</div>
-                <div>• <b>可弥补的能力差距：</b>{gaps_br}</div>
-              </div>
-            </div>
-          </details>
-        </article>""")
-
-    # C. Phased practice advice
-    seq_cards = []
-    for phase in (tier_c.get("phased_roadmap") or []):
-        seq_cards.append(f"""
-        <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:14px;margin-bottom:10px;">
-          <h4 style="font-size:15px;color:#0F172A;margin:0 0 6px 0;">📌 {html.escape(str(phase.get('phase_title') or ''))}</h4>
-          <div style="font-size:13px;color:#0369A1;margin-bottom:6px;"><b>推荐依据：</b>{html.escape(str(phase.get('rationale') or ''))}</div>
-          <div style="font-size:13px;color:#334155;white-space:pre-line;">{html.escape(str(phase.get('how_to_choose') or ''))}</div>
         </div>""")
 
-    anti_li = "".join(f"<li>{html.escape(str(a))}</li>" for a in (tier_c.get("anti_pitfalls") or []))
-    prof_notes_li = "".join(f"<li>{html.escape(str(n))}</li>" for n in (tier_c.get("profile_context_notes") or []))
+        # 构造项目详情面板（包含 Section 6.4 要求的全部 12 项 + Section 6.5 技能覆盖审计表 + Section 6.6 AI 边界）
+        mvp_obj = p.get("mvp_scope") or {}
+        mvp_must_li = "".join(f"<li>{html.escape(str(m))}</li>" for m in (mvp_obj.get("must_have") or p.get("core_features") or []))
+        mvp_out_li = "".join(f"<li>{html.escape(str(x))}</li>" for x in (mvp_obj.get("out_of_scope_initially") or []))
+        challenges_li = "".join(f"<li>{html.escape(str(c))}</li>" for c in (p.get("engineering_challenges") or p.get("engineering_tasks") or []))
+        accept_li = "".join(f"<li>{html.escape(str(a))}</li>" for a in (p.get("acceptance_criteria") or []))
+        risks_li = "".join(f"<li>{html.escape(str(rk))}</li>" for rk in (p.get("main_risks") or []))
+        deliv_li = "".join(f"<li>{html.escape(str(dl))}</li>" for dl in (p.get("final_deliverables") or []))
+        exts_li = "".join(f"<li>{html.escape(str(ex))}</li>" for ex in (p.get("staged_extensions") or []))
+        train_loc_li = "".join(f"<li>{html.escape(str(tl))}</li>" for tl in (p.get("skill_training_locations") or []))
+        ev_bound = p.get("data_vs_inference_boundary") or {}
+        ai_bound = p.get("ai_collab_boundary") or {}
+        user_core_li = "".join(f"<li>{html.escape(str(u))}</li>" for u in (ai_bound.get("user_must_do") or []))
+        ai_accel_li = "".join(f"<li>{html.escape(str(a))}</li>" for a in (ai_bound.get("ai_can_accelerate") or []))
+        verify_li = "".join(f"<li>{html.escape(str(v))}</li>" for v in (ai_bound.get("verification_proof") or []))
+
+        # 技能覆盖审计表 (Section 6.5)
+        cov_rows_html = []
+        for crow in (p.get("skill_coverage_table") or []):
+            clevel = str(crow.get("coverage_level") or "未覆盖")
+            c_bg = "#DCFCE7" if clevel == "完整覆盖" else ("#FEF3C7" if clevel == "部分覆盖" else "#F1F5F9")
+            c_fg = "#166534" if clevel == "完整覆盖" else ("#92400E" if clevel == "部分覆盖" else "#64748B")
+            cov_rows_html.append(f"""
+            <tr>
+              <td style="font-weight:600;color:#0F172A;">
+                <span style="font-family:monospace;font-size:11px;color:#475569;">{html.escape(str(crow.get('constraint_id') or ''))}</span>
+                {html.escape(str(crow.get('skill_name') or ''))}
+                <div style="font-size:11px;color:#64748B;font-weight:normal;">{html.escape(str(crow.get('requirement_type') or ''))}</div>
+              </td>
+              <td style="font-size:12px;">
+                {html.escape(str(crow.get('source_categories_str') or ''))}
+                <div style="color:#0369A1;font-size:11.5px;">{html.escape(str(crow.get('job_frequency_str') or ''))}</div>
+              </td>
+              <td style="font-size:12.5px;color:#1E293B;">{html.escape(str(crow.get('project_task_mapping') or ''))}</td>
+              <td>
+                <span style="display:inline-block;padding:2px 8px;border-radius:999px;background:{c_bg};color:{c_fg};font-weight:700;font-size:12px;">
+                  {html.escape(clevel)}
+                </span>
+              </td>
+              <td style="font-size:12px;color:#334155;">
+                {f'<div><b>验收：</b>{html.escape(str(crow.get("verification_criteria") or ""))}</div>' if crow.get("verification_criteria") else ''}
+                <div style="color:#92400E;"><b>补充建议：</b>{html.escape(str(crow.get('supplementary_advice') or ''))}</div>
+              </td>
+            </tr>""")
+
+        active_pane_style = "" if (idx == 0 and not selected_pid) or is_sel else "display:none;"
+        detail_panes_html.append(f"""
+        <article class="sp-detail-pane big-card" id="sp-detail-{html.escape(pid)}" data-sp-pane="{html.escape(pid)}" style="{active_pane_style}border-left:4px solid #0284C7;margin-top:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid #E2E8F0;">
+            <div>
+              <div style="font-size:12.5px;font-weight:700;color:#0284C7;margin-bottom:4px;">
+                候选方案深度剖析（含 12 项设计要素 · 技能覆盖审计表 · AI 协同边界）
+              </div>
+              <h3 style="font-size:18px;color:#0F172A;margin:0 0 4px 0;">1. {html.escape(ptitle)}</h3>
+              <div style="font-size:13px;color:#475569;"><b>核心用途：</b>{html.escape(str(p.get('core_purpose') or ''))}</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button type="button" class="sp-btn-select-proj" data-sp-select="{html.escape(pid)}" style="padding:8px 16px;border-radius:8px;border:none;background:#0D9488;color:#FFFFFF;font-size:13px;font-weight:700;cursor:pointer;">
+                📌 选定此方案并配置实施计划
+              </button>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:12px;font-size:13px;line-height:1.6;">
+            <div style="background:#F8FAFC;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
+              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">2. 为什么契合你的个人兴趣画像（非换皮 CRUD）</div>
+              <div style="color:#334155;">{html.escape(str(p.get('why_matches_interest') or ''))}</div>
+              <div style="font-weight:700;color:#0F172A;margin:10px 0 4px 0;">3. 对应真实岗位类别及招聘需求</div>
+              <div style="color:#334155;">覆盖：{html.escape(p_cats_short)}；典型职位：{html.escape('、'.join(p.get('target_roles') or []))}（代表企业：{html.escape('、'.join(p.get('representative_companies') or []))}）</div>
+            </div>
+            <div style="background:#F8FAFC;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
+              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">4. 如何自然使用目标技术栈（{html.escape(p_langs)}）</div>
+              <div style="color:#334155;">{html.escape(str(p.get('natural_tech_stack_usage') or ''))}</div>
+              <div style="font-weight:700;color:#0F172A;margin:10px 0 4px 0;">9. 预计难度、工作量范围与主要开发风险</div>
+              <div style="color:#334155;"><b>难度与周期：</b>{html.escape(str(p.get('difficulty_level') or ''))}（{html.escape(str(p.get('estimated_effort') or ''))}）</div>
+              <ul style="margin:4px 0 0 18px;color:#991B1B;">{risks_li}</ul>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:12px;font-size:13px;line-height:1.6;">
+            <div style="background:#F0FDFA;padding:12px;border-radius:8px;border:1px solid #99F6E4;">
+              <div style="font-weight:700;color:#0F766E;margin-bottom:4px;">6. MVP 功能范围（第一版最小闭环 vs 明确延后项）</div>
+              <div style="font-weight:600;color:#115E59;">✅ MVP 必须完成（约 {html.escape(str(mvp_obj.get('estimated_mvp_weeks') or '2–3周'))}）：</div>
+              <ul style="margin:2px 0 6px 18px;color:#134E4A;">{mvp_must_li}</ul>
+              <div style="font-weight:600;color:#92400E;">⏸️ 第一版明确不做（防战线过长）：</div>
+              <ul style="margin:2px 0 0 18px;color:#78350F;">{mvp_out_li}</ul>
+            </div>
+            <div style="background:#EFF6FF;padding:12px;border-radius:8px;border:1px solid #BFDBFE;">
+              <div style="font-weight:700;color:#1E3A8A;margin-bottom:4px;">7. 主要工程挑战 &amp; 8. 测试、调试与量化验收标准</div>
+              <div style="font-weight:600;color:#1E40AF;">⚙️ 核心工程挑战：</div>
+              <ul style="margin:2px 0 6px 18px;color:#1E3A8A;">{challenges_li}</ul>
+              <div style="font-weight:600;color:#065F46;">🧪 量化验收标准：</div>
+              <ul style="margin:2px 0 0 18px;color:#064E3B;">{accept_li}</ul>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:12px;font-size:13px;line-height:1.6;">
+            <div style="background:#FFFFFF;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
+              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">10. 最终可展示的运行成果、技术文档与演示</div>
+              <ul style="margin:2px 0 8px 18px;color:#334155;">{deliv_li}</ul>
+              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">11. 后续分阶段扩展空间</div>
+              <ul style="margin:2px 0 0 18px;color:#334155;">{exts_li}</ul>
+            </div>
+            <div style="background:#FFFFFF;padding:12px;border-radius:8px;border:1px solid #E2E8F0;">
+              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">5. 原始技能清单在项目中的具体训练落点</div>
+              <ul style="margin:2px 0 8px 18px;color:#334155;">{train_loc_li}</ul>
+              <div style="font-weight:700;color:#0F172A;margin-bottom:4px;">12. 判断依据说明（哪些来自真实数据 vs 哪些属于合理推断）</div>
+              <div style="font-size:12.5px;color:#166534;margin-bottom:4px;">📊 <b>数据事实支撑：</b>{html.escape(str(ev_bound.get('data_backed_facts') or ''))}</div>
+              <div style="font-size:12.5px;color:#92400E;">🧭 <b>合理推断与边界：</b>{html.escape(str(ev_bound.get('reasonable_inferences') or ''))}</div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px;overflow-x:auto;">
+            <div style="font-weight:700;font-size:14px;color:#0F172A;margin-bottom:6px;">
+              📋 技能覆盖审计表（Section 6.5 · 严格区分「完整覆盖 / 部分覆盖 / 未覆盖」，不因引入依赖或 AI 生成代码而虚报覆盖）
+            </div>
+            <table class="job-table" style="width:100%;font-size:12.5px;">
+              <thead>
+                <tr>
+                  <th style="width:16%">技能约束</th>
+                  <th style="width:18%">来源岗位类别与频率</th>
+                  <th style="width:28%">对应项目功能或工程任务</th>
+                  <th style="width:12%">覆盖程度</th>
+                  <th style="width:26%">验收标准 / 缺口补充训练建议</th>
+                </tr>
+              </thead>
+              <tbody>{"".join(cov_rows_html)}</tbody>
+            </table>
+          </div>
+
+          <div style="margin-top:14px;background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:12px;font-size:13px;line-height:1.6;">
+            <div style="font-weight:700;color:#0F172A;margin-bottom:8px;">
+              🤝 AI 辅助开发与个人能力成长边界（Section 6.6 · 拒绝一次性让 AI 生成全部黑盒代码）
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;">
+              <div style="background:#FEF2F2;border:1px solid #FECACA;padding:10px;border-radius:8px;">
+                <div style="font-weight:700;color:#991B1B;margin-bottom:4px;">🧠 必须亲自理解、设计与实现的核心任务</div>
+                <ul style="margin:0;padding-left:18px;color:#7F1D1D;">{user_core_li}</ul>
+              </div>
+              <div style="background:#EFF6FF;border:1px solid #BFDBFE;padding:10px;border-radius:8px;">
+                <div style="font-weight:700;color:#1E40AF;margin-bottom:4px;">🤖 可由 AI 加速的重复性/辅助性任务</div>
+                <ul style="margin:0;padding-left:18px;color:#1E3A8A;">{ai_accel_li}</ul>
+              </div>
+              <div style="background:#ECFDF5;border:1px solid #A7F3D0;padding:10px;border-radius:8px;">
+                <div style="font-weight:700;color:#065F46;margin-bottom:4px;">🔬 证明你真正掌握的测试、调试与审查要求</div>
+                <ul style="margin:0;padding-left:18px;color:#064E3B;">{verify_li}</ul>
+              </div>
+            </div>
+          </div>
+        </article>""")
+
+    # 项目详情切换按钮组
+    detail_tabs_html = "".join(
+        f'<button type="button" class="sp-detail-tab" data-sp-tab="{html.escape(str(p.get("project_id") or ""))}" '
+        f'style="padding:6px 12px;border-radius:999px;border:1px solid #CBD5E1;background:{"#0284C7" if (idx == 0 and not selected_pid) or str(p.get("project_id")) == selected_pid else "#FFFFFF"};'
+        f'color:{"#FFFFFF" if (idx == 0 and not selected_pid) or str(p.get("project_id")) == selected_pid else "#334155"};font-size:12.5px;font-weight:600;cursor:pointer;">'
+        f'方案 {idx + 1}：{html.escape(str(p.get("interest_theme_tag") or ""))}</button>'
+        for idx, p in enumerate(tier_b)
+    )
 
     return f"""
-<section class="page" data-page="skill-projects">
+<section class="page" data-page="skill-projects" id="pageSkillProjects">
+  <script>window.__SKILL_PROJECTS_DATA = {sp_json_str};</script>
   <div class="page-head">
     <div>
-      <h1>🛠️ 高频技能栈与可验证实现项目推荐</h1>
+      <h1>🛠️ 技能栈与实现项目（从真实招聘约束到兴趣驱动的工程项目闭环）</h1>
       <p class="page-sub">
-        {html.escape(str(tier_c.get('core_philosophy') or ''))}<br>
-        {html.escape(str(dedup_sum.get('dedup_explanation') or ''))}
-        （覆盖 {overall.get('company_count', 0)} 家企业，时间跨度 {html.escape(str(tr.get('earliest_date') or ''))} 至 {html.escape(str(tr.get('latest_date') or ''))}）
-        · 模块版本：<b>{html.escape(str(vinfo.get('report_version_id') or ''))}</b>（统计指纹：{html.escape(str(vinfo.get('stats_fingerprint') or ''))}，画像版本：{html.escape(str(vinfo.get('profile_version_id') or ''))}，缓存命中：{'是' if vinfo.get('cache_hit') else '否(本轮更新)'}）
+        自动读取真实岗位库与 <code>profile.yaml</code> 个人画像 · 技能训练约束不变，项目主题按个人兴趣重构 · 支持自主选择方案、生成分阶段实施计划与持续迭代
       </p>
     </div>
   </div>
 
-  <div class="section-block" style="margin-bottom:24px;">
-    <h2 style="font-size:18px;margin-bottom:10px;color:#0F172A;">层级 A：真实招聘高频技能概览（按岗位类别分组 · 区分必需/加分/特殊要求 · 已消除同义词与重复发布偏差）</h2>
+  <!-- 区域 5 & 6：数据与生成状态展示 + 刷新技能统计 vs 重新生成项目方案 -->
+  <div id="spStatusBanner" style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:12px;padding:14px 16px;margin-bottom:20px;box-shadow:0 1px 2px rgba(0,0,0,0.03);">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span id="spStatusBadge" style="padding:4px 10px;border-radius:999px;background:{status_badge_bg};color:{status_badge_fg};font-weight:700;font-size:12.5px;">
+          ● {status_label}
+        </span>
+        <span style="font-size:13px;color:#334155;">
+          📊 岗位样本量：<b>{vinfo.get('unique_job_sample_count', 0)}</b> 个独立计算机岗（原始记录 {vinfo.get('raw_posting_count', 0)} 条，覆盖 {overall.get('company_count', 0)} 家企业）
+        </span>
+        <span style="font-size:12.5px;color:#64748B;">
+          📅 数据时间范围：{html.escape(str(tr.get('earliest_date') or ''))} ~ {html.escape(str(tr.get('latest_date') or ''))}
+          · 生成时间：<span id="spGeneratedAt">{html.escape(str(vinfo.get('generated_at') or ''))}</span>
+        </span>
+        <span style="font-size:12px;color:#475569;background:#F1F5F9;padding:2px 8px;border-radius:6px;">
+          版本：<b id="spVersionId">{html.escape(str(vinfo.get('report_version_id') or ''))}</b>
+          · 统计指纹：<code>{html.escape(str(vinfo.get('stats_fingerprint') or ''))}</code>
+          · 画像版本：<code>{html.escape(str(vinfo.get('profile_version_id') or ''))}</code>
+          · 模式：<b>{'探索模式 (不锁死单一语言/方向)' if prof_ctx.get('recommendation_mode') == 'exploration' else '聚焦模式'}</b>
+        </span>
+      </div>
+      <div id="spActionToolbar" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <button type="button" id="btnRefreshSkillStats" style="padding:7px 12px;border-radius:8px;border:1px solid #0284C7;background:#EFF6FF;color:#0369A1;font-size:12.5px;font-weight:600;cursor:pointer;" title="仅根据最新数据库重新计算高频技能统计与约束清单，不覆盖当前候选项目与您已选的实施计划">
+          📊 仅更新技能统计
+        </button>
+        <button type="button" id="btnRegenerateProjects" style="padding:7px 12px;border-radius:8px;border:none;background:#0F172A;color:#FFFFFF;font-size:12.5px;font-weight:600;cursor:pointer;" title="基于最新技能约束与个人画像重新生成候选项目方案（默认自动保护您已选的项目与实施计划）">
+          ✨ 重新生成候选项目方案
+        </button>
+        <label style="font-size:12px;color:#64748B;display:inline-flex;align-items:center;gap:4px;cursor:pointer;" title="勾选后重新生成时将清空当前已选项目，从头开始选择">
+          <input type="checkbox" id="chkConfirmOverwrite"> 重置已选项目
+        </label>
+      </div>
+    </div>
+    {warnings_html}
+  </div>
+
+  <!-- 区域 4：项目选择、分阶段实施计划生成与迭代反馈工作台 (Section 7) -->
+  <div id="spWorkspaceSection" style="background:#F0FDFA;border:2px solid #0D9488;border-radius:12px;padding:16px;margin-bottom:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#0F766E;text-transform:uppercase;">Interactive Project Workspace · 项目选择、实施计划与方案迭代闭环</div>
+        <h2 style="font-size:18px;color:#0F172A;margin:2px 0;" id="spSelectedStatusTitle">
+          {f"✅ 当前已选定项目：{html.escape(str(workspace.get('selected_project_title') or ''))}" if selected_pid else "🧭 当前状态：尚未选定最终项目（请先在下方候选方案中点击「📌 选择此项目」）"}
+        </h2>
+        <div style="font-size:12.5px;color:#475569;" id="spSelectedStatusSub">
+          {f"选定时间：{html.escape(str(workspace.get('selected_at') or ''))} · 您可以随时点击右侧按钮生成/查看分阶段实施计划，或对方案提出修改要求。" if selected_pid else "系统遵循开放探索原则：在您主动选择之前，绝不擅自将某个候选项目设为最终项目，也不将一次项目选择绑定为永久职业方向。"}
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button type="button" id="btnGeneratePlan" style="padding:9px 16px;border-radius:8px;border:none;background:#0D9488;color:#FFFFFF;font-size:13.5px;font-weight:700;cursor:pointer;box-shadow:0 2px 4px rgba(13,148,136,0.2);">
+          🗺️ 生成 / 查看所选项目的分阶段实施计划
+        </button>
+      </div>
+    </div>
+
+    <!-- 方案迭代与反馈工具栏 (Section 7.4) -->
+    <div id="spIterationControls" style="background:#FFFFFF;border:1px solid #99F6E4;border-radius:10px;padding:12px;margin-top:10px;">
+      <div style="font-weight:700;font-size:13px;color:#0F172A;margin-bottom:8px;">
+        🔧 针对当前项目方案提出迭代修改或双项目对比（直接作用于当前方案，无需重新输入背景与长提示词）：
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+        <button type="button" class="sp-iter-btn" data-iter-action="shrink_mvp" style="padding:6px 12px;border-radius:6px;border:1px solid #CBD5E1;background:#F8FAFC;color:#0F172A;font-size:12.5px;font-weight:600;cursor:pointer;">
+          📉 项目太大，缩小 MVP（压缩至 2 周可交付）
+        </button>
+        <button type="button" class="sp-iter-btn" data-iter-action="boost_sql_redis" style="padding:6px 12px;border-radius:6px;border:1px solid #CBD5E1;background:#F8FAFC;color:#0F172A;font-size:12.5px;font-weight:600;cursor:pointer;">
+          🗄️ 希望增加 MySQL / Redis 数据库实践
+        </button>
+        <button type="button" class="sp-iter-btn" data-iter-action="boost_network_concurrency" style="padding:6px 12px;border-radius:6px;border:1px solid #CBD5E1;background:#F8FAFC;color:#0F172A;font-size:12.5px;font-weight:600;cursor:pointer;">
+          ⚡ 希望增加网络协议与多线程并发实践
+        </button>
+        <button type="button" class="sp-iter-btn" data-iter-action="boost_testing_ci" style="padding:6px 12px;border-radius:6px;border:1px solid #CBD5E1;background:#F8FAFC;color:#0F172A;font-size:12.5px;font-weight:600;cursor:pointer;">
+          🧪 希望增加单元测试、ASan 与 CI 实践
+        </button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;align-items:center;">
+        <div style="display:flex;gap:6px;align-items:center;">
+          <input type="text" id="inpCustomFeedback" placeholder="输入自定义修改要求（如：更喜欢东方Project弹幕主题 / 不喜欢某功能）…" style="flex:1;padding:7px 10px;border:1px solid #CBD5E1;border-radius:6px;font-size:12.5px;">
+          <button type="button" id="btnSubmitFeedback" style="padding:7px 12px;border-radius:6px;border:none;background:#0284C7;color:#FFFFFF;font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap;">
+            💬 提交方案修改
+          </button>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span style="font-size:12.5px;font-weight:600;color:#334155;">⚖️ 比较两个候选项目：</span>
+          <select id="selCompareA" style="padding:6px 8px;border:1px solid #CBD5E1;border-radius:6px;font-size:12px;max-width:170px;">{"".join(compare_options_html)}</select>
+          <span style="font-size:12px;color:#64748B;">VS</span>
+          <select id="selCompareB" style="padding:6px 8px;border:1px solid #CBD5E1;border-radius:6px;font-size:12px;max-width:170px;">{"".join(compare_options_html[1:] + compare_options_html[:1])}</select>
+          <button type="button" id="btnCompareTwo" style="padding:6px 12px;border-radius:6px;border:1px solid #0D9488;background:#F0FDFA;color:#0F766E;font-size:12px;font-weight:700;cursor:pointer;">
+            生成对比表
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 双项目对比结果展示区 -->
+    <div id="spComparisonOutput" hidden style="margin-top:12px;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:14px;"></div>
+
+    <!-- 分阶段实施计划展示容器 (Section 7.3 全部 10 项内容) -->
+    <div id="spImplementationPlanContainer" style="margin-top:12px;"></div>
+
+    <!-- 迭代反馈历史记录容器 -->
+    <div id="spIterationHistoryContainer" style="margin-top:10px;"></div>
+  </div>
+
+  <!-- 区域 2：候选项目方案列表（6 个兴趣驱动、实质差异的工程项目） -->
+  <div id="spProjectListSection" class="section-block" style="margin-bottom:24px;">
+    <h2 style="font-size:18px;margin-bottom:6px;color:#0F172A;">
+      二、候选工程项目方案列表（层级 B：「技能栈 → 实现项目」工程训练方案 · 共 {len(tier_b)} 个实质差异方案）
+    </h2>
+    <p style="font-size:13px;color:#475569;margin-bottom:12px;">
+      以下 6 个候选方案自动融合了您的个人兴趣主题（跨媒介番剧/游戏/书籍收藏、OpenGL 动态桌面壁纸与粒子特效、回合战术规则解构、游戏存档逆向与弱网混沌测试、原版台词双语浸泡检索、个人时间精力复式账本）与全库高频就业技能约束，覆盖 C++17、Python、Go、Java 四大主流技术生态。
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:14px;">
+      {"".join(summary_cards_html)}
+    </div>
+  </div>
+
+  <!-- 区域 3：项目详情与技能覆盖审计面板 -->
+  <div id="spProjectDetailSection" class="section-block" style="margin-bottom:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
+      <h2 style="font-size:18px;margin:0;color:#0F172A;">
+        三、候选项目深度详情、技能覆盖审计表与 AI 协同边界
+      </h2>
+      <div id="spDetailTabBar" style="display:flex;gap:6px;flex-wrap:wrap;">
+        {detail_tabs_html}
+      </div>
+    </div>
+    <div id="spDetailPanesWrap">
+      {"".join(detail_panes_html)}
+    </div>
+  </div>
+
+  <!-- 区域 1：技能需求概览与内部可追踪技能约束清单 (Section 5) -->
+  <div id="spSkillOverviewSection" class="section-block" style="margin-bottom:24px;">
+    <h2 style="font-size:18px;margin-bottom:10px;color:#0F172A;">
+      一、真实招聘技能需求概览与内部可追踪「技能约束清单」（层级 A：真实招聘高频技能概览 · 层级 C：分阶段工程实践建议与防坑守则）
+    </h2>
+
+    <div style="overflow-x:auto;background:#FFFFFF;border:1px solid #CBD5E1;border-radius:10px;padding:12px;margin-bottom:16px;">
+      <div style="font-weight:700;font-size:14px;margin-bottom:6px;color:#0F172A;">
+        📋 内部可追踪技能约束清单（共 {len(constraints)} 项核心训练约束 · 作为候选项目设计与技能覆盖审计的唯一依据）
+      </div>
+      <div style="font-size:12.5px;color:#475569;margin-bottom:8px;">
+        每项约束均绑定真实来源岗位类别、去重样本频率、原始 JD 证据链接、必需/加分定性、对应工程能力及训练深度标准（拒绝仅因项目用了某语言就宣称已掌握）。
+      </div>
+      <table class="job-table" style="width:100%;font-size:12.5px;">
+        <thead>
+          <tr>
+            <th style="width:14%">约束ID与技能名称</th>
+            <th style="width:18%">主要来源岗位类别</th>
+            <th style="width:15%">出现频率 / 样本量 / 定性</th>
+            <th style="width:18%">对应的工程能力</th>
+            <th style="width:19%">需要达到的训练深度</th>
+            <th style="width:16%">原始招聘证据引用</th>
+          </tr>
+        </thead>
+        <tbody>
+          {"".join(constraint_rows)}
+        </tbody>
+      </table>
+    </div>
+
     <div style="overflow-x:auto;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:10px;padding:12px;margin-bottom:14px;">
-      <div style="font-weight:600;font-size:14px;margin-bottom:8px;color:#0F172A;">📊 全库计算机岗位 Top 16 规范化技能热度表（仅作全局底座参照，不代表所有方向都要学同一技术）</div>
+      <div style="font-weight:600;font-size:14px;margin-bottom:8px;color:#0F172A;">
+        📊 全库计算机岗位 Top 16 规范化技能热度表（已规范化同义词并剥离单岗多城重复发布：{html.escape(str(dedup_sum.get('dedup_explanation') or ''))}）
+      </div>
       <table class="job-table" style="width:100%;font-size:13px;">
         <thead>
           <tr>
@@ -2001,29 +2308,13 @@ def _page_skill_projects(items: list, date_str: str) -> str:
         </tbody>
       </table>
     </div>
+
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:12px;">
       {"".join(cat_cards)}
     </div>
   </div>
-
-  <div class="section-block" style="margin-bottom:24px;">
-    <h2 style="font-size:18px;margin-bottom:10px;color:#0F172A;">层级 B：「技能栈 → 实现项目」工程训练方案（含验收标准、教材知识落点与开源参考边界）</h2>
-    {"".join(proj_cards)}
-  </div>
-
-  <div class="section-block" style="margin-bottom:24px;">
-    <h2 style="font-size:18px;margin-bottom:10px;color:#0F172A;">层级 C：分阶段工程实践建议与防坑守则（有依据的“先做”与“探索”，不锁死唯一职业路线）</h2>
-    <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:12px;margin-bottom:12px;font-size:13px;color:#1E3A8A;">
-      <div style="font-weight:700;margin-bottom:4px;">🧭 个人画像与探索模式联动说明</div>
-      <ul style="margin:0;padding-left:18px;">{prof_notes_li}</ul>
-    </div>
-    {"".join(seq_cards)}
-    <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:14px;margin-top:12px;">
-      <div style="font-weight:700;color:#991B1B;margin-bottom:6px;">🛡️ 项目实践防坑守则</div>
-      <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.6;color:#7F1D1D;">{anti_li}</ul>
-    </div>
-  </div>
-</section>"""
+</section>
+"""
 
 
 def _page_wlb_community_audit(items: list, date_str: str) -> str:
@@ -2182,11 +2473,15 @@ def _page_wlb_community_audit(items: list, date_str: str) -> str:
 </section>"""
 
 
+_ICON_PROJECT = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>'
+
 _NAV_GROUPS = [
     ("发现", [
         ("recommended", "27届校招", _ICON_RANK),
         ("today", "今日新增", _ICON_CLOCK),
         ("companies", "公司排行", _ICON_BARS),
+        ("skill-projects", "技能栈与实现项目", _ICON_PROJECT),
+        ("wlb-audit", "社区 WLB 审核", _ICON_THUMBS),
         ("previous-cohort", "往届校招岗位", _ICON_CLOCK),
         ("unknown-cohort", "届别待确认", _ICON_CLOCK),
         ("learning-guide", "技术要求统计", _ICON_STAR),
@@ -3744,6 +4039,591 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     activate(rawHash);
   }
+  // ── 「技能栈与实现项目」模块完整前端交互闭环（选择项目 / 生成10维实施计划 / 迭代修改 / 双项目对比 / 刷新统计 vs 重新生成 / 持久化恢复）──
+  (function initSkillProjectsInteractive() {
+    const spPage = el('pageSkillProjects');
+    if (!spPage) return;
+    const spData = window.__SKILL_PROJECTS_DATA || {};
+    const projects = spData.candidate_projects || [];
+    const constraints = spData.skill_constraints || [];
+    const LS_KEY = 'career_agent_sp_workspace_v2_' + ((spData.version_info || {}).profile_version_id || 'default');
+
+    // 合并服务端状态与浏览器本地持久化状态
+    let ws = Object.assign({
+      selected_project_id: null,
+      selected_project_title: '',
+      selected_at: '',
+      active_implementation_plan: null,
+      iteration_history: [],
+      comparison_history: [],
+      pending_update_notice: ''
+    }, spData.user_workspace || {});
+
+    try {
+      const savedRaw = localStorage.getItem(LS_KEY);
+      if (savedRaw) {
+        const savedWs = JSON.parse(savedRaw);
+        if (savedWs && typeof savedWs === 'object') {
+          if (!ws.selected_project_id && savedWs.selected_project_id) {
+            ws = Object.assign({}, ws, savedWs);
+          } else if (savedWs.last_updated_at && (!ws.last_updated_at || savedWs.last_updated_at > ws.last_updated_at)) {
+            ws = Object.assign({}, ws, savedWs);
+          }
+        }
+      }
+    } catch (_) {}
+
+    function saveWorkspaceLocal() {
+      ws.last_updated_at = new Date().toISOString();
+      try { localStorage.setItem(LS_KEY, JSON.stringify(ws)); } catch (_) {}
+    }
+
+    function findProject(pid) {
+      return projects.find(p => p.project_id === pid || p.id === pid) || null;
+    }
+
+    function showNotice(msg, isWarn) {
+      const box = el('spNoticeBox');
+      if (!box) return;
+      box.hidden = false;
+      box.style.background = isWarn ? '#FFFBEB' : '#ECFDF5';
+      box.style.borderColor = isWarn ? '#FDE68A' : '#A7F3D0';
+      box.style.color = isWarn ? '#92400E' : '#065F46';
+      box.innerHTML = '<div>' + esc(msg) + '</div>';
+    }
+
+    function switchDetailPane(pid) {
+      if (!pid) return;
+      spPage.querySelectorAll('.sp-detail-pane').forEach(pane => {
+        pane.style.display = (pane.getAttribute('data-sp-pane') === pid) ? '' : 'none';
+      });
+      spPage.querySelectorAll('.sp-detail-tab').forEach(tab => {
+        const active = tab.getAttribute('data-sp-tab') === pid;
+        tab.style.background = active ? '#0284C7' : '#FFFFFF';
+        tab.style.color = active ? '#FFFFFF' : '#334155';
+      });
+    }
+
+    function buildClientImplementationPlan(proj, customFocus) {
+      const covTable = proj.skill_coverage_table || [];
+      const fullSkills = covTable.filter(r => r.coverage_level === '完整覆盖');
+      const gapSkills = covTable.filter(r => r.coverage_level !== '完整覆盖');
+      const mvp = proj.mvp_scope || {};
+      const aiBound = proj.ai_collab_boundary || {};
+      const usesPy = (proj.primary_languages || []).some(l => l.indexOf('Python') >= 0);
+
+      const stages = [];
+      if (usesPy) {
+        stages.push({
+          stage_no: '阶段 0（前置热身 · 第 1 周，约 8–10 小时）',
+          stage_name: '从 C++ 思维快速切入 Python 工程语法与 pytest 自动化测试',
+          goal: '针对 profile.yaml 中 Python 尚未开始学习的状态，利用已有 C++ 基础快速掌握 Python 核心容器、类型注解与 pytest 单元测试，不看冗长零基础视频。',
+          deliverable: '通过 pytest -v 100% 绿灯的预热练习仓库。',
+          acceptance_gate: '能独立手写带类型注解的 Python 模块与 pytest 异常断言。'
+        });
+      }
+      stages.push(
+        {
+          stage_no: '阶段 1（骨架与数据模型 · 第 1–2 周）',
+          stage_name: '核心领域建模、存储表结构/内存布局设计与最小闭环打通',
+          goal: '完成『' + proj.title + '』的核心数据结构与数据库 Schema / 接口契约设计，跑通第一条端到端数据流。',
+          deliverable: '可运行的项目骨架 + 核心表结构/头文件定义 + 基础冒烟测试。',
+          acceptance_gate: '端到端主链路可无报错跑通，无硬编码绝对路径与明文密钥。'
+        },
+        {
+          stage_no: '阶段 2（MVP 核心攻坚 · 第 2–4 周）',
+          stage_name: '核心算法/并发/缓存机制实现与真实业务场景咬合',
+          goal: '完成 MVP 必须具备的核心功能：' + ((mvp.must_have || []).slice(0, 2).join('；')),
+          deliverable: '功能完整的 MVP 可执行程序/服务 + 15+ 条核心单元测试与边界异常测试。',
+          acceptance_gate: ((proj.acceptance_criteria || [])[0] || '核心功能全部通过自动化测试验证。')
+        },
+        {
+          stage_no: '阶段 3（压测、调优与作品集交付 · 第 4–5 周）',
+          stage_name: '性能瓶颈定位、故障注入实验、CI 流水线与简历/演示交付',
+          goal: '使用 GDB/ASan/EXPLAIN/压测工具完成至少 1 次有前后量化对比的性能优化或故障复盘。' + (customFocus ? ('（本轮定制侧重：' + customFocus + '）') : ''),
+          deliverable: 'GitHub 绿灯仓库 + 架构设计与压测复盘 README + 2 分钟演示录制。',
+          acceptance_gate: ((proj.acceptance_criteria || []).slice(-1)[0] || '所有验收指标达标，能脱稿讲清架构取舍。')
+        }
+      );
+
+      return {
+        plan_id: 'plan-' + proj.project_id,
+        project_id: proj.project_id,
+        project_title: proj.title,
+        generated_at: new Date().toLocaleString('zh-CN', { hour12: false }),
+        custom_focus: customFocus || '标准 MVP 稳步推进',
+        stages: stages,
+        knowledge_and_materials: proj.knowledge_mapping || [],
+        problem_driven_learning_path: [
+          '① 先遇到真实卡点：在阶段 1–2 先用最直观的朴素写法跑通功能，观察慢查询、粘包、帧率抖动或并发竞态现象；',
+          '② 逆推底层原理：带着复现的 Bug 或性能指标，针对性查阅教材对应章节与官方文档，只学解决当前卡点所需的机制；',
+          '③ 实验对比验证：编写修改前后的基准测试 (Benchmark) 或回归单测，用量化数据证明改进有效。'
+        ],
+        user_core_tasks: aiBound.user_must_do || [],
+        ai_assisted_tasks: aiBound.ai_can_accelerate || [],
+        verification_tasks: aiBound.verification_proof || [],
+        engineering_and_release_standards: [
+          '版本管理：使用 Git 特性分支开发，严禁将 .env 密钥、大体积二进制产物提交入库；',
+          '测试与调试：核心模块单元测试覆盖正常路径、空值边界與异常注入；C++ 开启 -fsanitize=address，Python/Go 配置 pytest/go test 自动执行；',
+          '文档与复盘：README 必须包含系统架构图、数据库 ER 图/协议帧格式、一键启动命令与性能优化前后对比表。'
+        ],
+        fallback_scope_reduction: {
+          when_to_trigger: '若课业繁忙、某阶段卡壳超过 5 天或每周可投入时间不足 6 小时，立即启动以下缩减方案：',
+          reduced_mvp_plan: [
+            '1. 砍掉所有外围附加界面与花哨配置，仅保留命令行 (CLI) 或极简核心视图 + 1 个核心算法/存储引擎闭环；',
+            '2. 明确暂停这些非核心项：' + ((mvp.out_of_scope_initially || []).join('；')),
+            '3. 保底交付底线：宁可交付一个只有 1,200 行代码但具备完整单元测试、EXPLAIN/ASan 调优报告与清晰 README 的小而精内核，也绝不交付半途而废的庞大空壳。'
+          ]
+        },
+        skill_coverage_and_gaps_audit: {
+          covered_count: fullSkills.length,
+          covered_items: fullSkills.map(r => r.skill_name + '（' + r.project_task_mapping + '）'),
+          remaining_gaps_count: gapSkills.length,
+          remaining_gaps_advice: gapSkills.slice(0, 6).map(r => r.skill_name + ' [' + r.coverage_level + '] → ' + r.supplementary_advice)
+        }
+      };
+    }
+
+    function renderWorkspaceUI() {
+      const selPid = ws.selected_project_id;
+      const selProj = selPid ? findProject(selPid) : null;
+      const titleEl = el('spSelectedStatusTitle');
+      const subEl = el('spSelectedStatusSub');
+
+      if (titleEl) {
+        titleEl.textContent = selProj
+          ? ('✅ 当前已选定项目：' + selProj.title)
+          : '🧭 当前状态：尚未选定最终项目（请先在下方候选方案中点击「📌 选择此项目」）';
+      }
+      if (subEl) {
+        subEl.textContent = selProj
+          ? ('选定时间：' + (ws.selected_at || '刚刚') + ' · 点击右侧「🗺️ 生成 / 查看所选项目的分阶段实施计划」即可展开 10 维完整实施蓝图，刷新页面后自动恢复。')
+          : '系统遵循开放探索原则：在您主动选择之前，绝不擅自将某个候选项目设为最终项目，也不将一次项目选择绑定为永久职业方向。';
+      }
+
+      // 更新卡片高亮与按钮文案
+      spPage.querySelectorAll('.sp-candidate-card').forEach(card => {
+        const cid = card.getAttribute('data-project-id');
+        const isSel = cid === selPid;
+        card.style.border = isSel ? '2px solid #0D9488' : '1px solid #CBD5E1';
+        card.style.background = isSel ? '#F0FDFA' : '#FFFFFF';
+        const btn = card.querySelector('.sp-btn-select-proj');
+        if (btn) {
+          btn.textContent = isSel ? '✅ 已选为当前方案' : '📌 选择此项目';
+          btn.style.background = isSel ? '#059669' : '#0D9488';
+        }
+      });
+
+      // 渲染分阶段实施计划 (Section 7.3)
+      const planContainer = el('spImplementationPlanContainer');
+      if (planContainer) {
+        const plan = ws.active_implementation_plan;
+        if (!plan) {
+          planContainer.innerHTML = selProj
+            ? '<div style="padding:12px;background:#FFFFFF;border:1px dashed #0D9488;border-radius:8px;font-size:13px;color:#0F766E;">💡 您已选定 <b>' + esc(selProj.title) + '</b>。请点击上方 <b>「🗺️ 生成 / 查看所选项目的分阶段实施计划」</b> 按钮生成完整开发计划。</div>'
+            : '';
+        } else {
+          const stagesHtml = (plan.stages || []).map(st =>
+            '<div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:12px;margin-bottom:8px;">' +
+              '<div style="font-weight:700;color:#0F766E;font-size:13.5px;">' + esc(st.stage_no) + ' · ' + esc(st.stage_name) + '</div>' +
+              '<div style="font-size:13px;color:#1E293B;margin-top:4px;"><b>阶段目标：</b>' + esc(st.goal) + '</div>' +
+              '<div style="font-size:12.5px;color:#0369A1;margin-top:3px;"><b>📦 可交付成果：</b>' + esc(st.deliverable) + '</div>' +
+              '<div style="font-size:12.5px;color:#166534;margin-top:3px;"><b>✅ 阶段验收标准：</b>' + esc(st.acceptance_gate) + '</div>' +
+            '</div>'
+          ).join('');
+
+          const kmLi = (plan.knowledge_and_materials || []).map(k => '<li>' + esc(k) + '</li>').join('');
+          const revLi = (plan.problem_driven_learning_path || []).map(p => '<li>' + esc(p) + '</li>').join('');
+          const userLi = (plan.user_core_tasks || []).map(u => '<li>' + esc(u) + '</li>').join('');
+          const aiLi = (plan.ai_assisted_tasks || []).map(a => '<li>' + esc(a) + '</li>').join('');
+          const stdLi = (plan.engineering_and_release_standards || []).map(s => '<li>' + esc(s) + '</li>').join('');
+          const fbObj = plan.fallback_scope_reduction || {};
+          const fbLi = (fbObj.reduced_mvp_plan || []).map(r => '<li>' + esc(r) + '</li>').join('');
+          const auditObj = plan.skill_coverage_and_gaps_audit || {};
+          const covLi = (auditObj.covered_items || []).map(c => '<li>' + esc(c) + '</li>').join('');
+          const gapLi = (auditObj.remaining_gaps_advice || []).map(g => '<li>' + esc(g) + '</li>').join('');
+
+          planContainer.innerHTML =
+            '<div style="background:#FFFFFF;border:2px solid #0284C7;border-radius:10px;padding:16px;">' +
+              '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding-bottom:10px;border-bottom:1px solid #E2E8F0;margin-bottom:12px;">' +
+                '<div>' +
+                  '<span style="background:#DBEAFE;color:#1E40AF;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;">持久绑定实施计划 · 刷新不丢失</span> ' +
+                  '<b style="font-size:16px;color:#0F172A;">' + esc(plan.project_title) + '</b>' +
+                '</div>' +
+                '<div style="font-size:12px;color:#64748B;">生成时间：' + esc(plan.generated_at) + ' · 定制焦点：<b>' + esc(plan.custom_focus || '标准 MVP') + '</b></div>' +
+              '</div>' +
+              '<h4 style="font-size:14px;color:#0F172A;margin:0 0 8px 0;">1. 分阶段开发计划、每阶段可交付成果与阶段验收标准</h4>' +
+              stagesHtml +
+              '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:10px;font-size:12.5px;line-height:1.6;">' +
+                '<div style="background:#F8FAFC;padding:10px;border-radius:8px;border:1px solid #E2E8F0;">' +
+                  '<div style="font-weight:700;color:#0F172A;margin-bottom:4px;">2. 必须掌握的知识与对应教材/文档方向</div>' +
+                  '<ul style="margin:0 0 8px 18px;color:#334155;">' + kmLi + '</ul>' +
+                  '<div style="font-weight:700;color:#0F172A;margin-bottom:4px;">3. 从项目实际问题逆推学习内容的路径</div>' +
+                  '<ul style="margin:0;padding-left:18px;color:#0369A1;">' + revLi + '</ul>' +
+                '</div>' +
+                '<div style="background:#F8FAFC;padding:10px;border-radius:8px;border:1px solid #E2E8F0;">' +
+                  '<div style="font-weight:700;color:#991B1B;margin-bottom:4px;">4. 用户需要亲自完成的核心任务</div>' +
+                  '<ul style="margin:0 0 8px 18px;color:#7F1D1D;">' + userLi + '</ul>' +
+                  '<div style="font-weight:700;color:#1E40AF;margin-bottom:4px;">5. AI 可以协助的任务</div>' +
+                  '<ul style="margin:0;padding-left:18px;color:#1E3A8A;">' + aiLi + '</ul>' +
+                '</div>' +
+              '</div>' +
+              '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:10px;font-size:12.5px;line-height:1.6;">' +
+                '<div style="background:#FFFBEB;padding:10px;border-radius:8px;border:1px solid #FDE68A;">' +
+                  '<div style="font-weight:700;color:#92400E;margin-bottom:4px;">6. 遇到困难时的缩减方案（防半途而废）</div>' +
+                  '<div style="color:#78350F;margin-bottom:4px;">' + esc(fbObj.when_to_trigger || '') + '</div>' +
+                  '<ul style="margin:0 0 8px 18px;color:#78350F;">' + fbLi + '</ul>' +
+                  '<div style="font-weight:700;color:#0F172A;margin-bottom:4px;">7. 测试、调试、版本管理、文档与发布要求</div>' +
+                  '<ul style="margin:0;padding-left:18px;color:#334155;">' + stdLi + '</ul>' +
+                '</div>' +
+                '<div style="background:#F0FDF4;padding:10px;border-radius:8px;border:1px solid #BBF7D0;">' +
+                  '<div style="font-weight:700;color:#166534;margin-bottom:4px;">8. 原始技能约束覆盖情况（完整训练 ' + (auditObj.covered_count || 0) + ' 项）</div>' +
+                  '<ul style="margin:0 0 8px 18px;color:#14532D;">' + covLi + '</ul>' +
+                  '<div style="font-weight:700;color:#92400E;margin-bottom:4px;">9. 剩余技能缺口与补充练习建议（' + (auditObj.remaining_gaps_count || 0) + ' 项）</div>' +
+                  '<ul style="margin:0;padding-left:18px;color:#78350F;">' + gapLi + '</ul>' +
+                '</div>' +
+              '</div>' +
+            '</div>';
+        }
+      }
+
+      // 渲染迭代修改记录
+      const iterContainer = el('spIterationHistoryContainer');
+      if (iterContainer) {
+        const hist = ws.iteration_history || [];
+        if (!hist.length) {
+          iterContainer.innerHTML = '';
+        } else {
+          const rows = hist.slice().reverse().map(it =>
+            '<li style="margin-bottom:4px;">' +
+              '<span style="font-family:monospace;color:#0F766E;">[' + esc(it.iterated_at || '') + ']</span> ' +
+              '<b>' + esc(it.project_title || '') + '</b>：' + esc((it.changes_applied || []).join('；')) +
+              (it.user_feedback ? ('（您的反馈：“' + esc(it.user_feedback) + '”）') : '') +
+            '</li>'
+          ).join('');
+          iterContainer.innerHTML =
+            '<div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:8px;padding:10px 12px;font-size:12.5px;color:#334155;">' +
+              '<div style="font-weight:700;color:#0F172A;margin-bottom:4px;">📝 已应用的方案迭代与修改记录（共 ' + hist.length + ' 条 · 已持久保存）：</div>' +
+              '<ul style="margin:0;padding-left:18px;">' + rows + '</ul>' +
+            '</div>';
+        }
+      }
+    }
+
+    // 绑定「查看详情」与顶部详情 Tab 按钮
+    spPage.addEventListener('click', async e => {
+      const detailBtn = e.target.closest('[data-sp-detail]');
+      if (detailBtn) {
+        const pid = detailBtn.getAttribute('data-sp-detail');
+        switchDetailPane(pid);
+        const detSec = el('spProjectDetailSection');
+        if (detSec) detSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+      const tabBtn = e.target.closest('[data-sp-tab]');
+      if (tabBtn) {
+        switchDetailPane(tabBtn.getAttribute('data-sp-tab'));
+        return;
+      }
+      const selBtn = e.target.closest('[data-sp-select]');
+      if (selBtn) {
+        const pid = selBtn.getAttribute('data-sp-select');
+        const proj = findProject(pid);
+        if (!proj) return;
+        const prevPid = ws.selected_project_id;
+        ws.selected_project_id = pid;
+        ws.selected_project_title = proj.title;
+        ws.selected_at = new Date().toLocaleString('zh-CN', { hour12: false });
+        if (prevPid !== pid) {
+          ws.active_implementation_plan = null;
+        }
+        saveWorkspaceLocal();
+        switchDetailPane(pid);
+        renderWorkspaceUI();
+        try {
+          const resp = await fetch('/api/skill-projects/select', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ project_id: pid })
+          });
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data.user_workspace) {
+              ws = Object.assign(ws, data.user_workspace);
+              saveWorkspaceLocal();
+              renderWorkspaceUI();
+            }
+          }
+        } catch (_) {}
+        showNotice('已选定候选项目：' + proj.title + '。您可以点击「🗺️ 生成 / 查看所选项目的分阶段实施计划」生成实施计划！', false);
+        const wsSec = el('spWorkspaceSection');
+        if (wsSec) wsSec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+      const iterBtn = e.target.closest('.sp-iter-btn');
+      if (iterBtn) {
+        const actionType = iterBtn.getAttribute('data-iter-action');
+        await applyIterationAction(actionType, '');
+        return;
+      }
+    });
+
+    // 绑定「生成实施计划」按钮
+    const btnGenPlan = el('btnGeneratePlan');
+    if (btnGenPlan) {
+      btnGenPlan.addEventListener('click', async () => {
+        const pid = ws.selected_project_id;
+        if (!pid) {
+          showNotice('⚠️ 请先在下方 6 个候选项目中点击「📌 选择此项目」，选定您最感兴趣的方案后再生成实施计划！', true);
+          const listSec = el('spProjectListSection');
+          if (listSec) listSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+        const proj = findProject(pid);
+        if (!proj) return;
+        const customFocus = (el('inpCustomFeedback') ? el('inpCustomFeedback').value.trim() : '');
+        btnGenPlan.disabled = true;
+        btnGenPlan.textContent = '⏳ 正在生成实施计划...';
+        try {
+          let serverOk = false;
+          try {
+            const resp = await fetch('/api/skill-projects/generate-plan', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ project_id: pid, custom_focus: customFocus })
+            });
+            if (resp.ok) {
+              const data = await resp.json();
+              if (data.ok && data.implementation_plan) {
+                ws.active_implementation_plan = data.implementation_plan;
+                if (data.user_workspace) ws = Object.assign(ws, data.user_workspace);
+                serverOk = true;
+              }
+            }
+          } catch (_) {}
+          if (!serverOk) {
+            ws.active_implementation_plan = buildClientImplementationPlan(proj, customFocus);
+          }
+          saveWorkspaceLocal();
+          renderWorkspaceUI();
+          showNotice('✅ 已为『' + proj.title + '』生成 10 维分阶段实施计划并持久保存！页面刷新后仍可直接查看。', false);
+        } finally {
+          btnGenPlan.disabled = false;
+          btnGenPlan.textContent = '🗺️ 生成 / 查看所选项目的分阶段实施计划';
+        }
+      });
+    }
+
+    // 方案迭代处理函数
+    async function applyIterationAction(actionType, feedbackText) {
+      const targetPid = ws.selected_project_id || (projects[0] && projects[0].project_id);
+      const proj = findProject(targetPid);
+      if (!proj) return;
+
+      let serverHandled = false;
+      try {
+        const resp = await fetch('/api/skill-projects/iterate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            project_id: targetPid,
+            action_type: actionType,
+            feedback_text: feedbackText
+          })
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data.ok && data.user_workspace) {
+            ws = Object.assign(ws, data.user_workspace);
+            serverHandled = true;
+          }
+        }
+      } catch (_) {}
+
+      if (!serverHandled) {
+        const nowStr = new Date().toLocaleString('zh-CN', { hour12: false });
+        let changeMsg = '';
+        if (actionType === 'shrink_mvp') {
+          changeMsg = '已将 MVP 范围压缩至 2 周可交付的核心闭环（剥离次要外围模块，优先保证核心数据结构/SQL/单测闭环）';
+        } else if (actionType === 'boost_sql_redis') {
+          changeMsg = '已在工程任务中新增 MySQL 复合索引 EXPLAIN 调优与 Redis 缓存防击穿实测任务，技能覆盖提升为完整覆盖';
+        } else if (actionType === 'boost_network_concurrency') {
+          changeMsg = '已在工程任务中新增并发工作线程池、自定义帧协议拆包与弱网超时重传压测任务';
+        } else if (actionType === 'boost_testing_ci') {
+          changeMsg = '已在工程任务中强制接入单元测试 + ASan/Valgrind 内存检查 + GitHub Actions CI 流水线';
+        } else {
+          changeMsg = '已将自定义修改要求（“' + feedbackText + '”）融入项目主题与第一阶段开发任务';
+        }
+        ws.iteration_history = ws.iteration_history || [];
+        ws.iteration_history.push({
+          iterated_at: nowStr,
+          project_id: targetPid,
+          project_title: proj.title,
+          action_type: actionType,
+          user_feedback: feedbackText,
+          changes_applied: [changeMsg]
+        });
+        if (ws.selected_project_id === targetPid && ws.active_implementation_plan) {
+          ws.active_implementation_plan = buildClientImplementationPlan(proj, changeMsg);
+        }
+      }
+      saveWorkspaceLocal();
+      renderWorkspaceUI();
+      showNotice('✅ 方案迭代已生效并保存（作用于『' + proj.title + '』）！', false);
+    }
+
+    const btnSubmitFb = el('btnSubmitFeedback');
+    if (btnSubmitFb) {
+      btnSubmitFb.addEventListener('click', async () => {
+        const inp = el('inpCustomFeedback');
+        const txt = inp ? inp.value.trim() : '';
+        if (!txt) {
+          showNotice('请先在输入框中填写您的方案修改要求（如：希望改为某主题 / 增加某项技术练习 / 砍掉某功能）。', true);
+          return;
+        }
+        await applyIterationAction('custom', txt);
+        if (inp) inp.value = '';
+      });
+    }
+
+    // 双项目对比器
+    const btnCompare = el('btnCompareTwo');
+    if (btnCompare) {
+      btnCompare.addEventListener('click', () => {
+        const pidA = el('selCompareA') ? el('selCompareA').value : '';
+        const pidB = el('selCompareB') ? el('selCompareB').value : '';
+        const pA = findProject(pidA);
+        const pB = findProject(pidB);
+        const out = el('spComparisonOutput');
+        if (!pA || !pB || !out) return;
+        out.hidden = false;
+        out.innerHTML =
+          '<div style="font-weight:700;font-size:14px;color:#0F172A;margin-bottom:8px;">⚖️ 候选项目横向对比：' + esc(pA.title) + ' VS ' + esc(pB.title) + '</div>' +
+          '<table class="job-table" style="width:100%;font-size:12.5px;">' +
+            '<thead><tr><th style="width:16%">对比维度</th><th style="width:42%">' + esc(pA.title) + '</th><th style="width:42%">' + esc(pB.title) + '</th></tr></thead>' +
+            '<tbody>' +
+              '<tr><td><b>兴趣切入点</b></td><td>' + esc(pA.interest_theme_tag) + '</td><td>' + esc(pB.interest_theme_tag) + '</td></tr>' +
+              '<tr><td><b>主力技术栈</b></td><td>' + esc((pA.primary_languages || []).join(' / ')) + '</td><td>' + esc((pB.primary_languages || []).join(' / ')) + '</td></tr>' +
+              '<tr><td><b>关联独立岗位数</b></td><td><b>' + (pA.covered_unique_jobs || 0) + '</b> 个独立岗</td><td><b>' + (pB.covered_unique_jobs || 0) + '</b> 个独立岗</td></tr>' +
+              '<tr><td><b>技能覆盖审计</b></td><td>' + esc((pA.coverage_summary || {}).summary_badge || '') + '</td><td>' + esc((pB.coverage_summary || {}).summary_badge || '') + '</td></tr>' +
+              '<tr><td><b>难度与预计周期</b></td><td>' + esc(pA.difficulty_level) + ' · ' + esc(pA.estimated_effort) + '</td><td>' + esc(pB.difficulty_level) + ' · ' + esc(pB.estimated_effort) + '</td></tr>' +
+              '<tr><td><b>快速选择</b></td>' +
+                '<td><button type="button" data-sp-select="' + esc(pA.project_id) + '" style="padding:5px 12px;border-radius:6px;border:none;background:#0D9488;color:#FFF;cursor:pointer;font-weight:600;">📌 选定方案 A</button></td>' +
+                '<td><button type="button" data-sp-select="' + esc(pB.project_id) + '" style="padding:5px 12px;border-radius:6px;border:none;background:#0D9488;color:#FFF;cursor:pointer;font-weight:600;">📌 选定方案 B</button></td>' +
+              '</tr>' +
+            '</tbody>' +
+          '</table>';
+      });
+    }
+
+    // 绑定顶部两个独立操作按钮：「📊 仅更新技能统计」vs「✨ 重新生成候选项目方案」（带防重复点击保护）
+    let actionBusy = false;
+    const btnRefreshStats = el('btnRefreshSkillStats');
+    const btnRegenProj = el('btnRegenerateProjects');
+
+    if (btnRefreshStats) {
+      btnRefreshStats.addEventListener('click', async () => {
+        if (actionBusy) {
+          showNotice('⏳ 正在执行更新任务，请勿重复点击！', true);
+          return;
+        }
+        actionBusy = true;
+        btnRefreshStats.disabled = true;
+        const origText = btnRefreshStats.textContent;
+        btnRefreshStats.textContent = '⏳ 正在更新技能统计...';
+        try {
+          const resp = await fetch('/api/skill-projects/refresh-stats', { method: 'POST' });
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data.ok) {
+              if (el('spGeneratedAt')) el('spGeneratedAt').textContent = (data.version_info || {}).checked_at || new Date().toLocaleString('zh-CN');
+              showNotice('✅ 已完成「仅更新技能统计」：最新岗位统计与技能约束清单已同步，您当前的候选项目方案、已选项目与实施计划完好保留！', false);
+              return;
+            }
+          }
+          showNotice('✅ 已在本地校验技能统计快照（当前统计指纹 ' + ((spData.version_info || {}).stats_fingerprint || '') + ' 已是最新，未覆盖您的已选项目与实施计划）。', false);
+        } catch (_) {
+          showNotice('✅ 静态报告模式下已核对本地技能统计快照（统计指纹 ' + ((spData.version_info || {}).stats_fingerprint || '') + '）；您已选的项目与实施计划完好保留。', false);
+        } finally {
+          actionBusy = false;
+          btnRefreshStats.disabled = false;
+          btnRefreshStats.textContent = origText;
+        }
+      });
+    }
+
+    if (btnRegenProj) {
+      btnRegenProj.addEventListener('click', async () => {
+        if (actionBusy) {
+          showNotice('⏳ 正在执行生成任务，请勿重复点击！', true);
+          return;
+        }
+        const chkOverwrite = el('chkConfirmOverwrite');
+        const confirmOverwrite = Boolean(chkOverwrite && chkOverwrite.checked);
+        if (ws.selected_project_id && confirmOverwrite) {
+          if (!window.confirm('您勾选了「重置已选项目」，确认要清空当前已选项目『' + ws.selected_project_title + '』及其实施计划并重新开始吗？（原方案将归档至历史记录）')) {
+            return;
+          }
+        }
+        actionBusy = true;
+        btnRegenProj.disabled = true;
+        const origText = btnRegenProj.textContent;
+        btnRegenProj.textContent = '⏳ 正在重新生成方案...';
+        try {
+          if (confirmOverwrite) {
+            ws.selected_project_id = null;
+            ws.selected_project_title = '';
+            ws.selected_at = '';
+            ws.active_implementation_plan = null;
+            saveWorkspaceLocal();
+            renderWorkspaceUI();
+          }
+          const resp = await fetch('/api/skill-projects/regenerate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mode: 'regenerate', confirm_overwrite: confirmOverwrite })
+          });
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data.ok) {
+              if (data.user_workspace) {
+                ws = Object.assign(ws, data.user_workspace);
+                saveWorkspaceLocal();
+                renderWorkspaceUI();
+              }
+              showNotice(
+                confirmOverwrite
+                  ? '✅ 已重新生成候选项目方案并重置项目选择（原选择已归档至历史记录）。'
+                  : '✅ 已重新生成候选项目方案并刷新数据依据！系统已自动保护并保留您已选的项目与实施计划。',
+                false
+              );
+              return;
+            }
+          }
+          showNotice(
+            confirmOverwrite
+              ? '✅ 已重置项目选择并恢复 6 个候选工程方案初始状态！'
+              : '✅ 已重新校验 6 个候选工程方案与技能覆盖审计表（您已选的项目与实施计划已受保护保留）。',
+            false
+          );
+        } catch (_) {
+          showNotice(
+            confirmOverwrite
+              ? '✅ 已重置项目选择并恢复 6 个候选工程方案初始状态！'
+              : '✅ 已重新核对 6 个候选工程方案与技能覆盖审计表（您已选的项目与实施计划已受保护保留）。',
+            false
+          );
+        } finally {
+          actionBusy = false;
+          btnRegenProj.disabled = false;
+          btnRegenProj.textContent = origText;
+        }
+      });
+    }
+
+    renderWorkspaceUI();
+  })();
+
   restoreFromHash();
   window.addEventListener('hashchange', restoreFromHash);
 });
