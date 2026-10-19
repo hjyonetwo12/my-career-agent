@@ -1,4 +1,4 @@
-"""飞书群自定义机器人推送模块 — 支持运行统计摘要、高价值岗位、无新增通知、部署状态校验与防重复刷屏。"""
+"""飞书群自定义机器人推送模块 — 支持运行统计摘要、高价值岗位、无新增通知、部署状态与HTTP可达性校验及防重复刷屏。"""
 
 import argparse
 import hashlib
@@ -51,16 +51,29 @@ def _truncate(text: str, max_len: int = _CITY_TRUNCATE_LEN) -> str:
     return s if len(s) <= max_len else s[: max_len] + "…"
 
 
-def _resolve_report_base_url() -> str:
+def _normalize_base_or_page_url(raw_url: str) -> str:
+    """将基础域名或含 /index.html 的完整地址标准化为不带末尾斜杠的基础 URL。"""
+    u = (raw_url or "").strip().rstrip("/")
+    if not u:
+        return ""
+    if u.endswith("/index.html"):
+        u = u[: -len("/index.html")].rstrip("/")
+    return u
+
+
+def _resolve_report_base_url(deployed_url: str = "") -> str:
     """按优先级解析正式报告基础 URL：
-    1. 显式配置的环境变量 REPORT_BASE_URL（如自定义 Cloudflare Pages 或 GitHub Pages 域名）
-    2. GitHub Actions 自动注入的 GITHUB_REPOSITORY（自动推导为 https://<owner>.github.io/<repo>）
-    3. 本地未配置外部域名时返回空字符串，绝不回退任何第三方或原作者硬编码旧域名。
+    1. 部署步骤动态返回的实际地址 deployed_url（或环境变量 DEPLOYED_REPORT_URL）
+    2. 显式配置的环境变量 REPORT_BASE_URL（如自定义 Cloudflare Pages 或 GitHub Pages 域名）
+    3. GitHub Actions 自动注入的 GITHUB_REPOSITORY（自动推导为 https://<owner>.github.io/<repo>）
+    4. 本地未配置外部域名时返回空字符串，绝不回退任何第三方或原作者硬编码旧域名。
     """
-    explicit = (os.environ.get("REPORT_BASE_URL") or "").strip().rstrip("/")
+    dynamic = _normalize_base_or_page_url(deployed_url or os.environ.get("DEPLOYED_REPORT_URL") or "")
+    if dynamic:
+        return dynamic
+
+    explicit = _normalize_base_or_page_url(os.environ.get("REPORT_BASE_URL") or "")
     if explicit:
-        if explicit.endswith("/index.html"):
-            explicit = explicit[: -len("/index.html")].rstrip("/")
         return explicit
 
     gh_repo = (os.environ.get("GITHUB_REPOSITORY") or "").strip().strip("/")
@@ -75,9 +88,9 @@ def _resolve_report_base_url() -> str:
     return ""
 
 
-def _report_url(date_str: str = "", report_version_id: str = "") -> str:
+def _report_url(date_str: str = "", report_version_id: str = "", deployed_url: str = "") -> str:
     """返回完整 HTML 报告链接（带可选版本查询参数防缓存；无有效公开域名时返回空字符串）。"""
-    base = _resolve_report_base_url()
+    base = _resolve_report_base_url(deployed_url=deployed_url)
     if not base:
         return ""
     url = f"{base}/index.html"
@@ -85,6 +98,122 @@ def _report_url(date_str: str = "", report_version_id: str = "") -> str:
     if ver:
         return f"{url}?v={ver}"
     return url
+
+
+def verify_deployed_report_url(
+    url: str,
+    expected_version_id: str = "",
+    timeout: int = 10,
+    retries: int = 4,
+    wait_seconds: float = 4.0,
+) -> dict:
+    """对部署后的在线报告 URL 执行真实 HTTP 状态码与内嵌版本号校验。
+
+    能确认的内容：
+      - 目标网址是否真实返回 HTTP 200（区分正常可访问 vs HTTP 404 未开启 Pages/私有仓库限制 vs 网络超时）；
+      - 返回的 HTML 是否为本项目的校招情报报告（包含 AI校招情报 或 career-agent-report-version 标记）；
+      - 页面内嵌的 report_version_id 是否已同步为本轮最新生成的版本（或 CDN 正在刷新缓存）。
+    不能确认的内容：
+      - 无法代替用户手机端特定运营商网络环境（如校园网/移动数据防火墙）做端到端渲染测试；
+      - 无法在无外网权限的纯离线沙盒中发起公网请求。
+    """
+    target = (url or "").strip()
+    if not target:
+        return {
+            "reachable": False,
+            "status_code": 0,
+            "version_matched": False,
+            "check_status": "no_url",
+            "message": "未配置公开报告域名，跳过在线 HTTP 可达性检查",
+        }
+
+    last_status = 0
+    last_err = ""
+    headers = {
+        "User-Agent": "CareerAgent-DeployVerifier/1.0",
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+    }
+
+    for attempt in range(1, max(1, retries) + 1):
+        try:
+            resp = requests.get(target, headers=headers, timeout=timeout, allow_redirects=True)
+            last_status = resp.status_code
+            if resp.status_code == 200:
+                body_head = resp.text[:15000]
+                is_report_html = (
+                    "career-agent-report-version" in body_head
+                    or "AI校招情报" in body_head
+                    or "window.__REPORT_META" in body_head
+                )
+                if not is_report_html:
+                    return {
+                        "reachable": False,
+                        "status_code": 200,
+                        "version_matched": False,
+                        "check_status": "invalid_content",
+                        "message": "目标网址返回 HTTP 200，但页面内容不是 AI 校招情报报告，请检查部署目录配置",
+                    }
+                if not expected_version_id or expected_version_id in body_head:
+                    return {
+                        "reachable": True,
+                        "status_code": 200,
+                        "version_matched": True,
+                        "check_status": "verified_latest",
+                        "message": f"在线网页已验证可访问 (HTTP 200)，且版本号已确认为最新 ({expected_version_id or 'latest'})",
+                    }
+                # HTTP 200 且是报告，但 CDN 节点可能尚未刷新到最新版本号，等待后重试
+                if attempt < retries and wait_seconds > 0:
+                    time.sleep(wait_seconds)
+                    continue
+                return {
+                    "reachable": True,
+                    "status_code": 200,
+                    "version_matched": False,
+                    "check_status": "verified_live_cdn_caching",
+                    "message": (
+                        f"在线网页已可正常打开 (HTTP 200)，GitHub Pages CDN 正在刷新至最新版本 {expected_version_id}（约 1~2 分钟生效）"
+                    ),
+                }
+
+            if resp.status_code == 404:
+                if attempt < retries and wait_seconds > 0:
+                    time.sleep(wait_seconds)
+                    continue
+                return {
+                    "reachable": False,
+                    "status_code": 404,
+                    "version_matched": False,
+                    "check_status": "http_404_pages_not_enabled",
+                    "message": (
+                        "网页分支 (gh-pages) 已推送，但网址返回 HTTP 404（原因：尚未在 GitHub 仓库 Settings → Pages 中将 Branch 设为 gh-pages，或当前仓库为 Private 私有且账号不支持免费私有 Pages）"
+                    ),
+                }
+
+            if attempt < retries and wait_seconds > 0:
+                time.sleep(wait_seconds)
+                continue
+        except Exception as exc:
+            last_err = job_filters.sanitize_sensitive_text(str(exc))[:120]
+            if attempt < retries and wait_seconds > 0:
+                time.sleep(wait_seconds)
+                continue
+
+    if last_status > 0:
+        return {
+            "reachable": False,
+            "status_code": last_status,
+            "version_matched": False,
+            "check_status": f"http_{last_status}",
+            "message": f"在线报告地址返回 HTTP {last_status}，请检查 GitHub Pages 部署状态与访问权限",
+        }
+    return {
+        "reachable": False,
+        "status_code": 0,
+        "version_matched": False,
+        "check_status": "network_unreachable",
+        "message": f"无法连接在线报告地址（{last_err or '网络超时'}），请检查域名或稍后重试",
+    }
 
 
 def _format_new_job(item: dict) -> list[list[dict]]:
@@ -158,6 +287,8 @@ def _format_run_stats_rows(run_stats: dict) -> list[list[dict]]:
     report_ver = run_stats.get("report_version_id") or ""
     deploy_status = str(run_stats.get("deploy_status") or "").strip().lower()
     pipeline_status = str(run_stats.get("pipeline_status") or "").strip().lower()
+    url_verify_status = str(run_stats.get("url_verify_status") or "").strip().lower()
+    url_verify_msg = str(run_stats.get("url_verify_message") or "").strip()
 
     rows.append([{"tag": "text", "text": "━━━ 运行摘要与阶段状态 ━━━"}])
     rows.append([{"tag": "text", "text": f"⏱️ 运行时间: {started} → {finished}"}])
@@ -187,8 +318,15 @@ def _format_run_stats_rows(run_stats: dict) -> list[list[dict]]:
         alerts.append(
             "❌ 网页部署失败: 本次报告未能发布至 GitHub Pages，为防旧网页冒充新报告已拦截旧链接，请在 GitHub Actions Artifacts 下载最新报告包"
         )
+    elif url_verify_status == "http_404_pages_not_enabled":
+        alerts.append(f"⚠️ 网页未激活 (HTTP 404): {url_verify_msg}")
+    elif url_verify_status in ("invalid_content", "network_unreachable") or url_verify_status.startswith("http_"):
+        alerts.append(f"⚠️ 网页可达性校验提醒: {url_verify_msg}")
     elif deploy_status == "success":
-        alerts.append("✅ 网页部署成功: 最新报告已发布至正式分支并完成版本校验")
+        if url_verify_msg:
+            alerts.append(f"✅ 网页部署成功: {url_verify_msg}")
+        else:
+            alerts.append("✅ 网页部署成功: 最新报告已发布至正式分支并完成版本校验")
 
     if run_stats.get("crawl_failed"):
         alerts.append("⚠️ 抓取异常: 所有企业爬虫均未返回岗位，请检查网络或目标站点状态")
@@ -228,6 +366,12 @@ def _build_payload(
         or report_data.get("deploy_status")
         or ""
     ).strip().lower()
+    deployed_url = str(
+        stats_obj.get("deployed_url")
+        or report_data.get("deployed_url")
+        or ""
+    ).strip()
+    url_verify_status = str(stats_obj.get("url_verify_status") or "").strip().lower()
 
     content_rows: list[list[dict]] = []
     if isinstance(stats_obj, dict) and stats_obj:
@@ -320,25 +464,45 @@ def _build_payload(
     else:
         content_rows.append([{"tag": "text", "text": "  —"}])
 
-    # 段 4：完整报告链接（严格校验部署状态，部署失败时绝不发送旧链接冒充新报告）
+    # 段 4：完整报告直达链接（严格校验部署状态，部署失败或未验证通过时绝不误导）
     content_rows.append([{"tag": "text", "text": ""}])
     if deploy_status in ("failure", "cancelled", "failed"):
         content_rows.append([{
             "tag": "text",
             "text": "⚠️ 本次网页部署失败，已拦截旧版网页链接（请前往 GitHub Actions 下载最新 career-agent-report Artifact 查看）",
         }])
+    elif url_verify_status in ("http_404_pages_not_enabled", "invalid_content", "network_unreachable") or url_verify_status.startswith("http_"):
+        pending_url = _report_url(today, report_version_id=report_version_id, deployed_url=deployed_url)
+        content_rows.append([{
+            "tag": "text",
+            "text": (
+                "⚠️ 在线报告网址尚未就绪（校验未通过，为防打不开暂不标注为已上线）：\n"
+                "   1. 请确认 GitHub 仓库为 Public（或账号具备 GitHub Pro），进入 Settings → Pages；\n"
+                "   2. 在 Build and deployment 下选择 Deploy from a branch，Branch 选 gh-pages 与 / (root) 并点击 Save；\n"
+                f"   3. 保存约 1 分钟后即可点击打开：{pending_url or '未配置域名'}"
+            ),
+        }])
     else:
-        url = _report_url(today, report_version_id=report_version_id)
+        url = _report_url(today, report_version_id=report_version_id, deployed_url=deployed_url)
         if url:
-            link_label = f"完整报告 ({report_version_id})" if report_version_id else "完整报告"
+            link_label = (
+                f"打开最新校招情报 · 完整报告 ({report_version_id})"
+                if report_version_id
+                else "打开最新校招情报 · 完整报告"
+            )
             content_rows.append([
-                {"tag": "text", "text": "📄 "},
+                {"tag": "text", "text": "🌐 "},
                 {"tag": "a", "text": link_label, "href": url},
             ])
+            if report_version_id:
+                content_rows.append([{
+                    "tag": "text",
+                    "text": f"   🔖 版本核对: 打开网页后顶部显示「🔖 版本：{report_version_id}」即为最新报告",
+                }])
         else:
             content_rows.append([{
                 "tag": "text",
-                "text": "📄 本地报告已生成至 reports/index.html（如需飞书跳转在线网页，请配置 REPORT_BASE_URL 或在 GitHub Actions 中启用 GitHub Pages）",
+                "text": "📄 本地报告已生成至 reports/index.html（如需飞书直接打开在线网页，请在 GitHub Actions 中运行并启用 GitHub Pages，或配置 REPORT_BASE_URL）",
             }])
 
     title_ver = f" [{report_version_id}]" if report_version_id else ""
@@ -438,11 +602,13 @@ def send(
 def send_from_workspace(
     deploy_status: str = "",
     pipeline_status: str = "success",
+    deployed_url: str = "",
+    verify_url: bool = False,
     db_path: str | Path | None = None,
     summary_path: str | Path | None = None,
     report_meta_path: str | Path | None = None,
 ) -> bool:
-    """从数据库、运行摘要与报告元数据读取最新状态并推送到飞书（供 CI 部署后独立调用）。"""
+    """从数据库、运行摘要与报告元数据读取最新状态，可选校验在线 URL 可达性后推送到飞书。"""
     import db as db_module
 
     root = Path(__file__).resolve().parent
@@ -468,8 +634,22 @@ def send_from_workspace(
         run_stats["deploy_status"] = deploy_status
     if pipeline_status:
         run_stats["pipeline_status"] = pipeline_status
+    if deployed_url:
+        run_stats["deployed_url"] = deployed_url
     if report_meta.get("report_version_id"):
         run_stats["report_version_id"] = report_meta["report_version_id"]
+
+    scan_date = report_meta.get("scan_date") or date.today().isoformat()
+    ver_id = run_stats.get("report_version_id") or ""
+
+    # 若部署步骤成功且开启了在线 URL 校验，则实际探测目标网页是否返回 HTTP 200
+    if verify_url and str(deploy_status).strip().lower() == "success":
+        target_url = _report_url(scan_date, report_version_id=ver_id, deployed_url=deployed_url)
+        if target_url:
+            check_res = verify_deployed_report_url(target_url, expected_version_id=ver_id)
+            run_stats["url_verify_status"] = check_res["check_status"]
+            run_stats["url_verify_message"] = check_res["message"]
+            logger.info("在线报告可达性校验结果 (%s): %s - %s", target_url, check_res["check_status"], check_res["message"])
 
     all_items = []
     notify_new = []
@@ -487,10 +667,11 @@ def send_from_workspace(
             conn.close()
 
     report_data = {
-        "date": report_meta.get("scan_date") or date.today().isoformat(),
+        "date": scan_date,
         "run_stats": run_stats,
         "report_meta": report_meta,
         "deploy_status": deploy_status,
+        "deployed_url": deployed_url,
     }
     return send(notify_new, all_items, report_data, run_stats=run_stats)
 
@@ -499,6 +680,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Send Feishu notification after report deployment.")
     parser.add_argument("--deploy-status", default="", help="Deployment step outcome (success/failure/skipped)")
     parser.add_argument("--pipeline-status", default="success", help="Pipeline step outcome (success/failure)")
+    parser.add_argument("--deployed-url", default="", help="Actual deployed report URL returned by Pages/hosting")
+    parser.add_argument("--verify-url", action="store_true", help="Verify live HTTP 200 reachability of the report URL before sending")
     parser.add_argument("--db", default="", help="Optional path to jobs.db")
     parser.add_argument("--summary", default="", help="Optional path to latest_run_summary.json")
     parser.add_argument("--report-meta", default="", help="Optional path to report_meta.json")
@@ -507,6 +690,8 @@ def main() -> None:
     send_from_workspace(
         deploy_status=args.deploy_status,
         pipeline_status=args.pipeline_status,
+        deployed_url=args.deployed_url,
+        verify_url=args.verify_url,
         db_path=args.db or None,
         summary_path=args.summary or None,
         report_meta_path=args.report_meta or None,

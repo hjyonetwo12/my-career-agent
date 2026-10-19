@@ -19,6 +19,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
   group: sync-report
@@ -40,11 +41,13 @@ jobs:
         id: run_sync
         env:
           CI: "true"
+          PUBLIC_REPORT_MODE: ${{ vars.PUBLIC_REPORT_MODE || '1' }}
         run: python view_all.py
       - name: Verify generated report integrity
         run: |
           test -s reports/index.html
           test -s reports/report_meta.json
+          touch reports/.nojekyll
       - name: Upload updated report artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -56,6 +59,8 @@ jobs:
             reports/index.html
             reports/report_meta.json
             data/advice_state.json
+            data/skill_projects_state.json
+            data/wlb_community_state.json
       - name: Deploy report to gh-pages
         id: deploy_pages
         uses: peaceiris/actions-gh-pages@v4
@@ -63,15 +68,37 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./reports
           publish_branch: gh-pages
-          keep_files: true
+          keep_files: false
+      - name: Ensure GitHub Pages enabled and resolve deployed URL
+        id: pages_info
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          DEPLOYED_URL=""
+          if command -v gh >/dev/null 2>&1 && [ -n "$GITHUB_REPOSITORY" ]; then
+            if ! gh api "repos/${GITHUB_REPOSITORY}/pages" >/tmp/pages_info.json 2>/dev/null; then
+              gh api -X POST "repos/${GITHUB_REPOSITORY}/pages" \
+                -f "source[branch]=gh-pages" \
+                -f "source[path]=/" >/tmp/pages_info.json 2>/dev/null || true
+            fi
+            if [ -s /tmp/pages_info.json ]; then
+              DEPLOYED_URL="$(python3 -c 'import json,sys; d=json.load(open("/tmp/pages_info.json")); print((d.get("html_url") or "").strip())' 2>/dev/null || true)"
+            fi
+          fi
+          echo "deployed_url=${DEPLOYED_URL}" >> "$GITHUB_OUTPUT"
       - name: Send Feishu notification after sync deployment
         if: always()
         env:
           FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
           REPORT_BASE_URL: ${{ vars.REPORT_BASE_URL }}
+          DEPLOYED_REPORT_URL: ${{ steps.pages_info.outputs.deployed_url }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           DEDUP_FEISHU_PUSH: "1"
         run: |
           python notifier.py \
             --deploy-status "${{ steps.deploy_pages.outcome }}" \
-            --pipeline-status "${{ steps.run_sync.outcome }}"
+            --pipeline-status "${{ steps.run_sync.outcome }}" \
+            --deployed-url "${{ steps.pages_info.outputs.deployed_url }}" \
+            --verify-url

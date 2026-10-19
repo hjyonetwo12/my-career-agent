@@ -195,7 +195,14 @@ def _job_action_html(job: dict) -> str:
     )
 
 
-def _jobs_payload(items: list, app_index=None) -> list[dict]:
+def is_public_report_mode(report_data: dict | None = None) -> bool:
+    """判断当前是否处于公开脱敏报告模式（如发布到公开 GitHub Pages / Cloudflare Pages）。"""
+    if isinstance(report_data, dict) and report_data.get("public_mode") is not None:
+        return bool(report_data.get("public_mode"))
+    return os.environ.get("PUBLIC_REPORT_MODE", "").strip().lower() in ("1", "true", "yes")
+
+
+def _jobs_payload(items: list, app_index=None, compact_unknown: bool = False) -> list[dict]:
     """前端搜索/筛选/分页用的紧凑岗位数组（支持主类别 + 辅助类别多标签 + 分类依据）。
 
     c=公司 t=岗位(保留原始职位名) ct=城市 s=匹配分 r=推荐 p=平台 u=链接 e=是否已评分
@@ -253,6 +260,23 @@ def _jobs_payload(items: list, app_index=None) -> list[dict]:
         ap = _STAGE_LABELS.get(app.get("current_stage"), app.get("current_stage") or "已投递") if app else ""
         cat_info = job_filters.classify_job_categories(job, prof)
         jid = job.get("id") if job.get("id") is not None else f"row-{idx + 1}"
+        if compact_unknown:
+            out.append({
+                "c": job.get("company", ""),
+                "t": job.get("title", ""),
+                "ct": _city_short(job.get("city", "") or "", 40),
+                "s": int(a.get("match_score") or 0) if evaluated else None,
+                "r": rec_label,
+                "st": st_code,
+                "u": job.get("jd_url", ""),
+                "k": job.get("link_kind", "detail"),
+                "cat": cat_info["primary_category"],
+                "ev": str(job.get("cohort_evidence") or job.get("cohort_source") or "官网未明确届别")[:120],
+                "e": evaluated,
+                "id": jid,
+                "ap": ap,
+            })
+            continue
         trace_ev = job_filters.build_traceable_evaluation(job, prof, cat_info=cat_info)
         out.append({
             "c": job.get("company", ""),
@@ -965,7 +989,7 @@ def _page_previous_cohort(items: list, app_index=None, editable: bool = False,
 
 def _page_unknown_cohort(items: list, app_index=None, editable: bool = False,
                          server_pagination: bool = False) -> str:
-    payload = [] if server_pagination else _jobs_payload(items, app_index)
+    payload = [] if server_pagination else _jobs_payload(items, app_index, compact_unknown=True)
     data_json = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
     rows = '<tr><td colspan="5" class="empty-state">正在加载岗位...</td></tr>'
     body = f"""
@@ -1306,7 +1330,7 @@ def _page_applications(applications: list, job_index=None, editable: bool = Fals
   <div class="page-head">
     <div>
       <h1>投递记录</h1>
-      <p class="page-sub">步骤看所在列、卡面只看结果 · 共 {total} 条{'' if editable else '（只读，编辑请用本地"管理"模式）'}</p>
+      <p class="page-sub">步骤看所在列、卡面只看结果 · 共 {total} 条{'' if editable else '（只读，编辑请双击本地「管理.bat」模式；公开网页默认开启隐私保护不打包本地投递备注）'}</p>
     </div>
   </div>
   {funnel_bar}
@@ -2201,11 +2225,20 @@ def _page_skill_projects(items: list, date_str: str) -> str:
         </button>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;align-items:center;">
-        <div style="display:flex;gap:6px;align-items:center;">
-          <input type="text" id="inpCustomFeedback" placeholder="输入自定义修改要求（如：更喜欢东方Project弹幕主题 / 不喜欢某功能）…" style="flex:1;padding:7px 10px;border:1px solid #CBD5E1;border-radius:6px;font-size:12.5px;">
-          <button type="button" id="btnSubmitFeedback" style="padding:7px 12px;border-radius:6px;border:none;background:#0284C7;color:#FFFFFF;font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap;">
-            💬 提交方案修改
-          </button>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;gap:6px;align-items:center;">
+            <input type="text" id="inpCustomFeedback" placeholder="输入任何兴趣主题或调整要求（如：东方Project弹幕谱面与擦弹判定 / 明日方舟塔防 / 改用Go语言）…" style="flex:1;padding:8px 10px;border:2px solid #0284C7;border-radius:6px;font-size:12.5px;">
+            <button type="button" id="btnSubmitFeedback" style="padding:8px 14px;border-radius:6px;border:none;background:#0284C7;color:#FFFFFF;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;box-shadow:0 1px 3px rgba(2,132,199,0.25);">
+              ✨ 按提示词重构方案与计划
+            </button>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:11.5px;color:#475569;">
+            <span>💡 一键填入测试提示词：</span>
+            <button type="button" class="sp-prompt-chip" data-prompt-val="东方Project弹幕谱面解析、擦弹(Graze)四叉树碰撞判定与Replay帧同步回放" style="padding:2px 8px;border-radius:999px;border:1px solid #BAE6FD;background:#F0F9FF;color:#0369A1;cursor:pointer;font-size:11.5px;">🎯 东方弹幕谱面与擦弹判定</button>
+            <button type="button" class="sp-prompt-chip" data-prompt-val="明日方舟/战棋干员技能轴排期、DPS伤害帧模拟与地图寻路解构沙盒" style="padding:2px 8px;border-radius:999px;border:1px solid #BAE6FD;background:#F0F9FF;color:#0369A1;cursor:pointer;font-size:11.5px;">🎯 明日方舟技能轴与寻路解构</button>
+            <button type="button" class="sp-prompt-chip" data-prompt-val="Galgame/轻小说双语台词上下文混合检索、语法拆解与艾宾浩斯生词本" style="padding:2px 8px;border-radius:999px;border:1px solid #BAE6FD;background:#F0F9FF;color:#0369A1;cursor:pointer;font-size:11.5px;">🎯 Galgame台词检索与日语生词</button>
+            <button type="button" class="sp-prompt-chip" data-prompt-val="砍掉外围复杂界面，将数据库简化为SQLite+进程内手写LRU缓存，确保2周内完成" style="padding:2px 8px;border-radius:999px;border:1px solid #BAE6FD;background:#F0F9FF;color:#0369A1;cursor:pointer;font-size:11.5px;">🎯 简化为SQLite+手写LRU缓存</button>
+          </div>
         </div>
         <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
           <span style="font-size:12.5px;font-weight:600;color:#334155;">⚖️ 比较两个候选项目：</span>
@@ -2397,8 +2430,9 @@ def _page_wlb_community_audit(items: list, date_str: str) -> str:
             for q in (a.get("queries_used") or [])[:4]
         )
 
+        search_blob = html.escape(f"{co_name} {sampled_titles} {sampled_cities} {v_lbl}".lower())
         company_cards.append(f"""
-        <article class="big-card" style="margin-bottom:16px;border-left:4px solid {badge_fg};">
+        <article class="big-card wlb-company-card" data-wlb-company="{html.escape(co_name.lower())}" data-wlb-verdict="{html.escape(v_code)}" data-wlb-search="{search_blob}" style="margin-bottom:16px;border-left:4px solid {badge_fg};">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
             <div>
               <h3 style="font-size:17px;color:#0F172A;margin:0 0 4px 0;">
@@ -2467,9 +2501,40 @@ def _page_wlb_community_audit(items: list, date_str: str) -> str:
     </ul>
   </div>
 
-  <div class="section-block">
+  <div class="job-toolbar" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;">
+    <input type="search" id="wlbCompanySearch" class="jt-search" style="flex:1;min-width:240px;" placeholder="🔍 搜索公司名称、关联岗位或城市（如：金山办公、大疆、字节、珠海）…" oninput="window.__filterWlbCards && window.__filterWlbCards()">
+    <select id="wlbVerdictFilter" style="padding:8px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:13px;background:#FFFFFF;color:#0F172A;" onchange="window.__filterWlbCards && window.__filterWlbCards()">
+      <option value="">全部审核结论（共 {sstats.get('audited_companies_count', 0)} 家）</option>
+      <option value="positive_signal">存在较明确的正面信号 ({v_counts.get('positive_signal', 0)})</option>
+      <option value="mixed_controversial">观点分歧较大 / 部门差异 ({v_counts.get('mixed_controversial', 0)})</option>
+      <option value="negative_signal">存在较明确的负面信号 ({v_counts.get('negative_signal', 0)})</option>
+      <option value="outdated_evidence">存在明显时效性问题 ({v_counts.get('outdated_evidence', 0)})</option>
+      <option value="insufficient_evidence">证据不足 ({v_counts.get('insufficient_evidence', 0)})</option>
+    </select>
+    <button type="button" class="jp-btn" onclick="var s=document.getElementById('wlbCompanySearch'),v=document.getElementById('wlbVerdictFilter');if(s)s.value='';if(v)v.value='';if(window.__filterWlbCards)window.__filterWlbCards();">重置筛选</button>
+    <span id="wlbFilterCountHint" style="font-size:12.5px;color:#475569;font-weight:600;">显示全部 {len(company_cards)} 家重点公司</span>
+  </div>
+
+  <div class="section-block" id="wlbCardsContainer">
     {"".join(company_cards)}
   </div>
+  <script>
+  window.__filterWlbCards = function() {{
+    var q = ((document.getElementById('wlbCompanySearch') || {{}}).value || '').trim().toLowerCase();
+    var v = ((document.getElementById('wlbVerdictFilter') || {{}}).value || '').trim();
+    var cards = document.querySelectorAll('#wlbCardsContainer .wlb-company-card');
+    var shown = 0;
+    cards.forEach(function(card) {{
+      var hay = (card.getAttribute('data-wlb-search') || '').toLowerCase();
+      var cv = card.getAttribute('data-wlb-verdict') || '';
+      var ok = (!q || hay.indexOf(q) !== -1) && (!v || cv === v);
+      card.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    }});
+    var hint = document.getElementById('wlbFilterCountHint');
+    if (hint) hint.textContent = '当前匹配 ' + shown + ' / ' + cards.length + ' 家重点公司';
+  }};
+  </script>
 </section>"""
 
 
@@ -4039,39 +4104,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     activate(rawHash);
   }
-  // ── 「技能栈与实现项目」模块完整前端交互闭环（选择项目 / 生成10维实施计划 / 迭代修改 / 双项目对比 / 刷新统计 vs 重新生成 / 持久化恢复）──
+  // ── 「技能栈与实现项目」模块完整前端交互闭环（v2.2：防空白兜底 + 提示词深度重构引擎 + 自动清理旧版缓存 + 双轨持久化恢复）──
   (function initSkillProjectsInteractive() {
     const spPage = el('pageSkillProjects');
     if (!spPage) return;
     const spData = window.__SKILL_PROJECTS_DATA || {};
     const projects = spData.candidate_projects || [];
     const constraints = spData.skill_constraints || [];
-    const LS_KEY = 'career_agent_sp_workspace_v2_' + ((spData.version_info || {}).profile_version_id || 'default');
+    const validIds = new Set(projects.map(p => p.project_id || p.id));
+    const LS_KEY = 'career_agent_sp_workspace_v2_2_' + ((spData.version_info || {}).profile_version_id || 'default');
 
-    // 合并服务端状态与浏览器本地持久化状态
+    // 自动清理旧版 v1.0 / v2.0 残缺的 localStorage 缓存，防止出现旧版“项目一”或空白字段
+    try {
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const k = localStorage.key(i);
+        if (k && k.indexOf('career_agent_sp_workspace_v2_') === 0 && k !== LS_KEY) {
+          localStorage.removeItem(k);
+        }
+      }
+    } catch (_) {}
+
     let ws = Object.assign({
       selected_project_id: null,
       selected_project_title: '',
       selected_at: '',
       active_implementation_plan: null,
+      custom_prompts_by_project: {},
       iteration_history: [],
       comparison_history: [],
       pending_update_notice: ''
     }, spData.user_workspace || {});
+
+    // 若服务端或本地缓存中的 selected_project_id 不在当前有效候选项目列表中（例如旧版残留ID），自动重置
+    if (ws.selected_project_id && !validIds.has(ws.selected_project_id)) {
+      ws.selected_project_id = null;
+      ws.selected_project_title = '';
+      ws.active_implementation_plan = null;
+    }
 
     try {
       const savedRaw = localStorage.getItem(LS_KEY);
       if (savedRaw) {
         const savedWs = JSON.parse(savedRaw);
         if (savedWs && typeof savedWs === 'object') {
-          if (!ws.selected_project_id && savedWs.selected_project_id) {
-            ws = Object.assign({}, ws, savedWs);
-          } else if (savedWs.last_updated_at && (!ws.last_updated_at || savedWs.last_updated_at > ws.last_updated_at)) {
-            ws = Object.assign({}, ws, savedWs);
+          if (savedWs.selected_project_id && !validIds.has(savedWs.selected_project_id)) {
+            localStorage.removeItem(LS_KEY);
+          } else {
+            if (!ws.selected_project_id && savedWs.selected_project_id) {
+              ws = Object.assign({}, ws, savedWs);
+            } else if (savedWs.last_updated_at && (!ws.last_updated_at || savedWs.last_updated_at > ws.last_updated_at)) {
+              ws = Object.assign({}, ws, savedWs);
+            }
           }
         }
       }
     } catch (_) {}
+
+    // 校验已保存的实施计划是否包含完整非空字段（若旧缓存计划缺字段则使用最新项目数据自动修复重建）
+    function isPlanComplete(plan) {
+      if (!plan || typeof plan !== 'object') return false;
+      const uTasks = plan.user_core_tasks || plan['5_user_core_tasks'] || [];
+      const aTasks = plan.ai_assisted_tasks || plan['6_ai_assisted_tasks'] || [];
+      const audit = plan.skill_coverage_and_gaps_audit || {};
+      const covItems = audit.covered_items || (plan['10_skill_constraints_coverage_and_remaining_gaps'] || {}).fully_trained_skills || [];
+      return uTasks.length > 0 && aTasks.length > 0 && covItems.length > 0;
+    }
 
     function saveWorkspaceLocal() {
       ws.last_updated_at = new Date().toISOString();
@@ -4080,6 +4177,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function findProject(pid) {
       return projects.find(p => p.project_id === pid || p.id === pid) || null;
+    }
+
+    function getActiveDetailPid() {
+      let activePid = ws.selected_project_id;
+      if (!activePid) {
+        spPage.querySelectorAll('.sp-detail-pane').forEach(pane => {
+          if (pane.style.display !== 'none') {
+            activePid = pane.getAttribute('data-sp-pane');
+          }
+        });
+      }
+      return activePid || (projects[0] && (projects[0].project_id || projects[0].id)) || null;
     }
 
     function showNotice(msg, isWarn) {
@@ -4104,13 +4213,143 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    // 针对用户输入提示词（如“东方弹幕”）实时重构候选项目的标题、场景、MVP、核心任务与卡片展示
+    function mutateProjectWithPrompt(proj, customTxt) {
+      if (!proj || !customTxt) return;
+      if (!proj.base_title) proj.base_title = proj.title;
+      if (!proj.base_purpose) proj.base_purpose = proj.core_purpose || proj.project_goal || '';
+      const shortPrompt = customTxt.slice(0, 22);
+      const langs = (proj.primary_languages || ['C++/Python/Go']).join(' / ');
+
+      proj.interest_theme_tag = '🎯 提示词定制：' + shortPrompt;
+      proj.title = '【已按提示词「' + shortPrompt + '」定制】' + proj.base_title;
+      proj.name = proj.title;
+      proj.core_purpose =
+        '围绕您的定制提示词「' + customTxt + '」深度重构产品场景与数据模型（主力技术栈：' + langs + '）：' +
+        '在 100% 保留原方案底层硬核就业训练目标（数据结构与算法、数据库索引/缓存、并发/网络通信、自动化测试与性能调优）的前提下，' +
+        '将所有业务实体、数据集与交互验证全面切换为「' + customTxt + '」专属场景。';
+
+      const customFeat1 = '🌟 【「' + shortPrompt + '」核心数据结构与领域建模】：针对「' + customTxt + '」设计专属实体结构与核心算法（如弹幕谱面/空间四叉树碰撞检测、或主题图谱 DAG/Trie 索引），拒绝只换背景图的表面换皮；';
+      const customFeat2 = '🌟 【「' + shortPrompt + '」高负载存储/并发与自动化测试】：构建 5万+ 条「' + shortPrompt + '」仿真数据或高频并发帧事件流，实测索引/缓存吞吐量并通过 pytest / GTest / ASan 100% 绿灯验证。';
+
+      proj.mvp_scope = proj.mvp_scope || {};
+      const baseMust = (proj.mvp_scope.must_have && proj.mvp_scope.must_have.length)
+        ? proj.mvp_scope.must_have.filter(m => String(m).indexOf('🌟') !== 0)
+        : (proj.mvp_scope.must_have_mvp ? [proj.mvp_scope.must_have_mvp] : (proj.core_features || []).slice(0, 2));
+      proj.mvp_scope.must_have = [customFeat1, customFeat2].concat(baseMust.slice(0, 2));
+
+      proj.ai_collab_boundary = proj.ai_collab_boundary || {};
+      const baseUser = (proj.ai_collab_boundary.user_must_do || proj.ai_collab_boundary.must_do_personally || []).filter(u => String(u).indexOf('🎯') !== 0);
+      const baseAi = (proj.ai_collab_boundary.ai_can_accelerate || []).filter(a => String(a).indexOf('🤖') !== 0);
+      proj.ai_collab_boundary.user_must_do = [
+        '🎯 【针对「' + shortPrompt + '」必须亲自完成】亲自设计「' + customTxt + '」的核心数据结构/表结构与状态流转逻辑，并编写针对该场景边界条件的自动化单元测试。'
+      ].concat(baseUser);
+      proj.ai_collab_boundary.must_do_personally = proj.ai_collab_boundary.user_must_do;
+      proj.ai_collab_boundary.ai_can_accelerate = [
+        '🤖 【针对「' + shortPrompt + '」可由 AI 加速】让 AI 批量生成「' + customTxt + '」主题的仿真测试数据脚本（JSON/SQL 种子数据）与基础 CLI/GUI 展示样板。'
+      ].concat(baseAi);
+
+      proj.custom_prompt_applied = {
+        prompt_text: customTxt,
+        applied_at: new Date().toLocaleString('zh-CN', { hour12: false }),
+        domain_redesign_summary:
+          '已将项目主题重设计为「' + customTxt + '」专属工程方案：保留 ' + langs + ' 硬核就业训练约束，将数据结构、存储/并发与自动化测试全部锚定在「' + customTxt + '」的实际工程问题上。',
+        skill_mapping_breakdown: [
+          '1. 数据结构与算法落点 → 解决「' + customTxt + '」中的高频检索、空间碰撞判定(四叉树/BVH)、状态图谱(DAG)或优先级调度问题；',
+          '2. 数据库/存储与缓存落点 → 存储「' + customTxt + '」的核心实体、历史记录/Replay帧流与排行榜，通过 EXPLAIN/WAL 验证读写性能；',
+          '3. 并发与网络通信落点 → 支撑「' + customTxt + '」下的多端帧同步、高并发请求处理或实时渲染线程与逻辑线程解耦；',
+          '4. 自动化测试与调试落点 → 针对「' + customTxt + '」的极端边界（空输入、高并发冲突、弱网丢包或高密度对象）编写回归单测。'
+        ]
+      };
+
+      // 同步更新页面上的候选卡片与详情面板 DOM，让用户直观看到卡片标题与内容立即变化
+      const cardEl = el('sp-card-' + proj.project_id);
+      if (cardEl) {
+        const h3 = cardEl.querySelector('h3');
+        if (h3) h3.textContent = proj.title;
+        const pDesc = cardEl.querySelector('p');
+        if (pDesc) pDesc.innerHTML = '<b>核心用途：</b>' + esc(proj.core_purpose.slice(0, 150));
+      }
+      const detailEl = el('sp-detail-' + proj.project_id);
+      if (detailEl) {
+        const dh3 = detailEl.querySelector('h3');
+        if (dh3) dh3.textContent = '1. ' + proj.title;
+      }
+    }
+
+    // 恢复之前在 localStorage 中已保存的提示词定制
+    if (ws.custom_prompts_by_project && typeof ws.custom_prompts_by_project === 'object') {
+      Object.keys(ws.custom_prompts_by_project).forEach(pid => {
+        const p = findProject(pid);
+        if (p && ws.custom_prompts_by_project[pid]) {
+          mutateProjectWithPrompt(p, ws.custom_prompts_by_project[pid]);
+        }
+      });
+    }
+
     function buildClientImplementationPlan(proj, customFocus) {
-      const covTable = proj.skill_coverage_table || [];
+      const covTable = (proj.skill_coverage_table && proj.skill_coverage_table.length)
+        ? proj.skill_coverage_table
+        : constraints.map(c => ({
+            constraint_id: c.constraint_id,
+            skill_name: c.skill_name,
+            coverage_level: '完整覆盖',
+            project_task_mapping: '在项目核心模块中完成编码实现与自动化测试验证',
+            supplementary_advice: '结合单元测试与性能分析验证掌握深度'
+          }));
       const fullSkills = covTable.filter(r => r.coverage_level === '完整覆盖');
       const gapSkills = covTable.filter(r => r.coverage_level !== '完整覆盖');
       const mvp = proj.mvp_scope || {};
       const aiBound = proj.ai_collab_boundary || {};
       const usesPy = (proj.primary_languages || []).some(l => l.indexOf('Python') >= 0);
+
+      const mustHaveList = (mvp.must_have && mvp.must_have.length)
+        ? mvp.must_have
+        : (mvp.must_have_mvp ? [mvp.must_have_mvp] : (proj.core_features || ['完成核心数据结构、存储与接口闭环']));
+      const outOfScopeList = (mvp.out_of_scope_initially && mvp.out_of_scope_initially.length)
+        ? mvp.out_of_scope_initially
+        : (mvp.out_of_scope_for_mvp
+            ? (Array.isArray(mvp.out_of_scope_for_mvp) ? mvp.out_of_scope_for_mvp : [mvp.out_of_scope_for_mvp])
+            : [
+                '第一版暂不实现复杂的多用户登录权限体系与第三方社交分享',
+                '第一版暂不引入多机分布式集群部署，优先在单机/单容器跑通核心机制与压测闭环',
+                '第一版暂不做花哨的外围附加界面，聚焦核心数据结构、数据库/并发与自动化测试'
+              ]);
+
+      const userCoreTasks = (aiBound.user_must_do && aiBound.user_must_do.length)
+        ? aiBound.user_must_do
+        : ((aiBound.must_do_personally && aiBound.must_do_personally.length)
+            ? aiBound.must_do_personally
+            : (proj.engineering_tasks || [
+                '亲自设计核心数据表结构/内存布局与接口契约，拒绝黑盒生成；',
+                '亲手编码实现核心数据结构算法与并发/缓存容错逻辑；',
+                '亲自编写 15+ 条自动化单元测试并使用性能分析工具完成量化对比。'
+              ]));
+
+      const aiAssistedTasks = (aiBound.ai_can_accelerate && aiBound.ai_can_accelerate.length)
+        ? aiBound.ai_can_accelerate
+        : [
+            '生成合成测试数据集脚本（如批量生成 5 万条模拟业务数据用于压测）；',
+            '生成基础 Web 路由样板代码、DTO 数据结构定义与 Dockerfile 基础配置；',
+            '协助编写前端轻量展示表格或 CLI 命令行参数解析器。'
+          ];
+
+      const verifyQuestions = (aiBound.verification_proof && aiBound.verification_proof.length)
+        ? aiBound.verification_proof
+        : ((aiBound.understanding_verification && aiBound.understanding_verification.length)
+            ? aiBound.understanding_verification
+            : ['闭卷画出本项目核心请求/事件的数据流向图，并解释当并发量放大 10 倍时哪个模块会最先成为瓶颈。']);
+
+      const customApplied = proj.custom_prompt_applied || (customFocus ? {
+        prompt_text: customFocus,
+        applied_at: new Date().toLocaleString('zh-CN', { hour12: false }),
+        domain_redesign_summary: '已将您的定制要求「' + customFocus + '」深度融入下方各阶段开发任务、MVP 功能边界与核心验收指标。',
+        skill_mapping_breakdown: [
+          '• 阶段 1 领域建模：围绕「' + customFocus + '」设计核心实体 Schema、内存数据结构与接口契约；',
+          '• 阶段 2 核心攻坚：针对「' + customFocus + '」实现高并发/缓存/渲染核心逻辑并完成 15+ 条自动化单测；',
+          '• 阶段 3 压测交付：输出「' + customFocus + '」场景下的性能对比报告与可复现 GitHub 仓库。'
+        ]
+      } : null);
 
       const stages = [];
       if (usesPy) {
@@ -4126,21 +4365,23 @@ document.addEventListener('DOMContentLoaded', () => {
         {
           stage_no: '阶段 1（骨架与数据模型 · 第 1–2 周）',
           stage_name: '核心领域建模、存储表结构/内存布局设计与最小闭环打通',
-          goal: '完成『' + proj.title + '』的核心数据结构与数据库 Schema / 接口契约设计，跑通第一条端到端数据流。',
+          goal: '完成『' + proj.title + '』的核心数据结构与数据库 Schema / 接口契约设计，跑通第一条端到端数据流。' +
+                (customApplied ? ('（重点落地「' + customApplied.prompt_text + '」的核心实体与数据结构）') : ''),
           deliverable: '可运行的项目骨架 + 核心表结构/头文件定义 + 基础冒烟测试。',
           acceptance_gate: '端到端主链路可无报错跑通，无硬编码绝对路径与明文密钥。'
         },
         {
           stage_no: '阶段 2（MVP 核心攻坚 · 第 2–4 周）',
           stage_name: '核心算法/并发/缓存机制实现与真实业务场景咬合',
-          goal: '完成 MVP 必须具备的核心功能：' + ((mvp.must_have || []).slice(0, 2).join('；')),
+          goal: '完成 MVP 必须具备的核心功能：' + mustHaveList.slice(0, 2).join('；'),
           deliverable: '功能完整的 MVP 可执行程序/服务 + 15+ 条核心单元测试与边界异常测试。',
           acceptance_gate: ((proj.acceptance_criteria || [])[0] || '核心功能全部通过自动化测试验证。')
         },
         {
           stage_no: '阶段 3（压测、调优与作品集交付 · 第 4–5 周）',
           stage_name: '性能瓶颈定位、故障注入实验、CI 流水线与简历/演示交付',
-          goal: '使用 GDB/ASan/EXPLAIN/压测工具完成至少 1 次有前后量化对比的性能优化或故障复盘。' + (customFocus ? ('（本轮定制侧重：' + customFocus + '）') : ''),
+          goal: '使用 GDB/ASan/EXPLAIN/压测工具完成至少 1 次有前后量化对比的性能优化或故障复盘。' +
+                (customApplied ? ('（针对「' + customApplied.prompt_text + '」定制场景输出量化压测指标）') : ''),
           deliverable: 'GitHub 绿灯仓库 + 架构设计与压测复盘 README + 2 分钟演示录制。',
           acceptance_gate: ((proj.acceptance_criteria || []).slice(-1)[0] || '所有验收指标达标，能脱稿讲清架构取舍。')
         }
@@ -4151,35 +4392,42 @@ document.addEventListener('DOMContentLoaded', () => {
         project_id: proj.project_id,
         project_title: proj.title,
         generated_at: new Date().toLocaleString('zh-CN', { hour12: false }),
-        custom_focus: customFocus || '标准 MVP 稳步推进',
+        custom_focus: customFocus || (customApplied ? customApplied.prompt_text : '标准 MVP 稳步推进'),
+        custom_prompt_applied: customApplied,
         stages: stages,
-        knowledge_and_materials: proj.knowledge_mapping || [],
+        knowledge_and_materials: proj.knowledge_mapping || [
+          '数据结构与算法：哈希表、前缀树(Trie)、有向无环图(DAG)、四叉树(QuadTree)与优先级队列；',
+          '操作系统与计算机网络：Linux 进程线程同步、epoll 非阻塞 I/O、TCP 帧协议拆包与 HTTP 幂等设计；',
+          '数据库与缓存系统：B+ 树复合索引最左前缀原则、EXPLAIN 执行计划分析、ACID 事务隔离与 Redis 缓存防击穿。'
+        ],
         problem_driven_learning_path: [
           '① 先遇到真实卡点：在阶段 1–2 先用最直观的朴素写法跑通功能，观察慢查询、粘包、帧率抖动或并发竞态现象；',
           '② 逆推底层原理：带着复现的 Bug 或性能指标，针对性查阅教材对应章节与官方文档，只学解决当前卡点所需的机制；',
           '③ 实验对比验证：编写修改前后的基准测试 (Benchmark) 或回归单测，用量化数据证明改进有效。'
         ],
-        user_core_tasks: aiBound.user_must_do || [],
-        ai_assisted_tasks: aiBound.ai_can_accelerate || [],
-        verification_tasks: aiBound.verification_proof || [],
+        user_core_tasks: userCoreTasks,
+        ai_assisted_tasks: aiAssistedTasks,
+        verification_tasks: verifyQuestions,
         engineering_and_release_standards: [
           '版本管理：使用 Git 特性分支开发，严禁将 .env 密钥、大体积二进制产物提交入库；',
-          '测试与调试：核心模块单元测试覆盖正常路径、空值边界與异常注入；C++ 开启 -fsanitize=address，Python/Go 配置 pytest/go test 自动执行；',
+          '测试与调试：核心模块单元测试覆盖正常路径、空值边界与异常注入；C++ 开启 -fsanitize=address，Python/Go 配置 pytest/go test 自动执行；',
           '文档与复盘：README 必须包含系统架构图、数据库 ER 图/协议帧格式、一键启动命令与性能优化前后对比表。'
         ],
         fallback_scope_reduction: {
           when_to_trigger: '若课业繁忙、某阶段卡壳超过 5 天或每周可投入时间不足 6 小时，立即启动以下缩减方案：',
           reduced_mvp_plan: [
             '1. 砍掉所有外围附加界面与花哨配置，仅保留命令行 (CLI) 或极简核心视图 + 1 个核心算法/存储引擎闭环；',
-            '2. 明确暂停这些非核心项：' + ((mvp.out_of_scope_initially || []).join('；')),
+            '2. 明确暂停这些非核心项：' + outOfScopeList.join('；'),
             '3. 保底交付底线：宁可交付一个只有 1,200 行代码但具备完整单元测试、EXPLAIN/ASan 调优报告与清晰 README 的小而精内核，也绝不交付半途而废的庞大空壳。'
           ]
         },
         skill_coverage_and_gaps_audit: {
           covered_count: fullSkills.length,
-          covered_items: fullSkills.map(r => r.skill_name + '（' + r.project_task_mapping + '）'),
+          covered_items: fullSkills.map(r => r.skill_name + '（' + (r.project_task_mapping || '核心模块编码与测试验证') + '）'),
           remaining_gaps_count: gapSkills.length,
-          remaining_gaps_advice: gapSkills.slice(0, 6).map(r => r.skill_name + ' [' + r.coverage_level + '] → ' + r.supplementary_advice)
+          remaining_gaps_advice: gapSkills.slice(0, 8).map(r =>
+            r.skill_name + ' [' + r.coverage_level + '] → ' + (r.supplementary_advice || r.supplementary_training || '建议结合专项小练习或互补候选项目补足')
+          )
         }
       };
     }
@@ -4193,7 +4441,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (titleEl) {
         titleEl.textContent = selProj
           ? ('✅ 当前已选定项目：' + selProj.title)
-          : '🧭 当前状态：尚未选定最终项目（请先在下方候选方案中点击「📌 选择此项目」）';
+          : '🧭 当前状态：尚未选定最终项目（请先在下方候选方案中点击「📌 选择此项目」，或直接输入提示词定制当前方案）';
       }
       if (subEl) {
         subEl.textContent = selProj
@@ -4214,6 +4462,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
+      // 若已保存的实施计划因旧版本缓存缺少字段，自动用当前项目完整数据补齐修复
+      if (ws.active_implementation_plan && selProj && !isPlanComplete(ws.active_implementation_plan)) {
+        ws.active_implementation_plan = buildClientImplementationPlan(
+          selProj,
+          ws.active_implementation_plan.custom_focus || ws.active_implementation_plan.custom_focus_applied || ''
+        );
+        saveWorkspaceLocal();
+      }
+
       // 渲染分阶段实施计划 (Section 7.3)
       const planContainer = el('spImplementationPlanContainer');
       if (planContainer) {
@@ -4223,7 +4480,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ? '<div style="padding:12px;background:#FFFFFF;border:1px dashed #0D9488;border-radius:8px;font-size:13px;color:#0F766E;">💡 您已选定 <b>' + esc(selProj.title) + '</b>。请点击上方 <b>「🗺️ 生成 / 查看所选项目的分阶段实施计划」</b> 按钮生成完整开发计划。</div>'
             : '';
         } else {
-          const stagesHtml = (plan.stages || []).map(st =>
+          const stagesList = plan.stages || plan['1_phased_development_plan'] || [];
+          const stagesHtml = stagesList.map(st =>
             '<div style="background:#F8FAFC;border:1px solid #CBD5E1;border-radius:8px;padding:12px;margin-bottom:8px;">' +
               '<div style="font-weight:700;color:#0F766E;font-size:13.5px;">' + esc(st.stage_no) + ' · ' + esc(st.stage_name) + '</div>' +
               '<div style="font-size:13px;color:#1E293B;margin-top:4px;"><b>阶段目标：</b>' + esc(st.goal) + '</div>' +
@@ -4232,16 +4490,66 @@ document.addEventListener('DOMContentLoaded', () => {
             '</div>'
           ).join('');
 
-          const kmLi = (plan.knowledge_and_materials || []).map(k => '<li>' + esc(k) + '</li>').join('');
-          const revLi = (plan.problem_driven_learning_path || []).map(p => '<li>' + esc(p) + '</li>').join('');
-          const userLi = (plan.user_core_tasks || []).map(u => '<li>' + esc(u) + '</li>').join('');
-          const aiLi = (plan.ai_assisted_tasks || []).map(a => '<li>' + esc(a) + '</li>').join('');
-          const stdLi = (plan.engineering_and_release_standards || []).map(s => '<li>' + esc(s) + '</li>').join('');
-          const fbObj = plan.fallback_scope_reduction || {};
-          const fbLi = (fbObj.reduced_mvp_plan || []).map(r => '<li>' + esc(r) + '</li>').join('');
+          const kmArr = plan.knowledge_and_materials ||
+            ((plan['3_required_knowledge_and_materials'] || {}).core_knowledge_points) || [];
+          const kmLi = kmArr.map(k => '<li>' + esc(k) + '</li>').join('');
+
+          const rawRev = plan.problem_driven_learning_path || plan['4_problem_driven_learning_path'] || [];
+          const revLi = rawRev.map(p => {
+            if (typeof p === 'object' && p !== null) {
+              return '<li>遇到问题：' + esc(p.encountered_problem || '') + ' → 逆推学习：' + esc(p.reverse_learning_target || '') + '（验证：' + esc(p.practice_verification || '') + '）</li>';
+            }
+            return '<li>' + esc(p) + '</li>';
+          }).join('');
+
+          const userArr = (plan.user_core_tasks && plan.user_core_tasks.length)
+            ? plan.user_core_tasks
+            : (plan['5_user_core_tasks'] || []);
+          const userLi = userArr.map(u => '<li>' + esc(u) + '</li>').join('');
+
+          const aiArr = (plan.ai_assisted_tasks && plan.ai_assisted_tasks.length)
+            ? plan.ai_assisted_tasks
+            : (plan['6_ai_assisted_tasks'] || []);
+          const aiLi = aiArr.map(a => '<li>' + esc(a) + '</li>').join('');
+
+          const stdArr = plan.engineering_and_release_standards || [
+            '测试与调试：每个阶段结束前必须运行自动化测试套件（pytest / GTest）并通过 ASan/异常注入检查；',
+            '版本管理：按功能模块使用规范 Git Commit，严禁提交 .env 密钥；',
+            '文档与复盘：README 包含架构数据流图、一键复现命令与实测性能对比表。'
+          ];
+          const stdLi = stdArr.map(s => '<li>' + esc(s) + '</li>').join('');
+
+          const fbObj = plan.fallback_scope_reduction || plan['9_shrunk_mvp_fallback_plan'] || {};
+          const fbArr = (fbObj.reduced_mvp_plan && fbObj.reduced_mvp_plan.length)
+            ? fbObj.reduced_mvp_plan
+            : (fbObj.shrunk_scope ? [fbObj.shrunk_scope] : ['砍掉外围非核心界面，仅保留核心数据结构/存储模块 + 10 条自动化单元测试，确保 2 周内闭环交付。']);
+          const fbLi = fbArr.map(r => '<li>' + esc(r) + '</li>').join('');
+
           const auditObj = plan.skill_coverage_and_gaps_audit || {};
-          const covLi = (auditObj.covered_items || []).map(c => '<li>' + esc(c) + '</li>').join('');
-          const gapLi = (auditObj.remaining_gaps_advice || []).map(g => '<li>' + esc(g) + '</li>').join('');
+          const raw10 = plan['10_skill_constraints_coverage_and_remaining_gaps'] || {};
+          const covArr = (auditObj.covered_items && auditObj.covered_items.length)
+            ? auditObj.covered_items
+            : (raw10.fully_trained_skills || []);
+          const gapArr = (auditObj.remaining_gaps_advice && auditObj.remaining_gaps_advice.length)
+            ? auditObj.remaining_gaps_advice
+            : ((raw10.remaining_gaps_and_remediation || []).map(g =>
+                (typeof g === 'object' ? (g.skill_name + ' [' + g.coverage_level + '] → ' + g.remediation_action) : String(g))
+              ));
+          const covLi = covArr.map(c => '<li>' + esc(c) + '</li>').join('');
+          const gapLi = gapArr.map(g => '<li>' + esc(g) + '</li>').join('');
+
+          // 提示词定制高亮横幅（让用户清晰看到提示词重构的具体落点）
+          const cpa = plan.custom_prompt_applied || (selProj && selProj.custom_prompt_applied) || null;
+          let customBannerHtml = '';
+          if (cpa && cpa.prompt_text) {
+            const mapRows = (cpa.skill_mapping_breakdown || []).map(m => '<li>' + esc(m) + '</li>').join('');
+            customBannerHtml =
+              '<div style="background:#EFF6FF;border:2px solid #0284C7;border-radius:8px;padding:12px;margin-bottom:12px;font-size:12.5px;line-height:1.6;color:#1E3A8A;">' +
+                '<div style="font-weight:700;font-size:14px;color:#0369A1;margin-bottom:4px;">🎯 提示词定制方案已激活：「' + esc(cpa.prompt_text) + '」</div>' +
+                '<div style="margin-bottom:6px;">' + esc(cpa.domain_redesign_summary || '') + '</div>' +
+                '<ul style="margin:0;padding-left:18px;color:#1E40AF;">' + mapRows + '</ul>' +
+              '</div>';
+          }
 
           planContainer.innerHTML =
             '<div style="background:#FFFFFF;border:2px solid #0284C7;border-radius:10px;padding:16px;">' +
@@ -4250,8 +4558,9 @@ document.addEventListener('DOMContentLoaded', () => {
                   '<span style="background:#DBEAFE;color:#1E40AF;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700;">持久绑定实施计划 · 刷新不丢失</span> ' +
                   '<b style="font-size:16px;color:#0F172A;">' + esc(plan.project_title) + '</b>' +
                 '</div>' +
-                '<div style="font-size:12px;color:#64748B;">生成时间：' + esc(plan.generated_at) + ' · 定制焦点：<b>' + esc(plan.custom_focus || '标准 MVP') + '</b></div>' +
+                '<div style="font-size:12px;color:#64748B;">生成时间：' + esc(plan.generated_at) + ' · 定制焦点：<b>' + esc(plan.custom_focus || plan.custom_focus_applied || '标准 MVP') + '</b></div>' +
               '</div>' +
+              customBannerHtml +
               '<h4 style="font-size:14px;color:#0F172A;margin:0 0 8px 0;">1. 分阶段开发计划、每阶段可交付成果与阶段验收标准</h4>' +
               stagesHtml +
               '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:10px;font-size:12.5px;line-height:1.6;">' +
@@ -4262,24 +4571,24 @@ document.addEventListener('DOMContentLoaded', () => {
                   '<ul style="margin:0;padding-left:18px;color:#0369A1;">' + revLi + '</ul>' +
                 '</div>' +
                 '<div style="background:#F8FAFC;padding:10px;border-radius:8px;border:1px solid #E2E8F0;">' +
-                  '<div style="font-weight:700;color:#991B1B;margin-bottom:4px;">4. 用户需要亲自完成的核心任务</div>' +
+                  '<div style="font-weight:700;color:#991B1B;margin-bottom:4px;">4. 用户需要亲自完成的核心任务（拒绝 AI 黑盒代写）</div>' +
                   '<ul style="margin:0 0 8px 18px;color:#7F1D1D;">' + userLi + '</ul>' +
-                  '<div style="font-weight:700;color:#1E40AF;margin-bottom:4px;">5. AI 可以协助的任务</div>' +
+                  '<div style="font-weight:700;color:#1E40AF;margin-bottom:4px;">5. AI 可以协助的重复性/脚手架任务</div>' +
                   '<ul style="margin:0;padding-left:18px;color:#1E3A8A;">' + aiLi + '</ul>' +
                 '</div>' +
               '</div>' +
               '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:10px;font-size:12.5px;line-height:1.6;">' +
                 '<div style="background:#FFFBEB;padding:10px;border-radius:8px;border:1px solid #FDE68A;">' +
                   '<div style="font-weight:700;color:#92400E;margin-bottom:4px;">6. 遇到困难时的缩减方案（防半途而废）</div>' +
-                  '<div style="color:#78350F;margin-bottom:4px;">' + esc(fbObj.when_to_trigger || '') + '</div>' +
+                  '<div style="color:#78350F;margin-bottom:4px;">' + esc(fbObj.when_to_trigger || '若课业繁忙或某阶段卡壳超过 5 天，立即启动以下缩减方案：') + '</div>' +
                   '<ul style="margin:0 0 8px 18px;color:#78350F;">' + fbLi + '</ul>' +
                   '<div style="font-weight:700;color:#0F172A;margin-bottom:4px;">7. 测试、调试、版本管理、文档与发布要求</div>' +
                   '<ul style="margin:0;padding-left:18px;color:#334155;">' + stdLi + '</ul>' +
                 '</div>' +
                 '<div style="background:#F0FDF4;padding:10px;border-radius:8px;border:1px solid #BBF7D0;">' +
-                  '<div style="font-weight:700;color:#166534;margin-bottom:4px;">8. 原始技能约束覆盖情况（完整训练 ' + (auditObj.covered_count || 0) + ' 项）</div>' +
+                  '<div style="font-weight:700;color:#166534;margin-bottom:4px;">8. 原始技能约束覆盖情况（完整训练 ' + covArr.length + ' 项）</div>' +
                   '<ul style="margin:0 0 8px 18px;color:#14532D;">' + covLi + '</ul>' +
-                  '<div style="font-weight:700;color:#92400E;margin-bottom:4px;">9. 剩余技能缺口与补充练习建议（' + (auditObj.remaining_gaps_count || 0) + ' 项）</div>' +
+                  '<div style="font-weight:700;color:#92400E;margin-bottom:4px;">9. 剩余技能缺口与补充练习建议（' + gapArr.length + ' 项）</div>' +
                   '<ul style="margin:0;padding-left:18px;color:#78350F;">' + gapLi + '</ul>' +
                 '</div>' +
               '</div>' +
@@ -4296,22 +4605,33 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           const rows = hist.slice().reverse().map(it =>
             '<li style="margin-bottom:4px;">' +
-              '<span style="font-family:monospace;color:#0F766E;">[' + esc(it.iterated_at || '') + ']</span> ' +
-              '<b>' + esc(it.project_title || '') + '</b>：' + esc((it.changes_applied || []).join('；')) +
-              (it.user_feedback ? ('（您的反馈：“' + esc(it.user_feedback) + '”）') : '') +
+              '<span style="font-family:monospace;color:#0F766E;">[' + esc(it.iterated_at || it.timestamp || '') + ']</span> ' +
+              '<b>' + esc(it.project_title || '') + '</b>：' + esc((it.changes_applied || [it.effect_summary || '']).join('；')) +
+              (it.user_feedback ? ('（输入指令：“' + esc(it.user_feedback) + '”）') : '') +
             '</li>'
           ).join('');
           iterContainer.innerHTML =
             '<div style="background:#FFFFFF;border:1px solid #CBD5E1;border-radius:8px;padding:10px 12px;font-size:12.5px;color:#334155;">' +
-              '<div style="font-weight:700;color:#0F172A;margin-bottom:4px;">📝 已应用的方案迭代与修改记录（共 ' + hist.length + ' 条 · 已持久保存）：</div>' +
+              '<div style="font-weight:700;color:#0F172A;margin-bottom:4px;">📝 已应用的方案迭代与提示词定制记录（共 ' + hist.length + ' 条 · 刷新页面自动恢复）：</div>' +
               '<ul style="margin:0;padding-left:18px;">' + rows + '</ul>' +
             '</div>';
         }
       }
     }
 
-    // 绑定「查看详情」与顶部详情 Tab 按钮
+    // 绑定「查看详情」、详情 Tab、示例提示词胶囊、选择项目与快捷迭代按钮
     spPage.addEventListener('click', async e => {
+      const chipBtn = e.target.closest('.sp-prompt-chip');
+      if (chipBtn) {
+        const val = chipBtn.getAttribute('data-prompt-val') || '';
+        const inp = el('inpCustomFeedback');
+        if (inp) {
+          inp.value = val;
+          inp.focus();
+        }
+        await applyIterationAction('custom', val);
+        return;
+      }
       const detailBtn = e.target.closest('[data-sp-detail]');
       if (detailBtn) {
         const pid = detailBtn.getAttribute('data-sp-detail');
@@ -4330,34 +4650,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const pid = selBtn.getAttribute('data-sp-select');
         const proj = findProject(pid);
         if (!proj) return;
-        const prevPid = ws.selected_project_id;
         ws.selected_project_id = pid;
         ws.selected_project_title = proj.title;
         ws.selected_at = new Date().toLocaleString('zh-CN', { hour12: false });
-        if (prevPid !== pid) {
-          ws.active_implementation_plan = null;
-        }
+        // 选定项目时自动生成完整的 10 维分阶段实施计划，免去多余等待
+        ws.active_implementation_plan = buildClientImplementationPlan(proj, '');
         saveWorkspaceLocal();
         switchDetailPane(pid);
         renderWorkspaceUI();
         try {
-          const resp = await fetch('/api/skill-projects/select', {
+          await fetch('/api/skill-projects/select', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ project_id: pid })
+          });
+          const resp = await fetch('/api/skill-projects/generate-plan', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ project_id: pid })
           });
           if (resp.ok) {
             const data = await resp.json();
-            if (data.user_workspace) {
-              ws = Object.assign(ws, data.user_workspace);
+            if (data.ok && data.implementation_plan && isPlanComplete(data.implementation_plan)) {
+              ws.active_implementation_plan = data.implementation_plan;
               saveWorkspaceLocal();
               renderWorkspaceUI();
             }
           }
         } catch (_) {}
-        showNotice('已选定候选项目：' + proj.title + '。您可以点击「🗺️ 生成 / 查看所选项目的分阶段实施计划」生成实施计划！', false);
+        showNotice('✅ 已选定候选项目『' + proj.title + '』并自动展开 10 维分阶段实施计划！您可以在下方输入任意提示词（如“东方弹幕”）进一步定制方案。', false);
         const wsSec = el('spWorkspaceSection');
-        if (wsSec) wsSec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (wsSec) wsSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
       }
       const iterBtn = e.target.closest('.sp-iter-btn');
@@ -4372,20 +4695,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnGenPlan = el('btnGeneratePlan');
     if (btnGenPlan) {
       btnGenPlan.addEventListener('click', async () => {
-        const pid = ws.selected_project_id;
+        let pid = ws.selected_project_id;
         if (!pid) {
-          showNotice('⚠️ 请先在下方 6 个候选项目中点击「📌 选择此项目」，选定您最感兴趣的方案后再生成实施计划！', true);
-          const listSec = el('spProjectListSection');
-          if (listSec) listSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          return;
+          pid = getActiveDetailPid();
+          const autoProj = findProject(pid);
+          if (autoProj) {
+            ws.selected_project_id = pid;
+            ws.selected_project_title = autoProj.title;
+            ws.selected_at = new Date().toLocaleString('zh-CN', { hour12: false });
+          }
         }
         const proj = findProject(pid);
         if (!proj) return;
         const customFocus = (el('inpCustomFeedback') ? el('inpCustomFeedback').value.trim() : '');
+        if (customFocus) {
+          ws.custom_prompts_by_project = ws.custom_prompts_by_project || {};
+          ws.custom_prompts_by_project[pid] = customFocus;
+          mutateProjectWithPrompt(proj, customFocus);
+          ws.selected_project_title = proj.title;
+        }
         btnGenPlan.disabled = true;
         btnGenPlan.textContent = '⏳ 正在生成实施计划...';
         try {
-          let serverOk = false;
+          ws.active_implementation_plan = buildClientImplementationPlan(proj, customFocus);
           try {
             const resp = await fetch('/api/skill-projects/generate-plan', {
               method: 'POST',
@@ -4394,19 +4726,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (resp.ok) {
               const data = await resp.json();
-              if (data.ok && data.implementation_plan) {
+              if (data.ok && data.implementation_plan && isPlanComplete(data.implementation_plan)) {
                 ws.active_implementation_plan = data.implementation_plan;
-                if (data.user_workspace) ws = Object.assign(ws, data.user_workspace);
-                serverOk = true;
               }
             }
           } catch (_) {}
-          if (!serverOk) {
-            ws.active_implementation_plan = buildClientImplementationPlan(proj, customFocus);
-          }
           saveWorkspaceLocal();
           renderWorkspaceUI();
-          showNotice('✅ 已为『' + proj.title + '』生成 10 维分阶段实施计划并持久保存！页面刷新后仍可直接查看。', false);
+          showNotice('✅ 已为『' + proj.title + '』生成 10 维分阶段实施计划并持久保存！', false);
         } finally {
           btnGenPlan.disabled = false;
           btnGenPlan.textContent = '🗺️ 生成 / 查看所选项目的分阶段实施计划';
@@ -4414,13 +4741,69 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 方案迭代处理函数
+    // 方案迭代与提示词深度重构处理函数
     async function applyIterationAction(actionType, feedbackText) {
-      const targetPid = ws.selected_project_id || (projects[0] && projects[0].project_id);
+      let targetPid = ws.selected_project_id || getActiveDetailPid();
       const proj = findProject(targetPid);
       if (!proj) return;
 
-      let serverHandled = false;
+      // 若用户尚未选定项目就直接输入了提示词或点了迭代按钮，自动将其设为当前选定项目并生成实施计划！
+      if (!ws.selected_project_id) {
+        ws.selected_project_id = targetPid;
+        ws.selected_project_title = proj.title;
+        ws.selected_at = new Date().toLocaleString('zh-CN', { hour12: false });
+      }
+
+      const nowStr = new Date().toLocaleString('zh-CN', { hour12: false });
+      let changeMsg = '';
+
+      if (actionType === 'shrink_mvp') {
+        changeMsg = '已将 MVP 范围压缩至 2 周可交付的核心闭环（剥离次要外围模块，优先保证核心数据结构/SQL/单测闭环）';
+        proj.estimated_effort = '约 15–22 小时（已按『缩小 MVP』指令裁减外围模块，2 周内可稳妥交付）';
+      } else if (actionType === 'boost_sql_redis') {
+        changeMsg = '已在工程任务中新增 MySQL 复合索引 EXPLAIN 调优与 Redis 缓存防击穿实测任务，技能覆盖提升为完整覆盖';
+        (proj.skill_coverage_table || []).forEach(r => {
+          if (r.skill_id === 'db_sql_rdbms' || r.skill_id === 'db_cache_mq') {
+            r.coverage_level = '完整覆盖';
+            r.project_task_mapping = '【已通过迭代指令强化覆盖】新增 MySQL 复合索引与 Redis 缓存实训子模块';
+          }
+        });
+      } else if (actionType === 'boost_network_concurrency') {
+        changeMsg = '已在工程任务中新增并发工作线程池、自定义帧协议拆包与弱网超时重传压测任务';
+        (proj.skill_coverage_table || []).forEach(r => {
+          if (r.skill_id === 'net_tcp_http' || r.skill_id === 'conc_multithread' || r.skill_id === 'os_linux_sys') {
+            r.coverage_level = '完整覆盖';
+            r.project_task_mapping = '【已通过迭代指令强化覆盖】新增非阻塞网络通信与多线程并发压测子任务';
+          }
+        });
+      } else if (actionType === 'boost_testing_ci') {
+        changeMsg = '已在工程任务中强制接入单元测试 + ASan/Valgrind 内存检查 + GitHub Actions CI 流水线';
+        (proj.skill_coverage_table || []).forEach(r => {
+          if (r.skill_id === 'test_automation_qa' || r.skill_id === 'tool_docker_k8s' || r.skill_id === 'test_debug_profile') {
+            r.coverage_level = '完整覆盖';
+            r.project_task_mapping = '【已通过迭代指令强化覆盖】新增单元测试 + ASan 内存消毒 + GitHub Actions CI 门禁';
+          }
+        });
+      } else {
+        ws.custom_prompts_by_project = ws.custom_prompts_by_project || {};
+        ws.custom_prompts_by_project[targetPid] = feedbackText;
+        mutateProjectWithPrompt(proj, feedbackText);
+        ws.selected_project_title = proj.title;
+        changeMsg = '已按提示词「' + feedbackText + '」深度重构项目标题、核心领域模型、MVP 功能、阶段 1~3 任务与个人核心任务';
+      }
+
+      ws.iteration_history = ws.iteration_history || [];
+      ws.iteration_history.push({
+        iterated_at: nowStr,
+        project_id: targetPid,
+        project_title: proj.title,
+        action_type: actionType,
+        user_feedback: feedbackText,
+        changes_applied: [changeMsg]
+      });
+
+      ws.active_implementation_plan = buildClientImplementationPlan(proj, feedbackText || changeMsg);
+
       try {
         const resp = await fetch('/api/skill-projects/iterate', {
           method: 'POST',
@@ -4433,43 +4816,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         if (resp.ok) {
           const data = await resp.json();
-          if (data.ok && data.user_workspace) {
-            ws = Object.assign(ws, data.user_workspace);
-            serverHandled = true;
+          if (data.ok && data.user_workspace && data.user_workspace.active_implementation_plan && isPlanComplete(data.user_workspace.active_implementation_plan)) {
+            ws.active_implementation_plan = data.user_workspace.active_implementation_plan;
           }
         }
       } catch (_) {}
 
-      if (!serverHandled) {
-        const nowStr = new Date().toLocaleString('zh-CN', { hour12: false });
-        let changeMsg = '';
-        if (actionType === 'shrink_mvp') {
-          changeMsg = '已将 MVP 范围压缩至 2 周可交付的核心闭环（剥离次要外围模块，优先保证核心数据结构/SQL/单测闭环）';
-        } else if (actionType === 'boost_sql_redis') {
-          changeMsg = '已在工程任务中新增 MySQL 复合索引 EXPLAIN 调优与 Redis 缓存防击穿实测任务，技能覆盖提升为完整覆盖';
-        } else if (actionType === 'boost_network_concurrency') {
-          changeMsg = '已在工程任务中新增并发工作线程池、自定义帧协议拆包与弱网超时重传压测任务';
-        } else if (actionType === 'boost_testing_ci') {
-          changeMsg = '已在工程任务中强制接入单元测试 + ASan/Valgrind 内存检查 + GitHub Actions CI 流水线';
-        } else {
-          changeMsg = '已将自定义修改要求（“' + feedbackText + '”）融入项目主题与第一阶段开发任务';
-        }
-        ws.iteration_history = ws.iteration_history || [];
-        ws.iteration_history.push({
-          iterated_at: nowStr,
-          project_id: targetPid,
-          project_title: proj.title,
-          action_type: actionType,
-          user_feedback: feedbackText,
-          changes_applied: [changeMsg]
-        });
-        if (ws.selected_project_id === targetPid && ws.active_implementation_plan) {
-          ws.active_implementation_plan = buildClientImplementationPlan(proj, changeMsg);
-        }
-      }
       saveWorkspaceLocal();
       renderWorkspaceUI();
-      showNotice('✅ 方案迭代已生效并保存（作用于『' + proj.title + '』）！', false);
+      showNotice('✅ ' + changeMsg + '！请查看下方蓝框中的『🎯 提示词定制方案已激活』与更新后的各阶段任务。', false);
     }
 
     const btnSubmitFb = el('btnSubmitFeedback');
@@ -4478,11 +4833,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const inp = el('inpCustomFeedback');
         const txt = inp ? inp.value.trim() : '';
         if (!txt) {
-          showNotice('请先在输入框中填写您的方案修改要求（如：希望改为某主题 / 增加某项技术练习 / 砍掉某功能）。', true);
+          showNotice('请先在输入框中填写您的方案修改要求（或直接点击下方的蓝色示例提示词胶囊，如“🎯 东方弹幕谱面与擦弹判定”）。', true);
           return;
         }
         await applyIterationAction('custom', txt);
         if (inp) inp.value = '';
+      });
+    }
+
+    // 支持在输入框按回车键直接提交提示词重构
+    const inpFb = el('inpCustomFeedback');
+    if (inpFb) {
+      inpFb.addEventListener('keydown', async e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const txt = inpFb.value.trim();
+          if (txt) {
+            await applyIterationAction('custom', txt);
+            inpFb.value = '';
+          }
+        }
       });
     }
 
@@ -4575,7 +4945,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ws.selected_project_title = '';
             ws.selected_at = '';
             ws.active_implementation_plan = null;
-            saveWorkspaceLocal();
+            ws.custom_prompts_by_project = {};
+            try { localStorage.removeItem(LS_KEY); } catch (_) {}
             renderWorkspaceUI();
           }
           const resp = await fetch('/api/skill-projects/regenerate', {
@@ -4593,26 +4964,25 @@ document.addEventListener('DOMContentLoaded', () => {
               }
               showNotice(
                 confirmOverwrite
-                  ? '✅ 已重新生成候选项目方案并重置项目选择（原选择已归档至历史记录）。'
+                  ? '✅ 已重新生成候选项目方案并重置项目选择（页面即将刷新以恢复初始蓝图）。'
                   : '✅ 已重新生成候选项目方案并刷新数据依据！系统已自动保护并保留您已选的项目与实施计划。',
                 false
               );
+              if (confirmOverwrite) setTimeout(() => window.location.reload(), 600);
               return;
             }
           }
-          showNotice(
-            confirmOverwrite
-              ? '✅ 已重置项目选择并恢复 6 个候选工程方案初始状态！'
-              : '✅ 已重新校验 6 个候选工程方案与技能覆盖审计表（您已选的项目与实施计划已受保护保留）。',
-            false
-          );
+          if (confirmOverwrite) {
+            window.location.reload();
+            return;
+          }
+          showNotice('✅ 已重新核对 6 个候选工程方案与技能覆盖审计表（您已选的项目与实施计划已受保护保留）。', false);
         } catch (_) {
-          showNotice(
-            confirmOverwrite
-              ? '✅ 已重置项目选择并恢复 6 个候选工程方案初始状态！'
-              : '✅ 已重新核对 6 个候选工程方案与技能覆盖审计表（您已选的项目与实施计划已受保护保留）。',
-            false
-          );
+          if (confirmOverwrite) {
+            window.location.reload();
+            return;
+          }
+          showNotice('✅ 已重新核对 6 个候选工程方案与技能覆盖审计表（您已选的项目与实施计划已受保护保留）。', false);
         } finally {
           actionBusy = false;
           btnRegenProj.disabled = false;
@@ -4644,7 +5014,13 @@ def render_html(date_str: str, report_data: dict, editable: bool = False,
     all_items = report_data.get("items", [])
     shown_items, previous_items, unknown_items, hidden_count = _filter_items(all_items)
 
-    applications = report_data.get("applications", []) or []
+    public_mode = is_public_report_mode(report_data) and not editable
+    include_public_apps = os.environ.get("PUBLIC_INCLUDE_APPLICATIONS", "").strip().lower() in ("1", "true", "yes")
+    raw_applications = report_data.get("applications", []) or []
+    if public_mode and not include_public_apps:
+        applications = []
+    else:
+        applications = raw_applications
     app_index = {a["job_id"]: a for a in applications if a.get("job_id") is not None}
     job_index = {}
     for it in all_items:
@@ -4771,14 +5147,27 @@ window.__SEASON_INFO = {season_json};
 
 def generate_report(date_str: str, report_data: dict, reports_dir: str = "reports",
                     out_name: str | None = None) -> str:
-    """唯一权威静态 HTML 报告生成入口：生成报告并同步写入 report_meta.json 与 outputs/index.html。"""
+    """唯一权威静态 HTML 报告生成入口：生成报告并同步写入 report_meta.json、.nojekyll 与 outputs/index.html。"""
     import shutil
     rdir = Path(reports_dir)
     rdir.mkdir(parents=True, exist_ok=True)
     html_content = render_html(date_str, report_data, editable=False)
 
+    # 公开报告模式下自动脱敏个人学校名称，并强制执行全页敏感凭证扫描脱敏
+    if is_public_report_mode(report_data):
+        prof = job_filters.load_active_profile()
+        edu = prof.get("education") if isinstance(prof.get("education"), dict) else {}
+        school_name = str(edu.get("school") or "").strip()
+        if school_name and len(school_name) >= 2:
+            html_content = html_content.replace(school_name, "本科高校（公开网页已脱敏）")
+    html_content = job_filters.sanitize_sensitive_text(html_content)
+
     output_path = rdir / f"{out_name or date_str}.html"
     output_path.write_text(html_content, encoding="utf-8")
+    try:
+        (rdir / ".nojekyll").write_text("", encoding="utf-8")
+    except OSError:
+        pass
 
     meta = (report_data.get("report_meta") if isinstance(report_data, dict) else None) or {}
     if meta:

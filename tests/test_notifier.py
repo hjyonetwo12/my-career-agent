@@ -309,3 +309,84 @@ def test_report_url_resolves_explicit_or_github_pages_and_never_uses_hardcoded_a
     assert "https://student-user.github.io/career-agent/index.html?v=rep-1234abcd" in flat
     assert "career-agent-4z4.pages.dev" not in flat
     assert "2026-05-15.html" not in flat
+
+
+def test_verify_deployed_report_url_and_feishu_404_prevention(monkeypatch, tmp_path):
+    """验证部署后在线 URL 的真实 HTTP 校验（200 最新版本、200 缓存刷新、404 未开启 Pages 拦截）及显式「打开最新校招情报」链接文案。"""
+    import reporter
+
+    # 1. HTTP 200 且包含最新版本号 -> verified_latest
+    with patch("notifier.requests.get") as mock_get:
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.text = '<html><head><meta name="career-agent-report-version" content="rep-99887766"></head><body>AI校招情报</body></html>'
+        res_ok = notifier.verify_deployed_report_url(
+            "https://student-user.github.io/career-agent/index.html?v=rep-99887766",
+            expected_version_id="rep-99887766",
+            retries=1,
+            wait_seconds=0,
+        )
+    assert res_ok["reachable"] is True
+    assert res_ok["version_matched"] is True
+    assert res_ok["check_status"] == "verified_latest"
+
+    # 2. HTTP 404（仓库未开启 Pages 或 Private 仓库不支持免费 Pages） -> http_404_pages_not_enabled，绝不误报部署成功
+    with patch("notifier.requests.get") as mock_get_404:
+        mock_get_404.return_value.status_code = 404
+        mock_get_404.return_value.text = "404 There isn't a GitHub Pages site here."
+        res_404 = notifier.verify_deployed_report_url(
+            "https://student-user.github.io/career-agent/index.html?v=rep-99887766",
+            expected_version_id="rep-99887766",
+            retries=1,
+            wait_seconds=0,
+        )
+    assert res_404["reachable"] is False
+    assert res_404["check_status"] == "http_404_pages_not_enabled"
+
+    payload_404 = notifier._build_payload(
+        [],
+        [],
+        {"date": "2026-10-19", "deploy_status": "success"},
+        run_stats={
+            "deploy_status": "success",
+            "report_version_id": "rep-99887766",
+            "url_verify_status": res_404["check_status"],
+            "url_verify_message": res_404["message"],
+        },
+    )
+    flat_404 = json.dumps(payload_404, ensure_ascii=False)
+    assert "HTTP 404" in flat_404
+    assert "✅ 网页部署成功" not in flat_404
+
+    # 3. 正常部署成功且校验通过时：包含明确的「打开最新校招情报」链接与动态 deployed_url 优先级
+    payload_live = notifier._build_payload(
+        [],
+        [],
+        {"date": "2026-10-19", "deploy_status": "success", "deployed_url": "https://custom-pages.github.io/my-agent/"},
+        run_stats={
+            "deploy_status": "success",
+            "deployed_url": "https://custom-pages.github.io/my-agent/",
+            "report_version_id": "rep-99887766",
+            "url_verify_status": "verified_latest",
+            "url_verify_message": res_ok["message"],
+        },
+    )
+    flat_live = json.dumps(payload_live, ensure_ascii=False)
+    assert "打开最新校招情报" in flat_live
+    assert "https://custom-pages.github.io/my-agent/index.html?v=rep-99887766" in flat_live
+
+    # 4. 验证公开报告脱敏模式 (PUBLIC_REPORT_MODE=1) 不泄露私人投递记录与学校名称
+    monkeypatch.setenv("PUBLIC_REPORT_MODE", "1")
+    pub_dir = tmp_path / "pub_reports"
+    sample_data = {
+        "date": "2026-10-19",
+        "items": [],
+        "applications": [
+            {"id": 1, "job_id": 1, "company": "私密投递公司", "title": "私密岗位", "current_stage": "interview_1", "note": "私人面试薪资备注12345", "events": []}
+        ],
+    }
+    pub_html_path = reporter.generate_report("2026-10-19", sample_data, reports_dir=str(pub_dir), out_name="index")
+    pub_html = Path(pub_html_path).read_text(encoding="utf-8")
+    assert "私人面试薪资备注12345" not in pub_html
+    assert "东北大学" not in pub_html
+    assert (pub_dir / ".nojekyll").exists()
+    monkeypatch.delenv("PUBLIC_REPORT_MODE", raising=False)
