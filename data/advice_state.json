@@ -1027,7 +1027,7 @@
     },
     "v-c5423e95": {
       "version_id": "v-c5423e95",
-      "saved_at": "2026-10-22 11:27:34 CST",
+      "saved_at": "2026-10-24 11:15:16 CST",
       "summary": "个人配置未发生变化（当前版本 v-c5423e95）。",
       "snapshot": {
         "recommendation_mode": "exploration",
@@ -1856,773 +1856,37 @@
         "unclassified": 101
       },
       "captured_at": "2026-10-22 11:27:34 CST"
+    },
+    "m-618489dc": {
+      "market_fingerprint": "m-618489dc",
+      "total_jobs": 17357,
+      "bachelor_cs_jobs": 7218,
+      "earliest_date": "2026-07-13",
+      "latest_date": "2026-10-24",
+      "category_counts": {
+        "embedded_device": 674,
+        "ai_ml": 1926,
+        "other_technical": 873,
+        "testing_quality": 877,
+        "backend_dist": 1711,
+        "hardware_mechanical": 64,
+        "unclassified": 101,
+        "security": 216,
+        "software_cpp": 162,
+        "data_platform": 234,
+        "graphics_3d": 56,
+        "sys_infra": 149,
+        "game_engine": 70,
+        "algorithm_ml": 57,
+        "embedded_control": 16,
+        "llm_agent": 24,
+        "vision_auto": 7,
+        "robotics": 1
+      },
+      "captured_at": "2026-10-24 11:15:16 CST"
     }
   },
   "advice_versions": [
-    {
-      "data_time_range": {
-        "earliest_date": "2026-05-13",
-        "latest_date": "2026-05-13",
-        "generated_at": "2026-10-18 17:43 CST",
-        "timezone": "Asia/Shanghai (UTC+8)"
-      },
-      "sample_summary": {
-        "total_jobs_in_db": 4,
-        "substantive_jd_count": 0,
-        "bachelor_cs_jobs": 4,
-        "intern_jobs": 0,
-        "companies_count": 2,
-        "category_counts": {
-          "ai_ml": 1,
-          "embedded_device": 2,
-          "backend_dist": 2,
-          "hardware_mechanical": 1
-        }
-      },
-      "profile_snapshot": {
-        "degree": "本科",
-        "target_cohort": "2029",
-        "job_type": "实习",
-        "skills": [
-          "C++ 基础与持续学习",
-          "数据结构与算法基础学习",
-          "Python 基础接触与 AI 辅助脚本实践",
-          "操作系统与计算机系统基础学习",
-          "CMake 构建工具基础接触",
-          "Git 版本控制基础操作",
-          "Linux 与命令行基础接触",
-          "SQLite 与基础数据持久化实践接触",
-          "OpenGL / GLSL 基础图形实践"
-        ],
-        "project_evidence": [],
-        "learning_targets": []
-      },
-      "skill_market_questions": [
-        {
-          "q": "1. 当前技术栈可以匹配哪些不同职业方向？",
-          "a": "【事实】基于你已配置的技能（C++ 基础与持续学习, 数据结构与算法基础学习, Python 基础接触与 AI 辅助脚本实践, 操作系统与计算机系统基础学习, CMake 构建工具基础接触）与项目证据，在当前库内 4 个本科计算机岗中，可直接或平滑迁移匹配 6 大方向：① 客户端/桌面与工业软件、② 后端与分布式系统、③ 测试开发(SDET)与研发工具、④ AI 应用与 Agent 工程、⑤ Linux 系统软件与基础设施、⑥ 图形渲染与三维 CAD（兴趣参照）。"
-        },
-        {
-          "q": "2. 哪些方向与用户现有技能重合较高？",
-          "a": "【事实+推断】重合度最高的前三名依次是：① 跨平台桌面/工业软件客户端（直接复用 C++17、CMake 与图形界面经验，重合度 ~70%）、② 测试开发 SDET 与自动化工具链（直接复用 Python、pytest、Git 与排障能力，重合度 ~65%）、③ AI 应用与 Agent 工程（直接复用 Career Agent 项目的 LLM API 调度、Prompt 约束与数据管道经验，重合度 ~65%）。"
-        },
-        {
-          "q": "3. 哪些方向需要补充哪些关键能力？",
-          "a": "【事实】• 投递后端/数据方向：急需补齐 MySQL 索引与事务、Redis 缓存及 HTTP/RPC 服务端框架；\n• 投递桌面/工业客户端：需补齐 Qt6 信号槽与多线程 UI 架构；\n• 投递系统软件/安全：需补齐 Linux 系统编程（进程线程/epoll）与容器基础。"
-        },
-        {
-          "q": "4. 哪些基础能力能够同时支持多个职业方向？",
-          "a": "【事实】从全库 JD 统计看，① 操作系统与 Linux 网络 (提及率 36.5%~64.3%)、② C/C++ 内存管理与并发 (44.4%)、③ Python 自动化脚本 (43.4%)、④ 数据结构与算法、⑤ SQL 数据库基础、⑥ Git/CMake/单元测试与调试，这 6 项能力同时支撑全部 10+ 个技术方向，是绝对高保值的“最大公约数”。"
-        },
-        {
-          "q": "5. 哪些技能值得优先学习，哪些可以暂缓？",
-          "a": "【建议】• 优先学习（P0）：MySQL/Redis 数据库工程应用、Linux 网络与多线程编程、自动化单元测试与性能分析；\n• 按需选修（P1）：Qt6 跨平台开发 或 Go/FastAPI 后端微服务；\n• 明确暂缓（P2）：大模型底层预训练算子、重度商业游戏引擎源码死磕、偏门模板元编程与超纲竞赛算法。"
-        },
-        {
-          "q": "6. 哪些方向虽然目前匹配度一般，但值得进一步调查？",
-          "a": "【推断】① 工业软件/医疗影像软件/轨交信控软件（如联影、卡斯柯、中望、博世）：虽然平时在校园宣讲声量不如互联网大厂，但极度渴求扎实的 C++ 本科生且 WLB 与职业寿命极佳；② 安全工程与信创基础软件：对熟悉 C/C++ 与 Linux 底层的同学有较高接纳度，值得在大二下通过小型网络诊断工具试水调查。"
-        },
-        {
-          "q": "7. 当前证据是否足以判断某个方向的就业前景？",
-          "a": "【事实与边界声明】当前数据库收录了 2 家企业的 4 个本科计算机岗位（时间跨度 2026-05-13 至 2026-05-13），足以客观反映各方向的校招岗位供给规模与显式技术要求频率；但【未知/数据不足】JD 原文无法可靠反映各企业的实际 Offer 录用比、真实加班时长与未来 3 年的部门裁撤风险，这些维度必须结合实习亲身体验与学长学姐内推访谈交叉核实，系统绝不凭空编造。"
-        }
-      ],
-      "suggested_directions": [
-        {
-          "id": "software_cpp",
-          "direction_name": "选项 A：跨平台桌面客户端、办公与工业软件研发 (C++ / Qt / SDK)",
-          "sample_stat": "当前库内暂无匹配样本【数据不足】",
-          "priority_badge": "重点探索主线 · 高重合·首选试水",
-          "recommendation_reason": "【事实】当前库内暂无匹配样本【数据不足】，代表企业包括金山办公(WPS)、万兴科技、联影医疗、卡斯柯、同花顺等；【推断（置信度：高）】该方向直接以 C++、面向对象设计和操作系统基础为核心，本科生接纳度在全部技术方向中居首，且非互联网纯流量业务，组织稳定性较好。",
-          "skill_match": "【事实】与你现有的 C++17 (STL/RAII)、CMake 构建、Linux/Windows 基础及 OpenGL 图形窗口编程经验重合度达 70% 以上，属于转换成本最低的顺延赛道。",
-          "gaps_to_fill": "• 必需补足：Qt6 信号槽机制、界面与业务逻辑解耦 (MVC/MVVM)、多线程异步 UI 通信、内存泄漏与崩溃 Dump 调试；\n• 加分项：Windows/macOS 平台原生 API、跨平台安装包构建与自动化 UI 测试。",
-          "risks_and_uncertainties": "【推断（置信度：中）】部分传统制造业上位机岗位技术栈偏老旧（如 MFC）；【未知】具体团队的发版节奏与加班情况未在 JD 中披露，需在面试中核实使用现代 C++/Qt6 还是遗留框架。",
-          "preference_alignment": "【事实+推断】高度契合“本科直通就业 + 重视 WLB + 复用 C++ 基础”偏好；办公软件、医疗影像与轨交工控软件生命周期长达 5–10 年，技能贬值慢。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
-          "validation_actions": "【建议（适用前提：有 2–3 周课余时间）】使用 C++17 + Qt6 + SQLite 编写一个带本地数据检索与可视化图表的桌面小工具，检验自己是否喜欢“所见即所得”的客户端工程交互。"
-        },
-        {
-          "id": "backend_dist",
-          "direction_name": "选项 B：后端开发、企业级平台与分布式系统 (C++ / Go / Python)",
-          "sample_stat": "当前库内命中 2 个本科计算机岗 / 覆盖 2 家企业",
-          "priority_badge": "重点探索主线 · 岗位基数最大·高通用",
-          "recommendation_reason": "【事实】当前库内命中 2 个本科计算机岗 / 覆盖 2 家企业，是所有计算机校招与实习中岗位供给量最大、行业覆盖最广（外企、国央企、金融科技、ToB软件、互联网）的方向；【推断（置信度：高）】掌握服务端与数据库能力后，无论未来追求高薪还是追求国企/外企 WLB，可选择的雇主池最宽。",
-          "skill_match": "【事实】已具备 C++ 与 Python 编程基础、Linux 命令行及计算机网络基础（匹配度约 55%）；但尚缺关系型数据库与标准 Web/RPC 服务端开发闭环。",
-          "gaps_to_fill": "• 必需补足：MySQL 表结构设计与索引调优、Redis 缓存应用、HTTP/RESTful 与 gRPC 接口开发、并发与事务控制；\n• 语言抓手建议：在现有 C++/Python (FastAPI) 基础上，可花 2 周顺带掌握与 C 系语法相近的 Go 语言，无需从零背诵庞杂的 Java 八股。",
-          "risks_and_uncertainties": "【推断（置信度：中）】纯互联网大厂业务后端笔面试竞争激烈且部分团队伴随 On-call 轮值压力；【建议】投递时可重点关注外企 IT、银行科技、电信云及成熟 ToB 软件企业的后端/平台岗。",
-          "preference_alignment": "【推断】本科学历完全可投，跨行业迁移能力极强（第一名），是防范单一行业周期波动的“压舱石”选项。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
-          "validation_actions": "【建议】为你现有的 Career Agent 项目增加一套基于 FastAPI/Go + MySQL + Redis 的 REST API 服务层与压测脚本，体验完整服务端链路。"
-        },
-        {
-          "id": "testing_quality",
-          "direction_name": "选项 C：测试开发 (SDET)、质量工程与研发工具链 (Python / C++)",
-          "sample_stat": "当前库内暂无匹配样本【数据不足】",
-          "priority_badge": "重点探索主线 · 本科最友好·高WLB备选",
-          "recommendation_reason": "【事实】当前库内暂无匹配样本【数据不足】，在外企（博世、德州仪器、恩智浦）、中大型软件企及硬件龙头中大量招收本科生；【推断（置信度：高）】相比算法岗的学历内卷，测开与研发工具岗更看重 Python/C++ 自动化脚本、系统排障与工程规范，入行确定性高。",
-          "skill_match": "【事实】你在维护 Career Agent 时已实际运用了 Python 数据抓取、正则清洗与 pytest 单元测试，与测开/工具链岗的日常技术栈重合度达 65%。",
-          "gaps_to_fill": "• 必需补足：接口自动化测试框架设计、CI/CD 流水线集成 (GitHub Actions/Jenkins)、Linux 性能与内存监控工具 (perf/Valgrind/ASan)、测试用例设计方法论。",
-          "risks_and_uncertainties": "【风险提示】部分公司名为“测试开发”实为纯手工点点点功能测试；【建议】面试时必须核实团队的“自动化代码与工具开发占比（建议 > 50%）”，避开纯人工点测岗。",
-          "preference_alignment": "【推断】总体工时节奏比一线业务开发更规律，且在 AI 辅助编程时代，“自动化验证与质量评测平台”的重要性不降反升。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
-          "validation_actions": "【建议】为自己的 C++ 或 Python 项目搭建一套完整的 pytest 自动化回归测试套件 + 覆盖率报告 + GitHub Actions 自动触发流水线。"
-        },
-        {
-          "id": "ai_ml",
-          "direction_name": "选项 D：AI 应用工程与企业级 Agent / RAG 系统落地（非纯算法研究）",
-          "sample_stat": "当前库内命中 1 个本科计算机岗 / 覆盖 1 家企业",
-          "priority_badge": "重点探索主线 · 结合现有项目·工程切入",
-          "recommendation_reason": "【事实】当前库内命中 1 个本科计算机岗 / 覆盖 1 家企业；其中纯算法科研岗普遍偏好硕博，但“AI应用开发 / Agent工程 / AI评测工具”分支对本科学历开放度不断提升；【事实】你当前的 Career Agent 项目本身就是一个真实的 LLM API 调度 + 规则过滤 + 数据持久化工程案例。",
-          "skill_match": "【事实】已具备 Python 工程开发、DeepSeek API 流式调用、Prompt 结构化 JSON 约束与 SQLite 存储经验（在 AI 应用工程分支匹配度约 65%）。",
-          "gaps_to_fill": "• 必需补足：RAG 检索增强生成全链路（切分、Embedding、向量检索与重排）、Function Calling 工具调用容错、Agent 准确率与延迟量化评测集构建；\n• 明确不建议投入：大模型预训练底层算子或纯数学论文刷榜（本科直接就业投入产出比过低）。",
-          "risks_and_uncertainties": "【推断（置信度：中）】部分初创公司 AI 应用岗需求变动快、框架更迭频繁；若缺乏扎实的后端/系统底座，容易沦为“纯调包侠”。",
-          "preference_alignment": "【建议】建议采取“后端/客户端工程底座 + AI Agent 应用能力”的复合定位，既享受 AI 落地红利，又保留传统软件工程的退路。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
-          "validation_actions": "【建议】在 Career Agent 中整理出一份含 50 条真实 JD 的“分类与评分黄金测试集 (Golden Dataset)”，量化对比不同 Prompt 与规则的准确率与耗时。"
-        },
-        {
-          "id": "sys_infra",
-          "direction_name": "选项 E：系统软件、云原生基础设施与安全工程 (Linux / Infra / 安全)",
-          "sample_stat": "系统与基础设施：当前库内暂无匹配样本【数据不足】；安全工程：当前库内暂无匹配样本【数据不足】",
-          "priority_badge": "重点探索主线 · 长周期复利·稳扎稳打",
-          "recommendation_reason": "【事实】国央企云（天翼云、联通云、移动云）、信创基础软件（统信、麒麟、深信服、绿盟）及大型科技企业长期招聘 Linux 系统软件、虚拟化、存储与安全工程师；【推断（置信度：高）】底层协议与 Linux 系统机制十年不变，越老越吃香。",
-          "skill_match": "【事实】已具备 C/C++、Linux 环境使用与操作系统基础概念（匹配度约 50%），但缺乏深入的 Linux 系统编程与网络编程实战。",
-          "gaps_to_fill": "• 必需补足：Linux 系统编程（进程/线程/信号/共享内存/epoll）、TCP/IP 协议栈与抓包分析 (Wireshark/tcpdump)、Docker 容器隔离机制 (Namespace/Cgroups)。",
-          "risks_and_uncertainties": "【推断】核心内核开发或编译器研发岗对操作系统/体系结构深度要求较高，部分核心岗偏好硕士；但云原生基础设施、系统工具与安全工程对优秀本科生开放。",
-          "preference_alignment": "【推断】运营商云、信创软件与安全企业的整体作息相对稳健，技术积累深厚，符合长期稳定发展的诉求。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
-          "validation_actions": "【建议】在 Linux 下用 C++17 编写一个基于 epoll + 线程池的轻量级高性能 HTTP/TCP 服务或端口扫描诊断工具，并用 perf/Valgrind 分析性能。"
-        },
-        {
-          "id": "graphics_3d_game",
-          "direction_name": "选项 F：[兴趣参照支线] 图形渲染、三维几何 CAD 与游戏引擎开发",
-          "sample_stat": "图形与三维：当前库内暂无匹配样本【数据不足】；游戏开发：当前库内暂无匹配样本【数据不足】",
-          "priority_badge": "一般兴趣支线·保留对比",
-          "recommendation_reason": "【事实】你拥有“已完成小型 OpenGL 图形程序（含顶点/片段着色器、模型加载与基础光照）”的直接项目证据；【事实】库内图形与三维岗位主要分布在两类雇主：① 游戏公司（米哈游、网易互娱/雷火、库洛、莉莉丝等）；② 工业 CAD/CAE/三维视觉软件（中望软件、先临三维、联影医疗、大疆等）。",
-          "skill_match": "【事实】具备 C++ 与 OpenGL/GLSL 入门项目证据，在图形/工业三维软件方向有直接切入点（基础匹配度约 60%）。",
-          "gaps_to_fill": "• 若投工业 CAD/三维软件：需补足计算几何基础（包围盒 BVH、射线求交、半边网格数据结构）与 Qt/OpenGL 混合渲染；\n• 若投游戏引擎/渲染：需补足 PBR 物理光照、阴影算法、帧缓冲后处理及现代图形调试工具 (RenderDoc)。",
-          "risks_and_uncertainties": "【事实+推断】该方向在全库计算机岗中占比显著低于后端与通用客户端（岗位面较窄）；且头部游戏行业普遍存在版本上线前的项目期加班压力，与“高 WLB 优先”存在一定张力。",
-          "preference_alignment": "【配置联动】你在 profile.yaml 中将该方向列为「一般兴趣支线」而非主力探索方向；系统保留该方向供你横向对比，不将其作为默认主推。【建议】不建议将纯游戏行业渲染岗作为唯一主线死磕；但强烈建议保留你现有的 OpenGL 项目（它是证明你 C++ 工程与数学能力的极佳简历亮点），并可将 WLB 较好的“工业 CAD / 医疗三维可视化 / 激光三维扫描软件”作为差异化投递支线。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
-          "validation_actions": "【建议】用 RenderDoc 抓取并分析你现有 OpenGL 项目的每一帧渲染管线状态，补齐一页清晰的架构说明文档与帧率/内存指标即可收官，把主精力留给通用底座。"
-        }
-      ],
-      "learning_content": [
-        {
-          "stage": "第一阶段（大二当前 · 最高优先级）：跨方向高保值通用底座",
-          "priority": "P0（必学 · 同时支撑 A/B/C/D/E/F 所有方向）",
-          "reason": "【推断】无论大三最终去哪个细分赛道实习，笔试与技术一面 70% 考察的都是以下四项通用底座，投入产出比最高且零沉没成本。",
-          "foundations": "1. 数据结构与算法（哈希表、树、图、二分、双指针、基础动态规划与时空复杂度分析）；2. 操作系统与 Linux（虚拟内存、进程线程同步、文件系统、epoll I/O 多路复用）；3. 计算机网络（TCP 三次握手/四次挥手/拥塞控制、HTTP/HTTPS、DNS、Socket 编程）；4. 关系型数据库基础（MySQL 建表范式、B+树索引原理、事务 ACID 与隔离级别、Redis 基础数据结构）。",
-          "projects": "将现有 Career Agent 与 C++ 练习项目升级为“带 MySQL/SQLite 索引优化 + 并发控制 + 完整自动化测试”的规范工程。",
-          "tools_and_debugging": "Git 分支协作与规范 Commit、CMake 多目录构建、GDB / AddressSanitizer (ASan) 内存与崩溃排查、Linux 常用诊断命令 (top/ps/netstat/lsof/strace)、pytest 单元测试。",
-          "deliverable_proof": "GitHub 仓库具备清晰的 README 架构图、自动化测试通过徽标 (CI Green)、性能/耗时对比实测数据（例如：将 SQLite 入库从 5 分钟优化至 1 秒的量化复盘）。",
-          "jd_verification": "对照任意目标公司的研发实习 JD，能独立讲清项目中每个模块的数据流、异常处理与性能瓶颈。"
-        },
-        {
-          "stage": "第二阶段（大二暑假 ~ 大三上 · 二选一深耕）：高转化方向核心栈",
-          "priority": "P1（按试水反馈从“C++桌面/工业客户端”或“后端/AI应用工程”中主攻其一）",
-          "reason": "【建议】大二学生时间有限，切忌同时铺开 Java、UE5、ROS、内核源码等多个重型框架；在通用底座之上精修 1 个主方向 + 1 个轻量备选即可。",
-          "foundations": "• 若选方向 A（客户端/工业软件）：掌握 Qt6 核心机制（元对象系统、信号槽、事件循环、多线程渲染与 UI 分离）；\n• 若选方向 B/D（后端/AI应用工程）：掌握 Go 或 Python FastAPI 微服务架构、RESTful/gRPC 通信、RAG 检索与工具调用评测。",
-          "projects": "• 方向 A 代表作：《基于 C++17 与 Qt6/OpenGL 的跨平台三维模型检视与性能分析器》；\n• 方向 B/D 代表作：《Career Agent 分布式采集、多维分类检索与 AI 评测基准平台》（直接复用并深化你当前的项目！）。",
-          "tools_and_debugging": "RenderDoc（图形/客户端帧调试）、Postman/wrk（接口调试与压测）、Docker 容器化打包、日志分级与结构化监控。",
-          "deliverable_proof": "可一键运行或在线演示的完整工程 + 3 分钟功能演示动图/视频 + 核心模块单元测试覆盖率 ≥ 70%。",
-          "jd_verification": "针对目标分类下的 15–20 家企业投递日常/暑期实习，用真实面试反馈验证简历通过率与技术提问点。"
-        },
-        {
-          "stage": "第三阶段（暂缓/低优先级清单）：现阶段明确不必盲目跟风的内容",
-          "priority": "P2 / 暂缓（避免时间碎片化与高沉没成本）",
-          "reason": "【建议】不因某项技术在社交媒体热门就盲目列入必学清单，守护大二宝贵的整块时间。",
-          "foundations": "暂缓项：1. 大模型底层预训练与强化学习数学推导（本科求职性价比低）；2. 同时学 Java Spring 全家桶 + C++ UE5 + 嵌入式板卡（战线过长导致每样都停留在 Hello World）；3. 超纲的 ACM 偏怪算法题。",
-          "projects": "拒绝拼凑“网上烂大街且自己讲不清细节的黑马商城/玩具图书管理系统”。",
-          "tools_and_debugging": "暂缓复杂的多云 Kubernetes 集群运维或冷门专有硬件 SDK，等实习入职具体团队后再按需学习。",
-          "deliverable_proof": "以“精而深（2 个完全吃透、能手写核心逻辑并做过性能优化的真实项目）”替代“多而浅”。",
-          "jd_verification": "当某项技能在目标方向 JD 中属于“有相关经验者优先（加分项）”而非“必须熟练掌握”时，优先保住第一层通用底座。"
-        }
-      ],
-      "learning_methods": {
-        "time_allocation": "【建议】遵循「3 : 5 : 2 黄金投入比」—— 30% 时间精读核心概念与官方文档（搞懂为什么需要这个机制），50% 时间动手写代码做最小闭环项目，20% 时间专门用于写单元测试、用调试器看内存/调用栈、以及撰写故障复盘笔记。",
-        "project_verification": "每学完一个关键概念（例如线程池、B+树索引、OpenGL 着色器或异步爬虫），不要立刻看下一章视频，而是给自己出一个“破坏性实验”：如果把队列锁去掉会怎样？如果数据量放大 100 倍（从 300 条到 30,000 条）哪里会卡死？像本次排查 `run.log` 中 SQLite 逐条 commit 耗时 5 分半、正则回溯耗时 26 秒一样，亲手用 cProfile / 日志定位并把耗时压下来的过程，才是面试官最看重的真本事。",
-        "debug_test_review_loop": "1. 代码阅读：先看模块的输入输出数据结构（Schema/Interface），再顺着主干入口函数画一张 5–8 个节点的调用流程图；\n2. 调试方法：遇到崩溃或结果异常，拒绝“凭感觉乱改代码重试”，先复现最小必现用例，用 GDB/ASan（C++）或 traceback/pdb（Python）定位精确行号与变量状态；\n3. 测试习惯：每修复一个 Bug（如北森 UTF-8 BOM 报错或标题分类误判），立刻在 tests/ 下写一条对应的 10 行单元测试锁死它，防止后续改坏；\n4. 复盘模板：每次解决卡点后用 3 句话记录进项目笔记：【现象与报错】→【根因定位过程】→【量化改进结果】（这直接就是未来简历和面试 STAR 法则的现成素材！）。",
-        "tutorial_vs_mastery": [
-          {
-            "dimension": "代码复现能力",
-            "watched_tutorial": "跟着视频敲能跑通，关掉视频面对空白文件不知从哪写起",
-            "truly_mastered": "能不看教程独立画出模块数据流，并从零写出核心骨架代码"
-          },
-          {
-            "dimension": "参数与边界理解",
-            "watched_tutorial": "不敢改教程里的配置和参数，一旦报错只会搜报错原文复制粘贴",
-            "truly_mastered": "清楚每个关键参数（如超时时间、缓冲区大小、事务模式）改大或改小会带来什么代价"
-          },
-          {
-            "dimension": "迁移与扩展能力",
-            "watched_tutorial": "教程教了爬 A 网站，遇到结构稍有不同的 B 网站就完全卡壳",
-            "truly_mastered": "能把通用机制（如 DOM 选择器评分、XHR JSON 嗅探）抽象出来并迁移应用到新场景"
-          },
-          {
-            "dimension": "面试表达深度",
-            "watched_tutorial": "只能背诵“我使用了 XX 框架实现了 XX 功能”",
-            "truly_mastered": "能讲清“当时面临什么约束 → 对比了哪两种方案 → 为什么选 A → 踩了什么坑并如何将耗时优化了 X 倍”"
-          }
-        ],
-        "dynamic_adjustment": "每双周打开本系统的「全局目录」与「当前目标岗位」，抽查 10 个你最想去的真实岗位 JD：如果发现某项基础技能（如 SQL/Linux 网络/自动化测试）在 6 个以上 JD 中反复作为必需项出现，则上调其下周学习时长；若某项小众技术仅在极个别岗位出现，则果断降级为“了解即可”。"
-      },
-      "career_planning": [
-        {
-          "phase": "第一层：大二学年（2026–2027 · 基础筑底与低成本试水期）",
-          "core_goal": "夯实跨方向通用底座 + 完成 2 个高质量工程闭环项目 + 冲刺第一段日常/暑期实习",
-          "action_points": "• 优先积累通用能力：把 C++17、Python 工程化、数据结构算法、Linux/OS/网络、MySQL/Redis 基础打牢，这些能力在任何软件方向都 100% 保值；\n• 用双项目支撑多方向投递：简历上同时打磨好《C++/OpenGL 渲染与客户端项目》（证明底层 C++ 与图形/客户端能力）与《Career Agent 智能校招采集与多维分析系统》（证明 Python/后端数据管道/自动化测试/AI 应用工程能力），一份简历即可根据岗位侧重灵活投递客户端、后端、测开与 AI 应用工程！"
-        },
-        {
-          "phase": "第二层：大三实习阶段（2027–2028 · 职业假设验证与转正卡位期）",
-          "core_goal": "通过 1–2 段真实企业实习，用一手体感验证“工作内容”与“团队环境/WLB”假设",
-          "action_points": "• 实习重点验证的 3 个假设：① 自己每天写这类代码（如客户端交互 vs 服务端逻辑 vs 自动化测试工具）是否感到充实而非痛苦？② 所在行业与部门的真实上下班时间（晚 7 点后办公室还剩多少人、周末是否频繁被消息打扰）是否符合你的 WLB 底线？③ 团队是否有规范的 Code Review、自动化测试与技术文档（决定你能否学到正规工程方法）；\n• 灵活止损与切换：实习最大的价值就是“低成本试错”——如果大三第一段实习发现某个细分方向加班严重或业务枯燥，完全可以在大三暑期实习凭借扎实的 C++/Python/系统底座切换到高 WLB 的外企、工业软件或国央企科技岗。"
-        },
-        {
-          "phase": "第三层：大四校招与毕业后 1–3 年（2028–2032 · 长期技能复利与转岗弹性）",
-          "core_goal": "建立可跨行业迁移的工程护城河，平衡技术成长、就业稳定性、收入与 WLB",
-          "action_points": "• 长期技能复利与转岗路径：\n  - 从 C++ 桌面/工业客户端 出发 → 可横向迁移至 医疗影像软件、EDA/CAD 工业软件、智能座舱 HMI、音视频客户端或高性能基础组件；\n  - 从 后端/数据与分布式服务 出发 → 可在 金融科技、电信云、外企研发中心、大型政企数字化平台之间自由跨行业流动；\n  - 从 测试开发 (SDET) / 工程效能 出发 → 可向 DevOps/SRE、质量架构师、AI 模型自动化评测平台演进；\n• 平衡成长、收入与 WLB 的务实原则：不必把“起薪最高但大小周/高淘汰率的互联网核心卷王岗”当成唯一成功标准；在成都、上海、深圳、杭州、武汉、苏州等城市，许多外企研发中心、头部工业/医疗/办公软件企业及优质国央企数字化部门能提供“有竞争力的薪酬 + 健康的双休作息 + 长期稳健的技术成长”。"
-        },
-        {
-          "phase": "第四层：现阶段【不需要】过早确定的决策（卸下不必要的焦虑）",
-          "core_goal": "保持开放探索心态，不把大二的阶段性兴趣当成终身绑定",
-          "action_points": "• 现在不必锁死唯一细分方向：你不需要在大二今天就发誓“我这辈子只做图形渲染”或“只做后端”——保持『通用系统底座 + 可视化/工程化特长』，让大三真实的实习 Offer 和团队体验来帮你做最终收敛；\n• 不把短期岗位数量直接等同于长期价值：某方向短期岗位多（如通用业务开发）意味着入行容易，某方向岗位精（如工业 CAD/医疗软件）意味着细分壁垒高；只要底座扎实，你随时拥有选择权。"
-        }
-      ],
-      "tech_evaluations": [
-        {
-          "id": "cs_os_linux_net",
-          "group": "第一层：跨方向高保值底座（大二核心）",
-          "dim": "1.计算机系统与网络",
-          "name": "操作系统、Linux 环境、多线程并发与计算机网络 (TCP/IP/HTTP/进程线程)",
-          "val_general": "极高（跨方向通用底座，覆盖后端、系统、客户端、测开、嵌入式）",
-          "val_domain": "高（各技术方向技术一面必考核心）",
-          "val_explore": "极高（十年不过时的底层内功，跨行业完全通用）",
-          "val_practice": "极高（排查线上故障、网络超时、内存泄漏、多线程死锁的必备能力）",
-          "prereq_and_cost": "【事实】当前已在学习系统基础；【建议】结合 Linux 命令行与 Socket/多线程小项目巩固，无需死磕冷门内核源码",
-          "mention_total": 0,
-          "explicit_must": 0,
-          "explicit_bonus": 0,
-          "context_only": 0,
-          "dirs": {},
-          "examples": [],
-          "dirs_covered": 0,
-          "mention_pct": 0.0,
-          "must_pct_of_mention": 0,
-          "bonus_pct_of_mention": 0,
-          "context_pct_of_mention": 0,
-          "top_dirs_str": "样本较少"
-        },
-        {
-          "id": "prog_cpp",
-          "group": "第一层：跨方向高保值底座（大二核心）",
-          "dim": "2.主力静态编译语言",
-          "name": "C / C++ 语言、面向对象设计与内存管理 (STL/RAII/智能指针/调试)",
-          "val_general": "极高（覆盖桌面客户端、工业/医疗软件、轨交电力、高性能后端、系统与游戏）",
-          "val_domain": "极高（金山办公、卡斯柯、联影医疗、万兴科技、腾讯客户端、高德C++后端的核心语言）",
-          "val_explore": "高（已具备学习基础，转换成本最低；可用于投递高WLB工业/办公软件与客户端）",
-          "val_practice": "高（训练严谨的模块化设计、内存安全与性能分析思维）",
-          "prereq_and_cost": "【事实】已具备 C++17 与小项目经验；【建议】巩固 RAII、智能指针、多线程与 GDB/ASan 调试，暂缓偏门模板元编程",
-          "mention_total": 0,
-          "explicit_must": 0,
-          "explicit_bonus": 0,
-          "context_only": 0,
-          "dirs": {},
-          "examples": [],
-          "dirs_covered": 0,
-          "mention_pct": 0.0,
-          "must_pct_of_mention": 0,
-          "bonus_pct_of_mention": 0,
-          "context_pct_of_mention": 0,
-          "top_dirs_str": "样本较少"
-        },
-        {
-          "id": "prog_python",
-          "group": "第一层：跨方向高保值底座（大二核心）",
-          "dim": "3.高效脚本与自动化语言",
-          "name": "Python 语言、自动化脚本与快速原型开发",
-          "val_general": "极高（测试开发SDET、数据工程、AI应用/Agent工程、外企自动化工具的第一主力语言）",
-          "val_domain": "极高（几乎所有现代研发团队的胶水语言与自动化验证标准语言）",
-          "val_explore": "极高（投入产出比最高，能让你从单一C++平滑拓展到测开、数据、AI工程与外企IT）",
-          "val_practice": "极高（编写自动化测试、数据处理管道、后端接口原型与日常效率工具的利器）",
-          "prereq_and_cost": "【事实】维护本 Career Agent 项目已具备 Python 实战经验；【建议】补齐 pytest 与 FastAPI 工程规范",
-          "mention_total": 0,
-          "explicit_must": 0,
-          "explicit_bonus": 0,
-          "context_only": 0,
-          "dirs": {},
-          "examples": [],
-          "dirs_covered": 0,
-          "mention_pct": 0.0,
-          "must_pct_of_mention": 0,
-          "bonus_pct_of_mention": 0,
-          "context_pct_of_mention": 0,
-          "top_dirs_str": "样本较少"
-        },
-        {
-          "id": "ds_algo_core",
-          "group": "第一层：跨方向高保值底座（大二核心）",
-          "dim": "4.算法与数据结构",
-          "name": "数据结构与算法基础 (数组/链表/树/图/哈希/排序/复杂度分析)",
-          "val_general": "极高（所有正规软件企业校招与实习笔试、一面手撕代码的共同敲门砖）",
-          "val_domain": "中高（工程岗重哈希、树、图与复杂度控制，无需ACM竞赛级难度）",
-          "val_explore": "高（跨所有软件岗位100%复用）",
-          "val_practice": "中高（帮助在工程开发中选择合理的数据容器与检索结构）",
-          "prereq_and_cost": "【建议】保持每周 3–5 道中等难度经典题（LeetCode Hot 100）维持手感即可，拒绝脱离工程的盲目刷题",
-          "mention_total": 0,
-          "explicit_must": 0,
-          "explicit_bonus": 0,
-          "context_only": 0,
-          "dirs": {},
-          "examples": [],
-          "dirs_covered": 0,
-          "mention_pct": 0.0,
-          "must_pct_of_mention": 0,
-          "bonus_pct_of_mention": 0,
-          "context_pct_of_mention": 0,
-          "top_dirs_str": "样本较少"
-        },
-        {
-          "id": "sql_db_usage",
-          "group": "第一层：跨方向高保值底座（大二核心）",
-          "dim": "5.数据存储与数据库应用",
-          "name": "关系型数据库 (SQL/MySQL/PostgreSQL) 与缓存中间件 (Redis) 基础使用",
-          "val_general": "高（后端研发、外企IT系统、数据工程、测试开发、AI知识库应用均高频依赖）",
-          "val_domain": "极高（业务系统与企业级软件的核心持久化层）",
-          "val_explore": "高（学习成本低、就业面极广、WLB友好）",
-          "val_practice": "极高（表结构设计、事务隔离与索引查询调优是工程必备基本功）",
-          "prereq_and_cost": "【事实】当前仅使用过轻量级 SQLite；【建议】将 MySQL 索引/事务与 Redis 缓存列为大二下最高优先级补齐项（约 2–3 周）",
-          "mention_total": 0,
-          "explicit_must": 0,
-          "explicit_bonus": 0,
-          "context_only": 0,
-          "dirs": {},
-          "examples": [],
-          "dirs_covered": 0,
-          "mention_pct": 0.0,
-          "must_pct_of_mention": 0,
-          "bonus_pct_of_mention": 0,
-          "context_pct_of_mention": 0,
-          "top_dirs_str": "样本较少"
-        },
-        {
-          "id": "eng_test_debug_git",
-          "group": "第一层：跨方向高保值底座（大二核心）",
-          "dim": "6.工程质量与协作工具链",
-          "name": "软件测试、调试分析、版本控制与构建 (Git/CMake/单元测试/自动化测试/CI)",
-          "val_general": "高（测试开发SDET与所有正规研发岗的日常工程规范）",
-          "val_domain": "极高（直接体现代码工程化成熟度与排障能力）",
-          "val_explore": "高（良好的单元测试与自动化验证习惯是工程师的核心竞争力）",
-          "val_practice": "极高（决定项目作品集是否像成熟的工业级工程而非拼凑的课程作业）",
-          "prereq_and_cost": "【事实】已掌握 Git、CMake 与 pytest 基础；【建议】在后续每个项目中强制落地自动化单测与 GitHub Actions CI",
-          "mention_total": 0,
-          "explicit_must": 0,
-          "explicit_bonus": 0,
-          "context_only": 0,
-          "dirs": {},
-          "examples": [],
-          "dirs_covered": 0,
-          "mention_pct": 0.0,
-          "must_pct_of_mention": 0,
-          "bonus_pct_of_mention": 0,
-          "context_pct_of_mention": 0,
-          "top_dirs_str": "样本较少"
-        },
-        {
-          "id": "client_desktop_qt",
-          "group": "第二层：高供给候选方向技术栈（按需选修）",
-          "dim": "7.跨平台桌面与工业/办公软件",
-          "name": "跨平台桌面客户端与工业上位机开发 (C++ / Qt / Windows & Mac SDK)",
-          "val_general": "中高（在桌面客户端与工业/医疗软件细分族群中占比高，且本科明确可投率高）",
-          "val_domain": "极高（金山办公WPS、万兴科技、联影医疗、卡斯柯、博众精工等桌面与工业软件核心要求）",
-          "val_explore": "高（完美承接现有 C++ 与图形界面经验，且许多工业/办公/外企软件团队 WLB 较稳健）",
-          "val_practice": "高（能独立开发带可视化界面、硬件通信或本地AI集成的完整桌面软件产品）",
-          "prereq_and_cost": "【建议】花 2 周用 Qt6 编写一个中小型跨平台工具软件，低成本验证自己对桌面/工业软件方向的真实兴趣",
-          "mention_total": 0,
-          "explicit_must": 0,
-          "explicit_bonus": 0,
-          "context_only": 0,
-          "dirs": {},
-          "examples": [],
-          "dirs_covered": 0,
-          "mention_pct": 0.0,
-          "must_pct_of_mention": 0,
-          "bonus_pct_of_mention": 0,
-          "context_pct_of_mention": 0,
-          "top_dirs_str": "样本较少"
-        },
-        {
-          "id": "prog_java_go",
-          "group": "第二层：高供给候选方向技术栈（按需选修）",
-          "dim": "8.主流企业级服务端与全栈语言栈",
-          "name": "Java 企业级后端 (Spring Boot) / Go 云原生微服务 / TypeScript 全栈与前端 (React/Vue/Node)",
-          "val_general": "极高（中国大陆校招市场岗位数量最多的主流工程技术栈，广泛覆盖国央企、银行、外企IT与互联网）",
-          "val_domain": "极高（后端研发、企业级信息系统、云原生服务与现代 Web 全栈/前端研发的核心技术栈）",
-          "val_explore": "高（探索模式下不应因当前学习 C++ 而预先排除；C++ 的面向对象与静态类型思维可迁移，但框架生态需独立补齐）",
-          "val_practice": "高（构建高并发 HTTP/RPC 服务、企业级业务平台与现代交互应用的核心生产力）",
-          "prereq_and_cost": "【转型评估】Go 约需 3–5 周、Java Spring 或 TypeScript/React 约需 4–8 周建立完整工程项目；C++ 不能直接替代 JVM/Spring 或浏览器 DOM 生态，应结合目标岗位真实需求按需选择一门深入",
-          "mention_total": 0,
-          "explicit_must": 0,
-          "explicit_bonus": 0,
-          "context_only": 0,
-          "dirs": {},
-          "examples": [],
-          "dirs_covered": 0,
-          "mention_pct": 0.0,
-          "must_pct_of_mention": 0,
-          "bonus_pct_of_mention": 0,
-          "context_pct_of_mention": 0,
-          "top_dirs_str": "样本较少"
-        },
-        {
-          "id": "ai_agent_rag_eng",
-          "group": "第二层：高供给候选方向技术栈（按需选修）",
-          "dim": "9.AI应用工程与智能体落地",
-          "name": "AI 辅助研发与企业级 Agent / RAG 应用工程 (AI Coding/Prompt/RAG/工具调用)",
-          "val_general": "高（越来越多研发岗将 AI 工程化落地与 Agent 工具链列为要求或加分项）",
-          "val_domain": "高（AI应用开发工程师、AI全栈工程师、智能测试Agent工程师的核心要求）",
-          "val_explore": "中高（重在用工程方法把 LLM API/RAG/工具调用集成进可靠软件并做评测闭环）",
-          "val_practice": "极高（你当前的 Career Agent 系统本身就是可写入简历的真实 AI 应用工程案例）",
-          "prereq_and_cost": "【建议】聚焦本科学历友好的“AI应用工程与自动化评测闭环”，暂缓需硕博与顶会论文支撑的底层预训练算法研究",
-          "mention_total": 0,
-          "explicit_must": 0,
-          "explicit_bonus": 0,
-          "context_only": 0,
-          "dirs": {},
-          "examples": [],
-          "dirs_covered": 0,
-          "mention_pct": 0.0,
-          "must_pct_of_mention": 0,
-          "bonus_pct_of_mention": 0,
-          "context_pct_of_mention": 0,
-          "top_dirs_str": "样本较少"
-        },
-        {
-          "id": "gfx_cad_interest",
-          "group": "第三层：个人兴趣支线与专精观察（不作主线绑定）",
-          "dim": "10.图形渲染与工业几何CAD",
-          "name": "计算机图形学、渲染管线与工业 CAD 几何算法 (OpenGL/Shader/3D/CAD)",
-          "val_general": "中低（全库本科计算机岗中占比较小，集中于游戏引擎与少数工业CAD/仿真企业）",
-          "val_domain": "极高（仅在图形引擎、工业CAD与三维仿真岗中为必需核心）",
-          "val_explore": "中（作为个人兴趣可锻炼空间数学与C++架构思维，但纯游戏渲染岗面较窄且需留意项目期加班）",
-          "val_practice": "中（已完成的小型 OpenGL 项目可作为简历上证明 C++ 编码与调试能力的亮眼素材）",
-          "prereq_and_cost": "【建议】保留现有 OpenGL 项目作为简历上的“C++工程能力证明”与兴趣支线，暂缓投入数月死磕 Vulkan/UE5 底层源码",
-          "mention_total": 0,
-          "explicit_must": 0,
-          "explicit_bonus": 0,
-          "context_only": 0,
-          "dirs": {},
-          "examples": [],
-          "dirs_covered": 0,
-          "mention_pct": 0.0,
-          "must_pct_of_mention": 0,
-          "bonus_pct_of_mention": 0,
-          "context_pct_of_mention": 0,
-          "top_dirs_str": "样本较少"
-        }
-      ],
-      "version_diff_summary": {
-        "previous_profile_version": "v-98580aa1",
-        "current_profile_version": "v-98580aa1",
-        "previous_advice_version": "adv-219adeee",
-        "update_strategy": "refresh_market_data",
-        "strategy_label": "基于新增招聘市场数据刷新统计与综合建议",
-        "changed_fields": [],
-        "why_changed": [
-          "个人配置版本 (v-98580aa1) 未变，因招聘市场样本数据更新 (m-fee46e5e) 或手动触发而刷新建议。"
-        ],
-        "affected_modules": [
-          "job_filters.aggregate_tech_and_learning_decisions (市场岗位与技能需求统计刷新)"
-        ]
-      },
-      "data_limitations": [
-        "【覆盖范围限制】当前统计基于已配置的招聘站点与库内 4 个本科计算机岗（时间范围：2026-05-13 至 2026-05-13），未纳入未公开网申的内部直推岗位。",
-        "【工时与WLB信息缺失】约 90% 以上的公开 JD 不会如实写明部门真实上下班时间与周末加班频率，凡未显式披露工时的岗位均标记为【未知】，需通过实习亲历或团队访谈核实。",
-        "【真实录用比与薪资包未知】公开 JD 不包含各岗位实际简历投录比、部门 HC 余量及最终总包薪资结构，系统绝不编造此类数值结论。"
-      ],
-      "next_watch_points": [
-        "观察「客户端/工业软件」与「后端服务」类别下明确标注『2027/2028/2029届日常或暑期实习』的新增岗位占比变化。",
-        "跟踪目标企业 JD 中对『MySQL/Redis 数据库调优』、『Qt6 跨平台开发』与『AI 辅助工程 / Agent 自动化评测』从“加分项”转为“必需项”的趋势。",
-        "在完成下一阶段小项目（如为项目补齐 MySQL/Redis 或 Qt6 工具）后，更新 profile.yaml 中的 skills 与 project_evidence，观察匹配度 ≥75 分的岗位数量增长。"
-      ],
-      "version_info": {
-        "advice_version_id": "adv-f160f5e2",
-        "generated_at": "2026-10-18 17:43:22 CST",
-        "last_success_at": "2026-10-18 17:43:22 CST",
-        "profile_version_id": "v-98580aa1",
-        "previous_profile_version_id": "v-98580aa1",
-        "market_fingerprint": "m-fee46e5e",
-        "is_synced_with_profile": true,
-        "sync_status": "synced",
-        "sync_status_label": "✅ 与当前个人配置版本一致",
-        "last_error": "",
-        "update_strategy": "refresh_market_data",
-        "strategy_label": "基于新增招聘市场数据刷新统计与综合建议",
-        "cache_hit": false,
-        "used_ai": false
-      },
-      "profile_canonical_snapshot": {
-        "recommendation_mode": "exploration",
-        "target_direction_locked": false,
-        "locked_target_directions": [],
-        "locked_target_languages": [],
-        "degree": "本科",
-        "job_type": "实习",
-        "target_cohort": 2029,
-        "education": {
-          "degree": "本科",
-          "graduation_year": 2029,
-          "current_stage": "大二本科在读"
-        },
-        "directions": [
-          "通用软件工程与业务系统开发（后端、全栈、客户端、平台研发，涵盖 Java / Go / Python / TypeScript / C++ 等技术栈）",
-          "工程质量与研发效率（测试开发 SDET、自动化测试、质量工程、DevOps、开发工具及相关岗位）",
-          "数据与信息系统（数据工程、数据库应用、数据平台、分布式存储及相关岗位）",
-          "系统、基础设施与工程平台（Linux、网络、云原生基础设施、容器、安全工程及相关岗位）",
-          "AI 应用与智能体工程（AI 应用开发、Agent/RAG 工程集成、评测工具及相关岗位）",
-          "行业软件与专业工程工具（工业软件、制造、医疗、能源、轨交、桌面与跨平台软件等领域）",
-          "其他由实际招聘需求、技能组合或项目实践发现的计算机方向（含 Web 前端、移动端等）"
-        ],
-        "optional_interest_branches": [
-          "图形学与实时渲染（OpenGL、GLSL、三维图形；当前保留为技术兴趣，不默认作为主要就业方向）",
-          "其他暂未形成稳定偏好的计算机技术、数学、物理及工程领域"
-        ],
-        "skills": [
-          "C++ 基础与持续学习",
-          "数据结构与算法基础学习",
-          "Python 基础接触与 AI 辅助脚本实践",
-          "操作系统与计算机系统基础学习",
-          "CMake 构建工具基础接触",
-          "Git 版本控制基础操作",
-          "Linux 与命令行基础接触",
-          "SQLite 与基础数据持久化实践接触",
-          "OpenGL / GLSL 基础图形实践"
-        ],
-        "skill_proficiency": {
-          "main_languages": [
-            {
-              "name": "C++",
-              "level": "基础学习阶段",
-              "evidence": "正在学习 C++ 语言、面向对象、STL 等内容，并通过小型项目练习编码与调试",
-              "limitation": "属于现有学习经历而非锁定的就业方向；不应默认已具备独立设计、实现和维护中大型 C++ 工程的能力，也不能直接替代 Java/Go/JS/TS 等生态框架经验"
-            },
-            {
-              "name": "Python",
-              "level": "初步接触与实践",
-              "evidence": "在 AI 辅助下参与招聘信息处理工作流的使用、修改或排查",
-              "limitation": "不应默认已熟练掌握 Python 工程开发、Web 后端架构或自动化测试体系"
-            }
-          ],
-          "engineering_basics": [
-            {
-              "name": "Git",
-              "level": "基础操作阶段",
-              "evidence": "接触过通过终端执行 Git 命令进行仓库同步等操作",
-              "limitation": "不应默认已熟练掌握复杂分支协作、冲突处理、代码审查和团队开发流程"
-            },
-            {
-              "name": "CMake",
-              "level": "基础接触阶段",
-              "evidence": "接触过 CMake 项目构建与配置",
-              "limitation": "不应默认已掌握大型项目构建系统设计、复杂依赖管理或跨平台构建排错"
-            },
-            {
-              "name": "Linux / 命令行",
-              "level": "基础学习阶段",
-              "evidence": "正在接触常见命令行和开发环境操作",
-              "limitation": "不应默认已掌握 Linux 系统编程、服务器运维或生产环境排障"
-            },
-            {
-              "name": "SQLite / 数据持久化",
-              "level": "项目接触阶段",
-              "evidence": "接触过使用 SQLite 数据库的招聘信息工作流",
-              "limitation": "应区分使用现成程序、借助 AI 修改代码与独立设计数据库方案的能力"
-            }
-          ],
-          "interest_explorations": [
-            {
-              "name": "OpenGL / GLSL",
-              "level": "入门实践阶段",
-              "evidence": "完成过小型图形渲染学习项目",
-              "limitation": "不能据此推断已掌握高级渲染技术或确定图形学职业方向"
-            }
-          ]
-        },
-        "project_evidence": [
-          "正在持续学习 C++、数据结构与算法、操作系统及计算机系统基础；当前能力应结合实际代码、练习和独立完成任务的情况逐步验证",
-          "曾进行 C++、OpenGL、GLSL 小型图形渲染项目实践，接触了基础渲染流程、着色器及相关调试；该项目用于提供基础编码与调试证据，不代表选择图形学或 C++ 专属岗位就业",
-          "正在使用 AI 辅助改造和运行基于 Python、SQLite、GitHub Actions 等技术的招聘情报分析工作流，接触岗位采集、数据持久化、自动化运行和报告查看等工程问题；应根据本人实际负责的修改、理解、调试与验证工作评价能力，不得直接视为已独立设计并实现完整商业级系统",
-          "接触过 Git、CMake、开发环境配置和常见问题排查；具体熟练度应以实际独立操作和问题解决证据为准"
-        ],
-        "learning_targets": [
-          "提升数据结构与算法、操作系统、计算机网络、Linux 等跨语言通用计算机工程底座",
-          "学习数据库、SQL、事务、索引与缓存（MySQL / PostgreSQL / Redis）等全行业通用技术",
-          "学习 Git 协作、单元测试、接口测试、日志、调试和工程问题定位",
-          "根据真实招聘数据对比探索 Go、Java、Python、TypeScript/JavaScript 或 C++ 在不同岗位方向中的实际要求与转型成本",
-          "学习如何使用 AI 编程工具，同时提升代码审查、测试、调试和独立解释代码的能力",
-          "通过小型、可验证的项目实践，逐步比较不同岗位的工作内容与个人适配度"
-        ],
-        "unverified_skills": [],
-        "long_term_goals": {
-          "primary_goal": "本科毕业后直接就业，寻找能够长期积累技术能力、具有合理工作生活平衡的工作",
-          "career_path_preference": "优先积累可迁移的软件工程能力；具体职业方向由真实岗位要求、实践反馈和个人偏好逐步确定",
-          "internship_goal": "在本科阶段争取有质量的实习，通过真实工程任务验证能力、了解团队工作方式并探索职业适配度",
-          "decision_principle": "不因短期热门、单个项目经历或当前学习语言（C++）而过早锁定职业方向"
-        },
-        "preferences": {
-          "wlb_priority": "high",
-          "tech_growth_priority": "high",
-          "stability_priority": "high",
-          "overtime_tolerance": "low",
-          "prefer_bachelor_friendly": true
-        },
-        "constraints": {
-          "reject_master_phd_only": true,
-          "reject_high_overtime_signals": true,
-          "salary_expectation": "符合本科实习或校招的正常市场范围；同时关注工作内容、团队工程规范、成长空间、转正机会与 WLB"
-        },
-        "preferred_cities": [
-          "成都",
-          "上海",
-          "深圳",
-          "杭州",
-          "广州",
-          "武汉",
-          "苏州",
-          "北京"
-        ],
-        "excluded_title_keywords": [
-          "博士",
-          "硕士及以上",
-          "销售",
-          "客服",
-          "行政",
-          "人力",
-          "财务",
-          "法务",
-          "主播",
-          "买量",
-          "催收"
-        ],
-        "score_component_limits": {
-          "core_direction": 20,
-          "required_skills": 25,
-          "project_evidence": 20,
-          "engineering_stack": 15,
-          "basic_criteria": 20
-        },
-        "score_thresholds": {
-          "recommend": 75,
-          "consider": 60
-        },
-        "target_roles": [
-          {
-            "name": "通用软件研发与业务系统",
-            "keywords": [
-              "软件开发",
-              "软件研发",
-              "后端开发",
-              "服务端开发",
-              "Java开发",
-              "Go开发",
-              "Golang",
-              "Python开发",
-              "C++开发",
-              "全栈开发",
-              "前端开发",
-              "TypeScript",
-              "客户端开发",
-              "平台开发"
-            ]
-          },
-          {
-            "name": "工程质量与研发效率",
-            "keywords": [
-              "测试开发",
-              "测开",
-              "SDET",
-              "自动化测试",
-              "质量工程",
-              "测试工具",
-              "研发效能",
-              "CI",
-              "CD",
-              "DevOps",
-              "开发工具"
-            ]
-          },
-          {
-            "name": "数据与信息系统",
-            "keywords": [
-              "数据工程",
-              "数据平台",
-              "数据研发",
-              "数据开发",
-              "数据治理",
-              "SQL",
-              "数据库应用",
-              "数据管道",
-              "存储"
-            ]
-          },
-          {
-            "name": "系统与基础设施",
-            "keywords": [
-              "Linux",
-              "系统软件",
-              "网络编程",
-              "基础设施",
-              "云平台",
-              "云原生",
-              "分布式系统",
-              "中间件",
-              "容器",
-              "安全工程"
-            ]
-          },
-          {
-            "name": "AI 应用与工程集成",
-            "keywords": [
-              "AI 应用开发",
-              "Agent",
-              "智能体",
-              "RAG",
-              "AI 工程",
-              "模型应用",
-              "AI 评测",
-              "自动化工作流"
-            ]
-          },
-          {
-            "name": "行业软件与专业工程工具",
-            "keywords": [
-              "工业软件",
-              "制造软件",
-              "医疗软件",
-              "能源软件",
-              "交通软件",
-              "CAD",
-              "CAE",
-              "仿真",
-              "桌面软件",
-              "SDK"
-            ]
-          },
-          {
-            "name": "兴趣探索参照：图形与三维技术",
-            "keywords": [
-              "图形学",
-              "渲染",
-              "OpenGL",
-              "GLSL",
-              "三维",
-              "CAD 几何",
-              "视景仿真"
-            ]
-          },
-          {
-            "name": "其他或尚未分类的岗位",
-            "keywords": []
-          }
-        ],
-        "custom_categories": {},
-        "ui_settings": {}
-      }
-    },
     {
       "data_time_range": {
         "earliest_date": "2026-05-13",
@@ -11194,42 +10458,1145 @@
         "custom_categories": {},
         "ui_settings": {}
       }
+    },
+    {
+      "data_time_range": {
+        "earliest_date": "0001-01-01",
+        "latest_date": "2026-10-24",
+        "generated_at": "2026-10-24 11:14 CST",
+        "timezone": "Asia/Shanghai (UTC+8)"
+      },
+      "sample_summary": {
+        "total_jobs_in_db": 17357,
+        "substantive_jd_count": 14174,
+        "bachelor_cs_jobs": 7218,
+        "intern_jobs": 0,
+        "companies_count": 451,
+        "category_counts": {
+          "embedded_device": 1137,
+          "backend_dist": 3116,
+          "ai_ml": 2532,
+          "software_cpp": 308,
+          "other_technical": 798,
+          "testing_quality": 1219,
+          "hardware_mechanical": 252,
+          "unclassified": 109,
+          "graphics_3d": 190,
+          "data_platform": 389,
+          "sys_infra": 468,
+          "security": 256,
+          "game_engine": 133
+        }
+      },
+      "profile_snapshot": {
+        "degree": "本科",
+        "target_cohort": "2029",
+        "job_type": "实习",
+        "skills": [
+          "C++ 基础与持续学习",
+          "数据结构与算法基础学习",
+          "Python 基础接触与 AI 辅助脚本实践",
+          "操作系统与计算机系统基础学习",
+          "CMake 构建工具基础接触",
+          "Git 版本控制基础操作",
+          "Linux 与命令行基础接触",
+          "SQLite 与基础数据持久化实践接触",
+          "OpenGL / GLSL 基础图形实践"
+        ],
+        "project_evidence": [
+          "正在持续学习 C++、数据结构与算法、操作系统及计算机系统基础；当前能力应结合实际代码、练习和独立完成任务的情况逐步验证",
+          "曾进行 C++、OpenGL、GLSL 小型图形渲染项目实践，接触了基础渲染流程、着色器及相关调试；该项目用于提供基础编码与调试证据，不代表选择图形学或 C++ 专属岗位就业",
+          "正在使用 AI 辅助改造和运行基于 Python、SQLite、GitHub Actions 等技术的招聘情报分析工作流，接触岗位采集、数据持久化、自动化运行和报告查看等工程问题；应根据本人实际负责的修改、理解、调试与验证工作评价能力，不得直接视为已独立设计并实现完整商业级系统",
+          "接触过 Git、CMake、开发环境配置和常见问题排查；具体熟练度应以实际独立操作和问题解决证据为准"
+        ],
+        "learning_targets": [
+          "提升数据结构与算法、操作系统、计算机网络、Linux 等跨语言通用计算机工程底座",
+          "学习数据库、SQL、事务、索引与缓存（MySQL / PostgreSQL / Redis）等全行业通用技术",
+          "学习 Git 协作、单元测试、接口测试、日志、调试和工程问题定位",
+          "根据真实招聘数据对比探索 Go、Java、Python、TypeScript/JavaScript 或 C++ 在不同岗位方向中的实际要求与转型成本",
+          "学习如何使用 AI 编程工具，同时提升代码审查、测试、调试和独立解释代码的能力",
+          "通过小型、可验证的项目实践，逐步比较不同岗位的工作内容与个人适配度"
+        ]
+      },
+      "skill_market_questions": [
+        {
+          "q": "1. 当前技术栈可以匹配哪些不同职业方向？",
+          "a": "【事实】基于你已配置的技能（C++ 基础与持续学习, 数据结构与算法基础学习, Python 基础接触与 AI 辅助脚本实践, 操作系统与计算机系统基础学习, CMake 构建工具基础接触）与项目证据，在当前库内 7218 个本科计算机岗中，可直接或平滑迁移匹配 6 大方向：① 客户端/桌面与工业软件、② 后端与分布式系统、③ 测试开发(SDET)与研发工具、④ AI 应用与 Agent 工程、⑤ Linux 系统软件与基础设施、⑥ 图形渲染与三维 CAD（兴趣参照）。"
+        },
+        {
+          "q": "2. 哪些方向与用户现有技能重合较高？",
+          "a": "【事实+推断】重合度最高的前三名依次是：① 跨平台桌面/工业软件客户端（直接复用 C++17、CMake 与图形界面经验，重合度 ~70%）、② 测试开发 SDET 与自动化工具链（直接复用 Python、pytest、Git 与排障能力，重合度 ~65%）、③ AI 应用与 Agent 工程（直接复用 Career Agent 项目的 LLM API 调度、Prompt 约束与数据管道经验，重合度 ~65%）。"
+        },
+        {
+          "q": "3. 哪些方向需要补充哪些关键能力？",
+          "a": "【事实】• 投递后端/数据方向：急需补齐 MySQL 索引与事务、Redis 缓存及 HTTP/RPC 服务端框架；\n• 投递桌面/工业客户端：需补齐 Qt6 信号槽与多线程 UI 架构；\n• 投递系统软件/安全：需补齐 Linux 系统编程（进程线程/epoll）与容器基础。"
+        },
+        {
+          "q": "4. 哪些基础能力能够同时支持多个职业方向？",
+          "a": "【事实】从全库 JD 统计看，① 操作系统与 Linux 网络 (提及率 36.5%~64.3%)、② C/C++ 内存管理与并发 (44.4%)、③ Python 自动化脚本 (43.4%)、④ 数据结构与算法、⑤ SQL 数据库基础、⑥ Git/CMake/单元测试与调试，这 6 项能力同时支撑全部 10+ 个技术方向，是绝对高保值的“最大公约数”。"
+        },
+        {
+          "q": "5. 哪些技能值得优先学习，哪些可以暂缓？",
+          "a": "【建议】• 优先学习（P0）：MySQL/Redis 数据库工程应用、Linux 网络与多线程编程、自动化单元测试与性能分析；\n• 按需选修（P1）：Qt6 跨平台开发 或 Go/FastAPI 后端微服务；\n• 明确暂缓（P2）：大模型底层预训练算子、重度商业游戏引擎源码死磕、偏门模板元编程与超纲竞赛算法。"
+        },
+        {
+          "q": "6. 哪些方向虽然目前匹配度一般，但值得进一步调查？",
+          "a": "【推断】① 工业软件/医疗影像软件/轨交信控软件（如联影、卡斯柯、中望、博世）：虽然平时在校园宣讲声量不如互联网大厂，但极度渴求扎实的 C++ 本科生且 WLB 与职业寿命极佳；② 安全工程与信创基础软件：对熟悉 C/C++ 与 Linux 底层的同学有较高接纳度，值得在大二下通过小型网络诊断工具试水调查。"
+        },
+        {
+          "q": "7. 当前证据是否足以判断某个方向的就业前景？",
+          "a": "【事实与边界声明】当前数据库收录了 451 家企业的 7218 个本科计算机岗位（时间跨度 0001-01-01 至 2026-10-24），足以客观反映各方向的校招岗位供给规模与显式技术要求频率；但【未知/数据不足】JD 原文无法可靠反映各企业的实际 Offer 录用比、真实加班时长与未来 3 年的部门裁撤风险，这些维度必须结合实习亲身体验与学长学姐内推访谈交叉核实，系统绝不凭空编造。"
+        }
+      ],
+      "suggested_directions": [
+        {
+          "id": "software_cpp",
+          "direction_name": "选项 A：跨平台桌面客户端、办公与工业软件研发 (C++ / Qt / SDK)",
+          "sample_stat": "当前库内命中 308 个本科计算机岗 / 覆盖 145 家企业",
+          "priority_badge": "重点探索主线 · 高重合·首选试水",
+          "recommendation_reason": "【事实】当前库内命中 308 个本科计算机岗 / 覆盖 145 家企业，代表企业包括金山办公(WPS)、万兴科技、联影医疗、卡斯柯、同花顺等；【推断（置信度：高）】该方向直接以 C++、面向对象设计和操作系统基础为核心，本科生接纳度在全部技术方向中居首，且非互联网纯流量业务，组织稳定性较好。",
+          "skill_match": "【事实】与你现有的 C++17 (STL/RAII)、CMake 构建、Linux/Windows 基础及 OpenGL 图形窗口编程经验重合度达 70% 以上，属于转换成本最低的顺延赛道。",
+          "gaps_to_fill": "• 必需补足：Qt6 信号槽机制、界面与业务逻辑解耦 (MVC/MVVM)、多线程异步 UI 通信、内存泄漏与崩溃 Dump 调试；\n• 加分项：Windows/macOS 平台原生 API、跨平台安装包构建与自动化 UI 测试。",
+          "risks_and_uncertainties": "【推断（置信度：中）】部分传统制造业上位机岗位技术栈偏老旧（如 MFC）；【未知】具体团队的发版节奏与加班情况未在 JD 中披露，需在面试中核实使用现代 C++/Qt6 还是遗留框架。",
+          "preference_alignment": "【事实+推断】高度契合“本科直通就业 + 重视 WLB + 复用 C++ 基础”偏好；办公软件、医疗影像与轨交工控软件生命周期长达 5–10 年，技能贬值慢。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
+          "validation_actions": "【建议（适用前提：有 2–3 周课余时间）】使用 C++17 + Qt6 + SQLite 编写一个带本地数据检索与可视化图表的桌面小工具，检验自己是否喜欢“所见即所得”的客户端工程交互。"
+        },
+        {
+          "id": "backend_dist",
+          "direction_name": "选项 B：后端开发、企业级平台与分布式系统 (C++ / Go / Python)",
+          "sample_stat": "当前库内命中 3116 个本科计算机岗 / 覆盖 378 家企业",
+          "priority_badge": "重点探索主线 · 岗位基数最大·高通用",
+          "recommendation_reason": "【事实】当前库内命中 3116 个本科计算机岗 / 覆盖 378 家企业，是所有计算机校招与实习中岗位供给量最大、行业覆盖最广（外企、国央企、金融科技、ToB软件、互联网）的方向；【推断（置信度：高）】掌握服务端与数据库能力后，无论未来追求高薪还是追求国企/外企 WLB，可选择的雇主池最宽。",
+          "skill_match": "【事实】已具备 C++ 与 Python 编程基础、Linux 命令行及计算机网络基础（匹配度约 55%）；但尚缺关系型数据库与标准 Web/RPC 服务端开发闭环。",
+          "gaps_to_fill": "• 必需补足：MySQL 表结构设计与索引调优、Redis 缓存应用、HTTP/RESTful 与 gRPC 接口开发、并发与事务控制；\n• 语言抓手建议：在现有 C++/Python (FastAPI) 基础上，可花 2 周顺带掌握与 C 系语法相近的 Go 语言，无需从零背诵庞杂的 Java 八股。",
+          "risks_and_uncertainties": "【推断（置信度：中）】纯互联网大厂业务后端笔面试竞争激烈且部分团队伴随 On-call 轮值压力；【建议】投递时可重点关注外企 IT、银行科技、电信云及成熟 ToB 软件企业的后端/平台岗。",
+          "preference_alignment": "【推断】本科学历完全可投，跨行业迁移能力极强（第一名），是防范单一行业周期波动的“压舱石”选项。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
+          "validation_actions": "【建议】为你现有的 Career Agent 项目增加一套基于 FastAPI/Go + MySQL + Redis 的 REST API 服务层与压测脚本，体验完整服务端链路。"
+        },
+        {
+          "id": "testing_quality",
+          "direction_name": "选项 C：测试开发 (SDET)、质量工程与研发工具链 (Python / C++)",
+          "sample_stat": "当前库内命中 1219 个本科计算机岗 / 覆盖 288 家企业",
+          "priority_badge": "重点探索主线 · 本科最友好·高WLB备选",
+          "recommendation_reason": "【事实】当前库内命中 1219 个本科计算机岗 / 覆盖 288 家企业，在外企（博世、德州仪器、恩智浦）、中大型软件企及硬件龙头中大量招收本科生；【推断（置信度：高）】相比算法岗的学历内卷，测开与研发工具岗更看重 Python/C++ 自动化脚本、系统排障与工程规范，入行确定性高。",
+          "skill_match": "【事实】你在维护 Career Agent 时已实际运用了 Python 数据抓取、正则清洗与 pytest 单元测试，与测开/工具链岗的日常技术栈重合度达 65%。",
+          "gaps_to_fill": "• 必需补足：接口自动化测试框架设计、CI/CD 流水线集成 (GitHub Actions/Jenkins)、Linux 性能与内存监控工具 (perf/Valgrind/ASan)、测试用例设计方法论。",
+          "risks_and_uncertainties": "【风险提示】部分公司名为“测试开发”实为纯手工点点点功能测试；【建议】面试时必须核实团队的“自动化代码与工具开发占比（建议 > 50%）”，避开纯人工点测岗。",
+          "preference_alignment": "【推断】总体工时节奏比一线业务开发更规律，且在 AI 辅助编程时代，“自动化验证与质量评测平台”的重要性不降反升。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
+          "validation_actions": "【建议】为自己的 C++ 或 Python 项目搭建一套完整的 pytest 自动化回归测试套件 + 覆盖率报告 + GitHub Actions 自动触发流水线。"
+        },
+        {
+          "id": "ai_ml",
+          "direction_name": "选项 D：AI 应用工程与企业级 Agent / RAG 系统落地（非纯算法研究）",
+          "sample_stat": "当前库内命中 2532 个本科计算机岗 / 覆盖 296 家企业",
+          "priority_badge": "重点探索主线 · 结合现有项目·工程切入",
+          "recommendation_reason": "【事实】当前库内命中 2532 个本科计算机岗 / 覆盖 296 家企业；其中纯算法科研岗普遍偏好硕博，但“AI应用开发 / Agent工程 / AI评测工具”分支对本科学历开放度不断提升；【事实】你当前的 Career Agent 项目本身就是一个真实的 LLM API 调度 + 规则过滤 + 数据持久化工程案例。",
+          "skill_match": "【事实】已具备 Python 工程开发、DeepSeek API 流式调用、Prompt 结构化 JSON 约束与 SQLite 存储经验（在 AI 应用工程分支匹配度约 65%）。",
+          "gaps_to_fill": "• 必需补足：RAG 检索增强生成全链路（切分、Embedding、向量检索与重排）、Function Calling 工具调用容错、Agent 准确率与延迟量化评测集构建；\n• 明确不建议投入：大模型预训练底层算子或纯数学论文刷榜（本科直接就业投入产出比过低）。",
+          "risks_and_uncertainties": "【推断（置信度：中）】部分初创公司 AI 应用岗需求变动快、框架更迭频繁；若缺乏扎实的后端/系统底座，容易沦为“纯调包侠”。",
+          "preference_alignment": "【建议】建议采取“后端/客户端工程底座 + AI Agent 应用能力”的复合定位，既享受 AI 落地红利，又保留传统软件工程的退路。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
+          "validation_actions": "【建议】在 Career Agent 中整理出一份含 50 条真实 JD 的“分类与评分黄金测试集 (Golden Dataset)”，量化对比不同 Prompt 与规则的准确率与耗时。"
+        },
+        {
+          "id": "sys_infra",
+          "direction_name": "选项 E：系统软件、云原生基础设施与安全工程 (Linux / Infra / 安全)",
+          "sample_stat": "系统与基础设施：当前库内命中 468 个本科计算机岗 / 覆盖 133 家企业；安全工程：当前库内命中 256 个本科计算机岗 / 覆盖 96 家企业",
+          "priority_badge": "重点探索主线 · 长周期复利·稳扎稳打",
+          "recommendation_reason": "【事实】国央企云（天翼云、联通云、移动云）、信创基础软件（统信、麒麟、深信服、绿盟）及大型科技企业长期招聘 Linux 系统软件、虚拟化、存储与安全工程师；【推断（置信度：高）】底层协议与 Linux 系统机制十年不变，越老越吃香。",
+          "skill_match": "【事实】已具备 C/C++、Linux 环境使用与操作系统基础概念（匹配度约 50%），但缺乏深入的 Linux 系统编程与网络编程实战。",
+          "gaps_to_fill": "• 必需补足：Linux 系统编程（进程/线程/信号/共享内存/epoll）、TCP/IP 协议栈与抓包分析 (Wireshark/tcpdump)、Docker 容器隔离机制 (Namespace/Cgroups)。",
+          "risks_and_uncertainties": "【推断】核心内核开发或编译器研发岗对操作系统/体系结构深度要求较高，部分核心岗偏好硕士；但云原生基础设施、系统工具与安全工程对优秀本科生开放。",
+          "preference_alignment": "【推断】运营商云、信创软件与安全企业的整体作息相对稳健，技术积累深厚，符合长期稳定发展的诉求。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
+          "validation_actions": "【建议】在 Linux 下用 C++17 编写一个基于 epoll + 线程池的轻量级高性能 HTTP/TCP 服务或端口扫描诊断工具，并用 perf/Valgrind 分析性能。"
+        },
+        {
+          "id": "graphics_3d_game",
+          "direction_name": "选项 F：[兴趣参照支线] 图形渲染、三维几何 CAD 与游戏引擎开发",
+          "sample_stat": "图形与三维：当前库内命中 190 个本科计算机岗 / 覆盖 77 家企业；游戏开发：当前库内命中 133 个本科计算机岗 / 覆盖 48 家企业",
+          "priority_badge": "一般兴趣支线·保留对比",
+          "recommendation_reason": "【事实】你拥有“已完成小型 OpenGL 图形程序（含顶点/片段着色器、模型加载与基础光照）”的直接项目证据；【事实】库内图形与三维岗位主要分布在两类雇主：① 游戏公司（米哈游、网易互娱/雷火、库洛、莉莉丝等）；② 工业 CAD/CAE/三维视觉软件（中望软件、先临三维、联影医疗、大疆等）。",
+          "skill_match": "【事实】具备 C++ 与 OpenGL/GLSL 入门项目证据，在图形/工业三维软件方向有直接切入点（基础匹配度约 60%）。",
+          "gaps_to_fill": "• 若投工业 CAD/三维软件：需补足计算几何基础（包围盒 BVH、射线求交、半边网格数据结构）与 Qt/OpenGL 混合渲染；\n• 若投游戏引擎/渲染：需补足 PBR 物理光照、阴影算法、帧缓冲后处理及现代图形调试工具 (RenderDoc)。",
+          "risks_and_uncertainties": "【事实+推断】该方向在全库计算机岗中占比显著低于后端与通用客户端（岗位面较窄）；且头部游戏行业普遍存在版本上线前的项目期加班压力，与“高 WLB 优先”存在一定张力。",
+          "preference_alignment": "【配置联动】你在 profile.yaml 中将该方向列为「一般兴趣支线」而非主力探索方向；系统保留该方向供你横向对比，不将其作为默认主推。【建议】不建议将纯游戏行业渲染岗作为唯一主线死磕；但强烈建议保留你现有的 OpenGL 项目（它是证明你 C++ 工程与数学能力的极佳简历亮点），并可将 WLB 较好的“工业 CAD / 医疗三维可视化 / 激光三维扫描软件”作为差异化投递支线。（当前意向城市覆盖：成都、上海、深圳、杭州、广州；WLB优先级：high）",
+          "validation_actions": "【建议】用 RenderDoc 抓取并分析你现有 OpenGL 项目的每一帧渲染管线状态，补齐一页清晰的架构说明文档与帧率/内存指标即可收官，把主精力留给通用底座。"
+        }
+      ],
+      "learning_content": [
+        {
+          "stage": "第一阶段（大二当前 · 最高优先级）：跨方向高保值通用底座",
+          "priority": "P0（必学 · 同时支撑 A/B/C/D/E/F 所有方向）",
+          "reason": "【推断】无论大三最终去哪个细分赛道实习，笔试与技术一面 70% 考察的都是以下四项通用底座，投入产出比最高且零沉没成本。",
+          "foundations": "1. 数据结构与算法（哈希表、树、图、二分、双指针、基础动态规划与时空复杂度分析）；2. 操作系统与 Linux（虚拟内存、进程线程同步、文件系统、epoll I/O 多路复用）；3. 计算机网络（TCP 三次握手/四次挥手/拥塞控制、HTTP/HTTPS、DNS、Socket 编程）；4. 关系型数据库基础（MySQL 建表范式、B+树索引原理、事务 ACID 与隔离级别、Redis 基础数据结构）。",
+          "projects": "将现有 Career Agent 与 C++ 练习项目升级为“带 MySQL/SQLite 索引优化 + 并发控制 + 完整自动化测试”的规范工程。",
+          "tools_and_debugging": "Git 分支协作与规范 Commit、CMake 多目录构建、GDB / AddressSanitizer (ASan) 内存与崩溃排查、Linux 常用诊断命令 (top/ps/netstat/lsof/strace)、pytest 单元测试。",
+          "deliverable_proof": "GitHub 仓库具备清晰的 README 架构图、自动化测试通过徽标 (CI Green)、性能/耗时对比实测数据（例如：将 SQLite 入库从 5 分钟优化至 1 秒的量化复盘）。",
+          "jd_verification": "对照任意目标公司的研发实习 JD，能独立讲清项目中每个模块的数据流、异常处理与性能瓶颈。"
+        },
+        {
+          "stage": "第二阶段（大二暑假 ~ 大三上 · 二选一深耕）：高转化方向核心栈",
+          "priority": "P1（按试水反馈从“C++桌面/工业客户端”或“后端/AI应用工程”中主攻其一）",
+          "reason": "【建议】大二学生时间有限，切忌同时铺开 Java、UE5、ROS、内核源码等多个重型框架；在通用底座之上精修 1 个主方向 + 1 个轻量备选即可。",
+          "foundations": "• 若选方向 A（客户端/工业软件）：掌握 Qt6 核心机制（元对象系统、信号槽、事件循环、多线程渲染与 UI 分离）；\n• 若选方向 B/D（后端/AI应用工程）：掌握 Go 或 Python FastAPI 微服务架构、RESTful/gRPC 通信、RAG 检索与工具调用评测。",
+          "projects": "• 方向 A 代表作：《基于 C++17 与 Qt6/OpenGL 的跨平台三维模型检视与性能分析器》；\n• 方向 B/D 代表作：《Career Agent 分布式采集、多维分类检索与 AI 评测基准平台》（直接复用并深化你当前的项目！）。",
+          "tools_and_debugging": "RenderDoc（图形/客户端帧调试）、Postman/wrk（接口调试与压测）、Docker 容器化打包、日志分级与结构化监控。",
+          "deliverable_proof": "可一键运行或在线演示的完整工程 + 3 分钟功能演示动图/视频 + 核心模块单元测试覆盖率 ≥ 70%。",
+          "jd_verification": "针对目标分类下的 15–20 家企业投递日常/暑期实习，用真实面试反馈验证简历通过率与技术提问点。"
+        },
+        {
+          "stage": "第三阶段（暂缓/低优先级清单）：现阶段明确不必盲目跟风的内容",
+          "priority": "P2 / 暂缓（避免时间碎片化与高沉没成本）",
+          "reason": "【建议】不因某项技术在社交媒体热门就盲目列入必学清单，守护大二宝贵的整块时间。",
+          "foundations": "暂缓项：1. 大模型底层预训练与强化学习数学推导（本科求职性价比低）；2. 同时学 Java Spring 全家桶 + C++ UE5 + 嵌入式板卡（战线过长导致每样都停留在 Hello World）；3. 超纲的 ACM 偏怪算法题。",
+          "projects": "拒绝拼凑“网上烂大街且自己讲不清细节的黑马商城/玩具图书管理系统”。",
+          "tools_and_debugging": "暂缓复杂的多云 Kubernetes 集群运维或冷门专有硬件 SDK，等实习入职具体团队后再按需学习。",
+          "deliverable_proof": "以“精而深（2 个完全吃透、能手写核心逻辑并做过性能优化的真实项目）”替代“多而浅”。",
+          "jd_verification": "当某项技能在目标方向 JD 中属于“有相关经验者优先（加分项）”而非“必须熟练掌握”时，优先保住第一层通用底座。"
+        }
+      ],
+      "learning_methods": {
+        "time_allocation": "【建议】遵循「3 : 5 : 2 黄金投入比」—— 30% 时间精读核心概念与官方文档（搞懂为什么需要这个机制），50% 时间动手写代码做最小闭环项目，20% 时间专门用于写单元测试、用调试器看内存/调用栈、以及撰写故障复盘笔记。",
+        "project_verification": "每学完一个关键概念（例如线程池、B+树索引、OpenGL 着色器或异步爬虫），不要立刻看下一章视频，而是给自己出一个“破坏性实验”：如果把队列锁去掉会怎样？如果数据量放大 100 倍（从 300 条到 30,000 条）哪里会卡死？像本次排查 `run.log` 中 SQLite 逐条 commit 耗时 5 分半、正则回溯耗时 26 秒一样，亲手用 cProfile / 日志定位并把耗时压下来的过程，才是面试官最看重的真本事。",
+        "debug_test_review_loop": "1. 代码阅读：先看模块的输入输出数据结构（Schema/Interface），再顺着主干入口函数画一张 5–8 个节点的调用流程图；\n2. 调试方法：遇到崩溃或结果异常，拒绝“凭感觉乱改代码重试”，先复现最小必现用例，用 GDB/ASan（C++）或 traceback/pdb（Python）定位精确行号与变量状态；\n3. 测试习惯：每修复一个 Bug（如北森 UTF-8 BOM 报错或标题分类误判），立刻在 tests/ 下写一条对应的 10 行单元测试锁死它，防止后续改坏；\n4. 复盘模板：每次解决卡点后用 3 句话记录进项目笔记：【现象与报错】→【根因定位过程】→【量化改进结果】（这直接就是未来简历和面试 STAR 法则的现成素材！）。",
+        "tutorial_vs_mastery": [
+          {
+            "dimension": "代码复现能力",
+            "watched_tutorial": "跟着视频敲能跑通，关掉视频面对空白文件不知从哪写起",
+            "truly_mastered": "能不看教程独立画出模块数据流，并从零写出核心骨架代码"
+          },
+          {
+            "dimension": "参数与边界理解",
+            "watched_tutorial": "不敢改教程里的配置和参数，一旦报错只会搜报错原文复制粘贴",
+            "truly_mastered": "清楚每个关键参数（如超时时间、缓冲区大小、事务模式）改大或改小会带来什么代价"
+          },
+          {
+            "dimension": "迁移与扩展能力",
+            "watched_tutorial": "教程教了爬 A 网站，遇到结构稍有不同的 B 网站就完全卡壳",
+            "truly_mastered": "能把通用机制（如 DOM 选择器评分、XHR JSON 嗅探）抽象出来并迁移应用到新场景"
+          },
+          {
+            "dimension": "面试表达深度",
+            "watched_tutorial": "只能背诵“我使用了 XX 框架实现了 XX 功能”",
+            "truly_mastered": "能讲清“当时面临什么约束 → 对比了哪两种方案 → 为什么选 A → 踩了什么坑并如何将耗时优化了 X 倍”"
+          }
+        ],
+        "dynamic_adjustment": "每双周打开本系统的「全局目录」与「当前目标岗位」，抽查 10 个你最想去的真实岗位 JD：如果发现某项基础技能（如 SQL/Linux 网络/自动化测试）在 6 个以上 JD 中反复作为必需项出现，则上调其下周学习时长；若某项小众技术仅在极个别岗位出现，则果断降级为“了解即可”。"
+      },
+      "career_planning": [
+        {
+          "phase": "第一层：大二学年（2026–2027 · 基础筑底与低成本试水期）",
+          "core_goal": "夯实跨方向通用底座 + 完成 2 个高质量工程闭环项目 + 冲刺第一段日常/暑期实习",
+          "action_points": "• 优先积累通用能力：把 C++17、Python 工程化、数据结构算法、Linux/OS/网络、MySQL/Redis 基础打牢，这些能力在任何软件方向都 100% 保值；\n• 用双项目支撑多方向投递：简历上同时打磨好《C++/OpenGL 渲染与客户端项目》（证明底层 C++ 与图形/客户端能力）与《Career Agent 智能校招采集与多维分析系统》（证明 Python/后端数据管道/自动化测试/AI 应用工程能力），一份简历即可根据岗位侧重灵活投递客户端、后端、测开与 AI 应用工程！"
+        },
+        {
+          "phase": "第二层：大三实习阶段（2027–2028 · 职业假设验证与转正卡位期）",
+          "core_goal": "通过 1–2 段真实企业实习，用一手体感验证“工作内容”与“团队环境/WLB”假设",
+          "action_points": "• 实习重点验证的 3 个假设：① 自己每天写这类代码（如客户端交互 vs 服务端逻辑 vs 自动化测试工具）是否感到充实而非痛苦？② 所在行业与部门的真实上下班时间（晚 7 点后办公室还剩多少人、周末是否频繁被消息打扰）是否符合你的 WLB 底线？③ 团队是否有规范的 Code Review、自动化测试与技术文档（决定你能否学到正规工程方法）；\n• 灵活止损与切换：实习最大的价值就是“低成本试错”——如果大三第一段实习发现某个细分方向加班严重或业务枯燥，完全可以在大三暑期实习凭借扎实的 C++/Python/系统底座切换到高 WLB 的外企、工业软件或国央企科技岗。"
+        },
+        {
+          "phase": "第三层：大四校招与毕业后 1–3 年（2028–2032 · 长期技能复利与转岗弹性）",
+          "core_goal": "建立可跨行业迁移的工程护城河，平衡技术成长、就业稳定性、收入与 WLB",
+          "action_points": "• 长期技能复利与转岗路径：\n  - 从 C++ 桌面/工业客户端 出发 → 可横向迁移至 医疗影像软件、EDA/CAD 工业软件、智能座舱 HMI、音视频客户端或高性能基础组件；\n  - 从 后端/数据与分布式服务 出发 → 可在 金融科技、电信云、外企研发中心、大型政企数字化平台之间自由跨行业流动；\n  - 从 测试开发 (SDET) / 工程效能 出发 → 可向 DevOps/SRE、质量架构师、AI 模型自动化评测平台演进；\n• 平衡成长、收入与 WLB 的务实原则：不必把“起薪最高但大小周/高淘汰率的互联网核心卷王岗”当成唯一成功标准；在成都、上海、深圳、杭州、武汉、苏州等城市，许多外企研发中心、头部工业/医疗/办公软件企业及优质国央企数字化部门能提供“有竞争力的薪酬 + 健康的双休作息 + 长期稳健的技术成长”。"
+        },
+        {
+          "phase": "第四层：现阶段【不需要】过早确定的决策（卸下不必要的焦虑）",
+          "core_goal": "保持开放探索心态，不把大二的阶段性兴趣当成终身绑定",
+          "action_points": "• 现在不必锁死唯一细分方向：你不需要在大二今天就发誓“我这辈子只做图形渲染”或“只做后端”——保持『通用系统底座 + 可视化/工程化特长』，让大三真实的实习 Offer 和团队体验来帮你做最终收敛；\n• 不把短期岗位数量直接等同于长期价值：某方向短期岗位多（如通用业务开发）意味着入行容易，某方向岗位精（如工业 CAD/医疗软件）意味着细分壁垒高；只要底座扎实，你随时拥有选择权。"
+        }
+      ],
+      "tech_evaluations": [
+        {
+          "id": "cs_os_linux_net",
+          "group": "第一层：跨方向高保值底座（大二核心）",
+          "dim": "1.计算机系统与网络",
+          "name": "操作系统、Linux 环境、多线程并发与计算机网络 (TCP/IP/HTTP/进程线程)",
+          "val_general": "极高（跨方向通用底座，覆盖后端、系统、客户端、测开、嵌入式）",
+          "val_domain": "高（各技术方向技术一面必考核心）",
+          "val_explore": "极高（十年不过时的底层内功，跨行业完全通用）",
+          "val_practice": "极高（排查线上故障、网络超时、内存泄漏、多线程死锁的必备能力）",
+          "prereq_and_cost": "【事实】当前已在学习系统基础；【建议】结合 Linux 命令行与 Socket/多线程小项目巩固，无需死磕冷门内核源码",
+          "mention_total": 1343,
+          "explicit_must": 597,
+          "explicit_bonus": 211,
+          "context_only": 535,
+          "dirs": {
+            "后端开发与分布式系统": 578,
+            "AI 与机器学习工程": 197,
+            "测试、质量工程与开发工具": 146,
+            "嵌入式与设备软件": 201,
+            "安全工程": 40,
+            "图形学、渲染与三维技术": 12,
+            "数据、数据库与存储系统": 25,
+            "客户端、桌面与跨平台软件": 28,
+            "待分类": 6,
+            "其他技术岗位": 32,
+            "系统软件与基础设施": 53,
+            "芯片、硬件与机电工程": 6,
+            "游戏开发与游戏引擎": 19
+          },
+          "examples": [
+            {
+              "company": "中国兵器工业集团",
+              "title": "网络协议开发工程师",
+              "snippet": "熟悉常用无线网络路由算法，熟悉C/C++等软件设计语言，熟悉TCP/IP网络通信协议，具有Linux、VxWorks应用软件编程经验，熟悉多线程、多任务开发，熟悉软件开发流",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=46de6451-3d12-4400-9432-28d390334347"
+            },
+            {
+              "company": "中国兵器工业集团",
+              "title": "软件开发岗",
+              "snippet": "，计算机科学与技术、软件工程等相关专业。具备扎实的数据结构、计算机网络、操作系统基础知识，熟练掌握主流开发语言及框架。熟悉软件开发流程，代码规范度高，具备良好的问题排查、",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=4ea3a6cf-91ed-4406-8d53-adb8e9787331"
+            }
+          ],
+          "dirs_covered": 13,
+          "mention_pct": 23.1,
+          "must_pct_of_mention": 44,
+          "bonus_pct_of_mention": 16,
+          "context_pct_of_mention": 40,
+          "top_dirs_str": "后端开发与分布式系统 (38%)、嵌入式与设备软件 (32%)、AI 与机器学习工程 (12%)、测试、质量工程与开发工具 (19%)"
+        },
+        {
+          "id": "prog_cpp",
+          "group": "第一层：跨方向高保值底座（大二核心）",
+          "dim": "2.主力静态编译语言",
+          "name": "C / C++ 语言、面向对象设计与内存管理 (STL/RAII/智能指针/调试)",
+          "val_general": "极高（覆盖桌面客户端、工业/医疗软件、轨交电力、高性能后端、系统与游戏）",
+          "val_domain": "极高（金山办公、卡斯柯、联影医疗、万兴科技、腾讯客户端、高德C++后端的核心语言）",
+          "val_explore": "高（已具备学习基础，转换成本最低；可用于投递高WLB工业/办公软件与客户端）",
+          "val_practice": "高（训练严谨的模块化设计、内存安全与性能分析思维）",
+          "prereq_and_cost": "【事实】当前处于 C++ 基础学习阶段（面向对象、STL 与小型项目编码调试）；【建议】巩固 RAII、智能指针、多线程与 GDB/ASan 调试，暂缓偏门模板元编程",
+          "mention_total": 1895,
+          "explicit_must": 1177,
+          "explicit_bonus": 414,
+          "context_only": 304,
+          "dirs": {
+            "嵌入式与设备软件": 330,
+            "AI 与机器学习工程": 453,
+            "后端开发与分布式系统": 642,
+            "芯片、硬件与机电工程": 18,
+            "测试、质量工程与开发工具": 160,
+            "其他技术岗位": 43,
+            "待分类": 6,
+            "安全工程": 19,
+            "图形学、渲染与三维技术": 32,
+            "数据、数据库与存储系统": 29,
+            "客户端、桌面与跨平台软件": 50,
+            "系统软件与基础设施": 76,
+            "游戏开发与游戏引擎": 37
+          },
+          "examples": [
+            {
+              "company": "智元机器人",
+              "title": "算法集成工程师",
+              "snippet": "LA、强化学习、SLAM等算法模型部署到机器人平台上，并通过C++/Python代码优化、模块剪枝、硬件加速等手段，确保算法在真实环境中的实时性与稳定性。 场景化任",
+              "url": "https://agirobot.jobs.feishu.cn/campusrecruitment/position/7582105161755134235/detail"
+            },
+            {
+              "company": "中国兵器工业集团",
+              "title": "无线通信算法工程师",
+              "snippet": "求 （1）熟悉数字电路、数字通信和数字信号处理理论，熟练使用C/C++编程语言和Matlab软件仿真； （2）熟悉网络基本原理，主要协议流程，如接入协议、路由协议等，熟悉",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=cc985d6e-9401-4ec7-a3c5-e65789dfa737"
+            }
+          ],
+          "dirs_covered": 13,
+          "mention_pct": 32.6,
+          "must_pct_of_mention": 62,
+          "bonus_pct_of_mention": 22,
+          "context_pct_of_mention": 16,
+          "top_dirs_str": "后端开发与分布式系统 (43%)、AI 与机器学习工程 (28%)、嵌入式与设备软件 (52%)、测试、质量工程与开发工具 (20%)"
+        },
+        {
+          "id": "prog_python",
+          "group": "第一层：跨方向高保值底座（大二核心）",
+          "dim": "3.高效脚本与自动化语言",
+          "name": "Python 语言、自动化脚本与快速原型开发",
+          "val_general": "极高（测试开发SDET、数据工程、AI应用/Agent工程、外企自动化工具的第一主力语言）",
+          "val_domain": "极高（几乎所有现代研发团队的胶水语言与自动化验证标准语言）",
+          "val_explore": "极高（投入产出比最高，能让你从单一C++平滑拓展到测开、数据、AI工程与外企IT）",
+          "val_practice": "极高（编写自动化测试、数据处理管道、后端接口原型与日常效率工具的利器）",
+          "prereq_and_cost": "【事实】目前已通过 AI 辅助接触 Python 工作流排查，但 profile.yaml 标注本人尚未开始系统学习 Python；【建议】花 2–3 周系统补齐 Python 语法、pytest 与 FastAPI 工程基础",
+          "mention_total": 809,
+          "explicit_must": 523,
+          "explicit_bonus": 214,
+          "context_only": 72,
+          "dirs": {
+            "AI 与机器学习工程": 292,
+            "待分类": 6,
+            "测试、质量工程与开发工具": 128,
+            "安全工程": 19,
+            "数据、数据库与存储系统": 39,
+            "后端开发与分布式系统": 215,
+            "系统软件与基础设施": 26,
+            "其他技术岗位": 9,
+            "嵌入式与设备软件": 43,
+            "图形学、渲染与三维技术": 8,
+            "客户端、桌面与跨平台软件": 12,
+            "游戏开发与游戏引擎": 5,
+            "芯片、硬件与机电工程": 7
+          },
+          "examples": [
+            {
+              "company": "中国兵器工业集团",
+              "title": "控制/感知算法开发",
+              "snippet": "及在机器人平台上的应用测试。 任职要求 1.熟练使用C++、Python； 2.熟练使用IsaacSim，MuJoCo、MATLAB等工具； 3.具有NVIDIA Orin",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=2a4976ce-ca24-4615-821e-ba60dbc9f28f"
+            },
+            {
+              "company": "中国兵器工业集团",
+              "title": "综合保障研究 （人工智能方向）（北方科技信息研究所）",
+              "snippet": "语言处理、知识图谱相关领域的理论和技术； 2.精通Java/Python，熟悉主流大模型应用开发框架； 3.深入掌握RAG、提示工程、函数调用、工具编排等技术； 4.熟悉E",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=80ad15d8-9fd7-4188-b83f-5ecd44635f25"
+            }
+          ],
+          "dirs_covered": 13,
+          "mention_pct": 13.9,
+          "must_pct_of_mention": 65,
+          "bonus_pct_of_mention": 26,
+          "context_pct_of_mention": 9,
+          "top_dirs_str": "AI 与机器学习工程 (18%)、后端开发与分布式系统 (14%)、测试、质量工程与开发工具 (16%)、嵌入式与设备软件 (7%)"
+        },
+        {
+          "id": "ds_algo_core",
+          "group": "第一层：跨方向高保值底座（大二核心）",
+          "dim": "4.算法与数据结构",
+          "name": "数据结构与算法基础 (数组/链表/树/图/哈希/排序/复杂度分析)",
+          "val_general": "极高（所有正规软件企业校招与实习笔试、一面手撕代码的共同敲门砖）",
+          "val_domain": "中高（工程岗重哈希、树、图与复杂度控制，无需ACM竞赛级难度）",
+          "val_explore": "高（跨所有软件岗位100%复用）",
+          "val_practice": "中高（帮助在工程开发中选择合理的数据容器与检索结构）",
+          "prereq_and_cost": "【建议】保持每周 3–5 道中等难度经典题（LeetCode Hot 100）维持手感即可，拒绝脱离工程的盲目刷题",
+          "mention_total": 855,
+          "explicit_must": 614,
+          "explicit_bonus": 184,
+          "context_only": 57,
+          "dirs": {
+            "后端开发与分布式系统": 349,
+            "AI 与机器学习工程": 215,
+            "嵌入式与设备软件": 77,
+            "客户端、桌面与跨平台软件": 46,
+            "其他技术岗位": 15,
+            "图形学、渲染与三维技术": 13,
+            "芯片、硬件与机电工程": 1,
+            "系统软件与基础设施": 35,
+            "数据、数据库与存储系统": 36,
+            "测试、质量工程与开发工具": 30,
+            "游戏开发与游戏引擎": 32,
+            "安全工程": 6
+          },
+          "examples": [
+            {
+              "company": "中国兵器工业集团",
+              "title": "软件开发岗",
+              "snippet": "研究生学历，计算机科学与技术、软件工程等相关专业。具备扎实的数据结构、计算机网络、操作系统基础知识，熟练掌握主流开发语言及框架。熟悉软件开发流程，代码规范度高，具备良好",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=4ea3a6cf-91ed-4406-8d53-adb8e9787331"
+            },
+            {
+              "company": "中国兵器工业集团",
+              "title": "软件工程师",
+              "snippet": "4.能够完成嵌入式操作系统的裁剪和移植。 任职要求 1.熟悉数据结构，掌握常用的算法分析和设计方法； 2.熟练使用C/C++，熟悉常用MCU、DSP、ARM等微处理机的",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=c0521d88-dab1-4e8c-a5c5-d6b9cc7b40f2"
+            }
+          ],
+          "dirs_covered": 11,
+          "mention_pct": 14.7,
+          "must_pct_of_mention": 72,
+          "bonus_pct_of_mention": 22,
+          "context_pct_of_mention": 7,
+          "top_dirs_str": "后端开发与分布式系统 (23%)、AI 与机器学习工程 (13%)、嵌入式与设备软件 (12%)、客户端、桌面与跨平台软件 (37%)"
+        },
+        {
+          "id": "sql_db_usage",
+          "group": "第一层：跨方向高保值底座（大二核心）",
+          "dim": "5.数据存储与数据库应用",
+          "name": "关系型数据库 (SQL/MySQL/PostgreSQL) 与缓存中间件 (Redis) 基础使用",
+          "val_general": "高（后端研发、外企IT系统、数据工程、测试开发、AI知识库应用均高频依赖）",
+          "val_domain": "极高（业务系统与企业级软件的核心持久化层）",
+          "val_explore": "高（学习成本低、就业面极广、WLB友好）",
+          "val_practice": "极高（表结构设计、事务隔离与索引查询调优是工程必备基本功）",
+          "prereq_and_cost": "【事实】当前仅使用过轻量级 SQLite；【建议】将 MySQL 索引/事务与 Redis 缓存列为大二下最高优先级补齐项（约 2–3 周）",
+          "mention_total": 695,
+          "explicit_must": 338,
+          "explicit_bonus": 138,
+          "context_only": 219,
+          "dirs": {
+            "其他技术岗位": 35,
+            "AI 与机器学习工程": 138,
+            "后端开发与分布式系统": 317,
+            "数据、数据库与存储系统": 80,
+            "测试、质量工程与开发工具": 80,
+            "图形学、渲染与三维技术": 1,
+            "安全工程": 11,
+            "嵌入式与设备软件": 12,
+            "系统软件与基础设施": 7,
+            "游戏开发与游戏引擎": 6,
+            "客户端、桌面与跨平台软件": 3,
+            "待分类": 5
+          },
+          "examples": [
+            {
+              "company": "中国兵器工业集团",
+              "title": "信息系统研发岗",
+              "snippet": "2.熟悉软件工程、系统架构、先进软件开发技术、系统集成技术、数据库开发技术等； 3.具备项目管理能力，有实际软件项目的论证、设计、研发、实施经验者优先。",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=795df9d3-c458-44ba-aa88-6dfbd134b8d7"
+            },
+            {
+              "company": "中国兵器工业集团",
+              "title": "算法工程师",
+              "snippet": "、struts等常用开发框架,有扎实的Java基础；熟悉主流数据库系统的使用和优化，熟悉SQL； 4.从事过计算机软硬件编程（相机硬件及图像处理），光学工程相关专业优",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=79088a75-d31d-4fae-890d-ea1b45488ba4"
+            }
+          ],
+          "dirs_covered": 10,
+          "mention_pct": 11.9,
+          "must_pct_of_mention": 49,
+          "bonus_pct_of_mention": 20,
+          "context_pct_of_mention": 32,
+          "top_dirs_str": "后端开发与分布式系统 (21%)、AI 与机器学习工程 (8%)、数据、数据库与存储系统 (47%)、测试、质量工程与开发工具 (10%)"
+        },
+        {
+          "id": "eng_test_debug_git",
+          "group": "第一层：跨方向高保值底座（大二核心）",
+          "dim": "6.工程质量与协作工具链",
+          "name": "软件测试、调试分析、版本控制与构建 (Git/CMake/单元测试/自动化测试/CI)",
+          "val_general": "高（测试开发SDET与所有正规研发岗的日常工程规范）",
+          "val_domain": "极高（直接体现代码工程化成熟度与排障能力）",
+          "val_explore": "高（良好的单元测试与自动化验证习惯是工程师的核心竞争力）",
+          "val_practice": "极高（决定项目作品集是否像成熟的工业级工程而非拼凑的课程作业）",
+          "prereq_and_cost": "【事实】已掌握 Git、CMake 与 pytest 基础；【建议】在后续每个项目中强制落地自动化单测与 GitHub Actions CI",
+          "mention_total": 1813,
+          "explicit_must": 265,
+          "explicit_bonus": 90,
+          "context_only": 1458,
+          "dirs": {
+            "嵌入式与设备软件": 302,
+            "其他技术岗位": 58,
+            "芯片、硬件与机电工程": 27,
+            "后端开发与分布式系统": 578,
+            "测试、质量工程与开发工具": 436,
+            "AI 与机器学习工程": 261,
+            "安全工程": 20,
+            "待分类": 9,
+            "客户端、桌面与跨平台软件": 36,
+            "图形学、渲染与三维技术": 11,
+            "数据、数据库与存储系统": 15,
+            "游戏开发与游戏引擎": 20,
+            "系统软件与基础设施": 40
+          },
+          "examples": [
+            {
+              "company": "逐际动力",
+              "title": "人形机器人关节设计工程师",
+              "snippet": "与控制、算法、软件等团队协作，完成关节的控制接口设计、软硬件调试和性能优化； 6、跟踪人形机器人、伺服驱动、新型传动技术领域的前沿动态，持续优化产品方案。",
+              "url": "https://career.limxdynamics.com/index/position/7524168876617238838/detail"
+            },
+            {
+              "company": "京东方",
+              "title": "电路开发岗-控制(J51875)",
+              "snippet": "1、 负责电控柜、伺服驱动器功率板、电源板等硬件电路的设计、调试、测试以及解决EMC等疑难问题； 2、 负责硬件系统架构设计，关键电路和关键器件的设计选型； 3、",
+              "url": "https://campus.boe.com/campus/jobs?jobAdId=880099480"
+            }
+          ],
+          "dirs_covered": 13,
+          "mention_pct": 31.2,
+          "must_pct_of_mention": 15,
+          "bonus_pct_of_mention": 5,
+          "context_pct_of_mention": 80,
+          "top_dirs_str": "后端开发与分布式系统 (38%)、测试、质量工程与开发工具 (56%)、嵌入式与设备软件 (48%)、AI 与机器学习工程 (16%)"
+        },
+        {
+          "id": "client_desktop_qt",
+          "group": "第二层：高供给候选方向技术栈（按需选修）",
+          "dim": "7.跨平台桌面与工业/办公软件",
+          "name": "跨平台桌面客户端与工业上位机开发 (C++ / Qt / Windows & Mac SDK)",
+          "val_general": "中高（在桌面客户端与工业/医疗软件细分族群中占比高，且本科明确可投率高）",
+          "val_domain": "极高（金山办公WPS、万兴科技、联影医疗、卡斯柯、博众精工等桌面与工业软件核心要求）",
+          "val_explore": "高（完美承接现有 C++ 与图形界面经验，且许多工业/办公/外企软件团队 WLB 较稳健）",
+          "val_practice": "高（能独立开发带可视化界面、硬件通信或本地AI集成的完整桌面软件产品）",
+          "prereq_and_cost": "【建议】花 2 周用 Qt6 编写一个中小型跨平台工具软件，低成本验证自己对桌面/工业软件方向的真实兴趣",
+          "mention_total": 284,
+          "explicit_must": 40,
+          "explicit_bonus": 23,
+          "context_only": 221,
+          "dirs": {
+            "AI 与机器学习工程": 33,
+            "芯片、硬件与机电工程": 4,
+            "后端开发与分布式系统": 113,
+            "测试、质量工程与开发工具": 28,
+            "客户端、桌面与跨平台软件": 35,
+            "嵌入式与设备软件": 41,
+            "图形学、渲染与三维技术": 8,
+            "其他技术岗位": 7,
+            "系统软件与基础设施": 8,
+            "游戏开发与游戏引擎": 4,
+            "待分类": 2,
+            "数据、数据库与存储系统": 1
+          },
+          "examples": [
+            {
+              "company": "360集团",
+              "title": "26秋-AI应用开发工程师（北京）-5064(J11950)",
+              "snippet": "项： • 有开源项目贡献或 GitHub 技术作品。 • 有跨平台应用开发实践经验（如 Flutter 小程序/鸿蒙应用/多端 WebApp）。 • 有 AI 应用相",
+              "url": "https://360campus.zhiye.com/campus/detail?jobAdId=e0ed6ed3-0bd4-425f-9853-7503aa2ce6c9"
+            },
+            {
+              "company": "中国兵器工业集团",
+              "title": "脑机接口与研发设计",
+              "snippet": "证、EEG采集及处理等功能软件（Matlab/C/FPGA/上位机等）的编写，并配合硬件负责人完成功能性能验证、调试，输出测试报告； 3.负责项目开发过程中硬件开发文",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=8b287b54-676d-431e-bc80-a9d4692be091"
+            }
+          ],
+          "dirs_covered": 8,
+          "mention_pct": 4.9,
+          "must_pct_of_mention": 14,
+          "bonus_pct_of_mention": 8,
+          "context_pct_of_mention": 78,
+          "top_dirs_str": "后端开发与分布式系统 (8%)、嵌入式与设备软件 (7%)、客户端、桌面与跨平台软件 (28%)、AI 与机器学习工程 (2%)"
+        },
+        {
+          "id": "prog_java_go",
+          "group": "第二层：高供给候选方向技术栈（按需选修）",
+          "dim": "8.主流企业级服务端与全栈语言栈",
+          "name": "Java 企业级后端 (Spring Boot) / Go 云原生微服务 / TypeScript 全栈与前端 (React/Vue/Node)",
+          "val_general": "极高（中国大陆校招市场岗位数量最多的主流工程技术栈，广泛覆盖国央企、银行、外企IT与互联网）",
+          "val_domain": "极高（后端研发、企业级信息系统、云原生服务与现代 Web 全栈/前端研发的核心技术栈）",
+          "val_explore": "高（探索模式下不应因当前学习 C++ 而预先排除；C++ 的面向对象与静态类型思维可迁移，但框架生态需独立补齐）",
+          "val_practice": "高（构建高并发 HTTP/RPC 服务、企业级业务平台与现代交互应用的核心生产力）",
+          "prereq_and_cost": "【转型评估】Go 约需 3–5 周、Java Spring 或 TypeScript/React 约需 4–8 周建立完整工程项目；C++ 不能直接替代 JVM/Spring 或浏览器 DOM 生态，应结合目标岗位真实需求按需选择一门深入",
+          "mention_total": 1127,
+          "explicit_must": 647,
+          "explicit_bonus": 239,
+          "context_only": 241,
+          "dirs": {
+            "AI 与机器学习工程": 254,
+            "后端开发与分布式系统": 490,
+            "安全工程": 22,
+            "图形学、渲染与三维技术": 7,
+            "测试、质量工程与开发工具": 142,
+            "客户端、桌面与跨平台软件": 73,
+            "其他技术岗位": 22,
+            "系统软件与基础设施": 21,
+            "嵌入式与设备软件": 24,
+            "数据、数据库与存储系统": 59,
+            "游戏开发与游戏引擎": 6,
+            "芯片、硬件与机电工程": 2,
+            "待分类": 5
+          },
+          "examples": [
+            {
+              "company": "360集团",
+              "title": "26秋-AI应用开发工程师（北京）-5064(J11950)",
+              "snippet": "的设计与实现。 2. 使用跨端开发框架（如 Flutter、React Native、KMP等）提升开发效率，保证一致的用户体验。 3. 与产品经理、AI 算法团队、后端",
+              "url": "https://360campus.zhiye.com/campus/detail?jobAdId=e0ed6ed3-0bd4-425f-9853-7503aa2ce6c9"
+            },
+            {
+              "company": "中国兵器工业集团",
+              "title": "算法工程师",
+              "snippet": "结构，熟悉spring、struts等常用开发框架,有扎实的Java基础；熟悉主流数据库系统的使用和优化，熟悉SQL； 4.从事过计算机软硬件编程（相机硬件及图像处理）",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=79088a75-d31d-4fae-890d-ea1b45488ba4"
+            }
+          ],
+          "dirs_covered": 12,
+          "mention_pct": 19.4,
+          "must_pct_of_mention": 57,
+          "bonus_pct_of_mention": 21,
+          "context_pct_of_mention": 21,
+          "top_dirs_str": "后端开发与分布式系统 (33%)、AI 与机器学习工程 (16%)、测试、质量工程与开发工具 (18%)、客户端、桌面与跨平台软件 (59%)"
+        },
+        {
+          "id": "ai_agent_rag_eng",
+          "group": "第二层：高供给候选方向技术栈（按需选修）",
+          "dim": "9.AI应用工程与智能体落地",
+          "name": "AI 辅助研发与企业级 Agent / RAG 应用工程 (AI Coding/Prompt/RAG/工具调用)",
+          "val_general": "高（越来越多研发岗将 AI 工程化落地与 Agent 工具链列为要求或加分项）",
+          "val_domain": "高（AI应用开发工程师、AI全栈工程师、智能测试Agent工程师的核心要求）",
+          "val_explore": "中高（重在用工程方法把 LLM API/RAG/工具调用集成进可靠软件并做评测闭环）",
+          "val_practice": "极高（你当前的 Career Agent 系统本身就是可写入简历的真实 AI 应用工程案例）",
+          "prereq_and_cost": "【建议】聚焦本科学历友好的“AI应用工程与自动化评测闭环”，暂缓需硕博与顶会论文支撑的底层预训练算法研究",
+          "mention_total": 1174,
+          "explicit_must": 126,
+          "explicit_bonus": 152,
+          "context_only": 896,
+          "dirs": {
+            "AI 与机器学习工程": 654,
+            "后端开发与分布式系统": 228,
+            "嵌入式与设备软件": 38,
+            "安全工程": 25,
+            "测试、质量工程与开发工具": 92,
+            "数据、数据库与存储系统": 45,
+            "客户端、桌面与跨平台软件": 25,
+            "系统软件与基础设施": 18,
+            "其他技术岗位": 20,
+            "游戏开发与游戏引擎": 21,
+            "图形学、渲染与三维技术": 2,
+            "待分类": 6
+          },
+          "examples": [
+            {
+              "company": "360集团",
+              "title": "26秋-AI应用开发工程师（北京）-5064(J11950)",
+              "snippet": "有浓厚兴趣； 5. 了解 AI 代码辅助开发，熟悉至少一款 AI Coding 工具（如 GitHub Copilot、Cursor、CodeWhisperer 等）。 6. 综",
+              "url": "https://360campus.zhiye.com/campus/detail?jobAdId=e0ed6ed3-0bd4-425f-9853-7503aa2ce6c9"
+            },
+            {
+              "company": "腾讯",
+              "title": "微信搜索-大模型AI搜索研究与落地",
+              "snippet": "溯源、大模型可信评估与幻觉控制、复杂问题计算和推理等。 2、Agentic Search关键技术：搜索任务规划、多轮搜索与探索策略、工具调用、多Agent协作搜索。 3、",
+              "url": "https://join.qq.com/post_detail.html?postId=1274481034578500719"
+            }
+          ],
+          "dirs_covered": 11,
+          "mention_pct": 20.2,
+          "must_pct_of_mention": 11,
+          "bonus_pct_of_mention": 13,
+          "context_pct_of_mention": 76,
+          "top_dirs_str": "AI 与机器学习工程 (40%)、后端开发与分布式系统 (15%)、测试、质量工程与开发工具 (12%)、数据、数据库与存储系统 (26%)"
+        },
+        {
+          "id": "gfx_cad_interest",
+          "group": "第三层：个人兴趣支线与专精观察（不作主线绑定）",
+          "dim": "10.图形渲染与工业几何CAD",
+          "name": "计算机图形学、渲染管线与工业 CAD 几何算法 (OpenGL/Shader/3D/CAD)",
+          "val_general": "中低（全库本科计算机岗中占比较小，集中于游戏引擎与少数工业CAD/仿真企业）",
+          "val_domain": "极高（仅在图形引擎、工业CAD与三维仿真岗中为必需核心）",
+          "val_explore": "中（作为个人兴趣可锻炼空间数学与C++架构思维，但纯游戏渲染岗面较窄且需留意项目期加班）",
+          "val_practice": "中（已完成的小型 OpenGL 项目可作为简历上证明 C++ 编码与调试能力的亮眼素材）",
+          "prereq_and_cost": "【建议】保留现有 OpenGL 项目作为简历上的“C++工程能力证明”与兴趣支线，暂缓投入数月死磕 Vulkan/UE5 底层源码",
+          "mention_total": 260,
+          "explicit_must": 60,
+          "explicit_bonus": 42,
+          "context_only": 158,
+          "dirs": {
+            "AI 与机器学习工程": 74,
+            "后端开发与分布式系统": 64,
+            "其他技术岗位": 14,
+            "图形学、渲染与三维技术": 40,
+            "测试、质量工程与开发工具": 11,
+            "芯片、硬件与机电工程": 1,
+            "嵌入式与设备软件": 21,
+            "系统软件与基础设施": 2,
+            "游戏开发与游戏引擎": 22,
+            "客户端、桌面与跨平台软件": 10,
+            "数据、数据库与存储系统": 1
+          },
+          "examples": [
+            {
+              "company": "小鹏汽车",
+              "title": "【27届校招】空间智能算法工程师",
+              "snippet": "述：负责自动驾驶与机器人场景下空间智能相关算法研发工作，围绕三维重建、空间理解、视频/3D 生成式数据等方向，参与数据构建、模型训练、算法评估与优化，支持核心业务场",
+              "url": "https://xiaopeng.jobs.feishu.cn/398875/position/7658239766437366043/detail"
+            },
+            {
+              "company": "中国兵器工业集团",
+              "title": "研发工程师",
+              "snippet": ".熟悉结构设计或电路设计相关软件（如 SolidWorks、CAD、Altium Designer 等）； 4.有传感器、汽车零部件或相关行业工作经验者优先； 5.具",
+              "url": "https://norincogroupzhaopin.zhiye.com/campus/detail?jobAdId=26d75897-fe96-46ba-9581-e1798e70d1fd"
+            }
+          ],
+          "dirs_covered": 8,
+          "mention_pct": 4.5,
+          "must_pct_of_mention": 23,
+          "bonus_pct_of_mention": 16,
+          "context_pct_of_mention": 61,
+          "top_dirs_str": "AI 与机器学习工程 (5%)、后端开发与分布式系统 (4%)、图形学、渲染与三维技术 (77%)、游戏开发与游戏引擎 (37%)"
+        }
+      ],
+      "version_diff_summary": {
+        "previous_profile_version": "v-c5423e95",
+        "current_profile_version": "v-c5423e95",
+        "previous_advice_version": "adv-e2fb227b",
+        "update_strategy": "refresh_market_data",
+        "strategy_label": "基于新增招聘市场数据刷新统计与综合建议",
+        "changed_fields": [],
+        "why_changed": [
+          "个人配置版本 (v-c5423e95) 未变，因招聘市场样本数据更新 (m-618489dc) 或手动触发而刷新建议。"
+        ],
+        "affected_modules": [
+          "job_filters.aggregate_tech_and_learning_decisions (市场岗位与技能需求统计刷新)"
+        ]
+      },
+      "data_limitations": [
+        "【覆盖范围限制】当前统计基于已配置的招聘站点与库内 7218 个本科计算机岗（时间范围：2026-07-13 至 2026-10-24），未纳入未公开网申的内部直推岗位。",
+        "【工时与WLB信息缺失】约 90% 以上的公开 JD 不会如实写明部门真实上下班时间与周末加班频率，凡未显式披露工时的岗位均标记为【未知】，需通过实习亲历或团队访谈核实。",
+        "【真实录用比与薪资包未知】公开 JD 不包含各岗位实际简历投录比、部门 HC 余量及最终总包薪资结构，系统绝不编造此类数值结论。"
+      ],
+      "next_watch_points": [
+        "观察「客户端/工业软件」与「后端服务」类别下明确标注『2027/2028/2029届日常或暑期实习』的新增岗位占比变化。",
+        "跟踪目标企业 JD 中对『MySQL/Redis 数据库调优』、『Qt6 跨平台开发』与『AI 辅助工程 / Agent 自动化评测』从“加分项”转为“必需项”的趋势。",
+        "在完成下一阶段小项目（如为项目补齐 MySQL/Redis 或 Qt6 工具）后，更新 profile.yaml 中的 skills 与 project_evidence，观察匹配度 ≥75 分的岗位数量增长。"
+      ],
+      "version_info": {
+        "advice_version_id": "adv-dc6eafa5",
+        "generated_at": "2026-10-24 11:14:49 CST",
+        "last_success_at": "2026-10-24 11:14:49 CST",
+        "profile_version_id": "v-c5423e95",
+        "previous_profile_version_id": "v-c5423e95",
+        "market_fingerprint": "m-618489dc",
+        "is_synced_with_profile": true,
+        "sync_status": "synced",
+        "sync_status_label": "✅ 与当前个人配置版本一致",
+        "last_error": "",
+        "update_strategy": "refresh_market_data",
+        "strategy_label": "基于新增招聘市场数据刷新统计与综合建议",
+        "cache_hit": false,
+        "used_ai": false
+      },
+      "profile_canonical_snapshot": {
+        "recommendation_mode": "exploration",
+        "target_direction_locked": false,
+        "locked_target_directions": [],
+        "locked_target_languages": [],
+        "user_state": {
+          "current_learning_languages": [
+            "C++",
+            "Python"
+          ],
+          "career_direction_determined": false,
+          "exploration_goal": "先全面了解中国大陆不同计算机岗位的真实招聘要求、技术栈、能力差距与转型成本，再决定重点投入方向",
+          "core_priorities": [
+            "工作与生活平衡 (WLB)",
+            "稳定成长与规范工程文化",
+            "长期技术积累与跨行业可迁移性"
+          ],
+          "bias_guardrails": {
+            "infer_cpp_direction_interest": false,
+            "equate_low_learning_cost_with_suitability": false,
+            "use_cpp_as_default_direction_filter": false
+          }
+        },
+        "personal_profile": {
+          "thinking_and_work_style": [
+            "对拆解事物、理解系统内部机制和弄清“它为什么这样工作”有持续好奇心",
+            "更容易被具体问题吸引：分析当前情况、寻找解决方案、动手验证并观察结果",
+            "喜欢有反馈的实践和工程问题；希望理论能逐步连接到真实系统、项目或可解释的现象",
+            "重视长期学习和技术积累，但不希望为了学习而无限堆砌理论、框架或热门名词",
+            "倾向直接实践，再根据遇到的问题补充知识；希望计划务实，不喜欢脱离现实的学习时间表"
+          ],
+          "hobbies_and_general_interests": [
+            "游戏：接触动作、冒险、剧情、角色扮演、开放世界、生存建造、竞速、回合制及部分竞技类游戏",
+            "游戏偏好：喜欢分析具体局势、找到解法并及时验证；如果玩法在熟悉后长期重复、后续决策相似且缺乏新鲜感，兴趣容易下降",
+            "动漫与剧情作品：有持续接触，偏好不局限于单一类型",
+            "技术与科学好奇：对计算机系统、软件如何工作以及技术背后的机制感兴趣；也对数学、物理、化学等领域保留一般性求知兴趣",
+            "视觉创作：曾探索数字绘画、素描和动漫临摹，可视为尚待验证的兴趣，不应默认是职业目标",
+            "哲学与人生问题：会主动思考人生选择、价值和世界如何运作；属于个人兴趣，不代表希望从事哲学相关职业"
+          ],
+          "possible_work_content_preferences": [
+            "分析真实问题并找到可验证的解决办法",
+            "理解和构建软件系统、开发工具或有明确用途的技术产品",
+            "有一定技术深度、可以持续积累经验，而非长期只做机械重复操作",
+            "能通过测试、运行结果、数据或用户反馈检验工作成果",
+            "在合理工作节奏下保有持续学习和生活空间"
+          ],
+          "interest_caveats": [
+            "兴趣广泛且职业方向尚未确定；不得将任何单一爱好直接映射为职业主线",
+            "喜欢游戏不等于一定喜欢游戏开发；喜欢图形项目不等于一定喜欢图形学岗位",
+            "对 AI 工具和 Agent 感到好奇，不等于已经确认 AI 应用开发或 Agent 开发为职业兴趣",
+            "对技术原理好奇，不等于必然喜欢底层开发、算法研究或高强度科研岗位"
+          ],
+          "liked_work_content": [],
+          "disliked_work_content": [],
+          "unverified_work_content": []
+        },
+        "interest_filtering": {
+          "enabled": true,
+          "evaluate_actual_work_content": true,
+          "use_hobbies_as_soft_evidence_only": true,
+          "separate_interest_fit_from_skill_fit": true,
+          "separate_interest_fit_from_learning_cost": true,
+          "screening_rules": [
+            "判断岗位日常工作是否包含问题分析、系统理解、方案实现、调试验证或持续技术改进",
+            "对长期以机械重复、简单信息录入、纯流程跟单、纯销售/客服或缺乏技术成长为主的岗位降低兴趣匹配度；若实际职责不同，应以证据为准",
+            "不因岗位属于 AI、Agent、C++、图形学等热门或当前接触过的方向而自动加分",
+            "不因用户暂时缺少某项技能，就将潜在兴趣高但可合理学习的岗位直接判为无兴趣；技能差距单独呈现",
+            "对岗位职责描述不足、无法判断日常工作内容的职位标记“兴趣证据不足”，不要伪装成高匹配"
+          ],
+          "result_policy": [
+            "优先展示兴趣匹配较高、硬性条件可满足且岗位信息可信的岗位",
+            "明显低兴趣匹配的岗位默认不进入主推荐列表；必要时只在简短的“已过滤类别”统计中说明原因",
+            "对中等或不确定匹配的岗位，只保留少量有代表性的探索样本，避免重新堆出大量岗位",
+            "每个推荐岗位应简要说明“哪些具体工作内容可能适合用户”，并引用招聘描述中的依据",
+            "兴趣判断置信度低时明确标注不确定性，不把推测写成用户已经表达过的偏好",
+            "兴趣匹配不能覆盖学历、实习时间、技术要求、城市、WLB 和招聘真实性等硬条件"
+          ],
+          "profile_update_policy": [
+            "用户亲自表达的明确喜欢/不喜欢优先于模型推断",
+            "用户体验某类岗位或项目后，可以记录“喜欢的工作内容”“不喜欢的工作内容”和“尚待验证的内容”",
+            "不根据一次短期体验就永久排除整个职业大类"
+          ],
+          "exploration_sample_per_category": 2,
+          "max_exploration_samples": 12
+        },
+        "degree": "本科",
+        "job_type": "实习",
+        "target_cohort": 2029,
+        "education": {
+          "degree": "本科",
+          "graduation_year": 2029,
+          "current_stage": "大二本科在读"
+        },
+        "directions": [
+          "通用软件工程与业务系统开发（后端、全栈、客户端、平台研发，涵盖 Java / Go / Python / TypeScript / C++ 等技术栈）",
+          "工程质量与研发效率（测试开发 SDET、自动化测试、质量工程、DevOps、开发工具及相关岗位）",
+          "数据与信息系统（数据工程、数据库应用、数据平台、分布式存储及相关岗位）",
+          "系统、基础设施与工程平台（Linux、网络、云原生基础设施、容器、安全工程及相关岗位）",
+          "AI 应用与智能体工程（AI 应用开发、Agent/RAG 工程集成、评测工具及相关岗位）",
+          "行业软件与专业工程工具（工业软件、制造、医疗、能源、轨交、桌面与跨平台软件等领域）",
+          "其他由实际招聘需求、技能组合或项目实践发现的计算机方向（含 Web 前端、移动端等）"
+        ],
+        "optional_interest_branches": [
+          "图形学与实时渲染（OpenGL、GLSL、三维图形；当前保留为技术兴趣，不默认作为主要就业方向）",
+          "其他暂未形成稳定偏好的计算机技术、数学、物理及工程领域"
+        ],
+        "skills": [
+          "C++ 基础与持续学习",
+          "数据结构与算法基础学习",
+          "Python 基础接触与 AI 辅助脚本实践",
+          "操作系统与计算机系统基础学习",
+          "CMake 构建工具基础接触",
+          "Git 版本控制基础操作",
+          "Linux 与命令行基础接触",
+          "SQLite 与基础数据持久化实践接触",
+          "OpenGL / GLSL 基础图形实践"
+        ],
+        "skill_proficiency": {
+          "main_languages": [
+            {
+              "name": "C++",
+              "level": "基础学习阶段",
+              "evidence": "正在学习 C++ 语言、面向对象、STL 等内容，并通过小型项目练习编码与调试",
+              "limitation": "属于现有学习经历而非锁定的就业方向；不应默认已具备独立设计、实现和维护中大型 C++ 工程的能力，也不能直接替代 Java/Go/JS/TS 等生态框架经验",
+              "not_learned_yet": false
+            },
+            {
+              "name": "Python",
+              "level": "初步接触与实践",
+              "evidence": "使用 AI 进行招聘信息处理工作流的使用、修改或排查",
+              "limitation": "不应默认已熟练掌握 Python 工程开发、Web 后端架构或自动化测试体系。本人还没开始学习",
+              "not_learned_yet": true
+            }
+          ],
+          "engineering_basics": [
+            {
+              "name": "Git",
+              "level": "基础操作阶段",
+              "evidence": "接触过通过终端执行 Git 命令进行仓库同步等操作",
+              "limitation": "不应默认已熟练掌握复杂分支协作、冲突处理、代码审查和团队开发流程",
+              "not_learned_yet": false
+            },
+            {
+              "name": "CMake",
+              "level": "基础接触阶段",
+              "evidence": "接触过 CMake 项目构建与配置",
+              "limitation": "不应默认已掌握大型项目构建系统设计、复杂依赖管理或跨平台构建排错",
+              "not_learned_yet": false
+            },
+            {
+              "name": "Linux / 命令行",
+              "level": "基础学习阶段",
+              "evidence": "正在接触常见命令行和开发环境操作",
+              "limitation": "不应默认已掌握 Linux 系统编程、服务器运维或生产环境排障",
+              "not_learned_yet": false
+            },
+            {
+              "name": "SQLite / 数据持久化",
+              "level": "项目接触阶段",
+              "evidence": "接触过使用 SQLite 数据库的招聘信息工作流",
+              "limitation": "应区分使用现成程序、借助 AI 修改代码与独立设计数据库方案的能力",
+              "not_learned_yet": false
+            }
+          ],
+          "interest_explorations": [
+            {
+              "name": "OpenGL / GLSL",
+              "level": "入门实践阶段",
+              "evidence": "完成过小型图形渲染学习项目",
+              "limitation": "不能据此推断已掌握高级渲染技术或确定图形学职业方向",
+              "not_learned_yet": false
+            }
+          ]
+        },
+        "project_evidence": [
+          "正在持续学习 C++、数据结构与算法、操作系统及计算机系统基础；当前能力应结合实际代码、练习和独立完成任务的情况逐步验证",
+          "曾进行 C++、OpenGL、GLSL 小型图形渲染项目实践，接触了基础渲染流程、着色器及相关调试；该项目用于提供基础编码与调试证据，不代表选择图形学或 C++ 专属岗位就业",
+          "正在使用 AI 辅助改造和运行基于 Python、SQLite、GitHub Actions 等技术的招聘情报分析工作流，接触岗位采集、数据持久化、自动化运行和报告查看等工程问题；应根据本人实际负责的修改、理解、调试与验证工作评价能力，不得直接视为已独立设计并实现完整商业级系统",
+          "接触过 Git、CMake、开发环境配置和常见问题排查；具体熟练度应以实际独立操作和问题解决证据为准"
+        ],
+        "learning_targets": [
+          "提升数据结构与算法、操作系统、计算机网络、Linux 等跨语言通用计算机工程底座",
+          "学习数据库、SQL、事务、索引与缓存（MySQL / PostgreSQL / Redis）等全行业通用技术",
+          "学习 Git 协作、单元测试、接口测试、日志、调试和工程问题定位",
+          "根据真实招聘数据对比探索 Go、Java、Python、TypeScript/JavaScript 或 C++ 在不同岗位方向中的实际要求与转型成本",
+          "学习如何使用 AI 编程工具，同时提升代码审查、测试、调试和独立解释代码的能力",
+          "通过小型、可验证的项目实践，逐步比较不同岗位的工作内容与个人适配度"
+        ],
+        "unverified_skills": [],
+        "long_term_goals": {
+          "primary_goal": "本科毕业后直接就业，寻找能够长期积累技术能力、具有合理工作生活平衡的工作",
+          "career_path_preference": "优先积累可迁移的软件工程能力；具体职业方向由真实岗位要求、实践反馈和个人偏好逐步确定",
+          "internship_goal": "在本科阶段争取有质量的实习，通过真实工程任务验证能力、了解团队工作方式并探索职业适配度",
+          "decision_principle": "不因短期热门、单个项目经历或当前学习语言（C++）而过早锁定职业方向"
+        },
+        "preferences": {
+          "wlb_priority": "high",
+          "tech_growth_priority": "high",
+          "stability_priority": "high",
+          "overtime_tolerance": "low",
+          "prefer_bachelor_friendly": true
+        },
+        "constraints": {
+          "reject_master_phd_only": true,
+          "reject_high_overtime_signals": true,
+          "salary_expectation": "符合本科实习或校招的正常市场范围；同时关注工作内容、团队工程规范、成长空间、转正机会与 WLB"
+        },
+        "preferred_cities": [
+          "成都",
+          "上海",
+          "深圳",
+          "杭州",
+          "广州",
+          "武汉",
+          "苏州",
+          "北京"
+        ],
+        "excluded_title_keywords": [
+          "博士",
+          "硕士及以上",
+          "销售",
+          "客服",
+          "行政",
+          "人力",
+          "财务",
+          "法务",
+          "主播",
+          "买量",
+          "催收"
+        ],
+        "score_component_limits": {
+          "core_direction": 20,
+          "required_skills": 25,
+          "project_evidence": 20,
+          "engineering_stack": 15,
+          "basic_criteria": 20
+        },
+        "score_thresholds": {
+          "recommend": 75,
+          "consider": 60
+        },
+        "target_roles": [
+          {
+            "name": "通用软件研发与业务系统",
+            "keywords": [
+              "软件开发",
+              "软件研发",
+              "后端开发",
+              "服务端开发",
+              "Java开发",
+              "Go开发",
+              "Golang",
+              "Python开发",
+              "C++开发",
+              "全栈开发",
+              "前端开发",
+              "TypeScript",
+              "客户端开发",
+              "平台开发"
+            ]
+          },
+          {
+            "name": "工程质量与研发效率",
+            "keywords": [
+              "测试开发",
+              "测开",
+              "SDET",
+              "自动化测试",
+              "质量工程",
+              "测试工具",
+              "研发效能",
+              "CI",
+              "CD",
+              "DevOps",
+              "开发工具"
+            ]
+          },
+          {
+            "name": "数据与信息系统",
+            "keywords": [
+              "数据工程",
+              "数据平台",
+              "数据研发",
+              "数据开发",
+              "数据治理",
+              "SQL",
+              "数据库应用",
+              "数据管道",
+              "存储"
+            ]
+          },
+          {
+            "name": "系统与基础设施",
+            "keywords": [
+              "Linux",
+              "系统软件",
+              "网络编程",
+              "基础设施",
+              "云平台",
+              "云原生",
+              "分布式系统",
+              "中间件",
+              "容器",
+              "安全工程"
+            ]
+          },
+          {
+            "name": "AI 应用与工程集成",
+            "keywords": [
+              "AI 应用开发",
+              "Agent",
+              "智能体",
+              "RAG",
+              "AI 工程",
+              "模型应用",
+              "AI 评测",
+              "自动化工作流"
+            ]
+          },
+          {
+            "name": "行业软件与专业工程工具",
+            "keywords": [
+              "工业软件",
+              "制造软件",
+              "医疗软件",
+              "能源软件",
+              "交通软件",
+              "CAD",
+              "CAE",
+              "仿真",
+              "桌面软件",
+              "SDK"
+            ]
+          },
+          {
+            "name": "兴趣探索参照：图形与三维技术",
+            "keywords": [
+              "图形学",
+              "渲染",
+              "OpenGL",
+              "GLSL",
+              "三维",
+              "CAD 几何",
+              "视景仿真"
+            ]
+          },
+          {
+            "name": "其他或尚未分类的岗位",
+            "keywords": []
+          }
+        ],
+        "custom_categories": {},
+        "ui_settings": {}
+      }
     }
   ],
   "advice_run_records": [
-    {
-      "run_id": "run-31",
-      "triggered_at": "2026-10-18 17:43:19 CST",
-      "profile_version_id": "v-98580aa1",
-      "market_fingerprint": "m-eaae3c0b",
-      "advice_version_id": "adv-94663cde",
-      "update_strategy": "refresh_market_data",
-      "status": "generated_success",
-      "used_ai": false,
-      "error_message": ""
-    },
-    {
-      "run_id": "run-31",
-      "triggered_at": "2026-10-18 17:43:20 CST",
-      "profile_version_id": "v-98580aa1",
-      "market_fingerprint": "m-b417cf44",
-      "advice_version_id": "adv-3237adcd",
-      "update_strategy": "refresh_market_data",
-      "status": "generated_success",
-      "used_ai": false,
-      "error_message": ""
-    },
-    {
-      "run_id": "run-31",
-      "triggered_at": "2026-10-18 17:43:20 CST",
-      "profile_version_id": "v-98580aa1",
-      "market_fingerprint": "m-6ee79c27",
-      "advice_version_id": "adv-11cde018",
-      "update_strategy": "refresh_market_data",
-      "status": "generated_success",
-      "used_ai": false,
-      "error_message": ""
-    },
     {
       "run_id": "run-31",
       "triggered_at": "2026-10-18 17:43:20 CST",
@@ -11506,6 +11873,37 @@
       "triggered_at": "2026-10-22 11:27:34 CST",
       "profile_version_id": "v-c5423e95",
       "market_fingerprint": "m-68071240",
+      "update_strategy": "no_change",
+      "status": "reused_cache",
+      "used_ai": false,
+      "error_message": ""
+    },
+    {
+      "run_id": "run-31",
+      "triggered_at": "2026-10-24 11:14:49 CST",
+      "profile_version_id": "v-c5423e95",
+      "market_fingerprint": "m-618489dc",
+      "advice_version_id": "adv-dc6eafa5",
+      "update_strategy": "refresh_market_data",
+      "status": "generated_success",
+      "used_ai": false,
+      "error_message": ""
+    },
+    {
+      "run_id": "run-31",
+      "triggered_at": "2026-10-24 11:15:06 CST",
+      "profile_version_id": "v-c5423e95",
+      "market_fingerprint": "m-618489dc",
+      "update_strategy": "no_change",
+      "status": "reused_cache",
+      "used_ai": false,
+      "error_message": ""
+    },
+    {
+      "run_id": "run-31",
+      "triggered_at": "2026-10-24 11:15:16 CST",
+      "profile_version_id": "v-c5423e95",
+      "market_fingerprint": "m-618489dc",
       "update_strategy": "no_change",
       "status": "reused_cache",
       "used_ai": false,
