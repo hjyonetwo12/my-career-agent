@@ -1,11 +1,11 @@
 {
-  "report_version_id": "rep-415c53f7",
-  "scan_date": "2026-11-03",
-  "generated_at": "2026-11-03 14:23:16 CST",
+  "report_version_id": "rep-65daa06c",
+  "scan_date": "2026-11-05",
+  "generated_at": "2026-11-05 12:56:21 CST",
   "profile_version_id": "v-c5423e95",
-  "total_items": 16228,
-  "current_27_jobs": 6510,
-  "active_companies": 342,
-  "high_match_jobs": 98,
-  "hidden_jobs": 2
+  "total_items": 17303,
+  "current_27_jobs": 6683,
+  "active_companies": 350,
+  "high_match_jobs": 102,
+  "hidden_jobs": 99
 }
