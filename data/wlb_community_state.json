@@ -3,7 +3,7 @@
     "优必选": {
       "company": "优必选",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "insufficient_evidence",
       "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
       "evidence_confidence": "insufficient (证据不足)",
@@ -104,7 +104,7 @@
     "汇川技术": {
       "company": "汇川技术",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "mixed_controversial",
       "verdict_label": "3. 观点分歧较大（不同来源、不同时期或不同部门的说法不一致）",
       "evidence_confidence": "medium_high (中高 · 含 2 条同城/同岗近期证据，均值权重 0.71)",
@@ -158,10 +158,10 @@
         "active_job_count": 8,
         "sampled_cities": [
           "南京市",
+          "深圳市 / 苏州市",
           "苏州市",
           "苏州市 / 深圳市",
-          "苏州市 / 深圳市 / 西安市",
-          "苏州市 / 深圳市 / 西安市 / 南京市"
+          "苏州市 / 深圳市 / 西安市"
         ],
         "sampled_titles": [
           "【27校招 - 联合动力】嵌入式软件工程师（车载电源/电机控制器/底盘等）",
@@ -336,7 +336,7 @@
     "中国联通": {
       "company": "中国联通",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "outdated_evidence",
       "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
       "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
@@ -347,7 +347,7 @@
         {
           "theme": "overtime_hours",
           "theme_label": "工时与周末双休",
-          "query": "中国联通 北京 数据 加班 工时 下班时间 双休 周末 知乎 V2EX"
+          "query": "中国联通 北京 算法 加班 工时 下班时间 双休 周末 知乎 V2EX"
         },
         {
           "theme": "wlb_rhythm",
@@ -362,7 +362,7 @@
         {
           "theme": "dept_role_context",
           "theme_label": "部门与具体岗位差异",
-          "query": "(中国联通 OR 联通软件研究院) 北京 数据 部门 工作体验 知乎"
+          "query": "(中国联通 OR 联通软件研究院) 北京 算法 部门 工作体验 知乎"
         },
         {
           "theme": "oncall_pressure",
@@ -391,21 +391,21 @@
         "sampled_cities": [
           "兰州-七里河区",
           "北京-东城区",
-          "北京-西城区",
           "南京-秦淮区",
-          "张家口-怀来县"
+          "张家口-怀来县",
+          "济南-历城区"
         ],
         "sampled_titles": [
-          "产品研发",
           "数据工程师",
-          "人工智能工程师",
           "软件开发工程师",
-          "AI算法工程师"
+          "AI算法工程师",
+          "人工智能研发工程师",
+          "安全及消防专业岗（张家口怀来）"
         ],
         "sampled_jd_urls": [
-          "https://www.iguopin.com/job/detail?id=215300449325024794",
           "https://www.iguopin.com/job/detail?id=218162398584899110",
-          "https://www.iguopin.com/job/detail?id=215413007197406801"
+          "https://www.iguopin.com/job/detail?id=215303361933608462",
+          "https://www.iguopin.com/job/detail?id=215331527658047042"
         ],
         "explicit_positive_terms": [],
         "explicit_warning_terms": [],
@@ -480,7 +480,7 @@
         ],
         "conflict_and_timeliness_note": "正面信号 1 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 1 条。",
         "interview_verification_checklist": [
-          "向面试官核实团队具体作息：“请问咱们这个『产品研发』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向面试官核实团队具体作息：“请问咱们这个『数据工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
           "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
         ]
       }
@@ -488,7 +488,7 @@
     "柏楚电子": {
       "company": "柏楚电子",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "outdated_evidence",
       "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
       "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
@@ -622,7 +622,7 @@
     "合合信息": {
       "company": "合合信息",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "outdated_evidence",
       "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
       "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
@@ -678,20 +678,22 @@
           "上海市"
         ],
         "sampled_titles": [
-          "27届校招-AI软件开发工程师(J14404)",
+          "27届校招-大模型算法工程师(J14380)",
           "27届校招-AI软件开发工程师(J14381)",
           "【27校招】机器人运动控制算法工程师(J14448)",
-          "【27校招】智能图像算法工程师(J14447)",
-          "【27校招】3D视觉算法工程师(J14446)"
+          "【27校招】3D视觉算法工程师(J14446)",
+          "【27校招】AI 数据工程师(J14445)"
         ],
         "sampled_jd_urls": [
-          "https://intsig.zhiye.com/campus/detail?jobAdId=f9dc727c-8bb8-40d3-88ef-69fac5947a42",
+          "https://intsig.zhiye.com/campus/detail?jobAdId=9cfac9d7-4eb0-48c0-96fa-8e17b152396c",
           "https://intsig.zhiye.com/campus/detail?jobAdId=e1f34f82-fbaa-4ed0-928f-26152fe85165",
           "https://intsig.zhiye.com/campus/detail?jobAdId=bc97e51a-eb15-471f-bfa3-0387fb0b1128"
         ],
         "explicit_positive_terms": [],
-        "explicit_warning_terms": [],
-        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "explicit_warning_terms": [
+          "7*24"
+        ],
+        "jd_fact_summary": "【招聘原文事实】JD 显式包含高压/加班/出差要求（原文提及：“7*24”）",
         "department_disclosed": false
       },
       "community_experiences": {
@@ -750,7 +752,7 @@
         ],
         "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 1 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 1 条。",
         "interview_verification_checklist": [
-          "向面试官核实团队具体作息：“请问咱们这个『27届校招-AI软件开发工程师(J14404)』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向面试官核实团队具体作息：“请问咱们这个『27届校招-大模型算法工程师(J14380)』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
           "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
         ]
       }
@@ -758,7 +760,7 @@
     "贝壳": {
       "company": "贝壳",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "positive_signal",
       "verdict_label": "2. 存在较明确的正面信号（有相关且相对具体的双休/弹性/合规证据支持）",
       "evidence_confidence": "medium_high (中高 · 含 1 条同城/同岗近期证据，均值权重 0.90)",
@@ -902,7 +904,7 @@
     "华橙网络": {
       "company": "华橙网络",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "insufficient_evidence",
       "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
       "evidence_confidence": "insufficient (证据不足)",
@@ -953,7 +955,7 @@
       },
       "jd_facts": {
         "company": "华橙网络",
-        "active_job_count": 7,
+        "active_job_count": 8,
         "sampled_cities": [
           "浙江省·杭州市",
           "浙江省·杭州市、陕西省·西安市"
@@ -998,7 +1000,7 @@
     "阳光保险": {
       "company": "阳光保险",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "insufficient_evidence",
       "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
       "evidence_confidence": "insufficient (证据不足)",
@@ -1095,10 +1097,10 @@
     "字节跳动": {
       "company": "字节跳动",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "mixed_controversial",
       "verdict_label": "3. 观点分歧较大（不同来源、不同时期或不同部门的说法不一致）",
-      "evidence_confidence": "medium (中等 · 共 2 条公司级证据，均值权重 0.55)",
+      "evidence_confidence": "medium_high (中高 · 含 1 条同城/同岗近期证据，均值权重 0.68)",
       "explainable_numeric_index": 53,
       "score_rule_explanation": "参考指数 53/100（计算规则：基准 65 分 + 正向证据 0×10 - 负向信号 1×12 ；该数值仅作排序辅助，必须结合下方证据置信度与分歧说明阅读）。",
       "department_scope_note": "⚠️ 公司层面参考，无法确认该岗位具体团队情况（同一公司不同事业部/产研中心作息可能存在显著差异）。",
@@ -1106,12 +1108,12 @@
         {
           "theme": "overtime_hours",
           "theme_label": "工时与周末双休",
-          "query": "字节跳动 研发 加班 工时 下班时间 双休 周末 知乎 V2EX"
+          "query": "字节跳动 上海 Agent 加班 工时 下班时间 双休 周末 知乎 V2EX"
         },
         {
           "theme": "wlb_rhythm",
           "theme_label": "工作强度与节奏",
-          "query": "字节跳动 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
+          "query": "字节跳动 上海 WLB 工作强度 工作节奏 项目周期 知乎 牛客"
         },
         {
           "theme": "intern_experience",
@@ -1121,7 +1123,7 @@
         {
           "theme": "dept_role_context",
           "theme_label": "部门与具体岗位差异",
-          "query": "(字节跳动 OR 字节) 研发 部门 工作体验 知乎"
+          "query": "(字节跳动 OR 字节) 上海 Agent 部门 工作体验 知乎"
         },
         {
           "theme": "oncall_pressure",
@@ -1131,7 +1133,7 @@
         {
           "theme": "positive_wlb",
           "theme_label": "正向WLB与准点下班体验",
-          "query": "字节跳动 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
+          "query": "字节跳动 上海 不加班 准时下班 弹性打卡 工作生活平衡 知乎 V2EX"
         }
       ],
       "search_metadata": {
@@ -1146,10 +1148,26 @@
       },
       "jd_facts": {
         "company": "字节跳动",
-        "active_job_count": 0,
-        "sampled_cities": [],
-        "sampled_titles": [],
-        "sampled_jd_urls": [],
+        "active_job_count": 8,
+        "sampled_cities": [
+          "上海",
+          "北京",
+          "北京 / 上海 / 杭州",
+          "深圳",
+          "深圳 / 北京"
+        ],
+        "sampled_titles": [
+          "Agentic RL For Long Horizon Task-剪映数据与智能团队",
+          "抖音多业务场景的大模型训练与应用-抖音直播（北京/上海/深圳/杭州）",
+          "基于大系统大算力的超大规模推荐模型建模（AI Infra）-Data AML（北京/上海/杭州）",
+          "广告场景下的生成式搜广推大模型技术研究-Global Ads Infra（北京/上海）",
+          "视觉多模态大模型应用算法工程师-Seed大模型人才校招"
+        ],
+        "sampled_jd_urls": [
+          "https://jobs.bytedance.com/campus/position/7628589792160696581/detail",
+          "https://jobs.bytedance.com/campus/position/7628081932895815989/detail",
+          "https://jobs.bytedance.com/campus/position/7629333144656693509/detail"
+        ],
         "explicit_positive_terms": [],
         "explicit_warning_terms": [],
         "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
@@ -1157,7 +1175,7 @@
       },
       "community_experiences": {
         "valid_evidence_count": 2,
-        "tier1_exact_count": 0,
+        "tier1_exact_count": 1,
         "recent_evidence_count": 1,
         "rejected_noise_count": 0,
         "rejected_noise_samples": [],
@@ -1181,9 +1199,9 @@
               "IaaS",
               "基础架构"
             ],
-            "match_tier": "tier_2_company_general",
-            "match_tier_label": "2. 同公司研发参考（涉及城市:上海,北京，公司层面参考，无法确认该岗位具体团队情况）",
-            "confidence_weight": 0.65,
+            "match_tier": "tier_1_exact_role_city",
+            "match_tier_label": "1. 同公司 + 同城(上海,北京) + 相似研发岗 (2025-04-29)",
+            "confidence_weight": 0.9,
             "is_valid_target": true,
             "is_outdated": false,
             "polarity": "negative",
@@ -1208,7 +1226,7 @@
               "credibility": "中（内部员工招聘/内推帖，含具体作息说明但可能带有招募正面滤镜）",
               "representativeness": "部门/时期经验样本（不可直接概括为全体员工一致体验）"
             },
-            "limitations": "未精确到当前招聘JD所在的具体子部门/项目组；来源包含内推招募信息，需警惕宣传美化偏差"
+            "limitations": "来源包含内推招募信息，需警惕宣传美化偏差"
           },
           {
             "title": "我在字节跳动实习的三个月 - V2EX",
@@ -1263,7 +1281,7 @@
         ],
         "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 1 条 / 分歧或中性 1 条；近3年内证据 1 条，较早历史证据 1 条。",
         "interview_verification_checklist": [
-          "向面试官核实团队具体作息：“请问咱们这个『研发』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向面试官核实团队具体作息：“请问咱们这个『Agentic RL For Long Horizon Task-剪映数据与智能团队』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
           "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
         ]
       }
@@ -1271,7 +1289,7 @@
     "bilibili": {
       "company": "bilibili",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "insufficient_evidence",
       "verdict_label": "4. 证据不足（暂时无法作出可靠判断，绝不默认 WLB 良好或糟糕）",
       "evidence_confidence": "insufficient (证据不足)",
@@ -1324,19 +1342,20 @@
         "company": "bilibili",
         "active_job_count": 8,
         "sampled_cities": [
-          "上海"
+          "上海",
+          "北京/上海"
         ],
         "sampled_titles": [
+          "【B-UP】AI Infra模型开发工程师（校招）",
           "【B-UP】视频生成算法工程师（校招）",
-          "SRE工程师 【2027届】",
-          "推荐研发工程师【2027届】",
-          "基础架构研发工程师【2027届】",
-          "模型工程研发工程师【2027届】"
+          "【B-UP】多模态智能体工程师（校招）",
+          "【B-UP】多模态数据平台研发工程师（校招）",
+          "【B-UP】强化学习训练算法工程师（校招）"
         ],
         "sampled_jd_urls": [
+          "https://jobs.bilibili.com/campus/positions/28876",
           "https://jobs.bilibili.com/campus/positions/28853",
-          "https://jobs.bilibili.com/campus/positions/29682",
-          "https://jobs.bilibili.com/campus/positions/29698"
+          "https://jobs.bilibili.com/campus/positions/29370"
         ],
         "explicit_positive_terms": [],
         "explicit_warning_terms": [],
@@ -1358,7 +1377,7 @@
         ],
         "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 0 条。",
         "interview_verification_checklist": [
-          "向面试官核实团队具体作息：“请问咱们这个『【B-UP】视频生成算法工程师（校招）』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向面试官核实团队具体作息：“请问咱们这个『【B-UP】AI Infra模型开发工程师（校招）』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
           "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
         ]
       }
@@ -1366,7 +1385,7 @@
     "OPPO": {
       "company": "OPPO",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "mixed_controversial",
       "verdict_label": "3. 观点分歧较大（不同来源、不同时期或不同部门的说法不一致）",
       "evidence_confidence": "medium_high (中高 · 含 1 条同城/同岗近期证据，均值权重 0.78)",
@@ -1419,23 +1438,23 @@
         "company": "OPPO",
         "active_job_count": 8,
         "sampled_cities": [
+          "东莞市",
           "北京市,深圳市",
-          "成都市,深圳市",
           "成都市,深圳市,上海市",
           "成都市,深圳市,东莞市",
-          "成都市,深圳市,南京市"
+          "深圳市"
         ],
         "sampled_titles": [
+          "电池算法工程师",
+          "机器学习研究员（健康方向）",
           "多媒体开发工程师（C++）",
           "音频算法工程师",
-          "算法测试开发工程师",
-          "计算机视觉算法开发工程师",
-          "AI工程师（AI Infra方向）"
+          "算法测试开发工程师"
         ],
         "sampled_jd_urls": [
-          "https://careers.oppo.com/university/oppo/campus/post/1761",
-          "https://careers.oppo.com/university/oppo/campus/post/1770",
-          "https://careers.oppo.com/university/oppo/campus/post/1758"
+          "https://careers.oppo.com/university/oppo/campus/post/1769",
+          "https://careers.oppo.com/university/oppo/campus/post/1774",
+          "https://careers.oppo.com/university/oppo/campus/post/1761"
         ],
         "explicit_positive_terms": [],
         "explicit_warning_terms": [],
@@ -1507,7 +1526,7 @@
         ],
         "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 0 条 / 分歧或中性 1 条；近3年内证据 1 条，较早历史证据 0 条。",
         "interview_verification_checklist": [
-          "向面试官核实团队具体作息：“请问咱们这个『多媒体开发工程师（C++）』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向面试官核实团队具体作息：“请问咱们这个『电池算法工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
           "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
         ]
       }
@@ -1613,7 +1632,7 @@
     "快手": {
       "company": "快手",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "negative_signal",
       "verdict_label": "1. 存在较明确的负面信号（有相关且相对具体的加班/高压证据支持）",
       "evidence_confidence": "insufficient (证据不足)",
@@ -2399,7 +2418,7 @@
     "德州仪器": {
       "company": "德州仪器",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "mixed_controversial",
       "verdict_label": "3. 观点分歧较大（不同来源、不同时期或不同部门的说法不一致）",
       "evidence_confidence": "medium (中等 · 共 3 条公司级证据，均值权重 0.58)",
@@ -2410,7 +2429,7 @@
         {
           "theme": "overtime_hours",
           "theme_label": "工时与周末双休",
-          "query": "德州仪器 嵌入式 加班 工时 下班时间 双休 周末 知乎 V2EX"
+          "query": "德州仪器 研发 加班 工时 下班时间 双休 周末 知乎 V2EX"
         },
         {
           "theme": "wlb_rhythm",
@@ -2425,7 +2444,7 @@
         {
           "theme": "dept_role_context",
           "theme_label": "部门与具体岗位差异",
-          "query": "(德州仪器 OR TI) 嵌入式 部门 工作体验 知乎"
+          "query": "(德州仪器 OR TI) 研发 部门 工作体验 知乎"
         },
         {
           "theme": "oncall_pressure",
@@ -2453,16 +2472,16 @@
         "active_job_count": 8,
         "sampled_cities": [],
         "sampled_titles": [
-          "2026校招-EP FAE/现场技术应用工程师轮岗项目-嵌入式方向",
-          "2027校招-EP FAE/现场技术应用工程师轮岗项目-嵌入式方向",
-          "2027校招-IT软件开发工程师/Software Development Engineer",
-          "2027校招 - 应用工程师（嵌入式方向) / Applications Engineer",
-          "ATBP中央运营采购/Central Procurement Operation Buyer"
+          "Equipment non-capital sourcing Specialist",
+          "FAB Thin Film 设备工程师/FAB Equipment Engineer",
+          "FAB IMP 设备工程师/FAB Equipment Engineer",
+          "BUMP Sputter 工艺工程师",
+          "BUMP PHOTO 工艺工程师"
         ],
         "sampled_jd_urls": [
-          "https://app.mokahr.com/su/vjlqkz#/job/1a49302f-98ba-4842-94a0-68fd739dc747",
-          "https://app.mokahr.com/su/vjlqkz#/job/0734695e-8179-48b5-b3e9-ced506f95a04",
-          "https://app.mokahr.com/su/vjlqkz#/job/a59f7ad5-75cb-4bd3-8e8e-09824ac43e29"
+          "https://app.mokahr.com/su/vjlqkz#/job/65abc496-b2ea-448e-a71b-ace48b5fb708",
+          "https://app.mokahr.com/su/vjlqkz#/job/48bb6aa9-603e-4076-aa90-89727b366b18",
+          "https://app.mokahr.com/su/vjlqkz#/job/f11d6564-b30a-4a9c-a7e3-5b32879864fc"
         ],
         "explicit_positive_terms": [],
         "explicit_warning_terms": [],
@@ -2613,7 +2632,7 @@
         ],
         "conflict_and_timeliness_note": "正面信号 1 条 / 负面信号 2 条 / 分歧或中性 0 条；近3年内证据 2 条，较早历史证据 1 条。",
         "interview_verification_checklist": [
-          "向面试官核实团队具体作息：“请问咱们这个『2026校招-EP FAE/现场技术应用工程师轮岗项目-嵌入式方向』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向面试官核实团队具体作息：“请问咱们这个『Equipment non-capital sourcing Specialist』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
           "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
         ]
       }
@@ -2621,7 +2640,7 @@
     "金山办公": {
       "company": "金山办公",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "negative_signal",
       "verdict_label": "1. 存在较明确的负面信号（有相关且相对具体的加班/高压证据支持）",
       "evidence_confidence": "medium (中等 · 共 2 条公司级证据，均值权重 0.53)",
@@ -2801,7 +2820,7 @@
     "联影医疗": {
       "company": "联影医疗",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "outdated_evidence",
       "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
       "evidence_confidence": "low_outdated (偏低 · 2 条证据均超过 4 年)",
@@ -2975,7 +2994,7 @@
     "大疆": {
       "company": "大疆",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "mixed_controversial",
       "verdict_label": "3. 观点分歧较大（不同来源、不同时期或不同部门的说法不一致）",
       "evidence_confidence": "medium (中等 · 共 2 条公司级证据，均值权重 0.43)",
@@ -3154,7 +3173,7 @@
     "万兴科技": {
       "company": "万兴科技",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "negative_signal",
       "verdict_label": "1. 存在较明确的负面信号（有相关且相对具体的加班/高压证据支持）",
       "evidence_confidence": "medium_high (中高 · 含 1 条同城/同岗近期证据，均值权重 0.78)",
@@ -3165,7 +3184,7 @@
         {
           "theme": "overtime_hours",
           "theme_label": "工时与周末双休",
-          "query": "万兴科技 长沙 算法 加班 工时 下班时间 双休 周末 知乎 V2EX"
+          "query": "万兴科技 长沙 Agent 加班 工时 下班时间 双休 周末 知乎 V2EX"
         },
         {
           "theme": "wlb_rhythm",
@@ -3180,7 +3199,7 @@
         {
           "theme": "dept_role_context",
           "theme_label": "部门与具体岗位差异",
-          "query": "(万兴科技 OR 万兴) 长沙 算法 部门 工作体验 知乎"
+          "query": "(万兴科技 OR 万兴) 长沙 Agent 部门 工作体验 知乎"
         },
         {
           "theme": "oncall_pressure",
@@ -3211,20 +3230,23 @@
           "湖南省·长沙市、广东省·深圳市"
         ],
         "sampled_titles": [
-          "AI应用开发工程师【多模态方向】",
-          "算法工程化工程师",
           "全栈开发工程师",
-          "AI应用开发工程师【agent应用与平台方向】",
-          "AI应用开发工程师（AI Agent方向）"
+          "AI应用开发工程师（AI Agent方向）",
+          "全栈开发工程师（AIGC产品方向）",
+          "大数据开发工程师",
+          "大数据算法工程师"
         ],
         "sampled_jd_urls": [
-          "https://wondersharecampus.zhiye.com/campus/detail?jobAdId=4ff44f00-dab2-4b3c-9b34-f548f6f4f6cc",
-          "https://wondersharecampus.zhiye.com/campus/detail?jobAdId=035fb348-07d4-4934-8971-7b85fcbdf51f",
-          "https://wondersharecampus.zhiye.com/campus/detail?jobAdId=7f5a6c66-deda-49de-b99a-655b7a569b66"
+          "https://wondersharecampus.zhiye.com/campus/detail?jobAdId=7be6ac83-0487-48ea-ba78-65aea0484463",
+          "https://wondersharecampus.zhiye.com/campus/detail?jobAdId=f6e3e313-57f6-43ff-81e6-f894f34824af",
+          "https://wondersharecampus.zhiye.com/campus/detail?jobAdId=f3b6f766-1805-4f6a-99e5-0229ec8138af"
         ],
         "explicit_positive_terms": [],
-        "explicit_warning_terms": [],
-        "jd_fact_summary": "【招聘原文事实】官方 JD 仅列出岗位职责与技术要求，未披露具体工时、作息时间或是否双休",
+        "explicit_warning_terms": [
+          "快节奏",
+          "高强度"
+        ],
+        "jd_fact_summary": "【招聘原文事实】JD 显式包含高压/加班/出差要求（原文提及：“快节奏、高强度”）",
         "department_disclosed": false
       },
       "community_experiences": {
@@ -3283,7 +3305,7 @@
         ],
         "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 1 条 / 分歧或中性 0 条；近3年内证据 1 条，较早历史证据 0 条。",
         "interview_verification_checklist": [
-          "向面试官核实团队具体作息：“请问咱们这个『AI应用开发工程师【多模态方向】』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向面试官核实团队具体作息：“请问咱们这个『全栈开发工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
           "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
         ]
       }
@@ -3291,7 +3313,7 @@
     "同花顺": {
       "company": "同花顺",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "outdated_evidence",
       "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
       "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
@@ -3347,7 +3369,7 @@
           "杭州"
         ],
         "sampled_titles": [
-          "AIME基座预训练算法工程师"
+          "预训练算法工程师（金融Agent）"
         ],
         "sampled_jd_urls": [
           "https://campus.10jqka.com.cn/job/list?type=school"
@@ -3419,7 +3441,7 @@
         ],
         "conflict_and_timeliness_note": "正面信号 0 条 / 负面信号 1 条 / 分歧或中性 0 条；近3年内证据 0 条，较早历史证据 1 条。",
         "interview_verification_checklist": [
-          "向面试官核实团队具体作息：“请问咱们这个『AIME基座预训练算法工程师』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
+          "向面试官核实团队具体作息：“请问咱们这个『预训练算法工程师（金融Agent）』岗位所在的项目组，平时工作日典型的上下班时间和版本发布周期是怎样的？”",
           "向 HR 或直属学长核实实习生边界：“实习生是否参与线上 On-call 轮值或周末发版？考核转正主要看代码产出质量还是出勤工时？”"
         ]
       }
@@ -3427,7 +3449,7 @@
     "星环科技": {
       "company": "星环科技",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "outdated_evidence",
       "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
       "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
@@ -3564,7 +3586,7 @@
     "米哈游": {
       "company": "米哈游",
       "audit_version": "wlb-v1.0",
-      "audited_at": "2026-11-03 14:22:48 CST",
+      "audited_at": "2026-11-19 13:52:09 CST",
       "verdict_code": "outdated_evidence",
       "verdict_label": "5. 存在明显时效性问题（主要社区证据较旧，不能直接代表当前团队情况）",
       "evidence_confidence": "low_outdated (偏低 · 1 条证据均超过 4 年)",
@@ -3704,5 +3726,5 @@
       }
     }
   },
-  "last_updated": "2026-11-17 15:14:20 CST"
+  "last_updated": "2026-11-19 13:52:26 CST"
 }
